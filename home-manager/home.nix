@@ -3,6 +3,8 @@
     inputs.nix-colors.homeManagerModules.default
     ./pkgs.nix
     ./modules/theme.nix
+    ./modules/decode.nix
+    ./modules/encode.nix
     ./modules/nix.nix
     ./modules/atuin.nix
     ./modules/dunst.nix
@@ -24,7 +26,7 @@
     ./modules/hyprland.nix
     ./modules/swayidle.nix
     ./modules/zathura.nix
-    # ./modules/zsh
+    ./modules/zsh.nix
     # ./modules/direnv.nix
     # ./modules/syncthing.nix
   ];

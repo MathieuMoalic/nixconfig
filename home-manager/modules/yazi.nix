@@ -10,21 +10,21 @@
       manager = {
         layout = [1 4 3];
         linemode = "size";
-        showHidden = true;
-        showSymlink = true;
-        sortBy = "modified";
-        sortDirFirst = false;
-        sortReverse = true;
-        sortSensitive = true;
+        show_hidden = true;
+        show_symlink = true;
+        sort_by = "modified";
+        sort_dir-first = false;
+        sort_reverse = true;
+        sort_sensitive = true;
       };
 
       preview = {
-        cacheDir = "";
-        maxHeight = 900;
-        maxWidth = 600;
-        tabSize = 2;
-        ueberzugOffset = [0 0 0 0];
-        ueberzugScale = 1;
+        cache_dir = "";
+        max_height = 900;
+        max_width = 600;
+        tab_size = 2;
+        ueberzug_offset = [0 0 0 0];
+        ueberzug_scale = 1;
       };
 
       opener = {
@@ -152,12 +152,12 @@
       };
 
       tasks = {
-        bizarreRetry = 5;
-        imageAlloc = 536870912; # 512MB
-        imageBound = [0 0];
-        macroWorkers = 10;
-        microWorkers = 5;
-        suppressPreload = false;
+        bizarre_retry = 5;
+        image_alloc = 536870912; # 512MB
+        image_bound = [0 0];
+        macro_workers = 10;
+        micro_workers = 5;
+        suppress_preload = false;
       };
 
       plugins = {
@@ -166,60 +166,60 @@
 
       input = {
         # cd
-        cdOffset = [0 2 50 3];
-        cdOrigin = "top-center";
-        cdTitle = "Change directory:";
+        cd_offset = [0 2 50 3];
+        cd_origin = "top-center";
+        cd_title = "Change directory:";
 
         # create
-        createOffset = [0 2 50 3];
-        createOrigin = "top-center";
-        createTitle = "Create:";
+        create_offset = [0 2 50 3];
+        create_origin = "top-center";
+        create_title = "Create:";
 
         # rename
-        renameOffset = [0 1 50 3];
-        renameOrigin = "hovered";
-        renameTitle = "Rename:";
+        rename_offset = [0 1 50 3];
+        rename_origin = "hovered";
+        rename_title = "Rename:";
 
         # trash
-        trashOffset = [0 2 50 3];
-        trashOrigin = "top-center";
-        trashTitle = "Move {n} selected file{s} to trash? (y/N)";
+        trash_offset = [0 2 50 3];
+        trash_origin = "top-center";
+        trash_title = "Move {n} selected file{s} to trash? (y/N)";
 
         # delete
-        deleteOffset = [0 2 50 3];
-        deleteOrigin = "top-center";
-        deleteTitle = "Delete {n} selected file{s} permanently? (y/N)";
+        delete_offset = [0 2 50 3];
+        delete_origin = "top-center";
+        delete_title = "Delete {n} selected file{s} permanently? (y/N)";
 
         # find
-        findOffset = [0 2 50 3];
-        findOrigin = "top-center";
-        findTitle = ["Find next:" "Find previous:"];
+        find_offset = [0 2 50 3];
+        find_origin = "top-center";
+        find_title = ["Find next:" "Find previous:"];
 
         # search
-        searchOffset = [0 2 50 3];
-        searchOrigin = "top-center";
-        searchTitle = "Search:";
+        search_offset = [0 2 50 3];
+        search_origin = "top-center";
+        search_title = "Search:";
 
         # shell
-        shellOffset = [0 2 50 3];
-        shellOrigin = "top-center";
-        shellTitle = ["Shell:" "Shell (block):"];
+        shell_offset = [0 2 50 3];
+        shell_origin = "top-center";
+        shell_title = ["Shell:" "Shell (block):"];
 
         # overwrite
-        overwriteOffset = [0 2 50 3];
-        overwriteOrigin = "top-center";
-        overwriteTitle = "Overwrite an existing file? (y/N)";
+        overwrite_offset = [0 2 50 3];
+        overwrite_origin = "top-center";
+        overwrite_title = "Overwrite an existing file? (y/N)";
 
         # quit
-        quitOffset = [0 2 50 3];
-        quitOrigin = "top-center";
-        quitTitle = "{n} task{s} running, sure to quit? (y/N)";
+        quit_offset = [0 2 50 3];
+        quit_origin = "top-center";
+        quit_title = "{n} task{s} running, sure to quit? (y/N)";
       };
 
       select = {
-        openOffset = [0 1 50 7];
-        openOrigin = "hovered";
-        openTitle = "Open with:";
+        open_offset = [0 1 50 7];
+        open_origin = "hovered";
+        open_title = "Open with:";
       };
 
       log = {
@@ -234,89 +234,89 @@
           fg = "black";
           bg = "lightblue";
         };
-        previewHovered = {underline = true;};
+        preview_hovered = {underline = true;};
 
-        findKeyword = {
+        find_keyword = {
           fg = "yellow";
           italic = true;
         };
-        findPosition = {
+        find_position = {
           fg = "magenta";
           bg = "reset";
           italic = true;
         };
 
-        markerCopied = {
+        marker_copied = {
           fg = "lightyellow";
           bg = "lightyellow";
         };
-        markerCut = {
+        marker_cut = {
           fg = "lightred";
           bg = "lightred";
         };
-        markerSelected = {
+        marker_selected = {
           fg = "lightgreen";
           bg = "lightgreen";
         };
 
-        tabActive = {
+        tab_aCtive = {
           fg = "black";
           bg = "lightblue";
         };
-        tabInactive = {
+        tab_inactive = {
           fg = "white";
           bg = "darkgray";
         };
-        tabWidth = 1;
+        tab_width = 1;
 
-        borderStyle = {fg = "gray";};
-        borderSymbol = "│";
+        border_style = {fg = "gray";};
+        border_symbol = "│";
 
-        folderOffset = [1 0 1 0];
-        previewOffset = [1 1 1 1];
+        folder_offset = [1 0 1 0];
+        preview_offset = [1 1 1 1];
 
-        syntectTheme = "";
+        syntect_theme = "";
       };
 
       status = {
-        separatorClose = "";
-        separatorOpen = "";
-        separatorStyle = {
+        separator_close = "";
+        separator_open = "";
+        separator_style = {
           fg = "darkgray";
           bg = "darkgray";
         };
 
-        modeNormal = {
+        mode_normal = {
           fg = "black";
           bg = "lightblue";
           bold = true;
         };
-        modeSelect = {
+        mode_select = {
           fg = "black";
           bg = "lightgreen";
           bold = true;
         };
-        modeUnset = {
+        mode_unset = {
           fg = "black";
           bg = "lightmagenta";
           bold = true;
         };
 
-        progressError = {
+        progress_error = {
           fg = "red";
           bg = "black";
         };
-        progressLabel = {bold = true;};
-        progressNormal = {
+        progress_label = {bold = true;};
+        progress_normal = {
           fg = "blue";
           bg = "black";
         };
 
-        permissionsR = {fg = "lightyellow";};
-        permissionsS = {fg = "darkgray";};
-        permissionsT = {fg = "lightgreen";};
-        permissionsW = {fg = "lightred";};
-        permissionsX = {fg = "lightcyan";};
+        permissions_r = {fg = "lightyellow";};
+        permissions_s = {fg = "darkgray";};
+        permissions_t = {fg = "lightgreen";};
+        permissions_w = {fg = "lightred";};
+        permissions_x = {fg = "lightcyan";};
       };
       select = {
         active = {fg = "magenta";};
@@ -335,9 +335,9 @@
         active = {bg = "darkgray";};
         border = {fg = "blue";};
         inactive = {};
-        iconCommand = "";
-        iconFile = "";
-        iconFolder = "";
+        icon_command = "";
+        icon_file = "";
+        icon_folder = "";
       };
       tasks = {
         border = {fg = "blue";};
@@ -351,7 +351,7 @@
         mask = {bg = "black";};
         rest = {fg = "darkgray";};
         separator = "  ";
-        separatorStyle = {fg = "darkgray";};
+        separator_style = {fg = "darkgray";};
       };
 
       help = {
@@ -441,7 +441,7 @@
         "Desktop/" = "";
         "Development/" = "";
         "Documents/" = "";
-        "Downloads/" = "";
+        "dl/" = "";
         "Library/" = "";
         "Movies/" = "";
         "Music/" = "";
@@ -1532,7 +1532,4 @@
       ];
     };
   };
-  # xdg.configFile."yazi/keymap.toml".source = ./keymap.toml;
-  # xdg.configFile."yazi/theme.toml".source = ./theme.toml;
-  # xdg.configFile."yazi/yazi.toml".source = ./yazi.toml;
 }

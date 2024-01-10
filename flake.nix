@@ -6,14 +6,16 @@
     nix-colors.url = "github:misterio77/nix-colors";
     helix.url = "github:helix-editor/helix";
     xremap-flake.url = "github:xremap/nix-flake";
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    hyprsome.url = "github:sopa0/hyprsome";
+    # sops-nix.url = "github:Mic92/sops-nix";
+    # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
+    hyprsome,
     ...
   } @ inputs: let
     inherit (self) outputs;

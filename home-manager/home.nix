@@ -3,6 +3,7 @@
     inputs.nix-colors.homeManagerModules.default
     ./pkgs.nix
     ./modules/theme.nix
+    ./modules/quick-translate.nix
     ./modules/decode.nix
     ./modules/encode.nix
     ./modules/nix.nix
@@ -27,6 +28,8 @@
     ./modules/swayidle.nix
     ./modules/zathura.nix
     ./modules/zsh.nix
+    ./modules/aliases.nix
+    ./modules/session-variables.nix
     # ./modules/direnv.nix
     # ./modules/syncthing.nix
   ];

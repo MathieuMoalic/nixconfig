@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{config, ...}: {
   xdg.enable = true;
   xdg.userDirs = {
     enable = true;

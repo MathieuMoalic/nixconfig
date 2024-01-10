@@ -156,7 +156,7 @@
     shell = pkgs.zsh;
   };
   programs.zsh.enable = true;
-  environment.variables = {ZDOTDIR = "/home/mat/.config/zsh";};
+  environment.variables = {ZDOTDIR = "$HOME/.config/zsh";};
 
   environment.systemPackages = with pkgs; [
     home-manager

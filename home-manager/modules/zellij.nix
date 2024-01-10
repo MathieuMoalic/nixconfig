@@ -1,12 +1,11 @@
 {config, ...}: {
   programs.zellij = with config.colorScheme.colors; {
     enable = true;
-    enableZshIntegration = true;
+    # enableZshIntegration = true;
     settings = {
       keybinds = {
+        clear-defaults = true;
         normal = {
-          # clear-defaults = true;
-
           "bind \"Alt h\"" = {NewPane = "Down";};
           "bind \"Alt v\"" = {NewPane = "Right";};
           "bind \"Alt ,\"" = {CloseFocus = [];};

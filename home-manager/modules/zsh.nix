@@ -42,6 +42,7 @@
       }
     ];
     initExtra = ''
+      HISTFILE="$XDG_CACHE_HOME/.zhistory"
       stty -ixon # allows ctrl + q and s
       autoload -U edit-command-line
       zle -N edit-command-line
@@ -86,21 +87,14 @@
       EDITOR = "${pkgs.helix}/bin/hx";
       VISUAL = "$EDITOR";
       SUDO_EDIT = "$EDITOR";
-      ERRFILE = "$XDG_CACHE_HOME/X11/xsession-errors";
       ZDOTDIR = "$HOME/.config/zsh";
-      USERXSESSION = "$XDG_CACHE_HOME/X11/xsession";
-      USERXSESSIONRC = "$XDG_CACHE_HOME/X11/xsessionrc";
-      ALTUSERXSESSION = "$XDG_CACHE_HOME/X11/Xsession";
       GNUPGHOME = "$XDG_DATA_HOME/gnupg";
       GTK2_RC_FILES = "$XDG_CONFIG_HOME/gtk-2.0/gtkrc";
       JUPYTER_CONFIG_DIR = "$XDG_CONFIG_HOME/jupyter";
       LESSHISTFILE = "$XDG_CACHE_HOME/less/history";
       _Z_DATA = "$XDG_DATA_HOME/z";
       ZSH_COMPDUMP = "$ZSH/cache/.zcompdump-$HOST";
-      RUSTUP_HOME = "$XDG_DATA_HOME/rust";
-      CARGO_HOME = "$XDG_DATA_HOME/cargo";
       CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
-      GOPATH = "$XDG_DATA_HOME/go";
     };
     shellAliases = {
       rl = "exec zsh -l";
@@ -116,7 +110,6 @@
       tl = "zellij ls";
       ta = "zellij a -c";
       tk = "zellij k";
-      # wget="wget --hsts-file="$XDG_DATA_HOME/wget-hsts""";
       rs = "rsync -rv";
       pm = "podman";
       cat = "bat -Pp";
@@ -125,12 +118,7 @@
       cd = "z";
       d = "z";
       tldr = "tldr -q";
-      zfn2 = "ssh zfn2 -o RequestTTY=yes -o RemoteCommand=\"zellij a -c 1\"";
-      homeserver = "TERM=xterm-256color ssh homeserver -o RequestTTY=yes -o RemoteCommand=\"zellij a -c 1\"";
-      pcss = "ssh pcss -o RequestTTY=yes -o RemoteCommand=\"zellij a -c 1\"";
       fixcursor = "echo \"\e[5 q\"";
-      fpi = "flatpak --user install -y --or-update";
-      fpr = "flatpak --user run";
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";

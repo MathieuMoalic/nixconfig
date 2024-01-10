@@ -2,6 +2,7 @@
   imports = [
     inputs.nix-colors.homeManagerModules.default
     ./pkgs.nix
+    ./modules/ssh-and-zellij.nix
     ./modules/theme.nix
     ./modules/decode.nix
     ./modules/encode.nix

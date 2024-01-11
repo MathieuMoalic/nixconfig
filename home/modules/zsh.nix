@@ -1,5 +1,9 @@
 {pkgs, ...}: {
   # zoxide, skim shell integration maybe?
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
@@ -43,6 +47,7 @@
     ];
     initExtra = ''
       HISTFILE="$XDG_CACHE_HOME/.zhistory"
+      export PATH="$HOME/.local/share/pyvenv/bin":$PATH
       stty -ixon # allows ctrl + q and s
       autoload -U edit-command-line
       zle -N edit-command-line
@@ -83,58 +88,5 @@
       bindkey -s "^B" 'yazi^M'
 
     '';
-    sessionVariables = {
-      EDITOR = "${pkgs.helix}/bin/hx";
-      VISUAL = "$EDITOR";
-      SUDO_EDIT = "$EDITOR";
-      ZDOTDIR = "$HOME/.config/zsh";
-      GNUPGHOME = "$XDG_DATA_HOME/gnupg";
-      GTK2_RC_FILES = "$XDG_CONFIG_HOME/gtk-2.0/gtkrc";
-      JUPYTER_CONFIG_DIR = "$XDG_CONFIG_HOME/jupyter";
-      LESSHISTFILE = "$XDG_CACHE_HOME/less/history";
-      _Z_DATA = "$XDG_DATA_HOME/z";
-      ZSH_COMPDUMP = "$ZSH/cache/.zcompdump-$HOST";
-      CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
-    };
-    shellAliases = {
-      rl = "exec zsh -l";
-      rm = " rm -vdrf";
-      cp = "cp -r";
-      mkdir = " mkdir -p";
-      l = "exa -ahlg --across --icons -s age";
-      lt = "l --tree";
-      e = "$EDITOR";
-      m = "amumax";
-      op = "xdg-open";
-      se = "sudoedit";
-      tl = "zellij ls";
-      ta = "zellij a -c";
-      tk = "zellij k";
-      rs = "rsync -rv";
-      pm = "podman";
-      cat = "bat -Pp";
-      pmps = "pm ps -a --format \"table {{.Names}} {{.Status}} {{.Created}} {{.Image}}\"";
-      sysu = "systemctl --user";
-      cd = "z";
-      d = "z";
-      tldr = "tldr -q";
-      fixcursor = "echo \"\e[5 q\"";
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      "...." = "cd ../../..";
-      myip = "curl ifconfig.me";
-      dev = "nix develop -c zsh";
-      gs = "git status";
-      gc = "git commit -m";
-      ga = "git add";
-      gco = "git checkout";
-      ghs = "gh copilot suggest -t shell";
-      ghe = "gh copilot explain";
-      ghc = "gh copilot";
-      hup = "cd $HOME/nix && git add . && home-manager switch --flake '/home/mat/nix#mat@xps' && cd -";
-      up = "cd $HOME/nix && git add . && sudo nixos-rebuild switch --flake '/home/mat/nix#xps' && cd -";
-      colors = "curl -Ls 'https://raw.githubusercontent.com/NNBnh/textart-collections/main/color/colortest.textart' | bash; echo";
-      p = "nix-shell -p";
-    };
   };
 }

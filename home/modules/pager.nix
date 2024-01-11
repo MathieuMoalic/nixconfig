@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  # bat as a pager
-  home.sessionVariables = {MANPAGER = "${pkgs.bat-extras.batman}/bin/batman";};
   # bat will read the keybinds in .config/lesskey
   programs.less = {
     enable = true;

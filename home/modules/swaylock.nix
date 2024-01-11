@@ -25,7 +25,7 @@
     package = pkgs.swaylock-effects;
     settings = {
       # image = "~/.local/share/wallpaper.jpeg";
-      imge = "${wallpaperPath}";
+      image = "${wallpaperPath}";
       ignore-empty-password = true;
       font = "Ubuntu";
       indicator-radius = 300;

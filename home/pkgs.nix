@@ -5,14 +5,21 @@
     networkmanagerapplet
 
     # dev
+    # podman
+    # nvidia-podman
+    just
+    python3
     alejandra # format nix
     nil # nix LSP
 
     # GUI software
+    inkscape # svf editor
+    nomacs # image viewer
     zathura # pdf viewer
     anki-bin # flash cards
     brave # browser
     spotify # music
+    vscode # editor
 
     # Windows Manager utilities
     rofi-bluetooth # bluetooth manager
@@ -25,6 +32,7 @@
     brillo # brightness
 
     # Terminal and Shell utilities
+    bat-extras.batman # man
     trash-cli # trash
     entr # watch files
     github-cli # gh

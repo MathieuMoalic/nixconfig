@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
@@ -9,6 +8,95 @@
     ./hardware-configuration.nix
     ./sddm
   ];
+  # # To mount windows drives
+  # boot.supportedFilesystems = ["ntfs"];
+
+  # fonts.packages = with pkgs; [
+  #   corefonts
+  #   proggyfonts
+  # ];
+  # security.sudo.wheelNeedsPassword = false;
+  # services.caddy = {
+  #   enable = true;
+  #   email = "matmoa@pm.me"; # For Let's Encrypt registration
+  #   extraConfig = ''
+  #     joana.matmoa.xyz {
+  #       reverse_proxy localhost:34243
+  #     }
+  #   '';
+  # };
+  # boot.kernel.sysctl = {
+  #   "net.ipv4.ip_unprivileged_port_start" = "80";
+  # };
+  # networking.firewall = {
+  #   enable = true;
+  #   allowedTCPPorts = [80 443];
+  # };
+  # services.openssh = {
+  #   enable = true;
+  #   ports = [46464]; # Set SSH to listen on port 46464
+  #   openFirewall = true;
+  #   settings = {
+  #     PermitRootLogin = "no";
+  #     PasswordAuthentication = true;
+  #   };
+  # };
+  # virtualisation = {
+  #   libvirtd.enable = true;
+  #   docker = {
+  #     enable = true;
+  #     enableNvidia = true;
+  #   };
+  #   podman = {
+  #     enable = true;
+  #     enableNvidia = true;
+  #     dockerCompat = false;
+  #   };
+  # };
+  # virtualisation.docker.rootless = {
+  #   enable = true;
+  #   setSocketVariable = true;
+  # };
+  # # virtualisation.podman = {
+  # #   enable = true;
+  # #   dockerSocket.enable = false;
+  # #   dockerCompat = false; # alias docker to podman
+  # #   autoPrune.enable = true; # weekly by default
+  # #   enableNvidia = true;
+  # # };
+  # # virtualisation.docker = {
+  # #   enable = true;
+  # #   enableNvidia = true;
+  # # };
+  # fileSystems."/home/mat/z1" = {
+  #   device = "/dev/disk/by-uuid/36f3a7b3-8e76-48b8-a444-c2898aef7c29";
+  #   fsType = "ext4";
+  # };
+  # fileSystems."/home/mat/shared" = {
+  #   device = "/dev/disk/by-uuid/5514ec22-f46a-4542-9e1d-1dc001c68c00";
+  #   fsType = "ext4";
+  # };
+
+  # boot.kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
+  # hardware.opengl = {
+  #   enable = true;
+  #   driSupport = true;
+  #   driSupport32Bit = true;
+  # };
+  # environment.sessionVariables = {
+  #   WLR_NO_HARDWARE_CURSORS = "1";
+  #   # Hint electron apps to use wayland
+  #   # NIXOS_OZONE_WL = "1"; # crashes vscode
+  # };
+  # services.xserver.videoDrivers = ["nvidia"];
+  # hardware.nvidia = {
+  #   modesetting.enable = true;
+  #   powerManagement.enable = true;
+  #   powerManagement.finegrained = false;
+  #   open = false;
+  #   nvidiaSettings = true;
+  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # };
 
   # # Make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake.
   # environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";
@@ -37,7 +125,7 @@
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+    # registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
     channel.enable = true; # disable nix-channel, we use flakes instead.
     # This will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
@@ -120,10 +208,10 @@
   boot.initrd.luks.devices."luks-697ee5de-1a53-475e-9285-19fbc72bc068".keyFile = "/crypto_keyfile.bin";
 
   networking.hostName = "xps";
-  xdg.portal = {
-    enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -149,9 +237,15 @@
     LC_TIME = "en_GB.UTF-8";
   };
 
+  users.groups = {
+    mat = {
+      gid = 1000;
+    };
+  };
   users.users.mat = {
     isNormalUser = true;
     description = "mat";
+    group = "mat";
     extraGroups = ["networkmanager" "wheel" "video" "input" "uinput"];
     shell = pkgs.zsh;
   };
@@ -160,6 +254,8 @@
 
   environment.systemPackages = with pkgs; [
     home-manager
+    # nvidia-podman
+    hyprland
   ];
 
   system.stateVersion = "23.05";

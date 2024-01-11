@@ -17,50 +17,48 @@
     hyprsome,
     nix-colors,
     ...
-  }: {
+  }: let
+    home = {
+      extraSpecialArgs = {
+        inherit nix-colors;
+        wallpaperPath = "/home/mat/.local/share/wallpaper.jpeg";
+      };
+      useUserPackages = true;
+      useGlobalPkgs = true;
+      users.mat = {
+        imports = [
+          ./home
+          nix-colors.homeManagerModules.default
+        ];
+        home.packages = [
+          hyprsome.packages.x86_64-linux.default
+        ];
+      };
+    };
+  in {
     nixosConfigurations.xps = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {inherit nix-colors;};
       modules = [
         ./nixos/base.nix
+        ./nixos/xps
         home-manager.nixosModules.home-manager
         {
-          home-manager = {
-            extraSpecialArgs = {
-              inherit nix-colors;
-              wallpaperPath = "/home/mat/.local/share/wallpaper.jpeg";
-            };
-          };
-
-          home-manager.useUserPackages = true;
-          home-manager.useGlobalPkgs = true;
-          home-manager.users.mat = {
-            imports = [
-              ./home/base.nix
-              nix-colors.homeManagerModules.default
-            ];
-            home.packages = [
-              hyprsome.packages.x86_64-linux.default
-            ];
-          };
+          home-manager = home;
         }
       ];
     };
-    # nixosConfigurations = {
-    #   xps = nixpkgs.lib.nixosSystem {
-    #     specialArgs = {inherit inputs outputs;};
-    #     modules = [./nixos/configuration.nix];
-    #   };
-    # };
-    # homeConfigurations = {
-    #   mat = home-manager.lib.homeManagerConfiguration {
-    #     pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    #     extraSpecialArgs = {
-    #       inherit inputs outputs;
-    #       wallpaperPath = "/home/mat/.local/share/wallpaper.jpeg";
-    #     };
-    #     modules = [./home-manager/home.nix];
-    #   };
-    # };
+    nixosConfigurations.nyx = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {inherit nix-colors;};
+      modules = [
+        ./nixos/base.nix
+        ./nixos/nyx
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = home;
+        }
+      ];
+    };
   };
 }

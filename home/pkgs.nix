@@ -24,8 +24,6 @@
     # Windows Manager utilities
     rofi-bluetooth # bluetooth manager
     udiskie # automount usb
-    nerdfonts # font
-    fira-code # font
     pulseaudio # audio
     grimblast # screenshots
     hyprpaper # wallpaper

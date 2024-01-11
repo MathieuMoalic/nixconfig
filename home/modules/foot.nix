@@ -1,5 +1,5 @@
-{ config, pkgs, ... }:
-let theme = config.colorScheme.colors;
+{config, ...}: let
+  theme = config.colorScheme.colors;
 in {
   programs.foot = {
     enable = true;
@@ -8,6 +8,7 @@ in {
       main = {
         # term = "xterm-256color";
         font = "FiraCode Nerd Font Mono:size=16";
+        selection-target = "both";
       };
       cursor = {
         style = "beam";
@@ -35,7 +36,6 @@ in {
         bright6 = theme.base0F;
         bright7 = theme.base07;
       };
-
     };
   };
 }

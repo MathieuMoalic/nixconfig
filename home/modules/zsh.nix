@@ -46,7 +46,7 @@
       }
     ];
     initExtra = ''
-      WORDCHARS='_-*?[]~&.;!#$%^(){}<>'       # Special chars == part of a word!
+      WORDCHARS='_-*?[]~&.;!#$%^(){}<>'
       HISTFILE="$XDG_CACHE_HOME/.zhistory"
       export PATH="$HOME/.local/share/pyvenv/bin":$PATH
       stty -ixon # allows ctrl + q and s

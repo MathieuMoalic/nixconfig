@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./pkgs.nix
+    ./modules/ssh.nix
     ./modules/ssh-and-zellij.nix
     ./modules/nix-run.nix
     ./modules/update.nix

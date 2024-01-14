@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ../base.nix
     ../modules/sddm
+    ../modules/syncthing.nix
   ];
   # Setup keyfile
   boot.initrd.secrets = {"/crypto_keyfile.bin" = null;};

@@ -40,8 +40,8 @@
       system = "x86_64-linux";
       specialArgs = {inherit nix-colors;};
       modules = [
-        ./nixos/base.nix
-        ./nixos/xps
+        ./hosts/base.nix
+        ./hosts/xps
         home-manager.nixosModules.home-manager
         {
           home-manager = home;
@@ -52,8 +52,8 @@
       system = "x86_64-linux";
       specialArgs = {inherit nix-colors;};
       modules = [
-        ./nixos/base.nix
-        ./nixos/nyx
+        ./hosts/base.nix
+        ./hosts/nyx
         home-manager.nixosModules.home-manager
         {
           home-manager = home;

@@ -1,9 +1,5 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
+  powerManagement.powertop.enable = true;
   boot.supportedFilesystems = ["ntfs"];
 
   fonts.packages = with pkgs; [
@@ -36,12 +32,7 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    channel.enable = true; # disable nix-channel, we use flakes instead.
-    # This will additionally add your inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well, awesome!
-    nixPath =
-      lib.mapAttrsToList (key: value: "${key}=${value.to.path}")
-      config.nix.registry;
+    channel.enable = false;
     package = pkgs.nix;
     settings = {
       experimental-features = "nix-command flakes";

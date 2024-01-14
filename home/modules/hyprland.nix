@@ -14,12 +14,13 @@
       ];
       monitor = ",highres,auto,1";
       # monitor = [
-      #   "DP-3, 1920x1200, -1920x0, 1"
-      #   "DP-1, 1920x1200, 0x0, 1"
-      #   "DP-2, 1920x1200, 1920x0, 1"
+      #   "DP-3, highres, -1920x0, 1"
+      #   "DP-1, highres, 0x0, 1"
+      #   "DP-2, highres, 1920x0, 1"
       # ];
 
       general = {
+        # inhibit_idle = "fullscreen";
         gaps_in = 2;
         gaps_out = 4;
         border_size = 2;
@@ -172,6 +173,23 @@
       "device:epic mouse V1" = {
         sensitivity = 0;
       };
+      windowrulev2 = [
+        # # make Firefox PiP window floating and sticky
+        # "float, title:^(Picture-in-Picture)$"
+        # "pin, title:^(Picture-in-Picture)$"
+
+        # # throw sharing indicators away
+        # "workspace special silent, title:^(Firefox — Sharing Indicator)$"
+        # "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
+
+        # start spotify in ws9
+        "workspace 9 silent, title:^(Spotify( Premium)?)$"
+
+        # idle inhibit while watching videos
+        "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
+        "idleinhibit focus, title:^(.*YouTube.*)$"
+        # "idleinhibit fullscreen, class:^(brave)$"
+      ];
       # windowrulev2 = ["workspace 10, spotify"];
       # l -> locked, aka. works also when an input inhibitor (e.g. a lockscreen) is active.
       # r -> release, will trigger on release of a key.

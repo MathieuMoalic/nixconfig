@@ -46,5 +46,6 @@
     du-dust # du in rust
     duf # df in rust
     eza # ls in rust
+    neofetch # flex
   ];
 }

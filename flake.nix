@@ -7,6 +7,7 @@
     helix.url = "github:helix-editor/helix";
     xremap-flake.url = "github:xremap/nix-flake";
     hyprsome.url = "github:sopa0/hyprsome";
+    amumax.url = "github:SomeoneSerge/pkgs";
     # sops-nix.url = "github:Mic92/sops-nix";
     # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -16,6 +17,7 @@
     nixpkgs,
     home-manager,
     hyprsome,
+    amumax,
     ...
   } @ inputs: let
     inherit (self) outputs;

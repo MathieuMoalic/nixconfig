@@ -86,6 +86,9 @@
       joana.matmoa.xyz {
         reverse_proxy localhost:34243
       }
+      cerebre.matmoa.xyz {
+        reverse_proxy localhost:23848
+      }
     '';
   };
   boot.kernel.sysctl = {

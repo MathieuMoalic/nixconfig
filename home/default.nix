@@ -1,7 +1,10 @@
-{inputs, ...}: {
+{...}: {
   imports = [
-    inputs.nix-colors.homeManagerModules.default
     ./pkgs.nix
+    ./modules/ssh.nix
+    ./modules/ssh-and-zellij.nix
+    ./modules/nix-run.nix
+    ./modules/update.nix
     ./modules/theme.nix
     ./modules/quick-translate.nix
     ./modules/decode.nix
@@ -30,18 +33,9 @@
     ./modules/zsh.nix
     ./modules/aliases.nix
     ./modules/session-variables.nix
-    # ./modules/direnv.nix
-    # ./modules/syncthing.nix
   ];
   programs.ripgrep.enable = true;
   services.mpris-proxy.enable = true; # pause/play bluetooth commands
-
-  home.username = "mat";
-  home.homeDirectory = "/home/mat";
-
-  programs.home-manager.enable = true;
   systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
 }

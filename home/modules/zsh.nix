@@ -46,7 +46,8 @@
       }
     ];
     initExtra = ''
-      HISTFILE="$XDG_STATE_HOME"/zsh/history
+      WORDCHARS='_-*?[]~&.;!#$%^(){}<>'
+      HISTFILE="$XDG_CACHE_HOME/.zhistory"
       export PATH="$HOME/.local/share/pyvenv/bin":$PATH
       stty -ixon # allows ctrl + q and s
       autoload -U edit-command-line

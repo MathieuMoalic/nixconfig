@@ -15,7 +15,6 @@
     tl = "zellij ls";
     ta = "zellij a -c";
     tk = "zellij k";
-    # wget="wget --hsts-file="$XDG_DATA_HOME/wget-hsts""";
     rs = "rsync -rv";
     pm = "podman";
     cat = "bat -Pp";
@@ -24,12 +23,6 @@
     cd = "z";
     d = "z";
     tldr = "tldr -q";
-    zfn2 = "ssh zfn2 -o RequestTTY=yes -o RemoteCommand=\"zellij a -c 1\"";
-    homeserver = "TERM=xterm-256color ssh homeserver -o RequestTTY=yes -o RemoteCommand=\"zellij a -c 1\"";
-    pcss = "ssh pcss -o RequestTTY=yes -o RemoteCommand=\"zellij a -c 1\"";
-    fixcursor = "echo \"\e[5 q\"";
-    fpi = "flatpak --user install -y --or-update";
-    fpr = "flatpak --user run";
     ".." = "cd ..";
     "..." = "cd ../..";
     "...." = "cd ../../..";
@@ -42,9 +35,6 @@
     ghs = "gh copilot suggest -t shell";
     ghe = "gh copilot explain";
     ghc = "gh copilot";
-    hup = "cd $HOME/nix && git add . && home-manager switch --flake '/home/mat/nix#mat@xps' && cd -";
-    up = "cd $HOME/nix && git add . && sudo nixos-rebuild switch --flake '/home/mat/nix#xps' && cd -";
     colors = "curl -Ls 'https://raw.githubusercontent.com/NNBnh/textart-collections/main/color/colortest.textart' | bash; echo";
-    p = "nix-shell -p";
   };
 }

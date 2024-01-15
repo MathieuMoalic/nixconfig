@@ -29,8 +29,6 @@
     # Windows Manager utilities
     rofi-bluetooth # bluetooth manager
     udiskie # automount usb
-    nerdfonts # font
-    fira-code # font
     pulseaudio # audio
     grimblast # screenshots
     hyprpaper # wallpaper
@@ -53,5 +51,6 @@
     du-dust # du in rust
     duf # df in rust
     eza # ls in rust
+    neofetch # flex
   ];
 }

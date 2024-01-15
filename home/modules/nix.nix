@@ -1,5 +1,4 @@
-{pkgs, ...}: {
-  nix.package = pkgs.nix;
+{...}: {
   nix.settings = {
     experimental-features = "nix-command flakes";
     auto-optimise-store = true;

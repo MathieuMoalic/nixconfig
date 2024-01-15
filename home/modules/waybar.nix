@@ -1,11 +1,11 @@
-{ config, ... }:
-let theme = config.colorScheme.colors;
+{config, ...}: let
+  theme = config.colorScheme.colors;
 in {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
     style = ''
-          #waybar {
+      #waybar {
         font-family: "FiraMono Nerd Font", sans-serif;
         font-size: 1.2em;
         font-weight: 600;
@@ -55,8 +55,8 @@ in {
         position = "top";
         height = 35;
         spacing = 4;
-        modules-left = [ "hyprland/workspaces" "hyprland/window" ];
-        modules-center = [ ];
+        modules-left = ["hyprland/workspaces" "hyprland/window"];
+        modules-center = [];
         modules-right = [
           "custom/brightness"
           "pulseaudio"
@@ -101,10 +101,10 @@ in {
             critical = 15;
           };
           format = "{capacity}% {icon} |";
-          "format-charging" = "{capacity}% 🗲 |";
+          "format-charging" = "{capacity}% 󰂅 |";
           "format-plugged" = "{capacity}%  |";
           "format-alt" = "{time} {icon} |";
-          "format-icons" = [ " " " " " " " " " " ];
+          "format-icons" = [" " " " " " " " " "];
         };
 
         pulseaudio = {
@@ -113,16 +113,15 @@ in {
           "format-muted" = "{volume}% 󰖁  |";
           "format-icons" = {
             headphone = "";
-            "hands-free" = "";
-            headset = "";
+            headset = "";
             phone = "";
             portable = "";
             car = "";
-            default = [ "" "" ];
+            default = ["" ""];
           };
           "scroll-step" = 1;
           "on-click" = "pactl set-sink-mute 0 toggle";
-          "ignored-sinks" = [ "Easy Effects Sink" ];
+          "ignored-sinks" = ["Easy Effects Sink"];
         };
 
         network = {
@@ -147,11 +146,9 @@ in {
         "custom/vpn" = {
           interval = 10;
           "on-click" = "rofi_vpn";
-          exec =
-            "nmcli connection show | awk '/wireguard/ {printf \"%s: %s | \", $1, ($4 == \"--\" ? \"󰿆\" : \"󰌾\")}'";
+          exec = "nmcli connection show | awk '/wireguard/ {printf \"%s: %s | \", $1, ($4 == \"--\" ? \"󰿆\" : \"󰌾\")}'";
         };
       };
     };
-
   };
 }

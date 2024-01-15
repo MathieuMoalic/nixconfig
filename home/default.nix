@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./pkgs.nix
+    ./modules/lazygit.nix
     ./modules/ssh.nix
     ./modules/ssh-and-zellij.nix
     ./modules/nix-run.nix

@@ -1,5 +1,14 @@
-{pkgs, ...}: {
-  powerManagement.powertop.enable = true;
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    xwayland = {enable = true;};
+  };
+
   boot.supportedFilesystems = ["ntfs"];
 
   fonts.packages = with pkgs; [
@@ -41,32 +50,16 @@
       substituters = [
         "https://nix-community.cachix.org"
         "https://cache.nixos.org/"
+        "https://hyprland.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
     };
   };
 
-  # for brillo (1st line) and xremap (2nd line)
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
-    KERNEL=="uinput", GROUP="input", TAG+="uaccess"
-  '';
-  hardware.brillo.enable = true;
-  hardware.uinput.enable = true; # for xremap
-
   environment.binsh = "${pkgs.dash}/bin/dash";
-  programs.hyprland.enable = true;
-
-  # services.xserver = {
-  #   layout = "us";
-  #   xkbVariant = "";
-  #   enable = true;
-  #   displayManager.sddm.enable = true;
-  #   displayManager.sddm.theme = "Dracula";
-  # };
-  programs.hyprland.xwayland = {enable = true;};
 
   security.pam.services.swaylock = {}; # needed for swaylock
 
@@ -106,7 +99,7 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+    # extraPortals = [pkgs.xdg-desktop-portal-hyprland];
   };
 
   # Enable CUPS to print documents.
@@ -150,8 +143,5 @@
 
   environment.systemPackages = with pkgs; [
     home-manager
-    hyprland
   ];
-
-  system.stateVersion = "23.05";
 }

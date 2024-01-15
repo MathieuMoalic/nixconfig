@@ -8,6 +8,7 @@
     # xremap-flake.url = "github:xremap/nix-flake";
     hyprsome.url = "github:sopa0/hyprsome";
     amumax.url = "github:SomeoneSerge/pkgs";
+    hyprland.url = "github:hyprwm/Hyprland"; # only if we want the nightly version
     # sops-nix.url = "github:Mic92/sops-nix";
     # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -17,11 +18,12 @@
     nixpkgs,
     hyprsome,
     nix-colors,
+    amumax,
     ...
-  }: let
+  } @ inputs: let
     home = {
       extraSpecialArgs = {
-        inherit nix-colors;
+        inherit nix-colors amumax;
         wallpaperPath = "/home/mat/.local/share/wallpaper.jpeg";
       };
       useUserPackages = true;
@@ -39,7 +41,7 @@
   in {
     nixosConfigurations.xps = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {inherit nix-colors;};
+      specialArgs = {inherit nix-colors inputs;};
       modules = [
         ./hosts/base.nix
         ./hosts/xps
@@ -51,7 +53,7 @@
     };
     nixosConfigurations.nyx = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = {inherit nix-colors;};
+      specialArgs = {inherit nix-colors inputs;};
       modules = [
         ./hosts/base.nix
         ./hosts/nyx

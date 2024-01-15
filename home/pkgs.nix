@@ -1,12 +1,13 @@
 {
   inputs,
+  amumax,
   pkgs,
   ...
 }: {
   # here are packages that are not configured by home-manager.
   # other programs are installed in ./modules
   home.packages = with pkgs; [
-    inputs.amumax.packages.x86_64-linux.amumax
+    # amumax.packages.x86_64-linux.amumax
     networkmanagerapplet
 
     # dev

@@ -1,4 +1,11 @@
 {config, ...}: {
+  imports = [
+    ./hardware-configuration.nix
+    ../base.nix
+    ../modules/sddm
+    # ../modules/syncthing.nix
+  ];
+
   services.caddy = {
     enable = true;
     email = "matmoa@pm.me"; # For Let's Encrypt registration
@@ -6,12 +13,16 @@
       joana.matmoa.xyz {
         reverse_proxy localhost:34243
       }
+      cerebre.matmoa.xyz {
+        reverse_proxy localhost:23848
+      }
     '';
   };
   boot.kernel.sysctl = {
     "net.ipv4.ip_unprivileged_port_start" = "80";
   };
 
+  networking.hostName = "nyx";
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [80 443];
@@ -81,4 +92,5 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  system.stateVersion = "23.11";
 }

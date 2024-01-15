@@ -36,5 +36,6 @@
     ghe = "gh copilot explain";
     ghc = "gh copilot";
     colors = "curl -Ls 'https://raw.githubusercontent.com/NNBnh/textart-collections/main/color/colortest.textart' | bash; echo";
+    lg = "lazygit";
   };
 }

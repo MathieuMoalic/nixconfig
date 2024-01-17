@@ -15,6 +15,7 @@
     nil # nix LSP
 
     # GUI software
+    onlyoffice-bin # document editor
     mpv # video player
     inkscape # svf editor
     nomacs # image viewer

@@ -192,6 +192,7 @@
         # idle inhibit while watching videos
         "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
         "idleinhibit focus, title:^(.*YouTube.*)$"
+        "idleinhibit focus, title:^(.*Twitch.*)$"
         # "idleinhibit fullscreen, class:^(brave)$"
       ];
       # windowrulev2 = ["workspace 10, spotify"];

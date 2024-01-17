@@ -1,6 +1,7 @@
 {...}: {
   home.sessionVariables = {
     # EDITOR = "${pkgs.helix}/bin/hx"; # already set in helix.nix
+    IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
     VISUAL = "$EDITOR";
     SUDO_EDIT = "$EDITOR";
     GNUPGHOME = "$HOME/.local/share/gnupg";

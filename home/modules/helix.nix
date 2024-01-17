@@ -65,10 +65,10 @@
         "soft-wrap" = {enable = true;};
       };
       keys.normal = {
-        E = "move_next_long_word_start";
+        E = "goto_line_end";
         F = "find_prev_char";
         G = "goto_line";
-        Q = "move_prev_long_word_start";
+        Q = "goto_line_start";
         S = "half_page_down";
         T = "till_prev_char";
         W = "half_page_up";
@@ -107,8 +107,8 @@
         C-f = "file_picker";
         C-q = ["insert_mode" ":q!"];
         C-s = ":w!";
-        # C-o = ":open";
         C-O = ":config-reload";
+        C-o = ["insert_mode" ":o"];
         S-ret = ["open_above" "normal_mode"];
         ret = ["open_below" "normal_mode"];
         v = "select_mode";

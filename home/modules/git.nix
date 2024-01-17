@@ -5,6 +5,7 @@
     userEmail = "matmoa@pm.me";
     extraConfig = {
       init = {defaultBranch = "main";};
+      credential = {helper = "store --file ~/.config/git/.git-credentials";};
     };
   };
 }

@@ -1,5 +1,4 @@
 {
-  inputs,
   amumax,
   pkgs,
   ...
@@ -7,18 +6,16 @@
   # here are packages that are not configured by home-manager.
   # other programs are installed in ./modules
   home.packages = with pkgs; [
-    # amumax.packages.x86_64-linux.amumax
+    amumax.packages.x86_64-linux.amumax
     networkmanagerapplet
 
     # dev
-    # podman
-    # nvidia-podman
-    just
-    python3
+    just # makefile in rust
     alejandra # format nix
     nil # nix LSP
 
     # GUI software
+    mpv # video player
     inkscape # svf editor
     nomacs # image viewer
     zathura # pdf viewer

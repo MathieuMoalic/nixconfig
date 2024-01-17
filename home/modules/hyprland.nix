@@ -1,17 +1,22 @@
 {
   config,
   wallpaperPath,
+  osConfig,
+  lib,
   ...
 }: {
   wayland.windowManager.hyprland = with config.colorScheme.colors; {
     enable = true;
     settings = {
-      # monitor = ",highres,auto,1";
-      monitor = [
-        "DP-3, highres, -1920x0, 1"
-        "DP-1, highres, 0x0, 1"
-        "DP-2, highres, 1920x0, 1"
-      ];
+      monitor =
+        (lib.optionals (osConfig.networking.hostName == "nyx") [
+          "DP-3, highres, -1920x0, 1"
+          "DP-1, highres, 0x0, 1"
+          "DP-2, highres, 1920x0, 1"
+        ])
+        ++ (lib.optionals (osConfig.networking.hostName == "xps") [
+          ",highres,auto,1"
+        ]);
       exec-once = [
         "hyprpaper"
         "dunst"

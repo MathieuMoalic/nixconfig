@@ -1,10 +1,10 @@
 {...}: {
   imports = [
     ./pkgs.nix
+    ./modules/nix-dev.nix
     ./modules/lazygit.nix
     ./modules/ssh.nix
     ./modules/ssh-and-zellij.nix
-    ./modules/nix-run.nix
     ./modules/update.nix
     ./modules/theme.nix
     ./modules/quick-translate.nix
@@ -39,4 +39,5 @@
   services.mpris-proxy.enable = true; # pause/play bluetooth commands
   systemd.user.startServices = "sd-switch";
   home.stateVersion = "23.05";
+  nixpkgs.config.allowUnfree = true;
 }

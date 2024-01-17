@@ -6,7 +6,6 @@
             bind "Alt h" { NewPane "Down"; }
             bind "Alt v" { NewPane "Right"; }
             bind "Alt ," { CloseFocus; }
-            bind "Alt r" { SwitchToMode "RenameTab"; TabNameInput 0; }
             bind "Alt f" { ToggleFocusFullscreen; }
 
             bind "Alt a" { MoveFocus "Left"; }
@@ -38,12 +37,16 @@
             bind "Alt 8" { GoToTab 8; }
             bind "Alt 9" { GoToTab 9; }
 
+            bind "Alt r" { SwitchToMode "RenameTab"; TabNameInput 0; }
             bind "Alt e" { SwitchToMode "EnterSearch"; SearchInput 0; }
             bind "Alt q" { SwitchToMode "Scroll"; }
         }
         scroll {
             bind "s" { HalfPageScrollDown; }
             bind "w" { HalfPageScrollUp; }
+            bind "Alt r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+            bind "Alt e" { SwitchToMode "EnterSearch"; SearchInput 0; }
+            bind "Alt q" { SwitchToMode "Normal"; }
         }
         search {
             bind "s" { HalfPageScrollDown; }
@@ -53,12 +56,20 @@
             bind "c" { SearchToggleOption "CaseSensitivity"; }
             bind "k" { SearchToggleOption "Wrap"; }
             bind "o" { SearchToggleOption "WholeWord"; }
+            bind "Alt r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+            bind "Alt e" { SwitchToMode "Normal"; }
+            bind "Alt q" { SwitchToMode "Search"; }
         }
         entersearch {
             bind "Ctrl c" "Esc" { SwitchToMode "Scroll"; }
+            bind "Alt r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+            bind "Alt e" { SwitchToMode "Normal"; }
+            bind "Alt q" { SwitchToMode "Scroll"; }
         }
         renametab {
-            bind "Esc" { UndoRenameTab; SwitchToMode "Tab"; }
+            bind "Esc" "Alt r" { UndoRenameTab; SwitchToMode "Tab"; }
+            bind "Alt e" { UndoRenameTab; SwitchToMode "EnterSearch"; SearchInput 0; }
+            bind "Alt q" { UndoRenameTab; SwitchToMode "Scroll"; }
         }
     }
 
@@ -89,7 +100,7 @@
     on_force_close "detach"
     simplified_ui false
     default_shell "zsh"
-    pane_frames false
+    pane_frames true
     auto_layout true
     default_layout "compact"
     default_mode "normal"

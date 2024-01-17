@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   programs.lazygit = {
     enable = true;
     settings = {
@@ -37,9 +37,9 @@
         showListFooter = true;
         showRandomTip = true;
         showBranchCommitHash = false;
-        showBottomLine = true;
+        showBottomLine = false;
         showPanelJumps = true;
-        showCommandLog = true;
+        showCommandLog = false;
         nerdFontsVersion = "";
         commandLogSize = 8;
         splitDiff = "auto";
@@ -51,6 +51,7 @@
       git = {
         paging = {
           colorArg = "always";
+          pager = "${pkgs.delta}/bin/delta --dark --paging=never";
           useConfig = false;
         };
         commit = {
@@ -101,43 +102,34 @@
       keybinding = {
         universal = {
           quit = "q";
-          quit-alt1 = "<c-c>";
           return = "<esc>";
           quitWithoutChangingDirectory = "Q";
           togglePanel = "<tab>";
-          prevItem = "<up>";
-          nextItem = "<down>";
-          prevItem-alt = "k";
-          nextItem-alt = "j";
+          prevItem = "w";
+          nextItem = "s";
           prevPage = ",";
           nextPage = ".";
           gotoTop = "<";
           gotoBottom = ">";
-          scrollLeft = "H";
-          scrollRight = "L";
-          prevBlock = "<left>";
-          nextBlock = "<right>";
-          prevBlock-alt = "h";
-          nextBlock-alt = "l";
+          scrollLeft = "A";
+          scrollRight = "D";
+          prevBlock = "a";
+          nextBlock = "d";
           jumpToBlock = ["1" "2" "3" "4" "5"];
           nextMatch = "n";
           prevMatch = "N";
-          optionMenu = "<disabled>";
+          # optionMenu = "<disabled>";
           optionMenu-alt1 = "?";
           select = "<space>";
           goInto = "<enter>";
           openRecentRepos = "<c-r>";
           confirm = "<enter>";
-          remove = "d";
+          remove = "k";
           new = "n";
           edit = "e";
           openFile = "o";
-          scrollUpMain = "<pgup>";
-          scrollDownMain = "<pgdown>";
-          scrollUpMain-alt1 = "K";
-          scrollDownMain-alt1 = "J";
-          scrollUpMain-alt2 = "<c-u>";
-          scrollDownMain-alt2 = "<c-d>";
+          scrollUpMain = "W";
+          scrollDownMain = "S";
           executeCustomCommand = ":";
           createRebaseOptionsMenu = "m";
           pushFiles = "P";
@@ -151,12 +143,12 @@
           undo = "z";
           redo = "<c-z>";
           filteringMenu = "<c-s>";
-          diffingMenu = "W";
+          diffingMenu = "K";
           diffingMenu-alt = "<c-e>";
           copyToClipboard = "<c-o>";
           submitEditorText = "<enter>";
           extrasMenu = "@";
-          toggleWhitespaceInDiffView = "<c-w>";
+          toggleWhitespaceInDiffView = "<c-K>";
           increaseContextInDiffView = "}";
           decreaseContextInDiffView = "{";
         };
@@ -166,17 +158,17 @@
         };
         files = {
           commitChanges = "c";
-          commitChangesWithoutHook = "w";
-          amendLastCommit = "A";
+          commitChangesWithoutHook = "k";
+          amendLastCommit = "H";
           commitChangesWithEditor = "C";
           findBaseCommitForFixup = "<c-f>";
           confirmDiscard = "x";
           ignoreFile = "i";
           refreshFiles = "r";
-          stashAllChanges = "s";
-          viewStashOptions = "S";
-          toggleStagedAll = "a";
-          viewResetOptions = "D";
+          stashAllChanges = "j";
+          viewStashOptions = "J";
+          toggleStagedAll = "h";
+          viewResetOptions = "L";
           fetch = "f";
           toggleTreeView = "`";
           openMergeTool = "M";
@@ -198,7 +190,7 @@
           fetchRemote = "f";
         };
         commits = {
-          squashDown = "s";
+          squashDown = "j";
           renameCommit = "r";
           renameCommitWithEditor = "R";
           viewResetOptions = "g";
@@ -207,7 +199,7 @@
           squashAboveCommits = "S";
           moveDownCommit = "<c-j>"; # move commit down one
           moveUpCommit = "<c-k>"; # move commit up one
-          amendToCommit = "A";
+          amendToCommit = "H";
           pickCommit = "p"; # pick commit (when mid-rebase)
           revertCommit = "t";
           cherryPickCopy = "c";
@@ -230,7 +222,7 @@
         main = {
           toggleDragSelect = "v";
           toggleDragSelect-alt = "V";
-          toggleSelectHunk = "a";
+          toggleSelectHunk = "h";
           pickBothHunks = "b";
         };
         submodules = {

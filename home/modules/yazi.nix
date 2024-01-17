@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{...}: {
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
@@ -10,7 +6,7 @@
       manager = {
         layout = [1 4 3];
         linemode = "size";
-        show_hidden = true;
+        show_hidden = false;
         show_symlink = true;
         sort_by = "modified";
         sort_dir-first = false;
@@ -37,44 +33,28 @@
         ];
         extract = [
           {
-            exec = "nar \"$1\"";
+            exec = "ouch d \"$1\"";
             desc = "Extract here";
             for = "unix";
           }
         ];
         open = [
           {
-            exec = "dg-open \"$@\"";
+            exec = "xdg-open \"$@\"";
             desc = "Open";
             for = "linux";
-          }
-          {
-            exec = "pen \"$@\"";
-            desc = "Open";
-            for = "macos";
           }
         ];
         play = [
           {
-            exec = "pv \"$@\"";
+            exec = "mpv \"$@\"";
             orphan = true;
-            for = "unix";
-          }
-          {
-            exec = "ediainfo \"$1\"; echo \"Press enter to exit\"; read";
-            block = true;
-            desc = "Show media info";
             for = "unix";
           }
         ];
         reveal = [
           {
-            exec = "pen -R \"$1\"";
-            desc = "Reveal";
-            for = "macos";
-          }
-          {
-            exec = "xiftool \"$1\"; echo \"Press enter to exit\"; read";
+            exec = "exiftool \"$1\"; echo \"Press enter to exit\"; read";
             block = true;
             desc = "Show EXIF";
             for = "unix";

@@ -107,7 +107,8 @@
         C-f = "file_picker";
         C-q = ["insert_mode" ":q!"];
         C-s = ":w!";
-        C-o = ":config-reload";
+        # C-o = ":open";
+        C-O = ":config-reload";
         S-ret = ["open_above" "normal_mode"];
         ret = ["open_below" "normal_mode"];
         v = "select_mode";
@@ -267,6 +268,22 @@
     [language-server.ruff]
     command = "ruff-lsp"
     config = {settings = {run = "onSave"}}
+
+    [[language]]
+    name = "mx3"
+    grammar = "go"
+    scope = "source.mx3"
+    injection-regex = "mx3"
+    file-types = ["mx3"]
+    comment-token = "//"
+    indent = { tab-width = 2, unit = "  " }
+    roots = []
+
+    [[grammar]]
+    name = "mx3"
+    source = { git = "https://github.com/tree-sitter/tree-sitter-go", rev = "64457ea6b73ef5422ed1687178d4545c3e91334a" }
+
+
   '';
   xdg.configFile."helix/themes/mytheme.toml".text = with config.colorScheme.colors; ''
     "annotation"                      = { fg = "foreground"                                                     }

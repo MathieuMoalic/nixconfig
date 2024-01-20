@@ -9,22 +9,34 @@
       guiAddress = "0.0.0.0:8384";
       overrideDevices = false; # overrides any devices added or deleted through the WebUI
       overrideFolders = false; # overrides any folders added or deleted through the WebUI
+      openDefaultPorts = true;
+      relay = {
+        enable = true;
+      };
       settings = {
         devices = {
-          "homeserver" = {
-            # autoAcceptFolders = true;
-            id = "K7UHOBQ-DCDAJRE-DHCTO6M-GGLSN47-6MTRMQC-IP2HURQ-5DDY5Y5-S4O6NQZ";
+          homeserver = {
+            autoAcceptFolders = false;
+            id = "3K5PK4F-EFK2CJG-FDNJSQP-S23BN3I-FBPTNGA-IF7IQCL-O4LOVL6-JLOTUQE";
           };
-          "oneplus" = {
+          oneplus = {
             id = "PXOELPW-AQXMEXD-7DCHW6O-ID54IYY-T2U35KM-YPU657P-6IBPJDY-ENFH3AP ";
-            # autoAcceptFolders = true;
+            autoAcceptFolders = false;
+          };
+          # xps = {
+          #   id = "";
+          #   # autoAcceptFolders = true;
+          # };
+          nyx = {
+            id = "Y5XKMHT-3T7OOE6-EESSVJ3-ZDRENEA-64HKJ64-MP34CAO-CKDHAVG-EKLUKQI";
+            autoAcceptFolders = false;
           };
         };
         folders = {
           docs = {
             path = "/home/mat/sync/docs";
             id = "docs";
-            devices = ["homeserver" "oneplus"];
+            devices = ["homeserver" "nyx" "oneplus"];
           };
           yt = {
             path = "/home/mat/sync/yt";

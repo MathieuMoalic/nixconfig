@@ -3,6 +3,18 @@
   pkgs,
   ...
 }: {
+  # services.pcscd = {
+  #   enable = true;
+  # };
+  # security.polkit.extraConfig = ''
+  #   polkit.addRule(function(action, subject) {
+  #     if (action.id == "org.debian.pcsc-lite.access_pcsc" &&
+  #       subject.isInGroup("wheel")) {
+  #       return polkit.Result.YES;
+  #     }
+  #   });
+  # '';
+
   programs.hyprland = {
     enable = true;
     # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -144,5 +156,6 @@
 
   environment.systemPackages = with pkgs; [
     home-manager
+    pcsclite
   ];
 }

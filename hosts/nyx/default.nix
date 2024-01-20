@@ -3,7 +3,7 @@
     ./hardware-configuration.nix
     ../base.nix
     ../modules/sddm
-    # ../modules/syncthing.nix
+    ../modules/syncthing.nix
   ];
 
   services.caddy = {

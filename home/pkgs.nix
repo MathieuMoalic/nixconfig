@@ -1,5 +1,6 @@
 {
   amumax,
+  inputs,
   pkgs,
   ...
 }: {
@@ -7,6 +8,7 @@
   # other programs are installed in ./modules
   home.packages = with pkgs; [
     amumax.packages.x86_64-linux.amumax
+    inputs.mx3expend.packages.${pkgs.system}.mx3expend
     networkmanagerapplet
 
     # dev
@@ -15,7 +17,7 @@
     nil # nix LSP
 
     # GUI software
-    onlyoffice-bin # document editor
+    libreoffice # document editor
     mpv # video player
     inkscape # svf editor
     nomacs # image viewer
@@ -34,6 +36,7 @@
     brillo # brightness
 
     # Terminal and Shell utilities
+    nvtop # nvidia top
     bat-extras.batman # man
     trash-cli # trash
     entr # watch files

@@ -1,18 +1,79 @@
 {
+  inputs,
   config,
   wallpaperPath,
   osConfig,
   lib,
+  pkgs,
   ...
 }: {
   wayland.windowManager.hyprland = with config.colorScheme.colors; {
     enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    plugins = [
+      # inputs.hy3.packages.x86_64-linux.hy3
+      # inputs.hycov.packages.${pkgs.system}.hycov
+      # inputs.hyprfocus.packages.${pkgs.system}.default
+    ];
+    # extraConfig = ''
+    #   bind=ALT,tab,hycov:toggleoverview
+    #   bind=ALT,left,hycov:movefocus,l
+    #   bind=ALT,right,hycov:movefocus,r
+    #   bind=ALT,up,hycov:movefocus,u
+    #   bind=ALT,down,hycov:movefocus,d
+
+    #   plugin {
+    #       hycov {
+    #         overview_gappo = 60 #gaps width from screen
+    #         overview_gappi = 24 #gaps width from clients
+    #   	    hotarea_size = 10 #hotarea size in bottom left,10x10
+    #   	    enable_hotarea = 1 # enable mouse cursor hotarea
+    #       }
+    #       hyprfocus {
+    #         enabled = no
+
+    #         keyboard_focus_animation = shrink
+    #         mouse_focus_animation = shrink
+
+    #         bezier = bezIn, 0.5,0.0,1.0,0.5
+    #         bezier = bezOut, 0.0,0.5,0.5,1.0
+
+    #         flash {
+    #             flash_opacity = 0.95
+
+    #             in_bezier = bezIn
+    #             in_speed = 0.5
+
+    #             out_bezier = bezOut
+    #             out_speed = 3
+    #         }
+
+    #         shrink {
+    #             shrink_percentage = 0.98
+
+    #             in_bezier = bezIn
+    #             in_speed = 0.5
+
+    #             out_bezier = bezOut
+    #             out_speed = 3
+    #         }
+    #   }
+    # '';
     settings = {
+      # plugin.hy3 = {
+      #   tabs = {
+      #     height = 5;
+      #     padding = 8;
+      #     render_text = false;
+      #   };
+
+      #   autotile.enable = true;
+      # };
       monitor =
         (lib.optionals (osConfig.networking.hostName == "nyx") [
-          "DP-3, highres, -1920x0, 1"
-          "DP-1, highres, 0x0, 1"
-          "DP-2, highres, 1920x0, 1"
+          "DP-3, 1920x1200@59.95000, -1920x0, 1"
+          "DP-1, 1920x1200@59.95000, 0x0, 1"
+          "DP-2, 1920x1200@59.95000, 1920x0, 1"
         ])
         ++ (lib.optionals (osConfig.networking.hostName == "xps") [
           ",highres,auto,1"
@@ -32,7 +93,7 @@
         "col.inactive_border" = "rgba(${base00}ff)";
         no_border_on_floating = false;
         cursor_inactive_timeout = 0;
-        layout = "dwindle";
+        layout = "hy3";
         no_cursor_warps = false;
         no_focus_fallback = false;
         apply_sens_to_raw = false;

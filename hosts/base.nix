@@ -3,22 +3,10 @@
   pkgs,
   ...
 }: {
-  # services.pcscd = {
-  #   enable = true;
-  # };
-  # security.polkit.extraConfig = ''
-  #   polkit.addRule(function(action, subject) {
-  #     if (action.id == "org.debian.pcsc-lite.access_pcsc" &&
-  #       subject.isInGroup("wheel")) {
-  #       return polkit.Result.YES;
-  #     }
-  #   });
-  # '';
-
   programs.hyprland = {
     enable = true;
     # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    package = pkgs.hyprland;
+    # package = pkgs.hyprland;
     xwayland = {enable = true;};
   };
 
@@ -110,10 +98,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  xdg.portal = {
-    enable = true;
-    # extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   # extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

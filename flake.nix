@@ -7,7 +7,23 @@
     helix.url = "github:helix-editor/helix";
     hyprsome.url = "github:sopa0/hyprsome";
     amumax.url = "github:SomeoneSerge/pkgs";
-    hyprland.url = "github:hyprwm/Hyprland"; # git release version
+    hy3 = {
+      url = "github:outfoxxed/hy3";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hycov = {
+      url = "github:DreamMaoMao/hycov";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprfocus = {
+      url = "github:VortexCoyote/hyprfocus";
+      inputs.hyprland.follows = "hyprland";
+    };
+    mx3expend.url = "github:MathieuMoalic/mx3expend";
     # sops-nix.url = "github:Mic92/sops-nix";
     # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };

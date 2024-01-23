@@ -1,7 +1,7 @@
 {...}: {
   home.sessionVariables = {
     # EDITOR = "${pkgs.helix}/bin/hx"; # already set in helix.nix
-    IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
+    IPYTHONDIR = "$HOME/.local/share/ipython";
     VISUAL = "$EDITOR";
     SUDO_EDIT = "$EDITOR";
     GNUPGHOME = "$HOME/.local/share/gnupg";
@@ -12,6 +12,6 @@
     # RUSTUP_HOME = "$XDG_DATA_HOME/rust";
     # CARGO_HOME = "$XDG_DATA_HOME/cargo";
     CUDA_CACHE_PATH = "$HOME/.cache/nv";
-    # GOPATH = "$XDG_DATA_HOME/go";
+    GOPATH = "$HOME/.local/share/go";
   };
 }

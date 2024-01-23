@@ -6,6 +6,23 @@
     ../modules/syncthing.nix
   ];
 
+  virtualisation = {
+    # containers.cdi.nvidia = "nvidia-ctk-generate";
+    libvirtd.enable = true;
+    docker = {
+      enable = true;
+      enableNvidia = false;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
+    podman = {
+      enable = true;
+      enableNvidia = false;
+      dockerCompat = false;
+    };
+  };
   services.caddy = {
     enable = true;
     email = "matmoa@pm.me"; # For Let's Encrypt registration
@@ -36,33 +53,6 @@
       PasswordAuthentication = true;
     };
   };
-  virtualisation = {
-    libvirtd.enable = true;
-    docker = {
-      enable = true;
-      enableNvidia = true;
-    };
-    podman = {
-      enable = true;
-      enableNvidia = true;
-      dockerCompat = false;
-    };
-  };
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
-  # virtualisation.podman = {
-  #   enable = true;
-  #   dockerSocket.enable = false;
-  #   dockerCompat = false; # alias docker to podman
-  #   autoPrune.enable = true; # weekly by default
-  #   enableNvidia = true;
-  # };
-  # virtualisation.docker = {
-  #   enable = true;
-  #   enableNvidia = true;
-  # };
   fileSystems."/home/mat/z1" = {
     device = "/dev/disk/by-uuid/36f3a7b3-8e76-48b8-a444-c2898aef7c29";
     fsType = "ext4";

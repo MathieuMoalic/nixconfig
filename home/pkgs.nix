@@ -1,5 +1,6 @@
 {
   amumax,
+  inputs,
   pkgs,
   osConfig,
   lib,
@@ -9,6 +10,9 @@
   # other programs are installed in ./modules
   home.packages = with pkgs;
     [
+      amumax.packages.x86_64-linux.amumax
+      inputs.mx3expend.packages.${pkgs.system}.mx3expend
+
       # Dev
       just # makefile in rust
       alejandra # format nix

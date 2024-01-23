@@ -36,27 +36,47 @@
           docs = {
             path = "/home/mat/sync/docs";
             id = "docs";
-            devices = ["homeserver" "nyx" "oneplus"];
+            versioning = {
+              type = "simple";
+              params.keep = "10";
+            };
+            devices = ["homeserver" "xps" "nyx" "oneplus"];
           };
           yt = {
             path = "/home/mat/sync/yt";
             id = "yt";
-            devices = ["homeserver"];
+            versioning = {
+              type = "simple";
+              params.keep = "10";
+            };
+            devices = ["homeserver" "xps" "nyx"];
           };
           pics = {
             path = "/home/mat/sync/pics";
             id = "pics";
-            devices = ["homeserver"];
+            versioning = {
+              type = "simple";
+              params.keep = "10";
+            };
+            devices = ["homeserver" "xps" "nyx"];
           };
           classes = {
             path = "/home/mat/sync/classes";
             id = "classes";
-            devices = ["homeserver"];
+            versioning = {
+              type = "simple";
+              params.keep = "10";
+            };
+            devices = ["homeserver" "xps" "nyx"];
           };
-          oneplus = {
-            path = "/home/mat/sync/oneplus";
-            id = "oneplus";
-            devices = ["homeserver"];
+          phone_camera = {
+            path = "/home/mat/sync/phone_camera";
+            id = "phone_camera";
+            versioning = {
+              type = "simple";
+              params.keep = "10";
+            };
+            devices = ["homeserver" "xps" "nyx" "oneplus"];
           };
         };
       };

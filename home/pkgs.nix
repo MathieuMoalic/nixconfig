@@ -9,12 +9,17 @@
   home.packages = with pkgs; [
     amumax.packages.x86_64-linux.amumax
     inputs.mx3expend.packages.${pkgs.system}.mx3expend
-    networkmanagerapplet
+    # inputs.quick-translate.packages.${pkgs.system}.quick-translate
 
     # dev
     just # makefile in rust
     alejandra # format nix
     nil # nix LSP
+    ruff-lsp
+    ruff
+    black
+    taplo # toml LSP
+    dockerfile-language-server-nodejs
 
     # GUI software
     libreoffice # document editor

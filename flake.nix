@@ -24,6 +24,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     mx3expend.url = "github:MathieuMoalic/mx3expend";
+    quick-translate.url = "github:MathieuMoalic/quick-translate";
     # sops-nix.url = "github:Mic92/sops-nix";
     # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };

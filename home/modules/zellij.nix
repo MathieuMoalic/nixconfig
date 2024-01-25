@@ -3,6 +3,10 @@
   xdg.configFile."zellij/config.kdl".text = ''
       keybinds {
         normal clear-defaults=true  {
+            bind "Alt p" { ToggleFloatingPanes; }
+            bind "Alt P" { TogglePaneEmbedOrFloating; }
+            bind "Alt o" { TogglePaneFrames; }
+
             bind "Alt h" { NewPane "Down"; }
             bind "Alt v" { NewPane "Right"; }
             bind "Alt ," { CloseFocus; }
@@ -42,8 +46,10 @@
             bind "Alt q" { SwitchToMode "Scroll"; }
         }
         scroll {
-            bind "s" { HalfPageScrollDown; }
-            bind "w" { HalfPageScrollUp; }
+            bind "W" { HalfPageScrollUp; }
+            bind "S" { HalfPageScrollDown; }
+            bind "w" { ScrollUp; }
+            bind "s" { ScrollDown; }
             bind "Alt r" { SwitchToMode "RenameTab"; TabNameInput 0; }
             bind "Alt e" { SwitchToMode "EnterSearch"; SearchInput 0; }
             bind "Alt q" { SwitchToMode "Normal"; }

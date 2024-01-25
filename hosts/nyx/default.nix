@@ -11,7 +11,7 @@
     libvirtd.enable = true;
     docker = {
       enable = true;
-      enableNvidia = false;
+      enableNvidia = true;
       rootless = {
         enable = true;
         setSocketVariable = true;

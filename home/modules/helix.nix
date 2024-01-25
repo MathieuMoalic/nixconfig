@@ -1,16 +1,22 @@
-{config, ...}: {
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
   programs.helix = {
     defaultEditor = true;
     enable = true;
+    package = inputs.helix.packages.${pkgs.system}.helix;
     settings = {
       theme = "mytheme";
       editor = {
         auto-completion = true;
+        completion-trigger-len = 2;
         auto-format = true;
         auto-info = true;
         auto-pairs = true;
         bufferline = "multiple";
-        completion-trigger-len = 2;
         cursorline = true;
         gutters = ["diagnostics" "line-numbers"];
         idle-timeout = 400;
@@ -244,6 +250,7 @@
   xdg.configFile."helix/languages.toml".text = ''
     [[language]]
     name = "nix"
+    auto-format = true
     scope = "source.nix"
     injection-regex = "nix"
     file-types = ["nix"]
@@ -251,23 +258,7 @@
     comment-token = "#"
     language-servers = [ "nil" ]
     indent = { tab-width = 2, unit = "  " }
-    auto-format = true
     formatter = {command = 'alejandra', args = ["-q"]}
-
-    [[language]]
-    auto-format = true
-    formatter = {command = 'black', args = ["--quiet", "-"]}
-    language-servers = ["pyright", "ruff"]
-    name = "python"
-    roots = ["pyproject.toml"]
-
-    [language-server.pyright]
-    args = ["--stdio"]
-    command = "pyright-langserver"
-
-    [language-server.ruff]
-    command = "ruff-lsp"
-    config = {settings = {run = "onSave"}}
 
     [[language]]
     name = "mx3"

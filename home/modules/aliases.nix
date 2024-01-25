@@ -6,7 +6,8 @@
     rm = " rm -vdrf";
     cp = "cp -r";
     mkdir = " mkdir -p";
-    l = "exa -ahlg --across --icons -s age";
+    l = "exa -al --across --icons -s age";
+    ll = "exa -ahlg --across --icons -s age";
     lt = "l --tree";
     e = "$EDITOR";
     m = "amumax";

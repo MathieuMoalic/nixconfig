@@ -8,20 +8,17 @@
 }: {
   # here are packages that are not configured by home-manager.
   # other programs are installed in ./modules
-  home.packages = with pkgs; [
-    amumax.packages.x86_64-linux.amumax
-    inputs.mx3expend.packages.${pkgs.system}.mx3expend
-    # inputs.quick-translate.packages.${pkgs.system}.quick-translate
-
-    # dev
-    just # makefile in rust
-    alejandra # format nix
-    nil # nix LSP
-    ruff-lsp
-    ruff
-    black
-    taplo # toml LSP
-    dockerfile-language-server-nodejs
+  home.packages = with pkgs;
+    [
+      # dev
+      just # makefile in rust
+      alejandra # format nix
+      nil # nix LSP
+      ruff-lsp
+      ruff
+      black
+      taplo # toml LSP
+      dockerfile-language-server-nodejs
 
       # GUI software
       onlyoffice-bin # document editor
@@ -64,5 +61,7 @@
     ]
     ++ (lib.optionals (osConfig.networking.hostName == "nyx") [
       amumax.packages.x86_64-linux.amumax
+      inputs.mx3expend.packages.${pkgs.system}.mx3expend
+      # inputs.quick-translate.packages.${pkgs.system}.quick-translate
     ]);
 }

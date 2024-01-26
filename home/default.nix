@@ -1,5 +1,6 @@
-{...}: {
+{inputs, ...}: {
   imports = [
+    inputs.nix-index-database.hmModules.nix-index # weekly nix-index refresh
     ./pkgs.nix
     ./modules/nix-dev.nix
     ./modules/lazygit.nix
@@ -7,7 +8,6 @@
     ./modules/ssh-and-zellij.nix
     ./modules/update.nix
     ./modules/theme.nix
-    # ./modules/quick-translate.nix
     ./modules/decode.nix
     ./modules/encode.nix
     ./modules/nix.nix

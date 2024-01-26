@@ -22,6 +22,9 @@
       url = "github:VortexCoyote/hyprfocus";
       inputs.hyprland.follows = "hyprland";
     };
+    nix-index-database.url = "github:Mic92/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     mx3expend.url = "github:MathieuMoalic/mx3expend";
     amumax.url = "github:MathieuMoalic/amumax";

@@ -1,5 +1,4 @@
 {
-  amumax,
   inputs,
   pkgs,
   osConfig,
@@ -14,13 +13,13 @@
       just # makefile in rust
       alejandra # format nix
       nil # nix LSP
-      ruff-lsp
-      ruff
-      black
+      ruff-lsp # python lsp
+      ruff #python formatter
       taplo # toml LSP
-      dockerfile-language-server-nodejs
+      dockerfile-language-server-nodejs # dockerfile lsp
 
       # GUI software
+      inputs.quicktranslate.packages.${pkgs.system}.quicktranslate
       onlyoffice-bin # document editor
       mpv # video player
       gimp # image editor
@@ -33,6 +32,7 @@
       vscode # editor
 
       # Windows Manager utilities
+      inputs.hyprsome.packages.x86_64-linux.default
       rofi-bluetooth # bluetooth manager
       udiskie # automount usb
       pulseaudio # audio
@@ -60,8 +60,7 @@
       neofetch # flex
     ]
     ++ (lib.optionals (osConfig.networking.hostName == "nyx") [
-      amumax.packages.x86_64-linux.amumax
+      inputs.amumax.packages.x86_64-linux.amumax
       inputs.mx3expend.packages.${pkgs.system}.mx3expend
-      # inputs.quick-translate.packages.${pkgs.system}.quick-translate
     ]);
 }

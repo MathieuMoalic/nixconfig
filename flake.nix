@@ -6,7 +6,6 @@
     nix-colors.url = "github:misterio77/nix-colors";
     helix.url = "github:helix-editor/helix";
     hyprsome.url = "github:sopa0/hyprsome";
-    amumax.url = "github:SomeoneSerge/pkgs";
     hy3 = {
       url = "github:outfoxxed/hy3";
       inputs.hyprland.follows = "hyprland";
@@ -23,8 +22,9 @@
       url = "github:VortexCoyote/hyprfocus";
       inputs.hyprland.follows = "hyprland";
     };
+    quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     mx3expend.url = "github:MathieuMoalic/mx3expend";
-    quick-translate.url = "github:MathieuMoalic/quick-translate";
+    amumax.url = "github:MathieuMoalic/amumax";
     # sops-nix.url = "github:Mic92/sops-nix";
     # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -32,9 +32,7 @@
   outputs = {
     home-manager,
     nixpkgs,
-    hyprsome,
     nix-colors,
-    amumax,
     ...
   } @ inputs: let
     makeNixosSystem = {host, ...}:
@@ -50,7 +48,7 @@
           {
             home-manager = {
               extraSpecialArgs = {
-                inherit nix-colors amumax inputs;
+                inherit nix-colors inputs;
                 wallpaperPath = "/home/mat/.local/share/wallpaper.jpeg";
               };
               useUserPackages = true;
@@ -59,9 +57,6 @@
                 imports = [
                   ./home
                   nix-colors.homeManagerModules.default
-                ];
-                home.packages = [
-                  hyprsome.packages.x86_64-linux.default
                 ];
               };
             };

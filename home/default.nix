@@ -7,7 +7,7 @@
     ./modules/ssh-and-zellij.nix
     ./modules/update.nix
     ./modules/theme.nix
-    ./modules/quick-translate.nix
+    # ./modules/quick-translate.nix
     ./modules/decode.nix
     ./modules/encode.nix
     ./modules/nix.nix

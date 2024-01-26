@@ -279,7 +279,7 @@
         "$mod, J, exec, rofi -modi drun,run -show drun"
         "$mod, N, exec, wireguard-menu"
         "$mod, M, exec, wifi-menu"
-        "$mod, T, exec, quick-translate"
+        "$mod, T, exec, quicktranslate"
         "$mod, L, exec, swaylock"
         "$mod, P, exec, power-menu"
         "$mod, F11, exec, grimblast --notify copy area"

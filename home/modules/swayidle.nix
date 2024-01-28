@@ -15,7 +15,7 @@
       ]
       ++ lib.optionals (osConfig.networking.hostName == "xps") [
         {
-          timeout = 60 * 6; # Sleep after 6 min if xps
+          timeout = 60 * 45; # Sleep after 45 min if xps
           command = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];

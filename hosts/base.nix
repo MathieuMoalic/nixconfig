@@ -1,25 +1,5 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
-  programs.hyprland = {
-    enable = true;
-    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    # package = pkgs.hyprland;
-    xwayland = {enable = true;};
-  };
-
-  boot.supportedFilesystems = ["ntfs"];
-
-  fonts.packages = with pkgs; [
-    corefonts
-    proggyfonts
-    nerdfonts
-    fira-code
-  ];
+{pkgs, ...}: {
   security.sudo.wheelNeedsPassword = false;
-
   # This is to allow wireguard through the firewall
   networking.firewall = {
     # if packets are still dropped, they will show up in dmesg
@@ -34,10 +14,6 @@
       ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
     '';
   };
-
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
@@ -64,49 +40,10 @@
 
   environment.binsh = "${pkgs.dash}/bin/dash";
 
-  security.pam.services.swaylock = {}; # needed for swaylock
-
-  # rtkit is optional but recommended
-  sound.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-  };
-
-  # security.polkit.enable = true;
-  systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = ["graphical-session.target"];
-      wants = ["graphical-session.target"];
-      after = ["graphical-session.target"];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-    extraConfig = "DefaultTimeoutStopSec=10s";
-  };
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # xdg.portal = {
-  #   enable = true;
-  #   # extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-  # };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  boot.supportedFilesystems = ["ntfs"];
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -143,9 +80,7 @@
   };
   programs.zsh.enable = true;
   environment.variables = {ZDOTDIR = "$HOME/.config/zsh";};
-
   environment.systemPackages = with pkgs; [
     home-manager
-    pcsclite
   ];
 }

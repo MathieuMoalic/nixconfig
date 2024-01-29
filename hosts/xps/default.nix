@@ -4,7 +4,24 @@
     ../base.nix
     ../modules/sddm
     ../modules/syncthing.nix
+    ../modules/desktop.nix
   ];
+  virtualisation.oci-containers = {
+    backend = "podman";
+    containers = {
+      test1 = {
+        image = "docker.io/nginx:alpine";
+        autoStart = true;
+        # cmd = "python --vers";
+        ports = ["80:80"];
+        # hostname = "test1";
+      };
+    };
+  };
+
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
   # for brillo (1st line) and xremap (2nd line)
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"

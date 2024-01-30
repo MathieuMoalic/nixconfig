@@ -261,6 +261,17 @@
     formatter = {command = 'alejandra', args = ["-q"]}
 
     [[language]]
+    name = "python"
+    auto-format = true
+    formatter = {command = 'ruff', args = ["--quiet", "-"]}
+    language-servers = ["ruff-lsp"]
+    roots = ["pyproject.toml"]
+
+    [language-server.ruff-lsp]
+    command = "ruff-lsp"
+    config = {settings = {run = "onSave"}}
+
+    [[language]]
     name = "mx3"
     grammar = "go"
     scope = "source.mx3"

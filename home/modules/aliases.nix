@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.shellAliases = {
+    pt = "poetry -C ~/.cache/poetry";
     fhs = "nix-shell -E 'with import <nixpkgs> {}; (pkgs.buildFHSUserEnv { name = \"fhs\"; }).env' && zsh";
     man = "${pkgs.bat-extras.batman}/bin/batman";
     rl = "exec zsh -l";

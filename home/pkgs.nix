@@ -13,6 +13,7 @@
       just # makefile in rust
       alejandra # format nix
       nil # nix LSP
+      poetry # python packages
       ruff-lsp # python lsp
       ruff #python formatter
       taplo # toml LSP
@@ -58,6 +59,8 @@
       duf # df in rust
       eza # ls in rust
       neofetch # flex
+      sops # secrets manager
+      rclone # sync
     ]
     ++ (lib.optionals (osConfig.networking.hostName == "nyx") [
       inputs.amumax.packages.x86_64-linux.amumax

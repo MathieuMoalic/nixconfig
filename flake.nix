@@ -70,6 +70,7 @@
     nixosConfigurations = {
       xps = makeNixosSystem {host = ./hosts/xps;};
       nyx = makeNixosSystem {host = ./hosts/nyx;};
+      homeserver = makeNixosSystem {host = ./hosts/homeserver;};
     };
   };
 }

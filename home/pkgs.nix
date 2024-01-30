@@ -60,6 +60,7 @@
       eza # ls in rust
       neofetch # flex
       sops # secrets manager
+      rclone # sync
     ]
     ++ (lib.optionals (osConfig.networking.hostName == "nyx") [
       inputs.amumax.packages.x86_64-linux.amumax

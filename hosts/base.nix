@@ -10,9 +10,6 @@
   sops.age.generateKey = true;
   # sops.age.keyFile = "/home/yurii/.config/sops/age/keys.txt";
 
-  sops.secrets.example-key = {
-    owner = config.users.users.mat.name;
-  };
   sops.secrets.homeserver_port = {
     # owner = "yurii";
     owner = "sometestservice";

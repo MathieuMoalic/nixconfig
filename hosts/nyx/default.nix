@@ -5,6 +5,7 @@
     ../modules/sddm
     ../modules/syncthing.nix
     ../modules/desktop.nix
+    ../modules/samba.nix
   ];
 
   virtualisation = {

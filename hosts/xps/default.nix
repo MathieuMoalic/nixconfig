@@ -6,18 +6,18 @@
     ../modules/syncthing.nix
     ../modules/desktop.nix
   ];
-  virtualisation.oci-containers = {
-    backend = "podman";
-    containers = {
-      test1 = {
-        image = "docker.io/nginx:alpine";
-        autoStart = true;
-        # cmd = "python --vers";
-        ports = ["80:80"];
-        # hostname = "test1";
-      };
-    };
-  };
+  # virtualisation.oci-containers = {
+  #   backend = "podman";
+  #   containers = {
+  #     test1 = {
+  #       image = "docker.io/nginx:alpine";
+  #       autoStart = true;
+  #       # cmd = "python --vers";
+  #       ports = ["80:80"];
+  #       # hostname = "test1";
+  #     };
+  #   };
+  # };
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;

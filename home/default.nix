@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  osConfig,
+  ...
+}: {
   imports = [
     inputs.nix-index-database.hmModules.nix-index # weekly nix-index refresh
     ./pkgs.nix
@@ -40,4 +44,5 @@
   systemd.user.startServices = "sd-switch";
   home.stateVersion = "23.05";
   nixpkgs.config.allowUnfree = true;
+  # home.files."wad".source = osConfig.sops.secrets.exemple_key.path;
 }

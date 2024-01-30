@@ -1,4 +1,4 @@
-{...}: {
+{osConfig, ...}: {
   programs.ssh = {
     enable = true;
     matchBlocks = {
@@ -9,6 +9,7 @@
       homeserver = {
         hostname = "matmoa.xyz";
         user = "mat";
+        # port = osConfig.sops.secrets."ssh_config/homeserver_port";
         port = 23232;
       };
       nyx = {

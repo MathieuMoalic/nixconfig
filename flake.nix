@@ -3,6 +3,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-colors.url = "github:misterio77/nix-colors";
     helix.url = "github:helix-editor/helix";
     hyprsome.url = "github:sopa0/hyprsome";
@@ -22,36 +23,35 @@
       url = "github:VortexCoyote/hyprfocus";
       inputs.hyprland.follows = "hyprland";
     };
-    nix-index-database.url = "github:Mic92/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    sops = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     mx3expend.url = "github:MathieuMoalic/mx3expend";
     amumax.url = "github:MathieuMoalic/amumax";
-    # sops-nix.url = "github:Mic92/sops-nix";
-    # sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    home-manager,
-    nixpkgs,
-    nix-colors,
-    ...
-  } @ inputs: let
+  outputs = {...} @ inputs: let
     makeNixosSystem = {host, ...}:
-      nixpkgs.lib.nixosSystem {
+      inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
-          inherit nix-colors inputs;
+          inherit inputs;
         };
         modules = [
           ./hosts/base.nix
           host
-          home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModules.home-manager
+          inputs.sops.nixosModules.sops
           {
             home-manager = {
               extraSpecialArgs = {
-                inherit nix-colors inputs;
+                inherit inputs;
                 wallpaperPath = "/home/mat/.local/share/wallpaper.jpeg";
               };
               useUserPackages = true;
@@ -59,7 +59,7 @@
               users.mat = {
                 imports = [
                   ./home
-                  nix-colors.homeManagerModules.default
+                  inputs.nix-colors.homeManagerModules.default
                 ];
               };
             };

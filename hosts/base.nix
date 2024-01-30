@@ -136,6 +136,7 @@
   };
   users.users.mat = {
     isNormalUser = true;
+    uid = 1000;
     description = "mat";
     group = "mat";
     extraGroups = ["networkmanager" "wheel" "video" "input" "uinput"];

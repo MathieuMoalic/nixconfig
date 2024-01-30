@@ -7,6 +7,23 @@
     ../modules/desktop.nix
     ../modules/samba.nix
   ];
+  systemd.services.justJoanaService = {
+    description = "Run just joana command";
+    script = "cd /home/mat/shared/podman && just joana";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "mat";
+      WorkingDirectory = "/home/mat/shared/podman";
+    };
+  };
+  systemd.timers.justJoanaTimer = {
+    description = "Timer for just Joana Service";
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnCalendar = "08:00";
+      Persistent = true; # Ensure it runs at the next boot if missed
+    };
+  };
 
   virtualisation = {
     # containers.cdi.nvidia = "nvidia-ctk-generate";

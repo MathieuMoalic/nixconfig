@@ -116,6 +116,17 @@
     copy_on_select true
     scrollback_editor "$EDITOR"
     mirror_session false
+    ui {
+    pane_frames {
+        hide_session_name true
+        rounded_corners true
+        }
+    }
+    auto_layout true
+    styled_underlines true
+    session_serialization true
+    pane_viewport_serialization true
+    scrollback_lines_to_serialize 500
   '';
   # programs.zellij = with config.colorScheme.colors; {
   #   enable = true;

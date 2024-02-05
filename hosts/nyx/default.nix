@@ -49,6 +49,15 @@
       joana.matmoa.xyz {
         reverse_proxy localhost:34243
       }
+      amumax.joana.matmoa.xyz {
+        reverse_proxy localhost:44243
+      }
+      olek.matmoa.xyz {
+        reverse_proxy localhost:34244
+      }
+      amumax.olek.matmoa.xyz {
+        reverse_proxy localhost:44244
+      }
       cerebre.matmoa.xyz {
         reverse_proxy localhost:23848
       }

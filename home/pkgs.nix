@@ -21,7 +21,7 @@
 
       # GUI software
       inputs.quicktranslate.packages.${pkgs.system}.quicktranslate
-      onlyoffice-bin # document editor
+      libreoffice # document editor
       mpv # video player
       gimp # image editor
       inkscape # svf editor

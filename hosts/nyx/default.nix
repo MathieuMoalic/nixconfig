@@ -7,16 +7,16 @@
     ../modules/desktop.nix
     ../modules/samba.nix
   ];
-  systemd.services.justJoanaService = {
+  systemd.services.restartContainers = {
     description = "Run just joana command";
-    script = "cd /home/mat/shared/podman && just joana";
+    script = "cd /home/mat/shared/podman && just dailyrestart";
     serviceConfig = {
       Type = "oneshot";
       User = "mat";
       WorkingDirectory = "/home/mat/shared/podman";
     };
   };
-  systemd.timers.justJoanaTimer = {
+  systemd.timers.restartContainers = {
     description = "Timer for just Joana Service";
     wantedBy = ["timers.target"];
     timerConfig = {

@@ -7,8 +7,20 @@
       add_newline = true;
 
       format = ''
-        [ ](fg:#${base00} bg:#${orange})$username[ ](fg:#${orange} bg:#${base0E})$hostname[](fg:#${base0E} bg:#${base0B})$directory[](fg:#${base0B} bg:#${blue})$nix_shell[](fg:#${blue} bg:#${base00}ff)$git_branch$git_status$fill$time
+        [ ](fg:#${base00} bg:#${orange})$username[ ](fg:#${orange} bg:#${base0E})$hostname[](fg:#${base0E} bg:#${base0B})$directory[](fg:#${base0B} bg:#${blue})$nix_shell[](fg:#${blue} bg:#${base0A})''${custom.microconda}[](fg:#${base0A} bg:#${base00}ff)$git_branch$git_status$fill$time
         $character'';
+
+      custom = {
+        microconda = {
+          # when = "env(CONDA_DEFAULT_ENV) != ''";
+          # when = '''test -n "$CONDA_PREFIX"''';
+          when = ''test -n "$CONDA_PREFIX"'';
+
+          format = "[ $symbol ]($style)";
+          style = "fg:#${base00} bg:#${base0A}";
+          symbol = "";
+        };
+      };
 
       username = {
         show_always = true;

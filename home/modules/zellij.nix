@@ -3,6 +3,7 @@
   xdg.configFile."zellij/config.kdl".text = ''
       keybinds {
         normal clear-defaults=true  {
+            bind "Alt i" { Detach; }
             bind "Alt p" { ToggleFloatingPanes; }
             bind "Alt P" { TogglePaneEmbedOrFloating; }
             bind "Alt o" { TogglePaneFrames; }

@@ -7,7 +7,7 @@ in {
     settings = {
       main = {
         # term = "xterm-256color";
-        font = "FiraCode Nerd Font Mono:size=16";
+        font = "FiraCode Nerd Font Mono:size=13";
         selection-target = "both";
       };
       cursor = {

@@ -76,6 +76,7 @@
 
       bindkey "^K" clear-screen
       bindkey "^M" accept-line # this is enter
+      bindkey "^[[27;5;13~" autosuggest-execute # this is ctrl+enter
       bindkey "^T" edit-command-line
       bindkey "^I" expand-or-complete # this is tab
       bindkey "^U" kill-whole-line

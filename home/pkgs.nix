@@ -13,9 +13,6 @@
       just # makefile in rust
       alejandra # format nix
       nil # nix LSP
-      poetry # python packages
-      ruff-lsp # python lsp
-      ruff #python formatter
       taplo # toml LSP
       dockerfile-language-server-nodejs # dockerfile lsp
 
@@ -65,5 +62,9 @@
     ++ (lib.optionals (osConfig.networking.hostName == "nyx") [
       inputs.amumax.packages.x86_64-linux.amumax
       inputs.mx3expend.packages.${pkgs.system}.mx3expend
+      nvtop
+    ])
+    ++ (lib.optionals (osConfig.networking.hostName == "xps") [
+      mosh
     ]);
 }

@@ -7,6 +7,12 @@
     ../modules/desktop.nix
     ../modules/samba.nix
   ];
+  programs.mosh = {
+    enable = true;
+    openFirewall = true;
+    withUtempter = true;
+  };
+
   systemd.services.restartContainers = {
     description = "Run just joana command";
     script = "cd /home/mat/shared/podman && just dailyrestart";

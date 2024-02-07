@@ -45,6 +45,7 @@
             bind "Alt r" { SwitchToMode "RenameTab"; TabNameInput 0; }
             bind "Alt e" { SwitchToMode "EnterSearch"; SearchInput 0; }
             bind "Alt q" { SwitchToMode "Scroll"; }
+            bind "Alt y" { SwitchToMode "Session"; }
         }
         scroll {
             bind "W" { HalfPageScrollUp; }

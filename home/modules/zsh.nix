@@ -52,6 +52,7 @@
       stty -ixon # allows ctrl + q and s
       autoload -U edit-command-line
       zle -N edit-command-line
+      export DIRENV_LOG_FORMAT=
 
       bindkey -rp \'\'
       bindkey " " magic-space

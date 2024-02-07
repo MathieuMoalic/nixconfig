@@ -6,6 +6,7 @@
   imports = [
     inputs.nix-index-database.hmModules.nix-index # weekly nix-index refresh
     ./pkgs.nix
+    ./modules/direnv.nix
     ./modules/nix-dev.nix
     ./modules/lazygit.nix
     ./modules/ssh.nix

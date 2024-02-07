@@ -3,6 +3,9 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./modules/ld.nix
+  ];
   # sops.defaultSopsFile = ./../secrets/secrets.yaml;
   # sops.age.keyFile = "/home/mat/.ssh/id_ed255119";
   # sops.defaultSopsFormat = "yaml";
@@ -30,6 +33,7 @@
   #     WorkingDirectory = "/var/lib/sometestservice";
   #   };
   # };
+
   security.sudo.wheelNeedsPassword = false;
   # This is to allow wireguard through the firewall
   networking.firewall = {

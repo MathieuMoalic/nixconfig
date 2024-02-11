@@ -7,7 +7,7 @@
   pkgs,
   ...
 }: {
-  wayland.windowManager.hyprland = with config.colorScheme.colors; {
+  wayland.windowManager.hyprland = with config.colorScheme.palette; {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     plugins = [
@@ -178,7 +178,7 @@
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
-        force_hypr_chan = false;
+        # force_hypr_chan = false;
         vfr = true;
         vrr = 0;
         mouse_move_enables_dpms = false;

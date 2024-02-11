@@ -1,5 +1,5 @@
 {config, ...}: {
-  services.dunst = with config.colorScheme.colors; {
+  services.dunst = with config.colorScheme.palette; {
     enable = true;
     settings = {
       global = {

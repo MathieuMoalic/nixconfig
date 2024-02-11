@@ -1,5 +1,5 @@
 {config, ...}: {
-  programs.starship = with config.colorScheme.colors; {
+  programs.starship = with config.colorScheme.palette; {
     enable = true;
     enableZshIntegration = true;
 

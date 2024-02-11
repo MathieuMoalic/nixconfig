@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ../base.nix
@@ -15,7 +19,7 @@
 
   systemd.services.restartContainers = {
     description = "Run just joana command";
-    script = "cd /home/mat/shared/podman && just dailyrestart";
+    script = "cd /home/mat/shared/podman && ${pkgs.just}/bin/just dailyrestart";
     serviceConfig = {
       Type = "oneshot";
       User = "mat";
@@ -52,6 +56,9 @@
     enable = true;
     email = "matmoa@pm.me"; # For Let's Encrypt registration
     extraConfig = ''
+      fooocus.matmoa.xyz {
+      	reverse_proxy localhost:7865
+      }
       joana.matmoa.xyz {
         reverse_proxy localhost:34243
       }

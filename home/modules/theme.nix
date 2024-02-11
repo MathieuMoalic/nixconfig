@@ -26,7 +26,7 @@
     slug = "mydracula";
     name = "mydracula";
     author = "me";
-    colors = {
+    palette = {
       base00 = "#282a36"; # background
       base01 = "#69ff94"; # bright green
       base02 = "#ffffa5"; # bright yellow

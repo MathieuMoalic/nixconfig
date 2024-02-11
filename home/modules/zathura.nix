@@ -1,5 +1,5 @@
 {config, ...}: {
-  programs.zathura = with config.colorScheme.colors; {
+  programs.zathura = with config.colorScheme.palette; {
     enable = true;
     options = {
       ### Settings from original zathurarc ###

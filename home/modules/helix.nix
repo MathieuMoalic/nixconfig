@@ -263,7 +263,7 @@
     [[language]]
     name = "python"
     auto-format = true
-    formatter = {command = 'ruff', args = ["--quiet", "-"]}
+    # formatter = {command = 'ruff', args = ["--quiet", "-"]}
     language-servers = ["ruff-lsp"]
     roots = ["pyproject.toml"]
 
@@ -287,7 +287,7 @@
 
 
   '';
-  xdg.configFile."helix/themes/mytheme.toml".text = with config.colorScheme.colors; ''
+  xdg.configFile."helix/themes/mytheme.toml".text = with config.colorScheme.palette; ''
     "annotation"                      = { fg = "foreground"                                                     }
     "attribute"                       = { fg = "green",              modifiers = ["italic"]                     }
     "comment"                         = { fg = "comment"                                                        }

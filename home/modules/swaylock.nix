@@ -20,7 +20,7 @@
       WantedBy = ["suspend.target"];
     };
   };
-  programs.swaylock = with config.colorScheme.colors; {
+  programs.swaylock = with config.colorScheme.palette; {
     enable = true;
     package = pkgs.swaylock-effects;
     settings = {

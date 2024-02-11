@@ -60,6 +60,7 @@
                 imports = [
                   ./home
                   inputs.nix-colors.homeManagerModules.default
+                  inputs.nix-index-database.hmModules.nix-index # weekly nix-index refresh
                 ];
               };
             };

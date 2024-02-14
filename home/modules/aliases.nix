@@ -30,10 +30,6 @@
     "...." = "cd ../../..";
     myip = "curl ifconfig.me";
     dev = "nix develop -c zsh";
-    gs = "git status";
-    gc = "git commit -m";
-    ga = "git add";
-    gco = "git checkout";
     ghs = "gh copilot suggest -t shell";
     ghe = "gh copilot explain";
     ghc = "gh copilot";

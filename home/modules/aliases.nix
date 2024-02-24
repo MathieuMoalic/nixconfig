@@ -1,5 +1,8 @@
 {pkgs, ...}: {
   home.shellAliases = {
+    wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
+    HISTFILE = "$XDG_STATE_HOME/zsh/history";
+    DOTNET_CLI_HOME = "$XDG_DATA_HOME/dotnet";
     py = "nix develop $HOME/gh/micromamba/env";
     pt = "poetry -C ~/.cache/poetry";
     man = "${pkgs.bat-extras.batman}/bin/batman";

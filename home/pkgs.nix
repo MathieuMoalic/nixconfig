@@ -25,7 +25,17 @@
       nomacs # image viewer
       zathura # pdf viewer
       anki-bin # flash cards
-      brave # browser
+      # brave # browser
+      brave.overrideAttrs
+      (oldAttrs: {
+        postInstall =
+          oldAttrs.postInstall
+          or ""
+          + ''
+            substituteInPlace $out/share/applications/brave.desktop \
+              --replace 'Exec=brave %U' 'Exec=brave --enable-features=UseOzonePlatform --ozone-platform=wayland %U'
+          '';
+      })
       spotify # music
       vscode # editor
 

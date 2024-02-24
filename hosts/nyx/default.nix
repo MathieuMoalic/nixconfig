@@ -110,6 +110,12 @@
     driSupport32Bit = true;
   };
   environment.sessionVariables = {
+    # one of these might break the system
+    # LIBVA_DRIVER_NAME = "nvidia";
+    # XDG_SESSION_TYPE = "wayland";
+    # GBM_BACKEND = "nvidia-drm"; # might crash firefox
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia"; # might break screensharing
+
     WLR_NO_HARDWARE_CURSORS = "1";
     # Hint electron apps to use wayland
     # NIXOS_OZONE_WL = "1"; # crashes vscode
@@ -123,5 +129,9 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  # this might crash the system
+  # environment.etc."modprobe.d/nvidia.conf".text = ''
+  #   options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
+  # '';
   system.stateVersion = "23.11";
 }

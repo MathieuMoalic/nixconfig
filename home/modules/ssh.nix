@@ -4,7 +4,7 @@
     matchBlocks = {
       pcss = {
         hostname = "eagle.man.poznan.pl";
-        user = "mat";
+        user = "mathieum";
       };
       homeserver = {
         hostname = "matmoa.xyz";

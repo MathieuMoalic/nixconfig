@@ -40,6 +40,7 @@
     ./modules/aliases.nix
     ./modules/session-variables.nix
   ];
+
   programs.ripgrep.enable = true;
   services.mpris-proxy.enable = true; # pause/play bluetooth commands
   systemd.user.startServices = "sd-switch";

@@ -6,16 +6,17 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1706275028,
-        "narHash": "sha256-/+f98WO2OeydDDR8S8Ejm1Plwp8WmHLwu4HcRWnCtDU=",
+        "lastModified": 1707750041,
+        "narHash": "sha256-BVuhcr0Bfk2LxpjeGJvkC7kt1DRshH3nJiwkVJAlkRk=",
         "owner": "MathieuMoalic",
         "repo": "amumax",
-        "rev": "74b6ab611f23f17e39f69add49672f835f5886bb",
+        "rev": "bce4fa867f4ef2d3f20f60c63bbff21677367707",
         "type": "github"
       },
       "original": {
         "owner": "MathieuMoalic",
         "repo": "amumax",
+        "rev": "bce4fa867f4ef2d3f20f60c63bbff21677367707",
         "type": "github"
       }
     },
@@ -403,16 +404,17 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1706016541,
-        "narHash": "sha256-yqtLaMDViAWDctK3mnieOCCwdpf+UrqMqz1I45XgojY=",
+        "lastModified": 1707735145,
+        "narHash": "sha256-mJym6L+TjXs2ncvhzGdBR7Z/XGqDBf3P5EU21Nb6zWI=",
         "owner": "MathieuMoalic",
         "repo": "mx3expend",
-        "rev": "062b0929d88dcd8d8efed2c72fe2b8867e189b5e",
+        "rev": "56faef06d42552cd7a981056cbf0347af673750d",
         "type": "github"
       },
       "original": {
         "owner": "MathieuMoalic",
         "repo": "mx3expend",
+        "rev": "56faef06d42552cd7a981056cbf0347af673750d",
         "type": "github"
       }
     },
@@ -550,22 +552,6 @@
       }
     },
     "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1705883077,
-        "narHash": "sha256-ByzHHX3KxpU1+V0erFy8jpujTufimh6KaS/Iv3AciHk=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "5f5210aa20e343b7e35f40c033000db0ef80d7b9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_5": {
       "locked": {
         "lastModified": 1705883077,
         "narHash": "sha256-ByzHHX3KxpU1+V0erFy8jpujTufimh6KaS/Iv3AciHk=",

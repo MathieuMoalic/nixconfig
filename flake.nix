@@ -69,8 +69,8 @@
       };
   in {
     nixosConfigurations = {
-      xps = makeNixosSystem {host = ./hosts/xps;};
-      nyx = makeNixosSystem {host = ./hosts/nyx;};
+      xps = makeNixosSystem {host = ./hosts/xps.nix;};
+      nyx = makeNixosSystem {host = ./hosts/nyx.nix;};
       homeserver = makeNixosSystem {host = ./hosts/homeserver;};
     };
   };

@@ -113,7 +113,7 @@
         shadow_ignore_window = true;
         "col.shadow" = "0xee1a1a1a";
         # col.shadow_inactive = unset
-        shadow_offset = "[0 0]";
+        # shadow_offset = "[0 0]";
         shadow_scale = 1.0;
         dim_inactive = false;
         dim_strength = 0.5;
@@ -207,10 +207,10 @@
         focus_preferred_method = 0;
       };
 
-      XWayland = {
-        use_nearest_neighbor = true;
-        force_zero_scaling = false;
-      };
+      # XWayland = {
+      #   use_nearest_neighbor = true;
+      #   force_zero_scaling = false;
+      # };
       dwindle = {
         # enable pseudotiling. Pseudotiled windows retain their floating size when tiled.
         pseudotile = false;
@@ -235,9 +235,9 @@
         # the default split ratio on window open. 1 means even 50/50 split. 0.1 - 1.9
         default_split_ratio = 1.0;
       };
-      "device:epic mouse V1" = {
-        sensitivity = 0;
-      };
+      # "device:epic mouse V1" = {
+      #   sensitivity = 0;
+      # };
       windowrulev2 = [
         # # make Firefox PiP window floating and sticky
         # "float, title:^(Picture-in-Picture)$"

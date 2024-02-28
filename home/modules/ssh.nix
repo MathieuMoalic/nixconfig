@@ -1,7 +1,11 @@
-{osConfig, ...}: {
+{...}: {
   programs.ssh = {
     enable = true;
     matchBlocks = {
+      faculty = {
+        hostname = "150.254.111.35";
+        user = "matmoa";
+      };
       pcss = {
         hostname = "eagle.man.poznan.pl";
         user = "mathieum";
@@ -9,7 +13,6 @@
       homeserver = {
         hostname = "matmoa.xyz";
         user = "mat";
-        # port = osConfig.sops.secrets."ssh_config/homeserver_port";
         port = 23232;
       };
       nyx = {

@@ -26,6 +26,7 @@
       zathura # pdf viewer
       anki-bin # flash cards
       brave # browser
+      librewolf
       spotify # music
       vscode # editor
 

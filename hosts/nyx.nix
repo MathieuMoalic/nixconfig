@@ -1,15 +1,15 @@
 {
+  lib,
   config,
   pkgs,
   ...
 }: {
   imports = [
-    ./hardware-configuration.nix
-    ../base.nix
-    ../modules/sddm
-    ../modules/syncthing.nix
-    ../modules/desktop.nix
-    ../modules/samba.nix
+    ./base.nix
+    ./modules/sddm
+    ./modules/syncthing.nix
+    ./modules/desktop.nix
+    ./modules/samba.nix
   ];
   programs.mosh = {
     enable = true;
@@ -17,74 +17,30 @@
     withUtempter = true;
   };
 
-  systemd.services.restartContainers = {
-    description = "Run just joana command";
-    script = "cd /home/mat/shared/podman && ${pkgs.just}/bin/just dailyrestart";
-    serviceConfig = {
-      Type = "oneshot";
-      User = "mat";
-      WorkingDirectory = "/home/mat/shared/podman";
-    };
-  };
-  systemd.timers.restartContainers = {
-    description = "Timer for just Joana Service";
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnCalendar = "08:00";
-      Persistent = true; # Ensure it runs at the next boot if missed
-    };
-  };
-
   virtualisation = {
-    # containers.cdi.nvidia = "nvidia-ctk-generate";
-    libvirtd.enable = true;
-    docker = {
+    containers = {
       enable = true;
-      enableNvidia = true;
-      rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
+      cdi.dynamic.nvidia.enable = true;
     };
-    podman = {
-      enable = true;
-      enableNvidia = false;
-      dockerCompat = false;
-    };
-  };
-  services.caddy = {
-    enable = true;
-    email = "matmoa@pm.me"; # For Let's Encrypt registration
-    extraConfig = ''
-      fooocus.matmoa.xyz {
-      	reverse_proxy localhost:7865
-      }
-      joana.matmoa.xyz {
-        reverse_proxy localhost:34243
-      }
-      amumax.joana.matmoa.xyz {
-        reverse_proxy localhost:44243
-      }
-      olek.matmoa.xyz {
-        reverse_proxy localhost:34244
-      }
-      amumax.olek.matmoa.xyz {
-        reverse_proxy localhost:44244
-      }
-      cerebre.matmoa.xyz {
-        reverse_proxy localhost:23848
-      }
-    '';
+    podman.enable = true;
   };
   boot.kernel.sysctl = {
     "net.ipv4.ip_unprivileged_port_start" = "80";
   };
 
-  networking.hostName = "nyx";
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [80 443];
+  # This is the only way I found to set the DNS server
+  environment.etc."resolv.conf".text = "nameserver 1.1.1.1";
+  services.resolved.enable = false; # not sure if this is needed
+  networking.networkmanager.dns = "none"; # not sure if this is needed
+
+  networking = {
+    hostName = "nyx";
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [80 443];
+    };
   };
+
   services.openssh = {
     enable = true;
     ports = [46464]; # Set SSH to listen on port 46464
@@ -133,5 +89,26 @@
   # environment.etc."modprobe.d/nvidia.conf".text = ''
   #   options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
   # '';
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-amd"];
+  boot.extraModulePackages = [];
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/70e39051-3e65-4be3-93d2-fafbffcd7884";
+    fsType = "ext4";
+  };
+
+  boot.initrd.luks.devices."luks-813b266a-548e-4767-b73a-335378dc4693".device = "/dev/disk/by-uuid/813b266a-548e-4767-b73a-335378dc4693";
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/65AD-6B00";
+    fsType = "vfat";
+  };
+
+  swapDevices = [];
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   system.stateVersion = "23.11";
 }

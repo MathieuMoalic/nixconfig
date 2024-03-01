@@ -25,8 +25,7 @@
       nomacs # image viewer
       zathura # pdf viewer
       anki-bin # flash cards
-      brave # browser
-      librewolf
+      librewolf # browser
       spotify # music
       vscode # editor
 

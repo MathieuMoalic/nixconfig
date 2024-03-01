@@ -37,6 +37,18 @@
             "when": "editorLangId == python",
             "args": {
                 "commands": [
+                    "ruff.executeOrganizeImports",
+                    "ruff.executeFormat",
+                    "workbench.action.files.save",
+                ]
+            }
+        },
+        {
+            "command": "runCommands",
+            "key": "ctrl+shift+s", // whatever keybinding
+            "when": "editorLangId == python",
+            "args": {
+                "commands": [
                     "ruff.executeAutofix",
                     "ruff.executeOrganizeImports",
                     "ruff.executeFormat",

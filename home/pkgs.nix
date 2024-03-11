@@ -19,6 +19,7 @@
       # GUI software
       inputs.quicktranslate.packages.${pkgs.system}.quicktranslate
       libreoffice # document editor
+      teams-for-linux # chat
       mpv # video player
       gimp # image editor
       inkscape # svf editor
@@ -63,6 +64,7 @@
       inputs.amumax.packages.x86_64-linux.amumax
       inputs.mx3expend.packages.${pkgs.system}.mx3expend
       nvtop
+      caddy # web server
     ])
     ++ (lib.optionals (osConfig.networking.hostName == "xps") [
       mosh

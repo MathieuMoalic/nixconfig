@@ -6,6 +6,24 @@
   imports = [
     ./modules/ld.nix
   ];
+  nixpkgs.overlays = [
+    (
+      self: super: {
+        vscode = super.vscode.overrideAttrs (old: {
+          # Override the `desktopItem` and `urlHandlerDesktopItem` directly if they are accessible
+          desktopItem = old.desktopItem.overrideAttrs (da: {
+            name = "Visual Studio Code (Wayland)";
+            exec = "code --enable-features=UseOzonePlatform --ozone-platform=wayland %F";
+          });
+        });
+      }
+    )
+  ];
+  #   substituteInPlace $out/share/applications/code.desktop \
+  #   --replace-fail "code %F" "code --enable-features=UseOzonePlatform --ozone-platform=wayland %F"
+  # substituteInPlace $out/share/applications/code.desktop \
+  #   --replace-fail "code Name=Visual Studio Code" "Name=Visual Studio Code (Wayland)"
+  # Name=Visual Studio Code
   # sops.defaultSopsFile = ./../secrets/secrets.yaml;
   # sops.age.keyFile = "/home/mat/.ssh/id_ed255119";
   # sops.defaultSopsFormat = "yaml";

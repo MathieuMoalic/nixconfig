@@ -42,6 +42,15 @@
             };
             devices = ["homeserver" "xps" "nyx" "oneplus"];
           };
+          facebook-data = {
+            path = "/home/mat/sync/facebook-data";
+            id = "facebook-data";
+            versioning = {
+              type = "simple";
+              params.keep = "10";
+            };
+            devices = ["homeserver" "nyx"];
+          };
           yt = {
             path = "/home/mat/sync/yt";
             id = "yt";

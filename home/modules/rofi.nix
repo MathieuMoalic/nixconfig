@@ -1,6 +1,11 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.rofi = {
     enable = true;
+    package = pkgs.rofi-wayland;
     font = "FiraCode Nerd Font Medium 10";
     extraConfig = {
       display-drun = "Applications:";

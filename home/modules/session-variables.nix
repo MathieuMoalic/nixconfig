@@ -6,12 +6,10 @@
     SUDO_EDIT = "$EDITOR";
     GNUPGHOME = "$HOME/.local/share/gnupg";
     JUPYTER_CONFIG_DIR = "$HOME/.config/jupyter";
-    # LESSHISTFILE = "$XDG_CACHE_HOME/less/history";
-    # _Z_DATA = "$XDG_DATA_HOME/z";
-    # ZSH_COMPDUMP = "$ZSH/cache/.zcompdump-$HOST";
-    # RUSTUP_HOME = "$XDG_DATA_HOME/rust";
-    # CARGO_HOME = "$XDG_DATA_HOME/cargo";
+    RUSTUP_HOME = "$HOME/.local/share/rust";
+    CARGO_HOME = "$HOME/.local/share/cargo";
     CUDA_CACHE_PATH = "$HOME/.cache/nv";
     GOPATH = "$HOME/.local/share/go";
+    DOTNET_CLI_HOME = "$HOME/.local/share/dotnet";
   };
 }

@@ -31,7 +31,7 @@
   # This is the only way I found to set the DNS server
   environment.etc."resolv.conf".text = ''
     nameserver 109.173.160.203
-    nameserver 8.8.8.8'';
+    nameserver 1.1.1.1'';
   services.resolved.enable = false; # not sure if this is needed
   networking.networkmanager.dns = "none"; # not sure if this is needed
 

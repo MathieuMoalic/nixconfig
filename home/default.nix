@@ -5,16 +5,21 @@
 }: {
   imports = [
     ./pkgs.nix
+    ./modules/scripts/decode.nix
+    ./modules/scripts/encode.nix
+    ./modules/scripts/nh.nix
+    ./modules/scripts/nix-dev.nix
+    ./modules/scripts/power-menu.nix
+    ./modules/scripts/ssh-and-zellij.nix
+    ./modules/scripts/update.nix
+    ./modules/scripts/wifi-menu.nix
+    ./modules/scripts/wireguard-menu.nix
+
     ./modules/vscode.nix
     ./modules/direnv.nix
-    ./modules/nix-dev.nix
     ./modules/lazygit.nix
     ./modules/ssh.nix
-    ./modules/ssh-and-zellij.nix
-    ./modules/update.nix
     ./modules/theme.nix
-    ./modules/decode.nix
-    ./modules/encode.nix
     ./modules/nix.nix
     ./modules/atuin.nix
     ./modules/dunst.nix
@@ -29,10 +34,7 @@
     ./modules/starship.nix
     ./modules/xdg.nix
     ./modules/yazi.nix
-    ./modules/wifi-menu.nix
-    ./modules/power-menu.nix
     ./modules/pager.nix
-    ./modules/wireguard-menu.nix
     ./modules/hyprland.nix
     ./modules/swayidle.nix
     ./modules/zathura.nix

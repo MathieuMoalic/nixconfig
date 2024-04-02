@@ -11,5 +11,6 @@
     CUDA_CACHE_PATH = "$HOME/.cache/nv";
     GOPATH = "$HOME/.local/share/go";
     DOTNET_CLI_HOME = "$HOME/.local/share/dotnet";
+    NIXOS_OZONE_WL = "1";
   };
 }

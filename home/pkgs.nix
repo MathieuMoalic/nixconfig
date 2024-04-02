@@ -63,8 +63,9 @@
     ++ (lib.optionals (osConfig.networking.hostName == "nyx") [
       inputs.amumax.packages.x86_64-linux.amumax
       inputs.mx3expend.packages.${pkgs.system}.mx3expend
-      nvtop
+      nvtop-nvidia
       caddy # web server
+      blender # 3d editor
     ])
     ++ (lib.optionals (osConfig.networking.hostName == "xps") [
       mosh

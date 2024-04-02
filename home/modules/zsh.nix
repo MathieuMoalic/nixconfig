@@ -10,7 +10,7 @@
   };
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     dotDir = ".config/zsh";
     enableCompletion = true;
     enableVteIntegration = true;

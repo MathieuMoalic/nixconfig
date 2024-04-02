@@ -56,11 +56,12 @@
                 ]
             }
         }
-    ]
+    }
   '';
   xdg.configFile."Code/User/settings.json".text = ''
     {
-      "css.lint.unknownAtRules": "ignore"
+      "blender.allowModifyExternalPython": true,
+      "css.lint.unknownAtRules": "ignore",
       "search.followSymlinks": false,
       "security.workspace.trust.enabled": false,
       "files.autoSave": "onFocusChange",

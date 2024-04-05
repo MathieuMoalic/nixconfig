@@ -7,21 +7,9 @@
     nix-colors.url = "github:misterio77/nix-colors";
     helix.url = "github:helix-editor/helix";
     hyprsome.url = "github:sopa0/hyprsome";
-    hy3 = {
-      url = "github:outfoxxed/hy3";
-      inputs.hyprland.follows = "hyprland";
-    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hycov = {
-      url = "github:DreamMaoMao/hycov";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprfocus = {
-      url = "github:VortexCoyote/hyprfocus";
-      inputs.hyprland.follows = "hyprland";
     };
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
@@ -32,8 +20,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
-    mx3expend.url = "github:MathieuMoalic/mx3expend/56faef06d42552cd7a981056cbf0347af673750d";
-    amumax.url = "github:MathieuMoalic/amumax/bce4fa867f4ef2d3f20f60c63bbff21677367707";
+    mx3expend.url = "github:MathieuMoalic/mx3expend";
+    amumax.url = "github:MathieuMoalic/amumax";
   };
 
   outputs = {...} @ inputs: let

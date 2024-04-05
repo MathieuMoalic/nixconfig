@@ -31,6 +31,8 @@
       vscode # editor
 
       # Windows Manager utilities
+      hyprlock
+      hypridle
       inputs.hyprsome.packages.x86_64-linux.default
       rofi-bluetooth # bluetooth manager
       udiskie # automount usb
@@ -38,6 +40,7 @@
       grimblast # screenshots
       hyprpaper # wallpaper
       brillo # brightness
+      libnotify # notifications
 
       # Terminal and Shell utilities
       bat-extras.batman # man
@@ -59,6 +62,7 @@
       neofetch # flex
       sops # secrets manager
       rclone # sync
+      wl-clipboard # wayland clipboard
     ]
     ++ (lib.optionals (osConfig.networking.hostName == "nyx") [
       inputs.amumax.packages.x86_64-linux.amumax

@@ -35,7 +35,7 @@
     ./modules/xdg.nix
     ./modules/yazi.nix
     ./modules/pager.nix
-    ./modules/hyprland.nix
+    ./modules/hyprland
     ./modules/swayidle.nix
     ./modules/zathura.nix
     ./modules/zsh.nix

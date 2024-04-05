@@ -1,5 +1,5 @@
-{ inputs, ... }: {
-  imports = [ inputs.xremap-flake.homeManagerModules.default ];
+{inputs, ...}: {
+  imports = [inputs.xremap-flake.homeManagerModules.default];
   services.xremap = {
     withHypr = true;
     yamlConfig = ''
@@ -12,10 +12,11 @@
     '';
   };
 }
-# virtual_modifiers: 
-#   - CapsLock keymap: 
-#     - remap: 
-#       CapsLock-h: Left 
-#       CapsLock-j: Down 
-#       CapsLock-k: Up 
+# virtual_modifiers:
+#   - CapsLock keymap:
+#     - remap:
+#       CapsLock-h: Left
+#       CapsLock-j: Down
+#       CapsLock-k: Up
 #       CapsLock-l: Right
+

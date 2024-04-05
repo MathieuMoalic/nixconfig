@@ -6,17 +6,16 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1707750041,
-        "narHash": "sha256-BVuhcr0Bfk2LxpjeGJvkC7kt1DRshH3nJiwkVJAlkRk=",
+        "lastModified": 1711011485,
+        "narHash": "sha256-j8hyrmRlFDSQT3Ea+nVNTlFR0tw6h8Hs3I9LCjMa0Vc=",
         "owner": "MathieuMoalic",
         "repo": "amumax",
-        "rev": "bce4fa867f4ef2d3f20f60c63bbff21677367707",
+        "rev": "bdaf11a11439ab7b20e62524e257a02e183b6524",
         "type": "github"
       },
       "original": {
         "owner": "MathieuMoalic",
         "repo": "amumax",
-        "rev": "bce4fa867f4ef2d3f20f60c63bbff21677367707",
         "type": "github"
       }
     },
@@ -246,46 +245,6 @@
         "type": "github"
       }
     },
-    "hy3": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ]
-      },
-      "locked": {
-        "lastModified": 1711094856,
-        "narHash": "sha256-2TL7tbLLsh2xWhszubVU2xDv8dx1fUMmPnEXlERu+m4=",
-        "owner": "outfoxxed",
-        "repo": "hy3",
-        "rev": "315e7902c9637e66352c9a26f6dff15c602fc85c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "outfoxxed",
-        "repo": "hy3",
-        "type": "github"
-      }
-    },
-    "hycov": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ]
-      },
-      "locked": {
-        "lastModified": 1709043503,
-        "narHash": "sha256-GHrgunfo+UARnf3OgNhdXoNFALRAmQEGhlZ8x5TBvkQ=",
-        "owner": "DreamMaoMao",
-        "repo": "hycov",
-        "rev": "7d48cff8364a7b6ae52a3472ad1dfe01b9f728ae",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DreamMaoMao",
-        "repo": "hycov",
-        "type": "github"
-      }
-    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": "hyprlang",
@@ -309,27 +268,6 @@
       "original": {
         "owner": "hyprwm",
         "repo": "hyprcursor",
-        "type": "github"
-      }
-    },
-    "hyprfocus": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ],
-        "nix-filter": "nix-filter"
-      },
-      "locked": {
-        "lastModified": 1710409234,
-        "narHash": "sha256-eECQvz7iKXKYAqpQF+xucjJcXDi47QKpiFz8L5rU+o4=",
-        "owner": "VortexCoyote",
-        "repo": "hyprfocus",
-        "rev": "fa6775c0481f0d3628487cc26f7c7456fa082fb7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "VortexCoyote",
-        "repo": "hyprfocus",
         "type": "github"
       }
     },
@@ -468,7 +406,6 @@
       "original": {
         "owner": "MathieuMoalic",
         "repo": "mx3expend",
-        "rev": "56faef06d42552cd7a981056cbf0347af673750d",
         "type": "github"
       }
     },
@@ -488,21 +425,6 @@
       "original": {
         "owner": "misterio77",
         "repo": "nix-colors",
-        "type": "github"
-      }
-    },
-    "nix-filter": {
-      "locked": {
-        "lastModified": 1694857738,
-        "narHash": "sha256-bxxNyLHjhu0N8T3REINXQ2ZkJco0ABFPn6PIe2QUfqo=",
-        "owner": "numtide",
-        "repo": "nix-filter",
-        "rev": "41fd48e00c22b4ced525af521ead8792402de0ea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "nix-filter",
         "type": "github"
       }
     },
@@ -677,9 +599,6 @@
         "amumax": "amumax",
         "helix": "helix",
         "home-manager": "home-manager",
-        "hy3": "hy3",
-        "hycov": "hycov",
-        "hyprfocus": "hyprfocus",
         "hyprland": "hyprland",
         "hyprsome": "hyprsome",
         "mx3expend": "mx3expend",

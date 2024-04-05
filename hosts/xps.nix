@@ -11,14 +11,6 @@
     ./modules/desktop.nix
   ];
   networking.wireless.userControlled.enable = true;
-  networking.wireless.networks.eduroam = {
-    auth = ''
-      key_mgmt=WPA-EAP
-      eap=PWD
-      identity="matmoa@amu.edu.pl"
-      password="YYUAeQp6EZxA6*t!ZK6Zmha@3yLijup$Bt$LUGsrTvZNW!G"
-    '';
-  };
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;

@@ -10,7 +10,10 @@
     ./modules/syncthing.nix
     ./modules/desktop.nix
     ./modules/samba.nix
+    ./modules
   ];
+  module1.enable = true;
+
   programs.mosh = {
     enable = true;
     openFirewall = true;

@@ -10,6 +10,14 @@
       push = {autoSetupRemote = true;};
       gpg = {format = "ssh";};
       user = {signingkey = "~/.ssh/id_ed25519.pub";};
+      core = {pager = "delta";};
+      interactive = {diffFilter = "delta --color-only";};
+      delta = {
+        navigate = true;
+        dark = true;
+      };
+      merge = {conflictstyle = "diff3";};
+      diff = {colorMoved = "default";};
     };
   };
   home.shellAliases = {

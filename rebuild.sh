@@ -7,15 +7,14 @@ cd $HOME/nix
 alejandra . &>/dev/null || ( alejandra . ; echo "formatting failed!" && exit 1)
 
 git add . 
-git diff -U0 '*.nix'
+git diff -U0
 
 echo "NixOS Rebuilding..."
 
-# Rebuild, output simplified errors, log trackebacks
-sudo NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --flake .#$HOST --impure  #&>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+sudo NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --flake .#$HOST --impure
 
 # Get current generation metadata
-current=$(nixos-rebuild list-generations | grep current)
+current=$(sudo nix-env --list-generations --profile /nix/var/nix/profiles/system | grep current | grep -oE '[0-9]+' | head -n 1)
 
 # Commit all changes with the generation metadata
 git commit -am "$current"

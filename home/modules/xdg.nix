@@ -29,5 +29,14 @@
       terminal = false;
       categories = ["Network" "InstantMessaging" "Chat"];
     };
+    code = {
+      name = "Code (Wayland)";
+      genericName = "Text Editor";
+      exec = "code %F  --enable-features=UseOzonePlatform --ozone-platform=wayland";
+      icon = "vscode";
+      terminal = false;
+      categories = ["Utility" "TextEditor" "Development" "IDE"];
+      mimeType = ["text/plain" "inode/directory"];
+    };
   };
 }

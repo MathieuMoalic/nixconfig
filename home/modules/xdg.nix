@@ -21,5 +21,13 @@
       categories = ["Application" "Network" "WebBrowser"];
       mimeType = ["text/html" "text/xml"];
     };
+    teams = {
+      name = "Teams (Wayland)";
+      genericName = "Unofficial Microsoft Teams client for Linux";
+      exec = "teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland";
+      icon = "teams-for-linux";
+      terminal = false;
+      categories = ["Network" "InstantMessaging" "Chat"];
+    };
   };
 }

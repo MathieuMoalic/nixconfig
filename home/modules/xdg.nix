@@ -12,14 +12,14 @@
     templates = "${config.home.homeDirectory}/dl";
     videos = "${config.home.homeDirectory}/dl";
   };
-  # xdg.desktopEntries = {
-  #   firefox = {
-  #     name = "Firefox";
-  #     genericName = "Web Browser";
-  #     exec = "firefox %U";
-  #     terminal = false;
-  #     categories = ["Application" "Network" "WebBrowser"];
-  #     mimeType = ["text/html" "text/xml"];
-  #   };
-  # };
+  xdg.desktopEntries = {
+    firefox = {
+      name = "Firefox";
+      genericName = "Web Browser";
+      exec = "firefox %U";
+      terminal = false;
+      categories = ["Application" "Network" "WebBrowser"];
+      mimeType = ["text/html" "text/xml"];
+    };
+  };
 }

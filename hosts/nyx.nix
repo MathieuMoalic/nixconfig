@@ -12,7 +12,6 @@
     ./modules/samba.nix
     ./modules
   ];
-  module1.enable = true;
 
   programs.mosh = {
     enable = true;

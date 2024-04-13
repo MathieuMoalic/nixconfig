@@ -10,8 +10,7 @@
   };
   fonts.packages = with pkgs; [
     corefonts # Arial, Times New Roman, etc.
-    (nerdfonts.override {fonts = ["FiraCode" "FiraMono"];})
-    fira-code
+    (nerdfonts.override {fonts = ["FiraCode" "FiraMono"];}) # FiraMono is for waybar
   ];
   security.pam.services.swaylock = {}; # needed for swaylock
 

@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   power-menu = pkgs.writeShellScriptBin "power-menu" ''
-    chosen=$(printf "  Lock\n⏾  Sleep\n  Power Off\n  Restart" | ${pkgs.rofi}/bin/rofi -dmenu -i)
+    chosen=$(printf "  Lock\n⏾  Sleep\n  Power Off\n  Restart" | ${pkgs.rofi-wayland}/bin/rofi -dmenu -i)
 
     case "$chosen" in
     	"  Power Off") ${pkgs.systemd}/bin/poweroff ;;

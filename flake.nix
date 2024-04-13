@@ -11,6 +11,7 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,7 +26,11 @@
   };
 
   outputs = {...} @ inputs: let
-    makeNixosSystem = {host, ...}:
+    makeNixosSystem = {
+      host,
+      home,
+      ...
+    }:
       inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
@@ -46,7 +51,7 @@
               useGlobalPkgs = true;
               users.mat = {
                 imports = [
-                  ./home
+                  home
                   inputs.nix-colors.homeManagerModules.default
                   inputs.nix-index-database.hmModules.nix-index # weekly nix-index refresh
                 ];
@@ -57,9 +62,18 @@
       };
   in {
     nixosConfigurations = {
-      xps = makeNixosSystem {host = ./hosts/xps.nix;};
-      nyx = makeNixosSystem {host = ./hosts/nyx.nix;};
-      homeserver = makeNixosSystem {host = ./hosts/homeserver;};
+      xps = makeNixosSystem {
+        host = ./hosts/xps.nix;
+        home = ./home/xps.nix;
+      };
+      nyx = makeNixosSystem {
+        host = ./hosts/nyx.nix;
+        home = ./home/nyx.nix;
+      };
+      homeserver = makeNixosSystem {
+        host = ./hosts/homeserver.nix;
+        home = ./home/homeserver.nix;
+      };
     };
   };
 }

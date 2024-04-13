@@ -21,6 +21,7 @@
     hyprlock
     hypridle
     inputs.hyprsome.packages.x86_64-linux.default
+    rofi-wayland # command runner
     rofi-bluetooth # bluetooth manager
     udiskie # automount usb
     pulseaudio # audio

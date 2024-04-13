@@ -6,11 +6,10 @@
 }: {
   imports = [
     ./base.nix
-    ./modules/sddm
+    ./modules/sddm.nix
     ./modules/syncthing.nix
     ./modules/desktop.nix
     ./modules/samba.nix
-    ./modules
   ];
 
   programs.mosh = {

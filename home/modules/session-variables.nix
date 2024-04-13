@@ -1,6 +1,10 @@
-{...}: {
+{
+  inputs,
+  osConfig,
+  config,
+  ...
+}: {
   home.sessionVariables = {
-    # EDITOR = "${pkgs.helix}/bin/hx"; # already set in helix.nix
     IPYTHONDIR = "$HOME/.local/share/ipython";
     VISUAL = "$EDITOR";
     SUDO_EDIT = "$EDITOR";

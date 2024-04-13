@@ -9,9 +9,8 @@
     xwayland = {enable = true;};
   };
   fonts.packages = with pkgs; [
-    corefonts
-    proggyfonts
-    nerdfonts
+    corefonts # Arial, Times New Roman, etc.
+    (nerdfonts.override {fonts = ["FiraCode" "FiraMono"];})
     fira-code
   ];
   security.pam.services.swaylock = {}; # needed for swaylock

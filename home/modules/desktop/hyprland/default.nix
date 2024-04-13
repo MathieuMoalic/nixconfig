@@ -7,7 +7,7 @@
   ...
 }: {
   wayland.windowManager.hyprland = with config.colorScheme.palette; {
-    enable = true;
+    # enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 

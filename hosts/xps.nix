@@ -6,13 +6,10 @@
 }: {
   imports = [
     ./base.nix
-    ./modules/sddm
+    ./modules/sddm.nix
     ./modules/syncthing.nix
     ./modules/desktop.nix
-    # ./modules/module1.nix
   ];
-  # module1.enable = true;
-
   networking.wireless.userControlled.enable = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;

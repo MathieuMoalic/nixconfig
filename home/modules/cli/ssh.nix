@@ -30,6 +30,11 @@
         user = "admin";
         port = 23099;
       };
+      eos = {
+        hostname = "eos.zfns.eu.org";
+        user = "matmoa";
+        port = 4545;
+      };
     };
   };
 }

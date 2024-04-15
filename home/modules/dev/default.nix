@@ -12,6 +12,7 @@
     taplo # toml LSP
     dockerfile-language-server-nodejs # dockerfile lsp
     delta # diff
-    # go
+    go
+    gopls
   ];
 }

@@ -14,7 +14,7 @@
   home.packages = with pkgs; [
     inputs.amumax.packages.x86_64-linux.amumax
     inputs.mx3expend.packages.${pkgs.system}.mx3expend
-    nvtop-nvidia
+    nvtopPackages.nvidia
     caddy # web server
     blender # 3d editor
   ];

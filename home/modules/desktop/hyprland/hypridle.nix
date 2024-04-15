@@ -24,12 +24,12 @@
           on-timeout =  lock
       }
     ''
-    ++ (lib.optionals (osConfig.networking.hostName == "xps") [
-      ''
+    + (
+      lib.optionalString (osConfig.networking.hostName == "xps") ''
         listener {
             timeout = 330
             on-timeout =  systemctl suspend
         }
       ''
-    ]);
+    );
 }

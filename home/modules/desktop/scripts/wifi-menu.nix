@@ -1,10 +1,10 @@
 {pkgs, ...}: let
   wifi-menu = pkgs.writeShellScriptBin "wifi-menu" ''
-    bssid=$( ${pkgs.networkmanager}/bin/nmcli -f SSID,RATE,BARS,SECURITY dev wifi list | sed -n '1!p' | cut -b 9- | ${pkgs.rofi}/bin/rofi -dmenu -p " " | cut -d' ' -f1)
+    bssid=$( ${pkgs.networkmanager}/bin/nmcli -f SSID,RATE,BARS,SECURITY dev wifi list | sed -n '1!p' | cut -b 9- | ${pkgs.rofi-wayland}/bin/rofi -dmenu -p " " | cut -d' ' -f1)
 
     [ -z "$bssid" ] && exit
 
-    password=$(echo "" | ${pkgs.rofi}/bin/rofi -dmenu -p " " )
+    password=$(echo "" | ${pkgs.rofi-wayland}/bin/rofi -dmenu -p " " )
 
     [ -z "$password" ] && exit
 

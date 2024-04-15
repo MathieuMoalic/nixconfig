@@ -1,11 +1,16 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   imports = [
     ./base.nix
-    ./modules/sddm
+    ./modules/sddm.nix
     ./modules/syncthing.nix
     ./modules/desktop.nix
   ];
-
+  networking.wireless.userControlled.enable = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;

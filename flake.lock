@@ -6,17 +6,16 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1707750041,
-        "narHash": "sha256-BVuhcr0Bfk2LxpjeGJvkC7kt1DRshH3nJiwkVJAlkRk=",
+        "lastModified": 1712932956,
+        "narHash": "sha256-/Vscvq2NsPPSIVpDbaWebBv9USy+yO65L06DN1mPIr0=",
         "owner": "MathieuMoalic",
         "repo": "amumax",
-        "rev": "bce4fa867f4ef2d3f20f60c63bbff21677367707",
+        "rev": "f2c67f26deaaf04a01e41527e5a35113fc0bd330",
         "type": "github"
       },
       "original": {
         "owner": "MathieuMoalic",
         "repo": "amumax",
-        "rev": "bce4fa867f4ef2d3f20f60c63bbff21677367707",
         "type": "github"
       }
     },

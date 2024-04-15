@@ -33,7 +33,7 @@
     };
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     mx3expend.url = "github:MathieuMoalic/mx3expend/56faef06d42552cd7a981056cbf0347af673750d";
-    amumax.url = "github:MathieuMoalic/amumax/bce4fa867f4ef2d3f20f60c63bbff21677367707";
+    amumax.url = "github:MathieuMoalic/amumax";
   };
 
   outputs = {...} @ inputs: let

@@ -7,22 +7,11 @@
     nix-colors.url = "github:misterio77/nix-colors";
     helix.url = "github:helix-editor/helix";
     hyprsome.url = "github:sopa0/hyprsome";
-    hy3 = {
-      url = "github:outfoxxed/hy3";
-      inputs.hyprland.follows = "hyprland";
-    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hycov = {
-      url = "github:DreamMaoMao/hycov";
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprfocus = {
-      url = "github:VortexCoyote/hyprfocus";
-      inputs.hyprland.follows = "hyprland";
-    };
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,12 +21,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
-    mx3expend.url = "github:MathieuMoalic/mx3expend/56faef06d42552cd7a981056cbf0347af673750d";
+    mx3expend.url = "github:MathieuMoalic/mx3expend";
     amumax.url = "github:MathieuMoalic/amumax";
   };
 
   outputs = {...} @ inputs: let
-    makeNixosSystem = {host, ...}:
+    makeNixosSystem = {
+      host,
+      home,
+      ...
+    }:
       inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
@@ -58,7 +51,7 @@
               useGlobalPkgs = true;
               users.mat = {
                 imports = [
-                  ./home
+                  home
                   inputs.nix-colors.homeManagerModules.default
                   inputs.nix-index-database.hmModules.nix-index # weekly nix-index refresh
                 ];
@@ -69,9 +62,18 @@
       };
   in {
     nixosConfigurations = {
-      xps = makeNixosSystem {host = ./hosts/xps.nix;};
-      nyx = makeNixosSystem {host = ./hosts/nyx.nix;};
-      homeserver = makeNixosSystem {host = ./hosts/homeserver;};
+      xps = makeNixosSystem {
+        host = ./hosts/xps.nix;
+        home = ./home/xps.nix;
+      };
+      nyx = makeNixosSystem {
+        host = ./hosts/nyx.nix;
+        home = ./home/nyx.nix;
+      };
+      homeserver = makeNixosSystem {
+        host = ./hosts/homeserver.nix;
+        home = ./home/homeserver.nix;
+      };
     };
   };
 }

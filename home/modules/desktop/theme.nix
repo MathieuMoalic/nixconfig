@@ -11,8 +11,6 @@
 
     theme.package = pkgs.adw-gtk3;
     theme.name = "adw-gtk3";
-    # gtk.iconTheme.package = gruvboxPlus;
-    # gtk.iconTheme.name = "GruvboxPlus";
   };
 
   qt = {

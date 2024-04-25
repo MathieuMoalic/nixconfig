@@ -10,6 +10,8 @@
     ./modules/syncthing.nix
     ./modules/desktop.nix
     ./modules/samba.nix
+    # ./modules/coder
+    # ./modules/code-server.nix
   ];
 
   programs.mosh = {
@@ -24,6 +26,11 @@
       cdi.dynamic.nvidia.enable = true;
     };
     podman.enable = true;
+    docker = {
+      enable = true;
+      package = pkgs.docker_25;
+      enableOnBoot = true;
+    };
   };
   boot.kernel.sysctl = {
     "net.ipv4.ip_unprivileged_port_start" = "80";
@@ -40,7 +47,7 @@
     hostName = "nyx";
     firewall = {
       enable = true;
-      allowedTCPPorts = [80 443];
+      allowedTCPPorts = [80 443 3000 3001 3002];
     };
   };
 

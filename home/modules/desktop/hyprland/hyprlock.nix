@@ -12,7 +12,7 @@
 
     general {
         no_fade_in = false
-        grace = 0
+        grace = 10
         disable_loading_bar = true
     }
 

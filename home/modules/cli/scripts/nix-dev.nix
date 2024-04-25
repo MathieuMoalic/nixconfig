@@ -9,10 +9,10 @@
     nix develop --profile $XDG_CACHE_HOME/nix-dev-shells/$hash
   '';
   nix-run = pkgs.writeShellScriptBin "nr" ''
-    nix run nixpkgs#$1
+    NIXPKGS_ALLOW_UNFREE=1 nix run nixpkgs#$1 --impure
   '';
   nix-shell = pkgs.writeShellScriptBin "ns" ''
-    nix shell nixpkgs#$1
+    NIXPKGS_ALLOW_UNFREE=1 nix shell nixpkgs#$1 --impure
   '';
 in {
   home.packages = [

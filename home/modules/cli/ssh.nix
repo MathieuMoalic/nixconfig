@@ -35,6 +35,11 @@
         user = "matmoa";
         port = 4545;
       };
+      zeus = {
+        hostname = "zeus.zfns.eu.org";
+        user = "mat";
+        port = 46464;
+      };
     };
   };
 }

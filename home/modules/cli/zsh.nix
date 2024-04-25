@@ -90,6 +90,7 @@
       bindkey -s "^L" 'l^M'
       bindkey -s "^B" 'yazi^M'
 
+      bindkey '^[[A' up-line-or-beginning-search
     '';
   };
 }

@@ -8,7 +8,8 @@
 }: {
   wayland.windowManager.hyprland = with config.colorScheme.palette; {
     systemd.variables = ["--all"];
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = pkgs.hyprland;
     settings = {
       monitor =
         (lib.optionals (osConfig.networking.hostName == "nyx") [

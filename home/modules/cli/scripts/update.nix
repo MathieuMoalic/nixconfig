@@ -8,7 +8,7 @@
 
     ${pkgs.git}/bin/git add .
 
-    sudo nixos-rebuild switch --flake .#$HOST
+    sudo nixos-rebuild switch --flake .#$HOST --show-trace
 
     cd -
 

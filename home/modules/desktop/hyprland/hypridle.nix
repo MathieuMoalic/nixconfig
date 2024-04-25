@@ -14,20 +14,14 @@
       }
 
       listener {
-          timeout = 300
-          on-timeout = brillo -O && brillo -u 200000 -S 1
-          on-resume = brillo -u 200000 -I
-      }
-
-      listener {
-          timeout = 315
+          timeout = 600
           on-timeout =  lock
       }
     ''
     + (
       lib.optionalString (osConfig.networking.hostName == "xps") ''
         listener {
-            timeout = 330
+            timeout = 660
             on-timeout =  systemctl suspend
         }
       ''

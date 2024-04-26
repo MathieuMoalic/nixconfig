@@ -8,14 +8,13 @@
 
     ${pkgs.git}/bin/git add .
 
-    sudo nixos-rebuild switch --flake .#$HOST --show-trace
+    sudo nixos-rebuild switch --flake .#$HOST --show-trace 2>&1 | grep -v "warning: Git tree '/home/mat/nix' is dirty"
 
     cd -
 
     rm -f ~/.zshenv
 
     # Notify all OK!
-    ${pkgs.libnotify}/bin/notify-send -e "NixOS Rebuilt OK!" --icon=software-update-available
     exec ${pkgs.zsh}/bin/zsh -l
   '';
 in {

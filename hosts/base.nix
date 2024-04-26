@@ -8,70 +8,8 @@
     ./modules/ld.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-  nixpkgs.overlays = [
-    (
-      self: super: {
-        vscode = super.vscode.overrideAttrs (old: {
-          # Override the `desktopItem` and `urlHandlerDesktopItem` directly if they are accessible
-          desktopItem = old.desktopItem.overrideAttrs (da: {
-            name = "Visual Studio Code (Wayland)";
-            exec = "code --enable-features=UseOzonePlatform --ozone-platform=wayland %F";
-          });
-        });
-      }
-    )
-  ];
-  #   substituteInPlace $out/share/applications/code.desktop \
-  #   --replace-fail "code %F" "code --enable-features=UseOzonePlatform --ozone-platform=wayland %F"
-  # substituteInPlace $out/share/applications/code.desktop \
-  #   --replace-fail "code Name=Visual Studio Code" "Name=Visual Studio Code (Wayland)"
-  # Name=Visual Studio Code
-  # sops.defaultSopsFile = ./../secrets/secrets.yaml;
-  # sops.age.keyFile = "/home/mat/.ssh/id_ed255119";
-  # sops.defaultSopsFormat = "yaml";
-  # # sops.age.sshKeyPaths = [ "/home/yurii/.ssh/testkey" ];
-  # sops.age.generateKey = true;
-  # # sops.age.keyFile = "/home/yurii/.config/sops/age/keys.txt";
-
-  # sops.secrets.homeserver_port = {
-  #   # owner = "yurii";
-  #   owner = "sometestservice";
-  # };
-
-  # systemd.services."sometestservice" = {
-  #   script = ''
-  #     echo "
-  #     Hey bro! I'm a service, and imma send this secure password:
-  #     $(cat ${config.sops.secrets.homeserver_port.path})
-  #     located in:
-  #     ${config.sops.secrets.homeserver_port.path}
-  #     to database and hack the mainframe 😎👍
-  #     " > /var/lib/sometestservice/testfile
-  #   '';
-  #   serviceConfig = {
-  #     User = "sometestservice";
-  #     WorkingDirectory = "/var/lib/sometestservice";
-  #   };
-  # };
-
   security.sudo.wheelNeedsPassword = false;
-  # This is to allow wireguard through the firewall
-  networking.firewall = {
-    # if packets are still dropped, they will show up in dmesg
-    logReversePathDrops = true;
-    # wireguard trips rpfilter up
-    extraCommands = ''
-      ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN
-      ip46tables -t mangle -I nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN
-    '';
-    extraStopCommands = ''
-      ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --sport 51820 -j RETURN || true
-      ip46tables -t mangle -D nixos-fw-rpfilter -p udp -m udp --dport 51820 -j RETURN || true
-    '';
-  };
-
   nixpkgs.config.allowUnfree = true;
-
   nix = {
     channel.enable = false;
     package = pkgs.nix;
@@ -92,7 +30,6 @@
       ];
     };
   };
-
   environment.binsh = "${pkgs.dash}/bin/dash";
 
   # Bootloader.

@@ -27,7 +27,6 @@
       exec-once=${pkgs.hypridle}/bin/hypridle
       exec-once=${pkgs.dunst}/bin/dunst
       exec-once=${pkgs.udiskie}/bin/udiskie
-      exec-once=${pkgs.waybar}/bin/waybar
 
       general {
         sensitivity = 1.0 # mouse sensitivity (legacy, may cause bugs if not 1, prefer input:sensitivity)

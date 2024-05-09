@@ -2,7 +2,9 @@
   up = pkgs.writeShellScriptBin "up" ''
     set -e
 
+
     cd $HOME/nix
+    git pull
 
     ${pkgs.alejandra}/bin/alejandra -q .
 

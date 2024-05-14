@@ -78,6 +78,10 @@
         host = ./hosts/zeus.nix;
         home = ./home/zeus.nix;
       };
+      iso = makeNixosSystem {
+        host = ./hosts/iso.nix;
+        home = ./home/iso.nix;
+      };
     };
   };
 }

@@ -6,9 +6,9 @@
 }: {
   imports = [
     ./base.nix
+    ./modules/desktop.nix
     ./modules/sddm.nix
     ./modules/syncthing.nix
-    ./modules/desktop.nix
     ./modules/samba.nix
     # ./modules/coder
     # ./modules/code-server.nix

@@ -1,67 +1,114 @@
 {
-  pkgs,
-  config,
   lib,
+  config,
+  pkgs,
   ...
 }: {
   imports = [
     ./base.nix
-    ./modules/sddm.nix
     ./modules/syncthing.nix
-    ./modules/desktop.nix
   ];
-  networking.wireless.userControlled.enable = true;
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
-  # for brillo (1st line) and xremap (2nd line)
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
-    KERNEL=="uinput", GROUP="input", TAG+="uaccess"
-  '';
-  hardware.brillo.enable = true;
-  # hardware.uinput.enable = true; # for xremap
-  powerManagement.powertop.enable = true;
 
-  # Setup keyfile
-  boot.initrd.secrets = {"/crypto_keyfile.bin" = null;};
+  programs.mosh = {
+    enable = true;
+    openFirewall = true;
+    withUtempter = true;
+  };
 
-  # Enable swap on luks
-  boot.initrd.luks.devices."luks-697ee5de-1a53-475e-9285-19fbc72bc068".device = "/dev/disk/by-uuid/697ee5de-1a53-475e-9285-19fbc72bc068";
-  boot.initrd.luks.devices."luks-697ee5de-1a53-475e-9285-19fbc72bc068".keyFile = "/crypto_keyfile.bin";
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
-  # boot.swraid.enable = true;
-  # boot.swraid.mdadmConf = true;
+  virtualisation = {
+    containers = {
+      enable = true;
+      cdi.dynamic.nvidia.enable = true;
+    };
+    podman.enable = true;
+  };
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_unprivileged_port_start" = "80";
+  };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/fd49111d-571b-4f77-be35-d694f0e9f217";
+  # This is the only way I found to set the DNS server
+  environment.etc."resolv.conf".text = ''
+    nameserver 109.173.160.203
+    nameserver 1.1.1.1'';
+  services.resolved.enable = false; # not sure if this is needed
+  networking.networkmanager.dns = "none"; # not sure if this is needed
+
+  networking = {
+    hostName = "nyx";
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [80 443 3000 3001 3002];
+    };
+  };
+
+  services.openssh = {
+    enable = true;
+    ports = [46464]; # Set SSH to listen on port 46464
+    openFirewall = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = true;
+    };
+  };
+  fileSystems."/home/mat/z1" = {
+    device = "/dev/disk/by-uuid/36f3a7b3-8e76-48b8-a444-c2898aef7c29";
+    fsType = "ext4";
+  };
+  fileSystems."/home/mat/shared" = {
+    device = "/dev/disk/by-uuid/5514ec22-f46a-4542-9e1d-1dc001c68c00";
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-63890607-1aa3-4a8d-a666-6e0200eda2b4".device = "/dev/disk/by-uuid/63890607-1aa3-4a8d-a666-6e0200eda2b4";
+  boot.kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  environment.sessionVariables = {
+    # one of these might break the system
+    # LIBVA_DRIVER_NAME = "nvidia";
+    # XDG_SESSION_TYPE = "wayland";
+    # GBM_BACKEND = "nvidia-drm"; # might crash firefox
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia"; # might break screensharing
+
+    WLR_NO_HARDWARE_CURSORS = "1";
+    # Hint electron apps to use wayland
+    # NIXOS_OZONE_WL = "1"; # crashes vscode
+  };
+  services.xserver.videoDrivers = ["nvidia"];
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = true;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+  # this might crash the system
+  # environment.etc."modprobe.d/nvidia.conf".text = ''
+  #   options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
+  # '';
+  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-amd"];
+  boot.extraModulePackages = [];
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/70e39051-3e65-4be3-93d2-fafbffcd7884";
+    fsType = "ext4";
+  };
+
+  boot.initrd.luks.devices."luks-813b266a-548e-4767-b73a-335378dc4693".device = "/dev/disk/by-uuid/813b266a-548e-4767-b73a-335378dc4693";
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/724A-1C0C";
+    device = "/dev/disk/by-uuid/65AD-6B00";
     fsType = "vfat";
   };
 
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/b280acec-cb05-4502-83cd-fd5dc35f7ed6";}
-  ];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp60s0.useDHCP = lib.mkDefault true;
+  swapDevices = [];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  networking.hostName = "xps";
-  system.stateVersion = "23.05";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  system.stateVersion = "23.11";
 }

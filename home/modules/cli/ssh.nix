@@ -40,6 +40,11 @@
         user = "mat";
         port = 46464;
       };
+      mzzeus = {
+        hostname = "zeus.zfns.eu.org";
+        user = "mz";
+        port = 46464;
+      };
     };
   };
 }

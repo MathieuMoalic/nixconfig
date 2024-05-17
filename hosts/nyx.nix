@@ -56,12 +56,12 @@
   };
 
   boot = {
+    KernelModules = ["kvm-amd"];
     kernel = {
       sysctl = {
         "net.ipv4.ip_unprivileged_port_start" = "80";
       };
       params = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
-      modules = ["kvm-amd"];
     };
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];

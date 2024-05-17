@@ -2,25 +2,53 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
     ./base.nix
     ./modules/sddm.nix
-    ./modules/desktop.nix
   ];
-  users.groups = {
-    mz = {
-      gid = 1001;
-    };
-  };
+
+  environment.systemPackages = with pkgs; [
+    inputs.amumax.packages.x86_64-linux.amumax
+    inputs.mx3expend.packages.${pkgs.system}.mx3expend
+    nvtopPackages.nvidia
+  ];
+
+  security.sudo.extraRules = [
+    {
+      groups = ["users"];
+      commands = [
+        {
+          command = "/run/wrappers/bin/mount";
+          options = ["NOPASSWD"];
+        }
+        {
+          command = "/run/wrappers/bin/umount";
+          options = ["NOPASSWD"];
+        }
+      ];
+    }
+  ];
+
   users.users.mz = {
     isNormalUser = true;
     uid = 1001;
-    description = "mz";
-    group = "mz";
-    extraGroups = [];
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXS+yVAISHyMWzk+o/jHHMnt9aILZoOFPqe/EkhoDIj"
+    ];
+  };
+
+  users.users.kelvas = {
+    isNormalUser = true;
+    uid = 1002;
+    shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNNLMQFqQvcw2/OyVIsKTxi8WUqcBKFIcYGwZZYM3DT2wQ3uJ1Z2u5KGoJI9DEaf8nZPsIsQnYHNAwYqeMbxdgenLgbtJmS2Afxzv7wD/3w/Ydn2HTTLMmm7gUbJ7RT3NWo5nYHhBTXiPmuYCGJ5TggbXuZhT3kN4Gy5czItpIQlDHUzVrgYbvkUQEhxB+rt5bgwAtk2V8QGFaOo7qkXK3hlq/Ff3SLRvtXQo3v3wEUr7ULO/xkzp5go+Tn5iM0ZyTyzOyBqHmqZKeuCc3P087WuUNn7WH0qTwbQUrHS7anXv5AB23J/bf3A7OSmLx9oEyJQ42r5KRfG/SITjKo5VtrOMMn6sADjF2B7vbGBWisQVbIRdvtEdRhpPGfs7Cz0QCphjNlGCGdghSY2e51p/IUoWWUIA+m6AtACFXr2ZOSBzi4OL5GXpmFpV/dgY6T01CXKPfrkML6vGnw8kwLk7ERng6nn3Gpl1yOi+Bt07qzXu8OKJDP0EFv+BW/wMIFcU="
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXS+yVAISHyMWzk+o/jHHMnt9aILZoOFPqe/EkhoDIj"
+    ];
   };
 
   programs.mosh = {
@@ -29,21 +57,38 @@
     withUtempter = true;
   };
 
-  hardware.nvidia-container-toolkit.enable = true;
+  hardware = {
+    nvidia-container-toolkit.enable = true;
+    opengl.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement = {
+        enable = true;
+        finegrained = false;
+      };
+      open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
+
   virtualisation = {
     containers.enable = true;
     podman.enable = true;
   };
-  boot.kernel.sysctl = {
-    "net.ipv4.ip_unprivileged_port_start" = "80";
-  };
 
-  # This is the only way I found to set the DNS server
-  environment.etc."resolv.conf".text = ''
-    nameserver 109.173.160.203
-    nameserver 1.1.1.1'';
-  services.resolved.enable = false; # not sure if this is needed
-  networking.networkmanager.dns = "none"; # not sure if this is needed
+  boot = {
+    kernel.sysctl = {
+      "net.ipv4.ip_unprivileged_port_start" = "80";
+    };
+    initrd = {
+      availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+      kernelModules = [];
+    };
+    kernelModules = ["kvm-intel"];
+    extraModulePackages = [];
+  };
 
   networking = {
     hostName = "zeus";
@@ -51,55 +96,37 @@
       enable = true;
       allowedTCPPorts = [80 443];
     };
+    useDHCP = lib.mkDefault true;
   };
 
-  services.openssh = {
-    enable = true;
-    ports = [46464];
-    openFirewall = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = true;
+  services = {
+    openssh = {
+      enable = true;
+      ports = [46464];
+      openFirewall = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = true;
+      };
     };
-  };
-  hardware.opengl.enable = true;
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    xserver.videoDrivers = ["nvidia"];
   };
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/39595a30-eacd-4724-ba4a-ffd9faf23ba3";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/339D-CFC9";
-    fsType = "vfat";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/39595a30-eacd-4724-ba4a-ffd9faf23ba3";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/339D-CFC9";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [
     {device = "/dev/disk/by-uuid/db46381c-7ffd-4080-91e3-94a2bf27c6ac";}
   ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   system.stateVersion = "23.11";
 }

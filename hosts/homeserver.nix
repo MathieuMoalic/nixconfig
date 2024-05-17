@@ -24,13 +24,13 @@
 
   # Boot Configuration
   boot = {
+    kernelModules = ["kvm-intel"];
     kernel = {
       sysctl = {
         "net.ipv4.ip_unprivileged_port_start" = "80";
       };
-      params = ["ip=dhcp"];
-      modules = ["kvm-intel"];
     };
+    kernelParams = ["ip=dhcp"];
     initrd = {
       systemd.users.root.shell = "/bin/cryptsetup-askpass";
       network = {
@@ -45,9 +45,7 @@
       luks.devices."luks-ab805dda-b69d-48b5-9f09-5ebe3ea54918".device = "/dev/disk/by-uuid/ab805dda-b69d-48b5-9f09-5ebe3ea54918";
       luks.devices."luks-83c1b4f6-a6aa-4524-b155-84dc9c016ac6".device = "/dev/disk/by-uuid/83c1b4f6-a6aa-4524-b155-84dc9c016ac6";
       availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" "r8169"];
-      kernelModules = [];
     };
-    extraModulePackages = [];
   };
 
   # Networking Configuration

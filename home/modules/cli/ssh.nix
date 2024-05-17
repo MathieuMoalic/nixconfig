@@ -1,6 +1,7 @@
 {...}: {
   programs.ssh = {
     enable = true;
+    userKnownHostsFile = "/dev/null";
     matchBlocks = {
       faculty = {
         hostname = "150.254.111.35";

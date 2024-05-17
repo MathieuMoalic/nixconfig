@@ -25,7 +25,6 @@
     "net.ipv4.ip_unprivileged_port_start" = "80";
   };
 
-  services.localtimed.enable = true;
   # This is the only way I found to set the DNS server
   environment.etc."resolv.conf".text = ''
     nameserver 1.1.1.1'';
@@ -43,7 +42,7 @@
 
   services.openssh = {
     enable = true;
-    ports = [23232]; # Set SSH to listen on port 46464
+    ports = [23232];
     openFirewall = true;
     settings = {
       PermitRootLogin = "no";
@@ -89,14 +88,12 @@
   ];
 
   fileSystems."/home/mat/media" = {
-    device = "/dev/sda1";
-    fsType = "ext4"; # Replace with your filesystem type (e.g., "vfat", "ntfs")
-    options = ["defaults"]; # Additional mount options can be added here
+    device = "/dev/disk/by-uuid/5a278a0b-c553-4ace-85a0-85234d9a1541";
+    fsType = "ext4";
   };
   fileSystems."/home/mat/backup" = {
-    device = "/dev/sdc1";
-    fsType = "ext4"; # Replace with your filesystem type (e.g., "vfat", "ntfs")
-    options = ["defaults"]; # Additional mount options can be added here
+    device = "/dev/disk/by-uuid/4ae688c8-81d8-41a1-9585-1721b12ccfd2";
+    fsType = "ext4";
   };
 
   networking.useDHCP = lib.mkDefault true;

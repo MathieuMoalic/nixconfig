@@ -13,6 +13,18 @@
     # ./modules/coder
     # ./modules/code-server.nix
   ];
+  # boot.initrd = {
+  #   systemd.users.root.shell = "/bin/cryptsetup-askpass";
+  #   network = {
+  #     enable = true;
+  #     ssh = {
+  #       enable = true;
+  #       port = 46464;
+  #       authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmWv/s9vS1w+slUWYkRLEQWj0IBckzFHhQndHKh0qpE mat@xps"];
+  #       hostKeys = ["/etc/secrets/initrd/ssh_host_rsa_key"];
+  #     };
+  #   };
+  # };
 
   programs.mosh = {
     enable = true;
@@ -20,11 +32,9 @@
     withUtempter = true;
   };
 
+  hardware.nvidia-container-toolkit.enable = true;
   virtualisation = {
-    containers = {
-      enable = true;
-      cdi.dynamic.nvidia.enable = true;
-    };
+    containers.enable = true;
     podman.enable = true;
     docker = {
       enable = true;
@@ -38,7 +48,6 @@
 
   # This is the only way I found to set the DNS server
   environment.etc."resolv.conf".text = ''
-    nameserver 109.173.160.203
     nameserver 1.1.1.1'';
   services.resolved.enable = false; # not sure if this is needed
   networking.networkmanager.dns = "none"; # not sure if this is needed
@@ -47,7 +56,7 @@
     hostName = "nyx";
     firewall = {
       enable = true;
-      allowedTCPPorts = [80 443 3000 3001 3002];
+      allowedTCPPorts = [80 443];
     };
   };
 

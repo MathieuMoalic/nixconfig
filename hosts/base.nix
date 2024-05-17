@@ -2,14 +2,27 @@
   config,
   pkgs,
   modulesPath,
+  lib,
   ...
 }: {
   imports = [
     ./modules/ld.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
+
+  environment = {
+    etc."resolv.conf".text = ''
+      nameserver 109.173.160.203
+      nameserver 1.1.1.1'';
+    binsh = "${pkgs.dash}/bin/dash";
+    variables.ZDOTDIR = "$HOME/.config/zsh";
+    systemPackages = with pkgs; [
+      home-manager
+    ];
+  };
+
   security.sudo.wheelNeedsPassword = false;
-  nixpkgs.config.allowUnfree = true;
+
   nix = {
     channel.enable = false;
     package = pkgs.nix;
@@ -30,50 +43,53 @@
       ];
     };
   };
-  environment.binsh = "${pkgs.dash}/bin/dash";
+  nixpkgs.config.allowUnfree = true;
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = ["ntfs"];
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    supportedFilesystems = ["ntfs"];
+  };
 
-  # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Warsaw";
+  time.timeZone = lib.mkDefault "Europe/Warsaw";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_GB.UTF-8";
-    LC_IDENTIFICATION = "en_GB.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_GB.UTF-8";
-    LC_NAME = "en_GB.UTF-8";
-    LC_NUMERIC = "en_GB.UTF-8";
-    LC_PAPER = "en_GB.UTF-8";
-    LC_TELEPHONE = "en_GB.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
-  };
-
-  users.groups = {
-    mat = {
-      gid = 1000;
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_GB.UTF-8";
+      LC_IDENTIFICATION = "en_GB.UTF-8";
+      LC_MEASUREMENT = "en_GB.UTF-8";
+      LC_MONETARY = "en_GB.UTF-8";
+      LC_NAME = "en_GB.UTF-8";
+      LC_NUMERIC = "en_GB.UTF-8";
+      LC_PAPER = "en_GB.UTF-8";
+      LC_TELEPHONE = "en_GB.UTF-8";
+      LC_TIME = "en_GB.UTF-8";
     };
   };
-  users.users.mat = {
-    isNormalUser = true;
-    uid = 1000;
-    description = "mat";
-    group = "mat";
-    extraGroups = ["networkmanager" "wheel" "video" "input" "uinput"];
-    shell = pkgs.zsh;
+
+  users = {
+    groups = {
+      mat = {
+        gid = 1000;
+      };
+    };
+    users.mat = {
+      isNormalUser = true;
+      uid = 1000;
+      description = "mat";
+      group = "mat";
+      extraGroups = ["networkmanager" "wheel" "video" "input" "uinput"];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXS+yVAISHyMWzk+o/jHHMnt9aILZoOFPqe/EkhoDIj"
+      ];
+      shell = pkgs.zsh;
+    };
   };
+
   programs.zsh.enable = true;
-  environment.variables = {ZDOTDIR = "$HOME/.config/zsh";};
-  environment.systemPackages = with pkgs; [
-    home-manager
-  ];
 }

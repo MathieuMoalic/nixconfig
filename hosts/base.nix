@@ -73,21 +73,22 @@
   };
 
   users = {
-    groups = {
+    mutableUsers = false;
+    users = {
       mat = {
-        gid = 1000;
+        isNormalUser = true;
+        linger = true;
+        uid = 1000;
+        extraGroups = ["networkmanager" "wheel" "video" "input" "uinput"];
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXS+yVAISHyMWzk+o/jHHMnt9aILZoOFPqe/EkhoDIj"
+        ];
+        hashedPassword = "$6$4lSS.DgMsihs04VX$uu3991ckntJRdsu/Mo7nYuo06M7s9zXDRT7l110LUjPN4lq1OtUNC1ER/WEaLXCSNBxIiZfMWKc0jdBN.xRs1.";
+        shell = pkgs.zsh;
       };
-    };
-    users.mat = {
-      isNormalUser = true;
-      uid = 1000;
-      description = "mat";
-      group = "mat";
-      extraGroups = ["networkmanager" "wheel" "video" "input" "uinput"];
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXS+yVAISHyMWzk+o/jHHMnt9aILZoOFPqe/EkhoDIj"
-      ];
-      shell = pkgs.zsh;
+      root = {
+        hashedPassword = "$6$4lSS.DgMsihs04VX$uu3991ckntJRdsu/Mo7nYuo06M7s9zXDRT7l110LUjPN4lq1OtUNC1ER/WEaLXCSNBxIiZfMWKc0jdBN.xRs1.";
+      };
     };
   };
 

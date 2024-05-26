@@ -14,14 +14,14 @@
       }
 
       listener {
-          timeout = 600
+          timeout = 3600
           on-timeout =  lock
       }
     ''
     + (
       lib.optionalString (osConfig.networking.hostName == "xps") ''
         listener {
-            timeout = 660
+            timeout = 3660
             on-timeout =  systemctl suspend
         }
       ''

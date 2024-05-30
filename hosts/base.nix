@@ -73,10 +73,16 @@
   };
 
   users = {
+    groups = {
+      mat = {
+        gid = 1000;
+      };
+    };
     mutableUsers = false;
     users = {
       mat = {
         isNormalUser = true;
+        group = "mat";
         linger = true;
         uid = 1000;
         extraGroups = ["networkmanager" "wheel" "video" "input" "uinput"];

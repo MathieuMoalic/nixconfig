@@ -11,6 +11,10 @@
     ./modules/desktop.nix
   ];
 
+  # services.fprintd.enable = true;
+  # services.fprintd.tod.enable = true;
+
+  time.timeZone = "Europe/London";
   hardware = {
     bluetooth = {
       enable = true;
@@ -25,7 +29,6 @@
     useDHCP = lib.mkDefault true;
     hostName = "xps";
   };
-
   powerManagement = {
     powertop.enable = true;
     cpuFreqGovernor = lib.mkDefault "powersave";

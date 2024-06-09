@@ -54,7 +54,8 @@
     firewall = {
       enable = true;
       # pihole: 12553
-      allowedTCPPorts = [80 443 12553];
+      # syncthing 8384
+      allowedTCPPorts = [80 443 12553 8384];
       allowedUDPPorts = [12553];
     };
     useDHCP = lib.mkDefault true;

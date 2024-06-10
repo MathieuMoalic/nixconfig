@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   imports = [
     ./nix-settings.nix
     ./session-variables.nix

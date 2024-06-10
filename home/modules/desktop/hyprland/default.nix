@@ -1,11 +1,4 @@
-{
-  inputs,
-  config,
-  osConfig,
-  lib,
-  pkgs,
-  ...
-}: {
+{...}: {
   imports = [
     ./hypridle.nix
     ./hyprland.nix

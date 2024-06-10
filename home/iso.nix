@@ -1,10 +1,4 @@
-{
-  inputs,
-  pkgs,
-  osConfig,
-  lib,
-  ...
-}: {
+{...}: {
   imports = [
     ./modules
     ./modules/cli

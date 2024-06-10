@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   # bat will read the keybinds in .config/lesskey
   programs.less = {
     enable = true;

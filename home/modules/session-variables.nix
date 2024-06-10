@@ -1,9 +1,4 @@
-{
-  inputs,
-  osConfig,
-  config,
-  ...
-}: {
+{...}: {
   home.sessionVariables = {
     IPYTHONDIR = "$HOME/.local/share/ipython";
     VISUAL = "$EDITOR";

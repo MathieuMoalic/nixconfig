@@ -9,6 +9,7 @@
     ./base.nix
     ./modules/sddm.nix
   ];
+  home-manager.users.mat.imports = [../home/zeus.nix];
 
   environment.systemPackages = with pkgs; [
     inputs.amumax.packages.x86_64-linux.amumax

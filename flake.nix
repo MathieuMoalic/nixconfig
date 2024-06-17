@@ -27,55 +27,28 @@
   };
 
   outputs = {...} @ inputs: let
-    makeNixosSystem = {
-      host,
-      home,
-      ...
-    }:
+    makeNixosSystem = {host, ...}:
       inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
-        modules = [
-          host
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              extraSpecialArgs = {
-                inherit inputs;
-                wallpaperPath = "/home/mat/.local/share/wallpaper.jpeg";
-              };
-              useUserPackages = true;
-              useGlobalPkgs = true;
-              users.mat = {
-                imports = [
-                  home
-                ];
-              };
-            };
-          }
-        ];
+        modules = [host];
       };
   in {
     nixosConfigurations = {
       xps = makeNixosSystem {
         host = ./hosts/xps.nix;
-        home = ./home/xps.nix;
       };
       nyx = makeNixosSystem {
         host = ./hosts/nyx.nix;
-        home = ./home/nyx.nix;
       };
       homeserver = makeNixosSystem {
         host = ./hosts/homeserver.nix;
-        home = ./home/homeserver.nix;
       };
       zeus = makeNixosSystem {
         host = ./hosts/zeus.nix;
-        home = ./home/zeus.nix;
       };
       iso = makeNixosSystem {
         host = ./hosts/iso.nix;
-        home = ./home/iso.nix;
       };
     };
   };

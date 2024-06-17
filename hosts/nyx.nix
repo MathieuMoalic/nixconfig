@@ -10,6 +10,7 @@
     ./modules/syncthing.nix
     ./modules/samba.nix
   ];
+  home-manager.users.mat.imports = [../home/nyx.nix];
   # boot.initrd = {
   #   systemd.users.root.shell = "/bin/cryptsetup-askpass";
   #   network = {

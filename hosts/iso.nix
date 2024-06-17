@@ -7,6 +7,7 @@
     ./base.nix
     ./modules/desktop.nix
   ];
+  home-manager.users.mat.imports = [../home/iso.nix];
 
   nixpkgs = {
     hostPlatform = lib.mkDefault "x86_64-linux";

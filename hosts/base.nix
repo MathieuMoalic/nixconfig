@@ -2,11 +2,13 @@
   pkgs,
   modulesPath,
   lib,
+  inputs,
   ...
 }: {
   imports = [
     ./modules/ld.nix
     (modulesPath + "/installer/scan/not-detected.nix")
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   environment = {
@@ -98,4 +100,10 @@
   };
 
   programs.zsh.enable = true;
+
+  home-manager = {
+    extraSpecialArgs = {inherit inputs;};
+    useUserPackages = true;
+    useGlobalPkgs = true;
+  };
 }

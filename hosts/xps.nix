@@ -10,6 +10,7 @@
     ./modules/syncthing.nix
     ./modules/desktop.nix
   ];
+  home-manager.users.mat.imports = [../home/xps.nix];
   hardware = {
     bluetooth = {
       enable = true;

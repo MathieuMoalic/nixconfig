@@ -7,6 +7,7 @@
     ./base.nix
     ./modules/syncthing.nix
   ];
+  home-manager.users.mat.imports = [../home/homeserver.nix];
 
   # Programs Configuration
   programs.mosh = {

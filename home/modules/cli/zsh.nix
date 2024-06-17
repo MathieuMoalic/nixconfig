@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.nix-index-database.hmModules.nix-index # weekly nix-index refresh
+  ];
   # zoxide, skim shell integration maybe?
   programs.nix-index = {
     enable = true;

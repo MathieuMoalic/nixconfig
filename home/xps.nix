@@ -1,11 +1,10 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./modules
     ./modules/cli
     ./modules/desktop
     ./modules/dev
-  ];
-  home.packages = with pkgs; [
+    ./modules/ags.nix
   ];
   home.stateVersion = "23.05";
 }

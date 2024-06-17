@@ -10,11 +10,6 @@
     ./modules/syncthing.nix
     ./modules/desktop.nix
   ];
-
-  # services.fprintd.enable = true;
-  # services.fprintd.tod.enable = true;
-
-  time.timeZone = "Europe/London";
   hardware = {
     bluetooth = {
       enable = true;

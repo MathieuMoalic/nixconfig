@@ -26,30 +26,24 @@
     amumax.url = "github:MathieuMoalic/amumax";
   };
 
-  outputs = {...} @ inputs: let
-    makeNixosSystem = {host, ...}:
-      inputs.nixpkgs.lib.nixosSystem {
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    makeNixosSystem = host:
+      nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [host];
       };
   in {
     nixosConfigurations = {
-      xps = makeNixosSystem {
-        host = ./hosts/xps.nix;
-      };
-      nyx = makeNixosSystem {
-        host = ./hosts/nyx.nix;
-      };
-      homeserver = makeNixosSystem {
-        host = ./hosts/homeserver.nix;
-      };
-      zeus = makeNixosSystem {
-        host = ./hosts/zeus.nix;
-      };
-      iso = makeNixosSystem {
-        host = ./hosts/iso.nix;
-      };
+      xps = makeNixosSystem ./hosts/xps.nix;
+      nyx = makeNixosSystem ./hosts/nyx.nix;
+      homeserver = makeNixosSystem ./hosts/homeserver.nix;
+      zeus = makeNixosSystem ./hosts/zeus.nix;
+      iso = makeNixosSystem ./hosts/iso.nix;
     };
   };
 }

@@ -2,7 +2,6 @@
   home.shellAliases = {
     wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
     py = "nix develop $HOME/gh/micromamba/env";
-    pt = "poetry -C ~/.cache/poetry";
     man = "${pkgs.bat-extras.batman}/bin/batman";
     rl = "exec zsh -l";
     rm = " rm -vdrf";
@@ -15,10 +14,6 @@
     m = "amumax";
     op = "xdg-open";
     se = "sudoedit";
-    tl = "zellij ls";
-    ta = "zellij a -c";
-    tk = "zellij k";
-    rs = "rsync -rv";
     pm = "podman";
     cat = "bat -Pp";
     pmps = "pm ps -a  --sort status --format \"table {{.Names}} {{.Status}} {{.Created}} {{.Image}}\"";
@@ -36,7 +31,6 @@
     ghc = "gh copilot";
     colors = "curl -Ls 'https://raw.githubusercontent.com/NNBnh/textart-collections/main/color/colortest.textart' | bash; echo";
     lg = "lazygit";
-    code = "code --enable-features=UseOzonePlatform --ozone-platform=wayland";
     teams = "nohup teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland > /dev/null 2>&1 &";
   };
 }

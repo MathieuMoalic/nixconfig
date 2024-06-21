@@ -1,5 +1,12 @@
 {...}: {
   programs.zellij.enable = true;
+
+  home.shellAliases = {
+    tl = "zellij ls";
+    ta = "zellij a -c";
+    tk = "zellij k";
+  };
+
   xdg.configFile."zellij/config.kdl".text = ''
       keybinds {
         normal clear-defaults=true  {

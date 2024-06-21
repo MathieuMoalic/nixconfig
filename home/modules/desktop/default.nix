@@ -41,5 +41,6 @@
     librewolf # browser
     spotify # music
     vscode # editor
+    localsend # send files
   ];
 }

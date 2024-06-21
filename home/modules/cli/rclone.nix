@@ -17,12 +17,18 @@
     host = 150.254.111.35
     user = matmoa
     key_file = ~/.ssh/id_ed25519
+    shell_type = unix
+    md5sum_command = md5sum
+    sha1sum_command = sha1sum
 
     [pcss]
     type = sftp
     host = eagle.man.poznan.pl
     user = mathieum
     key_file = ~/.ssh/id_ed25519
+    shell_type = unix
+    md5sum_command = md5sum
+    sha1sum_command = sha1sum
 
     [homeserver]
     type = sftp
@@ -30,6 +36,9 @@
     user = mat
     port = 23232
     key_file = ~/.ssh/id_ed25519
+    shell_type = unix
+    md5sum_command = md5sum
+    sha1sum_command = sha1sum
 
     [nyx]
     type = sftp
@@ -37,6 +46,9 @@
     user = mat
     port = 46464
     key_file = ~/.ssh/id_ed25519
+    shell_type = unix
+    md5sum_command = md5sum
+    sha1sum_command = sha1sum
 
     [prometheus]
     type = sftp
@@ -44,6 +56,9 @@
     user = matmoa
     port = 28561
     key_file = ~/.ssh/id_ed25519
+    shell_type = unix
+    md5sum_command = md5sum
+    sha1sum_command = sha1sum
 
     [zephyros]
     type = sftp
@@ -51,6 +66,9 @@
     user = admin
     port = 23099
     key_file = ~/.ssh/id_ed25519
+    shell_type = unix
+    md5sum_command = md5sum
+    sha1sum_command = sha1sum
 
     [eos]
     type = sftp
@@ -58,6 +76,9 @@
     user = matmoa
     port = 4545
     key_file = ~/.ssh/id_ed25519
+    shell_type = unix
+    md5sum_command = md5sum
+    sha1sum_command = sha1sum
 
     [zeus]
     type = sftp
@@ -65,5 +86,8 @@
     user = mat
     port = 46464
     key_file = ~/.ssh/id_ed25519
+    shell_type = unix
+    md5sum_command = md5sum
+    sha1sum_command = sha1sum
   '';
 }

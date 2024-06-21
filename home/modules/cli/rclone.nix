@@ -8,7 +8,7 @@
   home.shellAliases = {
     rmv = "rclone move --progress";
     rcp = "rclone copy --progress";
-    rs = "rclone sync --progress";
+    rs = "rclone sync --progress --delete-after=false";
   };
 
   home.file.".config/rclone/rclone.conf".text = ''

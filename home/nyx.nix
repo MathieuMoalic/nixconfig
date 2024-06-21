@@ -15,6 +15,7 @@
     nvtopPackages.nvidia
     caddy # web server
     blender # 3d editor
+    remmina # rdc
   ];
   home.stateVersion = "23.05";
 }

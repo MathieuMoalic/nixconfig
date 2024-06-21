@@ -10,6 +10,7 @@
     ./helix.nix
     ./lazygit.nix
     ./pager.nix
+    ./rclone.nix
     ./ssh.nix
     ./starship.nix
     ./yazi.nix
@@ -36,7 +37,6 @@
     eza # ls in rust
     neofetch # flex
     sops # secrets manager
-    rclone # sync
     mosh # ssh
   ];
 }

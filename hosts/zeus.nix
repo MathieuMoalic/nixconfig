@@ -29,6 +29,10 @@
           command = "/run/wrappers/bin/umount";
           options = ["NOPASSWD"];
         }
+        {
+          command = "/run/wrappers/bin/reboot";
+          options = ["NOPASSWD"];
+        }
       ];
     }
   ];

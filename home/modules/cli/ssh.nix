@@ -1,6 +1,8 @@
 {...}: {
   programs.ssh = {
     enable = true;
+    serverAliveCountMax = 120;
+    serverAliveInterval = 60;
     matchBlocks = {
       faculty = {
         hostname = "150.254.111.35";

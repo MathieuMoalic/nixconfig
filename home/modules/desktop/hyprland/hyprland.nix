@@ -9,7 +9,6 @@
   wayland.windowManager.hyprland = with config.colorScheme.palette; {
     systemd.variables = ["--all"];
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    # package = pkgs.hyprland;
     settings = {
       monitor =
         (lib.optionals (osConfig.networking.hostName == "nyx") [
@@ -39,9 +38,7 @@
         col.active_border = rgba(ff79c6ff) rgba(ff6e6eff) 60deg # border color for the active window
         col.nogroup_border = rgba(282a36ff) # inactive border color for window that cannot be added to a group (see denywindowfromgroup dispatcher)
         col.nogroup_border_active = rgba(ff79c6ff) rgba(ff6e6eff) 60deg # active border color for window that cannot be added to a group
-        cursor_inactive_timeout = 0 # in seconds, after how many seconds of cursor's inactivity to hide it. Set to 0 for never.
         layout = dwindle # which layout to use. [dwindle/master]
-        no_cursor_warps = false # if true, will not warp the cursor in many cases (focusing, keybinds, etc)
         no_focus_fallback = false # if true, will not fall back to the next available window when moving focus in a direction where no window was found
         apply_sens_to_raw = false # if on, will also apply the sensitivity to raw mouse output (e.g. sensitivity in games) NOTICE: really not recommended.
         resize_on_border = true # enables resizing windows by clicking and dragging on borders and gaps
@@ -184,19 +181,15 @@
         swallow_exception_regex = [[Empty]] # The title regex to be used for windows that should not be swallowed by the windows specified in swallow_regex (e.g. wev). The regex is matched against the parent (e.g. Kitty) window's title on the assumption that it changes to whatever process it's running.
         focus_on_activate = false # Whether Hyprland should focus an app that requests to be focused (an activate request)
         no_direct_scanout = true # Disables direct scanout. Direct scanout attempts to reduce lag when there is only one fullscreen application on a screen (e.g. game). It is also recommended to set this to true if the fullscreen application shows graphical glitches.
-        hide_cursor_on_touch = true # Hides the cursor when the last input was a touch input until a mouse input is done.
-        # hide_cursor_on_key_press = true # Hides the cursor when you press any key until the mouse is moved.
         mouse_move_focuses_monitor = true # Whether mouse moving into a different monitor should focus it
         # suppress_portal_warnings = false # disables warnings about incompatible portal implementations.
         render_ahead_of_time = false # [Warning: buggy] starts rendering before your monitor displays a frame in order to lower latency
         render_ahead_safezone = 1 # how many ms of safezone to add to rendering ahead of time. Recommended 1-2.
-        cursor_zoom_factor = 1.0 # the factor to zoom by around the cursor. AKA. Magnifying glass. Minimum 1.0 (meaning no zoom)
-        cursor_zoom_rigid = false # whether the zoom should follow the cursor rigidly (cursor is always centered if it can be)
         allow_session_lock_restore = false # if true, will allow you to restart a lockscreen app in case it crashes (red screen of death)
         background_color = rgba(000000ff) # change the background color. (requires enabled disable_hyprland_logo)
         close_special_on_empty = true # close the special workspace if the last window is removed
         new_window_takes_over_fullscreen = 0 # if there is a fullscreen window, whether a new tiled window opened should replace the fullscreen one or stay behind. 0 - behind, 1 - takes over, 2 - unfullscreen the current fullscreen window [0/1/2]
-        enable_hyprcursor = true # whether to enable hyprcursor support
+        # enable_hyprcursor = true # whether to enable hyprcursor support
       }
 
       binds {

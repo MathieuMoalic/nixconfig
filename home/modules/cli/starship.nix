@@ -33,7 +33,8 @@
       hostname = {
         ssh_only = false;
         style = "bold fg:#${base00} bg:#${base0E}";
-        format = "[$hostname ]($style)";
+        format = "[$ssh_symbol$hostname ]($style)";
+        ssh_symbol = " ";
       };
 
       directory = {

@@ -32,11 +32,7 @@
 
   hardware = {
     nvidia-container-toolkit.enable = true;
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
+    graphics.enable = true;
     nvidia = {
       modesetting.enable = true;
       powerManagement = {

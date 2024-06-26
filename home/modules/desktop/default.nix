@@ -28,6 +28,7 @@
     brillo # brightness
     libnotify # notifications
     wl-clipboard # wayland clipboard
+    ripdrag # ripgrep + drag and drop
 
     inputs.quicktranslate.packages.${pkgs.system}.quicktranslate
     libreoffice # document editor
@@ -43,4 +44,7 @@
     vscode # editor
     localsend # send files
   ];
+  home.shellAliases = {
+    rd = "ripdrag -r -x *";
+  };
 }

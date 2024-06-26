@@ -26,7 +26,6 @@
     zsh # shell
     zoxide # a smarter cd in rust
     skim # fuzzy finder `sk`
-    ripdrag # ripgrep + drag and drop
     ouch # de-compress files
     ripgrep # grep in rust
     tealdeer # tldr in rust

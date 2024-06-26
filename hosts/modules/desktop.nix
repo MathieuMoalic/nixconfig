@@ -12,7 +12,7 @@
     corefonts # Arial, Times New Roman, etc.
     (nerdfonts.override {fonts = ["FiraCode" "FiraMono"];}) # FiraMono is for waybar
   ];
-  security.pam.services.swaylock = {}; # needed for swaylock
+  security.pam.services.hyprlock = {}; # needed for hyprlock
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

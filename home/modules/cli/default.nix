@@ -37,5 +37,6 @@
     neofetch # flex
     sops # secrets manager
     mosh # ssh
+    hexyl # hexdump
   ];
 }

@@ -38,5 +38,6 @@
     sops # secrets manager
     mosh # ssh
     hexyl # hexdump
+    netscanner # network scanner TUI
   ];
 }

@@ -39,5 +39,6 @@
     mosh # ssh
     hexyl # hexdump
     netscanner # network scanner TUI
+    bandwhich # network bandwidth TUI
   ];
 }

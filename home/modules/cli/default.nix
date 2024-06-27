@@ -20,7 +20,7 @@
   home.packages = with pkgs; [
     bat-extras.batman # man
     trash-cli # trash
-    entr # watch files
+    funzzy # watch files
     github-cli # gh
     wget # download
     zsh # shell

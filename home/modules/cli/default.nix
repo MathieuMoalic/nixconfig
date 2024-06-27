@@ -40,5 +40,6 @@
     hexyl # hexdump
     netscanner # network scanner TUI
     bandwhich # network bandwidth TUI
+    procs # process viewer
   ];
 }

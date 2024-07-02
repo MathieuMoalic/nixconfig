@@ -25,9 +25,25 @@
   security.sudo.wheelNeedsPassword = false;
 
   nix = {
+    distributedBuilds = true;
+    buildMachines = [
+      {
+        hostName = "nyx";
+        systems = ["x86_64-linux" "aarch64-linux"];
+        maxJobs = 30;
+        speedFactor = 10;
+        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+        sshKey = "/home/mat/.ssh/id_ed25519";
+        sshUser = "mat";
+      }
+    ];
     channel.enable = false;
     package = pkgs.nix;
     settings = {
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
       use-xdg-base-directories = true;
@@ -103,6 +119,7 @@
   programs.zsh.enable = true;
 
   home-manager = {
+    backupFileExtension = ".bak";
     extraSpecialArgs = {inherit inputs;};
     useUserPackages = true;
     useGlobalPkgs = true;

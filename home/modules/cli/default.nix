@@ -40,6 +40,7 @@
     hexyl # hexdump
     netscanner # network scanner TUI
     bandwhich # network bandwidth TUI
+    trippy # network diagnostic tool
     procs # process viewer
     gitui # git TUI
   ];

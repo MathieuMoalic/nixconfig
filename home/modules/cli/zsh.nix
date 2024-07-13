@@ -52,52 +52,56 @@
         };
       }
     ];
-    initExtra = ''
-      WORDCHARS='_-*?[]~&.;!#$%^(){}<>'
-      HISTFILE="$XDG_CACHE_HOME/.zhistory"
-      # export PATH="$HOME/.local/share/pyvenv/bin":$PATH
-      stty -ixon # allows ctrl + q and s
-      autoload -U edit-command-line
-      zle -N edit-command-line
-      export DIRENV_LOG_FORMAT=
+    initExtra =
+      /*
+      bash
+      */
+      ''
+        WORDCHARS='_-*?[]~&.;!#$%^(){}<>'
+        HISTFILE="$XDG_CACHE_HOME/.zhistory"
+        # export PATH="$HOME/.local/share/pyvenv/bin":$PATH
+        stty -ixon # allows ctrl + q and s
+        autoload -U edit-command-line
+        zle -N edit-command-line
+        export DIRENV_LOG_FORMAT=
 
-      bindkey -rp \'\'
-      bindkey " " magic-space
-      bindkey "!" self-insert
-      bindkey "!-~" self-insert
-      bindkey -R "\""-"~" self-insert
-      bindkey -R "\M-^@"-"\M-^?" self-insert
+        bindkey -rp \'\'
+        bindkey " " magic-space
+        bindkey "!" self-insert
+        bindkey "!-~" self-insert
+        bindkey -R "\""-"~" self-insert
+        bindkey -R "\M-^@"-"\M-^?" self-insert
 
-      bindkey '^R' _atuin_search_widget
+        bindkey '^R' _atuin_search_widget
 
-      bindkey "^[[H" beginning-of-line
-      bindkey "^[[F" end-of-line
-      bindkey "^A" backward-char
-      bindkey "^Q" backward-word
-      bindkey "^D" forward-char
-      bindkey "^E" forward-word
+        bindkey "^[[H" beginning-of-line
+        bindkey "^[[F" end-of-line
+        bindkey "^A" backward-char
+        bindkey "^Q" backward-word
+        bindkey "^D" forward-char
+        bindkey "^E" forward-word
 
-      bindkey "^H" backward-kill-word # this is backspace
-      bindkey "^?" backward-delete-char
-      bindkey "^[[3;5~" kill-word
-      bindkey "^[[3~" delete-char
+        bindkey "^H" backward-kill-word # this is backspace
+        bindkey "^?" backward-delete-char
+        bindkey "^[[3;5~" kill-word
+        bindkey "^[[3~" delete-char
 
-      bindkey "^K" clear-screen
-      bindkey "^M" accept-line # this is enter
-      bindkey "^[[27;5;13~" autosuggest-execute # this is ctrl+enter
-      bindkey "^T" edit-command-line
-      bindkey "^I" expand-or-complete # this is tab
-      bindkey "^U" kill-whole-line
-      bindkey "^O" which-command
-      bindkey "^Z" undo
-      bindkey "^P" push-line
-      bindkey '^X' sudo-command-line
-      bindkey "^[[200~" bracketed-paste
+        bindkey "^K" clear-screen
+        bindkey "^M" accept-line # this is enter
+        bindkey "^[[27;5;13~" autosuggest-execute # this is ctrl+enter
+        bindkey "^T" edit-command-line
+        bindkey "^I" expand-or-complete # this is tab
+        bindkey "^U" kill-whole-line
+        bindkey "^O" which-command
+        bindkey "^Z" undo
+        bindkey "^P" push-line
+        bindkey '^B' sudo-command-line
+        bindkey "^[[200~" bracketed-paste
 
-      bindkey -s "^L" 'l^M'
-      bindkey -s "^B" 'yazi^M'
+        bindkey -s "^L" 'l^M'
+        bindkey -s "^x" 'ya^M'
 
-      bindkey '^[[A' up-line-or-beginning-search
-    '';
+        bindkey '^[[A' up-line-or-beginning-search
+      '';
   };
 }

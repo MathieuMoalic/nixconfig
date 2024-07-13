@@ -43,5 +43,6 @@
     trippy # network diagnostic tool
     procs # process viewer
     gitui # git TUI
+    nh # nix helper
   ];
 }

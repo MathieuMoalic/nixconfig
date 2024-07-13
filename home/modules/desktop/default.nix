@@ -45,6 +45,12 @@
     localsend # send files
   ];
   home.shellAliases = {
-    rd = "ripdrag -r -x *";
+    rd = "ripdrag -x";
   };
+  # xdg.mimeApps = {
+  #   enable = true;
+  #   defaultApplications = {
+  #     "image/png" = ["default1.desktop" "default2.desktop"];
+  #   };
+  # };
 }

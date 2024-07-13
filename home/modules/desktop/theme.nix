@@ -12,6 +12,11 @@
     theme.package = pkgs.adw-gtk3;
     theme.name = "adw-gtk3";
   };
+  home.pointerCursor = {
+    package = pkgs.graphite-cursors;
+    gtk.enable = true;
+    name = "graphite-dark";
+  };
 
   qt = {
     enable = true;

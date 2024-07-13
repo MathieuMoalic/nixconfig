@@ -11,6 +11,9 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  # Supposedly fixes some themeing/cursor issues might be useless.
+  programs.dconf.enable = true;
+
   environment = {
     etc."resolv.conf".text = ''
       nameserver 109.173.160.203

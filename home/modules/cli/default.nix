@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./scripts
+    ./yazi
     ./aliases.nix
     ./atuin.nix
     ./btop.nix
@@ -13,7 +14,6 @@
     ./rclone.nix
     ./ssh.nix
     ./starship.nix
-    ./yazi.nix
     ./zellij.nix
     ./zsh.nix
   ];

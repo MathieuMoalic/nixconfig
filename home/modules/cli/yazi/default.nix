@@ -3,10 +3,21 @@
   inputs,
   ...
 }: {
+  home.file.".config/yazi/plugins/smart-filter.yazi/init.lua".source = ./smart-filter.lua;
+  home.file.".config/yazi/plugins/max-preview.yazi/init.lua".source = ./max-preview.lua;
+  home.file.".config/yazi/plugins/hide-preview.yazi/init.lua".source = ./hide-preview.lua;
+  home.file.".config/yazi/plugins/chmod.yazi/init.lua".source = ./chmod.lua;
+  home.file.".config/yazi/plugins/starship.yazi/init.lua".source = ./starship.lua;
+  home.file.".config/yazi/plugins/fg.yazi/init.lua".source = ./fg.lua;
+  home.file.".config/yazi/plugins/ouch.yazi/init.lua".source = ./ouch.lua;
+  home.file.".config/yazi/plugins/hexyl.yazi/init.lua".source = ./hexyl.lua;
+  home.file.".config/yazi/plugins/smart-enter.yazi/init.lua".source = ./smart-enter.lua;
+
   programs.yazi = {
     enable = true;
     package = inputs.yazi.packages.${pkgs.system}.default;
     enableZshIntegration = true;
+    initLua = ./init.lua;
     settings = {
       manager = {
         layout = [1 4 3];

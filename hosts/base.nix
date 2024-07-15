@@ -126,7 +126,7 @@
   programs.zsh.enable = true;
 
   home-manager = {
-    backupFileExtension = ".bak";
+    backupFileExtension = "bak";
     extraSpecialArgs = {inherit inputs;};
     useUserPackages = true;
     useGlobalPkgs = true;

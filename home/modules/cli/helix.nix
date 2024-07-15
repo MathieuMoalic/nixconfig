@@ -125,6 +125,7 @@
         D = "goto_next_buffer";
         A = "goto_previous_buffer";
         C-w = ":buffer-close";
+        C-y = ":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh";
         # v	Enter select (extend) mode	select_mode
         # g	Enter goto mode	N/A
         # m	Enter match mode	N/A
@@ -420,5 +421,17 @@
     cyan              = "#${base0C}"
     purple            = "#${base0D}"
     pink              = "#${base0E}"
+  '';
+  xdg.configFile."helix/yazi-picker.sh".text = ''
+    #!/usr/bin/env bash
+    paths=$(yazi --chooser-file=/dev/stdout | while read -r; do printf "%q " "$REPLY"; done)
+    if [[ -n "$paths" ]]; then
+            zellij action toggle-floating-panes
+            zellij action write 27 # send <Escape> key
+            zellij action write-chars ":open $paths"
+            zellij action write 13 # send <Enter> key
+            zellij action toggle-floating-panes
+    fi
+    zellij action close-pane
   '';
 }

@@ -71,6 +71,7 @@
   boot = {
     loader = {
       systemd-boot.enable = true;
+      systemd-boot.editor = false;
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = ["ntfs"];

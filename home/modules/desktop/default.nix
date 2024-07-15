@@ -8,6 +8,7 @@
     ./scripts
     ./bluetooth.nix
     ./foot.nix
+    ./librewolf.nix
     ./rofi.nix
     ./theme.nix
     ./vscode.nix

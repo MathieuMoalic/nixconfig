@@ -11,7 +11,7 @@
       git pull
       ${pkgs.alejandra}/bin/alejandra -q .
       ${pkgs.git}/bin/git add .
-      sudo nixos-rebuild switch --flake .#${osConfig.networking.hostName} --show-trace 2>&1 | grep -v "warning: Git tree '/home/mat/nix' is dirty"
+      NIXOS_LABEL="$(date)" ${pkgs.nh}/bin/nh os switch "$HOME/nix"
       cd -
       rm -f ~/.zshenv
       exec ${pkgs.zsh}/bin/zsh -l

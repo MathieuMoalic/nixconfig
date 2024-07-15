@@ -18,7 +18,6 @@
   services.printing.enable = true;
 
   # rtkit is optional but recommended
-  sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

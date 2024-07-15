@@ -12,9 +12,10 @@
     settings = {
       monitor =
         (lib.optionals (osConfig.networking.hostName == "nyx") [
-          "DP-3, 1920x1200@59.95000, -1920x0, 1"
-          "DP-1, 1920x1200@59.95000, 0x0, 1"
-          "DP-2, 1920x1200@59.95000, 1920x0, 1"
+          "DP-3, 1920x1200@59.95, -1920x0, 1"
+          "DP-1, 1920x1200@59.95, 0x0, 1"
+          "DP-2, 1920x1200@59.95, 1920x0, 1"
+          "Unknown-1, disable"
         ])
         ++ (lib.optionals (osConfig.networking.hostName == "xps") [
           ",highres,auto,1"
@@ -281,6 +282,10 @@
       windowrulev2=idleinhibit focus, class:^(mpv|.+exe|celluloid)$
       windowrulev2=idleinhibit focus, title:^(.*YouTube.*)$
       windowrulev2=idleinhibit focus, title:^(.*Twitch.*)$
+
+      workspace=DP-3,21
+      workspace=DP-1,1
+      workspace=DP-2,11
     '';
   };
 }

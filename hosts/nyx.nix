@@ -11,18 +11,6 @@
     ./modules/samba.nix
   ];
   home-manager.users.mat.imports = [../home/nyx.nix];
-  # boot.initrd = {
-  #   systemd.users.root.shell = "/bin/cryptsetup-askpass";
-  #   network = {
-  #     enable = true;
-  #     ssh = {
-  #       enable = true;
-  #       port = 46464;
-  #       authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmWv/s9vS1w+slUWYkRLEQWj0IBckzFHhQndHKh0qpE mat@xps"];
-  #       hostKeys = ["/etc/secrets/initrd/ssh_host_rsa_key"];
-  #     };
-  #   };
-  # };
 
   programs.mosh = {
     enable = true;
@@ -34,14 +22,14 @@
     nvidia-container-toolkit.enable = true;
     graphics.enable = true;
     nvidia = {
-      modesetting.enable = true;
+      modesetting.enable = true; # Needed for Hyperland
       powerManagement = {
         enable = true;
         finegrained = false;
       };
-      open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      open = false;
+      # package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
@@ -52,17 +40,35 @@
   };
 
   boot = {
-    kernelModules = ["kvm-amd"];
+    kernelModules = ["kvm-amd" "debug"];
     kernel = {
       sysctl = {
         "net.ipv4.ip_unprivileged_port_start" = "80";
       };
     };
-    kernelParams = ["nvidia.NVreg_PreserveVideoMemoryAllocations=1"];
+    kernelParams = [
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    ];
+    # "ip=150.254.109.161::150.254.108.1:255.255.255.0:nyx::none"
     initrd = {
-      availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-      kernelModules = [];
+      availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "atlantic"];
+      # kernelModules = ["atlantic"];
       luks.devices."luks-813b266a-548e-4767-b73a-335378dc4693".device = "/dev/disk/by-uuid/813b266a-548e-4767-b73a-335378dc4693";
+
+      # Decrypt the root filesystem using ssh
+      systemd.users.root.shell = "/bin/cryptsetup-askpass";
+      network = {
+        enable = true;
+        ssh = {
+          enable = true;
+          port = 46464;
+          authorizedKeys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmWv/s9vS1w+slUWYkRLEQWj0IBckzFHhQndHKh0qpE mat@xps"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKvwnSlOK1csvW9qzPS8nGzq8DMlu4+/QebcEjDZDK04 oneplus"
+          ];
+          hostKeys = ["/etc/secrets/initrd/ssh_host_rsa_key"];
+        };
+      };
     };
     extraModulePackages = [];
   };

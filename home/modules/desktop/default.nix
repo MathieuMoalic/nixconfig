@@ -19,7 +19,7 @@
   home.packages = with pkgs; [
     hyprlock
     hypridle
-    inputs.hyprsome.packages.x86_64-linux.default
+    inputs.hyprsome.packages.${pkgs.system}.default
     rofi-wayland # command runner
     rofi-bluetooth # bluetooth manager
     udiskie # automount usb

@@ -12,7 +12,7 @@
   home-manager.users.mat.imports = [../home/zeus.nix];
 
   environment.systemPackages = with pkgs; [
-    inputs.amumax.packages.x86_64-linux.amumax
+    inputs.amumax.packages.${pkgs.system}.amumax
     inputs.mx3expend.packages.${pkgs.system}.mx3expend
     nvtopPackages.nvidia
   ];

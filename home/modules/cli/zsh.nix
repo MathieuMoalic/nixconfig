@@ -99,7 +99,7 @@
         bindkey "^[[200~" bracketed-paste
 
         bindkey -s "^L" 'l^M'
-        bindkey -s "^x" 'yy^M'
+        bindkey -s '^@' 'yy^M'
 
         bindkey '^[[A' up-line-or-beginning-search
       '';

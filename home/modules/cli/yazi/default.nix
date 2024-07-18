@@ -3,15 +3,15 @@
   inputs,
   ...
 }: {
-  home.file.".config/yazi/plugins/smart-filter.yazi/init.lua".source = ./smart-filter.lua;
-  home.file.".config/yazi/plugins/max-preview.yazi/init.lua".source = ./max-preview.lua;
-  home.file.".config/yazi/plugins/hide-preview.yazi/init.lua".source = ./hide-preview.lua;
-  home.file.".config/yazi/plugins/chmod.yazi/init.lua".source = ./chmod.lua;
-  home.file.".config/yazi/plugins/starship.yazi/init.lua".source = ./starship.lua;
-  home.file.".config/yazi/plugins/fg.yazi/init.lua".source = ./fg.lua;
-  home.file.".config/yazi/plugins/ouch.yazi/init.lua".source = ./ouch.lua;
-  home.file.".config/yazi/plugins/hexyl.yazi/init.lua".source = ./hexyl.lua;
-  home.file.".config/yazi/plugins/smart-enter.yazi/init.lua".source = ./smart-enter.lua;
+  home.file.".config/yazi/plugins/smart-filter.yazi/init.lua".source = ./plugins/smart-filter.lua;
+  home.file.".config/yazi/plugins/max-preview.yazi/init.lua".source = ./plugins/max-preview.lua;
+  home.file.".config/yazi/plugins/hide-preview.yazi/init.lua".source = ./plugins/hide-preview.lua;
+  home.file.".config/yazi/plugins/chmod.yazi/init.lua".source = ./plugins/chmod.lua;
+  home.file.".config/yazi/plugins/starship.yazi/init.lua".source = ./plugins/starship.lua;
+  home.file.".config/yazi/plugins/fg.yazi/init.lua".source = ./plugins/fg.lua;
+  home.file.".config/yazi/plugins/ouch.yazi/init.lua".source = ./plugins/ouch.lua;
+  home.file.".config/yazi/plugins/hexyl.yazi/init.lua".source = ./plugins/hexyl.lua;
+  home.file.".config/yazi/plugins/smart-enter.yazi/init.lua".source = ./plugins/smart-enter.lua;
 
   programs.yazi = {
     enable = true;
@@ -49,7 +49,7 @@
         ];
         extract = [
           {
-            run = "ouch d \"$1\"";
+            run = "ouch d -y \"$@\"";
             desc = "Extract here";
             for = "unix";
           }
@@ -158,6 +158,38 @@
 
       plugins = {
         preload = [];
+        prepend_previewers = [
+          {
+            mime = "application/*zip";
+            run = "ouch";
+          }
+          {
+            mime = "application/x-tar";
+            run = "ouch";
+          }
+          {
+            mime = "application/x-bzip2";
+            run = "ouch";
+          }
+          {
+            mime = "application/x-7z-compressed";
+            run = "ouch";
+          }
+          {
+            mime = "application/x-rar";
+            run = "ouch";
+          }
+          {
+            mime = "application/x-xz";
+            run = "ouch";
+          }
+        ];
+        append_previewers = [
+          {
+            name = "*";
+            run = "hexyl";
+          }
+        ];
       };
 
       input = {
@@ -667,6 +699,11 @@
 
       manager.keymap = [
         {
+          on = ["C"];
+          run = "plugin ouch --args=zip";
+          desc = "Compress with ouch";
+        }
+        {
           on = ["w"];
           run = "arrow -1";
           desc = "Move cursor up";
@@ -693,11 +730,16 @@
         }
         {
           on = ["d"];
-          run = ["enter" "escape --visual --select"];
+          run = ["plugin --sync smart-enter"];
           desc = "Child directory";
         }
         {
           on = ["q"];
+          run = "close";
+          desc = "close";
+        }
+        {
+          on = ["<C-Space>"];
           run = "close";
           desc = "close";
         }
@@ -766,6 +808,11 @@
         {
           desc = "Open the selected files";
           on = ["<Enter>"];
+          run = "open";
+        }
+        {
+          desc = "Open the selected files";
+          on = ["e"];
           run = "open";
         }
         {

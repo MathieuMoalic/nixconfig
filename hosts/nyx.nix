@@ -77,7 +77,7 @@
     hostName = "nyx";
     firewall = {
       enable = true;
-      allowedTCPPorts = [80 443];
+      allowedTCPPorts = [80 443 35367];
     };
     useDHCP = lib.mkDefault true;
   };

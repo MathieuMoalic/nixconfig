@@ -63,6 +63,7 @@
   '';
   xdg.configFile."Code/User/settings.json".text = ''
     {
+      "files.simpleDialog.enable": true,
       "blender.allowModifyExternalPython": true,
       "css.lint.unknownAtRules": "ignore",
       "search.followSymlinks": false,

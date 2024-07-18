@@ -3,6 +3,7 @@
   modulesPath,
   lib,
   inputs,
+  config,
   ...
 }: {
   imports = [
@@ -29,7 +30,8 @@
 
   nix = {
     distributedBuilds = true;
-    buildMachines = [
+    buildMachines =
+      lib.optionals (config.networking.hostName != "nyx")
       {
         hostName = "nyx";
         systems = ["x86_64-linux" "aarch64-linux"];
@@ -38,8 +40,7 @@
         supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
         sshKey = "/home/mat/.ssh/id_ed25519";
         sshUser = "mat";
-      }
-    ];
+      };
     channel.enable = false;
     package = pkgs.nix;
     settings = {
@@ -56,13 +57,13 @@
         "https://cache.nixos.org/"
         "https://hyprland.cachix.org"
         "https://helix.cachix.org"
-        # "https://yazi.cachix.org"
+        "https://yazi.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
-        # "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
+        "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
       ];
     };
   };

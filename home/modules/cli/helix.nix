@@ -112,6 +112,7 @@
         h = "select_regex";
         C-f = "file_picker";
         C-q = ["insert_mode" ":q!"];
+        C-space = ["insert_mode" ":q!"];
         C-s = ":w!";
         C-O = ":config-reload";
         C-o = ["insert_mode" ":o"];
@@ -125,7 +126,7 @@
         D = "goto_next_buffer";
         A = "goto_previous_buffer";
         C-w = ":buffer-close";
-        C-y = ":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh";
+        C-g = ":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh";
         # v	Enter select (extend) mode	select_mode
         # g	Enter goto mode	N/A
         # m	Enter match mode	N/A
@@ -222,9 +223,11 @@
         C-s = "normal_mode";
         C-w = "completion";
         C-q = ":q!";
+        C-space = ":q!";
       };
       keys.select = {
         C-q = ":q!";
+        C-space = ":q!";
         C-f = "file_picker";
         C-s = "normal_mode";
         E = "extend_next_long_word_start";

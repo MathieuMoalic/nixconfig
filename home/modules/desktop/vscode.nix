@@ -63,6 +63,7 @@
   '';
   xdg.configFile."Code/User/settings.json".text = ''
     {
+      "go.inferGopath": false,
       "files.simpleDialog.enable": true,
       "blender.allowModifyExternalPython": true,
       "css.lint.unknownAtRules": "ignore",
@@ -140,7 +141,6 @@
         "**/.Xauthority": true,
         "**/.jupyter": true,
         "**/.ipython": true,
-        // "**/.vscode": true,
         "**/.z": true,
         "**/.Trash-1000": true,
         "**/.virtual_documents": true,
@@ -210,14 +210,10 @@
       "update.mode": "none",
       "gitlens.statusBar.enabled": false,
       "window.menuBarVisibility": "hidden",
-      "liveServer.settings.donotShowInfoMsg": true,
-      "vscode-neovim.neovimExecutablePaths.linux": "/bin/nvim",
-      "vscode-neovim.neovimInitVimPaths.linux": "/home/mat/.config/nvim/init.lua",
       "jupyter.allowUnauthorizedRemoteConnection": true,
-      "workbench.colorTheme": "Dracula",
+      "workbench.colorTheme": "Dracula Theme",
       "editor.fontSize": 15,
       "notebook.lineNumbers": "on",
-      "code-runner.runInTerminal": true,
       "notebook.output.scrolling": true,
       "editor.formatOnSave": true,
       "go.inlayHints.rangeVariableTypes": true,
@@ -227,9 +223,8 @@
       "mx3.openWebUI": false,
       "mx3.path": "amumax",
       "python.analysis.autoFormatStrings": true,
-      "gitlens.codeLens.enabled": false,
       "python.analysis.autoImportCompletions": true,
       "git.openRepositoryInParentFolders": "never"
-      ]
+    }
   '';
 }

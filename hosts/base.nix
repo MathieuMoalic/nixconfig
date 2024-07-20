@@ -32,15 +32,17 @@
     distributedBuilds = true;
     buildMachines =
       lib.optionals (config.networking.hostName != "nyx")
-      {
-        hostName = "nyx";
-        systems = ["x86_64-linux" "aarch64-linux"];
-        maxJobs = 30;
-        speedFactor = 10;
-        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-        sshKey = "/home/mat/.ssh/id_ed25519";
-        sshUser = "mat";
-      };
+      [
+        {
+          hostName = "nyx";
+          systems = ["x86_64-linux" "aarch64-linux"];
+          maxJobs = 30;
+          speedFactor = 10;
+          supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+          sshKey = "/home/mat/.ssh/id_ed25519";
+          sshUser = "mat";
+        }
+      ];
     channel.enable = false;
     package = pkgs.nix;
     settings = {

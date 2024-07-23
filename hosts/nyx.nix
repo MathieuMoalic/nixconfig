@@ -22,7 +22,7 @@
     nvidia-container-toolkit.enable = true;
     graphics.enable = true;
     nvidia = {
-      modesetting.enable = true; # Needed for Hyperland
+      modesetting.enable = true; # Needed for Hyprland
       powerManagement = {
         enable = true;
         finegrained = false;

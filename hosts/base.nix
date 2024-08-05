@@ -129,7 +129,7 @@
   programs.zsh.enable = true;
 
   home-manager = {
-    backupFileExtension = ".hmbak";
+    backupFileExtension = "hmbak";
     extraSpecialArgs = {inherit inputs;};
     useUserPackages = true;
     useGlobalPkgs = true;

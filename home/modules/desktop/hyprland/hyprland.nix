@@ -181,7 +181,6 @@
         swallow_regex = [[Empty]] # The class regex to be used for windows that should be swallowed (usually, a terminal). To know more about the list of regex which can be used use this cheatsheet.
         swallow_exception_regex = [[Empty]] # The title regex to be used for windows that should not be swallowed by the windows specified in swallow_regex (e.g. wev). The regex is matched against the parent (e.g. Kitty) window's title on the assumption that it changes to whatever process it's running.
         focus_on_activate = false # Whether Hyprland should focus an app that requests to be focused (an activate request)
-        no_direct_scanout = true # Disables direct scanout. Direct scanout attempts to reduce lag when there is only one fullscreen application on a screen (e.g. game). It is also recommended to set this to true if the fullscreen application shows graphical glitches.
         mouse_move_focuses_monitor = true # Whether mouse moving into a different monitor should focus it
         # suppress_portal_warnings = false # disables warnings about incompatible portal implementations.
         render_ahead_of_time = false # [Warning: buggy] starts rendering before your monitor displays a frame in order to lower latency

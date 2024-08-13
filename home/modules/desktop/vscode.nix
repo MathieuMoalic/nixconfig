@@ -1,7 +1,4 @@
 {...}: {
-  home.shellAliases = {
-    code = "code --enable-features=UseOzonePlatform --ozone-platform=wayland";
-  };
   xdg.configFile."Code/User/keybindings.json".text = ''
     [
         {

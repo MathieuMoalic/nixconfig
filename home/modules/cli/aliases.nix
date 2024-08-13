@@ -31,6 +31,6 @@
     ghc = "gh copilot";
     colors = "curl -Ls 'https://raw.githubusercontent.com/NNBnh/textart-collections/main/color/colortest.textart' | bash; echo";
     lg = "lazygit";
-    teams = "nohup teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland > /dev/null 2>&1 &";
+    # teams = "nohup teams-for-linux --enable-features=UseOzonePlatform --ozone-platform=wayland > /dev/null 2>&1 &";
   };
 }

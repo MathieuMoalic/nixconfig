@@ -289,6 +289,50 @@
     name = "mx3"
     source = { git = "https://github.com/tree-sitter/tree-sitter-go", rev = "64457ea6b73ef5422ed1687178d4545c3e91334a" }
 
+    [[language]]
+    name = "typescript"
+    language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "eslint"] # shouldn't need to override this
+    roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this
+    formatter = { command = "prettier" }
+    auto-format = true
+
+    [[language]]
+    name = "tsx"
+    language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "eslint"] # shouldn't need to override this
+    roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this!
+    formatter = { command = "prettier" } # works without any args, the modifications end up in the buffer, unsaved
+    auto-format = true
+    [language-server.eslint]
+    args = ["--stdio"] # should come by def with helix
+    command = "vscode-eslint-language-server"
+
+    [language-server.eslint.config]
+    validate = "on" # I assume this enabled eslit to validate the file, which now shows me counts for errors, warnings, etc in helix
+    experimental = { useFlatConfig = false } # not sure why this is here
+    rulesCustomizations = []
+    run = "onType"
+    problems = { shortenToSingleLine = false }
+    nodePath = "" # seems redundant, why do we need to override this, should get detected autom.
+
+    [language-server.eslint.config.codeAction]
+    [language-server.eslint.config.codeAction.disableRuleComment]
+    enable = true
+    location = "separateLine"
+
+    [language-server.eslint.config.codeAction.showDocumentation]
+    enable = true # why?
+
+    [language-server.eslint.config.codeActionOnSave]
+    enable = true
+    mode = "fixAll"
+
+    [language-server.eslint.config.workingDirectory]
+    mode = "location" # do we need to override this?
+
+    [language-server.typescript-language-server.config]
+    documentFormatting = false # use eslint instead, do we have to override this ourselves? I think if eslint LSP is detected and enabled, this should be done automatically for us as generally everyone lets eslint take over linting+prettying, which uses prettier by default if detected by it
+
+
 
   '';
   xdg.configFile."helix/themes/mytheme.toml".text = with config.colorScheme.palette; ''

@@ -20,9 +20,9 @@
     initLua = ./init.lua;
     settings = {
       manager = {
-        layout = [1 4 3];
+        layout = [0 3 5];
         linemode = "size";
-        show_hidden = false;
+        show_hidden = true;
         show_symlink = true;
         sort_by = "modified";
         sort_dir-first = false;
@@ -755,11 +755,19 @@
         }
         {
           on = ["y"];
-          run = ["yank" ''"""shell --confirm "for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list" """''];
+          run = ["yank" ''shell --confirm "for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list" ''];
+        }
+        {
+          on = ["Y"];
+          run = ["unyank"];
         }
         {
           on = ["R"];
-          run = ''"shell 'ripdrag - x "$1"' --confirm"'';
+          run = ''shell 'ripdrag -x "$@"' --confirm'';
+        }
+        {
+          on = ["i"];
+          run = ''shell 'lnmv $1' --confirm'';
         }
         {
           on = ["f"];
@@ -798,12 +806,12 @@
         {
           desc = "Select all files";
           on = ["<C-a>"];
-          run = "select_all --state=true";
+          run = "select-all --state=true";
         }
         {
           desc = "Inverse selection of all files";
           on = ["<C-r>"];
-          run = "select_all --state=none";
+          run = "select-all --state=none";
         }
         {
           desc = "Open the selected files";
@@ -833,7 +841,7 @@
         {
           desc = "Paste the files (overwrite if the destination exists)";
           on = ["p"];
-          run = "paste --force";
+          run = ["paste --force" "unyank"];
         }
         {
           desc = "Symlink the absolute path of files";
@@ -1030,7 +1038,7 @@
         }
       ];
 
-      tasks.keymaps = [
+      tasks.keymap = [
         {
           desc = "Hide the task manager";
           on = ["q"];

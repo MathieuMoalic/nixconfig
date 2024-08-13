@@ -8,5 +8,6 @@
     delta # diff
     go
     gopls
+    ffmpeg
   ];
 }

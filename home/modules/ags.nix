@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  # add the home manager module
+  # This is like eww
   imports = [inputs.ags.homeManagerModules.default];
 
   programs.ags = {

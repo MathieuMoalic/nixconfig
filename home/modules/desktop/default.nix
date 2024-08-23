@@ -48,10 +48,11 @@
   home.shellAliases = {
     rd = "ripdrag -x";
   };
-  # xdg.mimeApps = {
-  #   enable = true;
-  #   defaultApplications = {
-  #     "image/png" = ["default1.desktop" "default2.desktop"];
-  #   };
-  # };
+  # Saved in /etc/profiles/per-user/mat/share/applications/
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = "librewolf.desktop";
+    };
+  };
 }

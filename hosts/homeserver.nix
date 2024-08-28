@@ -7,6 +7,7 @@
     ./base.nix
     ./modules/syncthing.nix
   ];
+
   home-manager.users.mat.imports = [../home/homeserver.nix];
 
   # Programs Configuration
@@ -54,9 +55,10 @@
     firewall = {
       enable = true;
       # pihole: 12553
-      # syncthing 8384
-      allowedTCPPorts = [80 443 12553 8384];
-      allowedUDPPorts = [12553];
+      # wireguard: 51820
+      # terraria: 7777
+      allowedTCPPorts = [80 443 12553 7777];
+      allowedUDPPorts = [12553 51820];
     };
     useDHCP = lib.mkDefault true;
   };

@@ -15,7 +15,7 @@
     ags.url = "github:Aylur/ags";
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     mx3expend.url = "github:MathieuMoalic/mx3expend";
-    # amumax.url = "github:MathieuMoalic/amumax/4c355721530d4a7ac5b37bedd79c2bdefa0b9303";
+    amumax.url = "github:MathieuMoalic/amumax";
   };
   outputs = {
     self,

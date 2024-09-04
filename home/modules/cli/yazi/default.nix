@@ -22,7 +22,7 @@
       manager = {
         layout = [0 3 5];
         linemode = "size";
-        show_hidden = true;
+        show_hidden = false;
         show_symlink = true;
         sort_by = "modified";
         sort_dir-first = false;

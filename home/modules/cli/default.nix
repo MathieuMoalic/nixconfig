@@ -44,5 +44,6 @@
     procs # process viewer
     gitui # git TUI
     nh # nix helper
+    comma # wraps together nix shell -c and nix-index
   ];
 }

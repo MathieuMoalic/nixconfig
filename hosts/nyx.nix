@@ -11,7 +11,6 @@
     ./modules/samba.nix
   ];
   home-manager.users.mat.imports = [../home/nyx.nix];
-
   programs.mosh = {
     enable = true;
     openFirewall = true;
@@ -78,7 +77,7 @@
     hostName = "nyx";
     firewall = {
       enable = true;
-      allowedTCPPorts = [80 443 35367];
+      allowedTCPPorts = [80 443 7777];
     };
     useDHCP = lib.mkDefault true;
   };

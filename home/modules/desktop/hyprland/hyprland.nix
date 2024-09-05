@@ -6,9 +6,9 @@
   pkgs,
   ...
 }: {
-  wayland.windowManager.hyprland = with config.colorScheme.palette; {
+  wayland.windowManager.hyprland = {
     systemd.variables = ["--all"];
-    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     settings = {
       monitor =
         (lib.optionals (osConfig.networking.hostName == "nyx") [
@@ -29,7 +29,6 @@
       exec-once=${pkgs.udiskie}/bin/udiskie
 
       general {
-        sensitivity = 1.0 # mouse sensitivity (legacy, may cause bugs if not 1, prefer input:sensitivity)
         border_size = 2 # size of the border around windows
         no_border_on_floating = false # disable borders for floating windows
         gaps_in = 2 # gaps between windows, also supports css style gaps (top, right, bottom, left -> 5,10,15,20)
@@ -41,7 +40,6 @@
         col.nogroup_border_active = rgba(ff79c6ff) rgba(ff6e6eff) 60deg # active border color for window that cannot be added to a group
         layout = dwindle # which layout to use. [dwindle/master]
         no_focus_fallback = false # if true, will not fall back to the next available window when moving focus in a direction where no window was found
-        apply_sens_to_raw = false # if on, will also apply the sensitivity to raw mouse output (e.g. sensitivity in games) NOTICE: really not recommended.
         resize_on_border = true # enables resizing windows by clicking and dragging on borders and gaps
         extend_border_grab_area = 15 # extends the area around the border where you can click and drag on, only used when general:resize_on_border is on.
         hover_icon_on_border = true # show a cursor icon when hovering over borders, only used when general:resize_on_border is on.

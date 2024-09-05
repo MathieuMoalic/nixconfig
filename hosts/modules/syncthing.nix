@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   services = {
     syncthing = {
       enable = true;
@@ -6,7 +6,10 @@
       group = "mat";
       dataDir = "/home/mat/sync"; # Default folder for new synced folders
       configDir = "/home/mat/.config/syncthing"; # Folder for Syncthing's settings and keys
-      guiAddress = "0.0.0.0:8384";
+      guiAddress =
+        if config.networking.hostName == "homeserver"
+        then "192.168.1.89:8384"
+        else "0.0.0.0:8384";
       overrideDevices = false; # overrides any devices added or deleted through the WebUI
       overrideFolders = false; # overrides any folders added or deleted through the WebUI
       openDefaultPorts = true;

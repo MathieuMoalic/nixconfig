@@ -12,7 +12,7 @@
   home-manager.users.mat.imports = [../home/zeus.nix];
 
   environment.systemPackages = with pkgs; [
-    inputs.amumax.packages.${pkgs.system}.amumax
+    inputs.amumax.packages.${pkgs.system}.default
     inputs.mx3expend.packages.${pkgs.system}.mx3expend
     nvtopPackages.nvidia
   ];
@@ -56,6 +56,16 @@
     ];
   };
 
+  users.users.syam = {
+    isNormalUser = true;
+    uid = 1003;
+    shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXS+yVAISHyMWzk+o/jHHMnt9aILZoOFPqe/EkhoDIj"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO3nskcuXUBuIikiFZ1MT8L+srlSVJnARaLTNdfAGbmZ syam@megaera"
+    ];
+  };
+
   programs.mosh = {
     enable = true;
     openFirewall = true;
@@ -64,7 +74,7 @@
 
   hardware = {
     nvidia-container-toolkit.enable = true;
-    opengl.enable = true;
+    graphics.enable = true;
     nvidia = {
       modesetting.enable = true;
       powerManagement = {

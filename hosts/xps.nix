@@ -9,9 +9,9 @@
     ./modules/sddm.nix
     ./modules/syncthing.nix
     ./modules/desktop.nix
-    ./modules/plymouth.nix
   ];
   programs.steam.enable = true;
+  programs.ssh.startAgent = true;
   home-manager.users.mat.imports = [../home/xps.nix];
   hardware = {
     bluetooth = {

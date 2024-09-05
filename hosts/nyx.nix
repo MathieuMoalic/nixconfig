@@ -63,8 +63,9 @@
           enable = true;
           port = 46464;
           authorizedKeys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmWv/s9vS1w+slUWYkRLEQWj0IBckzFHhQndHKh0qpE mat@xps"
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKvwnSlOK1csvW9qzPS8nGzq8DMlu4+/QebcEjDZDK04 oneplus"
+            # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmWv/s9vS1w+slUWYkRLEQWj0IBckzFHhQndHKh0qpE mat@xps"
+            # "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKvwnSlOK1csvW9qzPS8nGzq8DMlu4+/QebcEjDZDK04 oneplus"
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPcmHHg1pEOAxvEAyr6p5MY0m3/+BOn8nJOcAf7mMaej"
           ];
           hostKeys = ["/etc/secrets/initrd/ssh_host_rsa_key"];
         };

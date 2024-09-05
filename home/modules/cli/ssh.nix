@@ -15,7 +15,7 @@
       homeserver = {
         hostname = "matmoa.xyz";
         user = "mat";
-        port = 23232;
+        port = 46464;
       };
       nyx = {
         hostname = "nyx.zfns.eu.org";
@@ -40,11 +40,6 @@
       zeus = {
         hostname = "zeus.zfns.eu.org";
         user = "mat";
-        port = 46464;
-      };
-      mzzeus = {
-        hostname = "zeus.zfns.eu.org";
-        user = "mz";
         port = 46464;
       };
     };

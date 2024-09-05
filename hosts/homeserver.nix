@@ -38,8 +38,10 @@
         enable = true;
         ssh = {
           enable = true;
-          port = 23232;
-          authorizedKeys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMmWv/s9vS1w+slUWYkRLEQWj0IBckzFHhQndHKh0qpE mat@xps"];
+          port = 46464;
+          authorizedKeys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPcmHHg1pEOAxvEAyr6p5MY0m3/+BOn8nJOcAf7mMaej"
+          ];
           hostKeys = ["/etc/secrets/initrd/ssh_host_rsa_key"];
         };
       };
@@ -67,7 +69,7 @@
   services = {
     openssh = {
       enable = true;
-      ports = [23232];
+      ports = [46464];
       openFirewall = true;
       settings = {
         PermitRootLogin = "no";

@@ -3,17 +3,20 @@
     enable = true;
     userName = "Mathieu Moalic";
     userEmail = "matmoa@pm.me";
-    signing = {
-      key = "22EF00B98C962C0F7FF3E1A06FDB54022D0D5EFD";
-      signByDefault = true;
-    };
     extraConfig = {
       init = {defaultBranch = "main";};
       credential = {helper = "store --file ~/.config/git/.git-credentials";};
+      commit = {gpgSign = true;};
+      tag = {gpgSign = true;};
       pull = {rebase = false;};
       push = {autoSetupRemote = true;};
-      # gpg = {format = "ssh";};
-      # user = {signingkey = "~/.ssh/id_ed25519.pub";};
+      gpg = {
+        format = "ssh";
+        ssh = {
+          allowedSignersFile = "/home/mat/.ssh/allowed_signers";
+        };
+      };
+      user = {signingkey = "~/.ssh/id_ed25519.pub";};
       core = {pager = "delta";};
       interactive = {diffFilter = "delta --color-only";};
       delta = {

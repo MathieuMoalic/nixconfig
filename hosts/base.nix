@@ -11,15 +11,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.home-manager.nixosModules.home-manager
   ];
-
-  services.dbus.packages = [pkgs.gcr];
-  services.pcscd.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-curses;
-    enableSSHSupport = true;
-  };
-
   # Supposedly fixes some themeing/cursor issues might be useless.
   programs.dconf.enable = true;
 

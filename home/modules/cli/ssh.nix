@@ -1,16 +1,21 @@
-{...}: {
-  programs.keychain = {
+{config, ...}: {
+  programs.gpg = {
     enable = true;
-    enableZshIntegration = true;
-    keys = ["id_ed25519"];
+    homedir = "${config.xdg.dataHome}/gnupg";
   };
-  services.ssh-agent.enable = true;
-  programs.ssh.addKeysToAgent = "yes";
+
+  # programs.keychain = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  #   keys = ["id_ed25519"];
+  # };
+  # services.ssh-agent.enable = true;
+  # programs.ssh.addKeysToAgent = "yes";
   programs.ssh = {
     enable = true;
     serverAliveCountMax = 120;
     serverAliveInterval = 60;
-    forwardAgent = true;
+    # forwardAgent = true;
     matchBlocks = {
       faculty = {
         hostname = "150.254.111.35";

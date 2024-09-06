@@ -1,16 +1,4 @@
 {config, ...}: {
-  programs.gpg = {
-    enable = true;
-    homedir = "${config.xdg.dataHome}/gnupg";
-  };
-
-  # programs.keychain = {
-  #   enable = true;
-  #   enableZshIntegration = true;
-  #   keys = ["id_ed25519"];
-  # };
-  # services.ssh-agent.enable = true;
-  # programs.ssh.addKeysToAgent = "yes";
   programs.ssh = {
     enable = true;
     serverAliveCountMax = 120;

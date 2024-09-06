@@ -1,4 +1,7 @@
 {...}: {
+  home.file.".config/git/allowed_signers".text = ''
+    mat ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPcmHHg1pEOAxvEAyr6p5MY0m3/+BOn8nJOcAf7mMaej
+  '';
   programs.git = {
     enable = true;
     userName = "Mathieu Moalic";
@@ -13,7 +16,7 @@
       gpg = {
         format = "ssh";
         ssh = {
-          allowedSignersFile = "/home/mat/.ssh/allowed_signers";
+          allowedSignersFile = "~/.config/git/allowed_signers";
         };
       };
       user = {signingkey = "~/.ssh/id_ed25519.pub";};

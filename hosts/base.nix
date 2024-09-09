@@ -11,7 +11,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.home-manager.nixosModules.home-manager
   ];
-
   # Supposedly fixes some themeing/cursor issues might be useless.
   programs.dconf.enable = true;
 

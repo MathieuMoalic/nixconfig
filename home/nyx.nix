@@ -10,7 +10,7 @@
     ./modules/dev
   ];
   home.packages = with pkgs; [
-    inputs.amumax.packages.${pkgs.system}.default
+    inputs.amumax.packages.${pkgs.system}.git
     inputs.mx3expend.packages.${pkgs.system}.mx3expend
     nvtopPackages.nvidia
     caddy # web server

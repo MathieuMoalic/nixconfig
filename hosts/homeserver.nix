@@ -6,16 +6,10 @@
   imports = [
     ./base.nix
     ./modules/syncthing.nix
+    ./modules/sshd.nix
   ];
 
   home-manager.users.mat.imports = [../home/homeserver.nix];
-
-  # Programs Configuration
-  programs.mosh = {
-    enable = true;
-    openFirewall = true;
-    withUtempter = true;
-  };
 
   # Virtualization Configuration
   virtualisation = {
@@ -63,19 +57,6 @@
       allowedUDPPorts = [12553 51820];
     };
     useDHCP = lib.mkDefault true;
-  };
-
-  # Services Configuration
-  services = {
-    openssh = {
-      enable = true;
-      ports = [46464];
-      openFirewall = true;
-      settings = {
-        PermitRootLogin = "no";
-        PasswordAuthentication = true;
-      };
-    };
   };
 
   # File Systems Configuration

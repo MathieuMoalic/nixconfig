@@ -8,6 +8,7 @@
   imports = [
     ./base.nix
     ./modules/sddm.nix
+    ./modules/sshd.nix
   ];
   home-manager.users.mat.imports = [../home/zeus.nix];
 
@@ -66,12 +67,6 @@
     ];
   };
 
-  programs.mosh = {
-    enable = true;
-    openFirewall = true;
-    withUtempter = true;
-  };
-
   hardware = {
     nvidia-container-toolkit.enable = true;
     graphics.enable = true;
@@ -114,18 +109,7 @@
     useDHCP = lib.mkDefault true;
   };
 
-  services = {
-    openssh = {
-      enable = true;
-      ports = [46464];
-      openFirewall = true;
-      settings = {
-        PermitRootLogin = "no";
-        PasswordAuthentication = true;
-      };
-    };
-    xserver.videoDrivers = ["nvidia"];
-  };
+  services.xserver.videoDrivers = ["nvidia"];
 
   fileSystems = {
     "/" = {

@@ -9,13 +9,9 @@
     ./modules/sddm.nix
     ./modules/syncthing.nix
     ./modules/samba.nix
+    ./modules/sshd.nix
   ];
   home-manager.users.mat.imports = [../home/nyx.nix];
-  programs.mosh = {
-    enable = true;
-    openFirewall = true;
-    withUtempter = true;
-  };
 
   hardware = {
     nvidia-container-toolkit.enable = true;
@@ -80,18 +76,14 @@
     useDHCP = lib.mkDefault true;
   };
 
-  services = {
-    openssh = {
-      enable = true;
-      ports = [46464];
-      openFirewall = true;
-      settings = {
-        PermitRootLogin = "no";
-        PasswordAuthentication = true;
-      };
-    };
-    xserver.videoDrivers = ["nvidia"];
-  };
+  services.xserver.videoDrivers = ["nvidia"];
+
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   fileSystems = {
     "/" = {
@@ -114,9 +106,6 @@
 
   swapDevices = [];
 
-  environment.sessionVariables = {
-    # WLR_NO_HARDWARE_CURSORS = "1";
-  };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "23.11";
 }

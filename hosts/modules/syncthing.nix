@@ -17,10 +17,10 @@
         devices = {
           homeserver = {
             autoAcceptFolders = true;
-            id = "3K5PK4F-EFK2CJG-FDNJSQP-S23BN3I-FBPTNGA-IF7IQCL-O4LOVL6-JLOTUQE";
+            id = "42JBQ4Q-PSWG4JG-LWRF3BI-IOTQNHS-2RPSOGA-YTOFTRY-AYFUJ5X-7QTI5Q5";
           };
           oneplus = {
-            id = "PXOELPW-AQXMEXD-7DCHW6O-ID54IYY-T2U35KM-YPU657P-6IBPJDY-ENFH3AP ";
+            id = "PXOELPW-AQXMEXD-7DCHW6O-ID54IYY-T2U35KM-YPU657P-6IBPJDY-ENFH3AP";
             autoAcceptFolders = true;
           };
           xps = {

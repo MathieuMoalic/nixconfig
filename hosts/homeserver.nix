@@ -7,6 +7,7 @@
     ./base.nix
     ./modules/syncthing.nix
     ./modules/sshd.nix
+    ./modules/restic.nix
   ];
 
   home-manager.users.mat.imports = [../home/homeserver.nix];

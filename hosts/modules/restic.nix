@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    restic
+  ];
   users.users.restic = {
     isNormalUser = true;
   };
@@ -13,10 +16,11 @@
 
   services.restic.backups = {
     podmanBackupLocal = {
+      initialize = true;
       user = "mat";
       repository = "/home/mat/backup";
       paths = ["/home/mat/podman"];
-      passwordFile = "/home/mat/.restic-password";
+      passwordFile = "/home/mat/.config/.restic-password";
       exclude = ["*.tmp"];
       runCheck = true;
       extraOptions = ["--verbose"];
@@ -27,19 +31,19 @@
     };
 
     podmanBackupRemote = {
+      initialize = true;
       user = "mat";
-      repository = "nyx:/z1/backup";
+      repository = "rclone:nyx:z1/backup";
       paths = ["/home/mat/podman"];
-      passwordFile = "/home/mat/.restic-password";
       exclude = ["*.tmp"];
+      rcloneConfigFile = /home/mat/.config/rclone/rclone.conf;
+      passwordFile = "/home/mat/.config/.restic-password";
       runCheck = true;
-      extraOptions = ["--verbose"];
       timerConfig = {
         OnCalendar = "daily"; # Run daily backups
         Persistent = true;
       };
-      # Optional: You can also provide specific SSH options with rcloneOptions
-      extraOptions = ["--verbose"];
+      #   extraOptions = ["sftp.command='ssh mat@nyx.zfns.eu.org -p 46464 -i /home/mat/.ssh/id_ed25519q -s sftp'"];
     };
   };
 }

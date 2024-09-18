@@ -20,7 +20,7 @@
       user = "mat";
       repository = "/home/mat/backup";
       paths = ["/home/mat/podman"];
-      passwordFile = "/home/mat/.config/.restic-password";
+      passwordFile = config.age.secrets.restic.path;
       exclude = ["*.tmp"];
       runCheck = true;
       extraOptions = ["--verbose"];
@@ -37,13 +37,12 @@
       paths = ["/home/mat/podman"];
       exclude = ["*.tmp"];
       rcloneConfigFile = /home/mat/.config/rclone/rclone.conf;
-      passwordFile = "/home/mat/.config/.restic-password";
+      passwordFile = config.age.secrets.restic.path;
       runCheck = true;
       timerConfig = {
         OnCalendar = "daily"; # Run daily backups
         Persistent = true;
       };
-      #   extraOptions = ["sftp.command='ssh mat@nyx.zfns.eu.org -p 46464 -i /home/mat/.ssh/id_ed25519q -s sftp'"];
     };
   };
 }

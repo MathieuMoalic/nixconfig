@@ -10,7 +10,17 @@
     ./modules/ld.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.home-manager.nixosModules.home-manager
+    inputs.sops-nix.nixosModules.sops
   ];
+
+  sops = {
+    defaultSopsFile = ../secrets.yaml;
+    age.keyFile = "/home/mat/.ssh/age_key";
+    secrets = {
+      restic = {};
+    };
+  };
+
   # Supposedly fixes some themeing/cursor issues might be useless.
   programs.dconf.enable = true;
 

@@ -6,8 +6,14 @@
   fileSystems."/home/mat/nas" = {
     device = "//150.254.111.48/zfn";
     fsType = "cifs";
-    options = let
-      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
-    in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=1000"];
+    options = ["x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users,credentials=${config.sops.templates.samba.path},uid=1000,gid=1000"];
   };
+
+  sops.secrets = {
+    samba = {};
+  };
+  sops.templates.samba.content = ''
+    username=matmoa
+    password="${config.sops.secrets.samba}"
+  '';
 }

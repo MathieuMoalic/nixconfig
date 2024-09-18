@@ -16,9 +16,6 @@
   sops = {
     defaultSopsFile = ../secrets.yaml;
     age.keyFile = "/home/mat/.ssh/age_key";
-    secrets = {
-      restic = {};
-    };
   };
 
   # Supposedly fixes some themeing/cursor issues might be useless.

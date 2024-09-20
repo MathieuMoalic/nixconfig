@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   # For mount.cifs, required unless domain name resolution is not needed.
   environment.systemPackages = [pkgs.cifs-utils];
   networking.firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
@@ -14,6 +18,6 @@
   };
   sops.templates.samba.content = ''
     username=matmoa
-    password="${config.sops.secrets.samba}"
+    password=${config.sops.placeholder.samba}
   '';
 }

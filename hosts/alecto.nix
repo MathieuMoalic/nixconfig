@@ -115,16 +115,16 @@
 
   services.xserver.videoDrivers = ["nvidia"];
 
-  # fileSystems = {
-  #   "/" = {
-  #     device = "/dev/disk/by-uuid/39595a30-eacd-4724-ba4a-ffd9faf23ba3";
-  #     fsType = "ext4";
-  #   };
-  #   "/boot" = {
-  #     device = "/dev/disk/by-uuid/339D-CFC9";
-  #     fsType = "vfat";
-  #   };
-  # };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/NIXROOT";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-label/NIXBOOT";
+      fsType = "vfat";
+    };
+  };
 
   swapDevices = [
     {

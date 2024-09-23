@@ -22,6 +22,11 @@
         user = "mat";
         port = 46464;
       };
+      alecto = {
+        hostname = "alecto.zfns.eu.org";
+        user = "mat";
+        port = 46464;
+      };
       prometheus = {
         hostname = "prometheus.zfns.eu.org";
         user = "matmoa";

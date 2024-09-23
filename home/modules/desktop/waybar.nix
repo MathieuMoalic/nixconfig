@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   theme = config.colorScheme.palette;
 in {
   programs.waybar = {
@@ -144,8 +148,8 @@ in {
         };
 
         "custom/vpn" = {
-          interval = 10;
-          "on-click" = "rofi_vpn";
+          interval = 5;
+          "on-click" = "wireguard-menu";
           exec = "nmcli connection show | awk '/wireguard/ {printf \"%s: %s | \", $1, ($4 == \"--\" ? \"󰿆\" : \"󰌾\")}'";
         };
       };

@@ -87,19 +87,19 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/70e39051-3e65-4be3-93d2-fafbffcd7884";
+      device = "/dev/disk/by-label/NIXROOT";
       fsType = "ext4";
     };
     "/boot" = {
-      device = "/dev/disk/by-uuid/65AD-6B00";
+      device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
     };
     "/home/mat/z1" = {
-      device = "/dev/disk/by-uuid/36f3a7b3-8e76-48b8-a444-c2898aef7c29";
+      device = "/dev/disk/by-label/z1";
       fsType = "ext4";
     };
     "/home/mat/shared" = {
-      device = "/dev/disk/by-uuid/5514ec22-f46a-4542-9e1d-1dc001c68c00";
+      device = "/dev/disk/by-label/shared";
       fsType = "ext4";
     };
   };

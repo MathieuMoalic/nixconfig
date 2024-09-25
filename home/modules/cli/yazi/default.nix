@@ -201,7 +201,7 @@
         # create
         create_offset = [0 2 50 3];
         create_origin = "top-center";
-        create_title = "Create:";
+        create_title = ["Create:" "Create (dir):"];
 
         # rename
         rename_offset = [0 1 50 3];

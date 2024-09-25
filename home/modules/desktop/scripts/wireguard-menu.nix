@@ -1,84 +1,81 @@
 {pkgs, ...}: let
-  script = pkgs.writeShellApplication {
+  wireguard-menu = pkgs.writeShellApplication {
     name = "wireguard-menu";
     text = ''
-        set -e
-      # What to show in front of an active wireguard connection:
+      set +o pipefail
       ACTIVE_PREFIX="  ✓ "
+      INACTIVE_PREFIX="  ✗ "
 
-      # What to show in front of an inactive wireguard connection:
-      INACTIVE_PREFIX="    "
-      # Display on standard output all wireguard connections, one per line. An
-      # active wireguard connection is prefixed with `ACTIVE_PREFIX` and an inactive
-      # one is prefixed with `INACTIVE_PREFIX`.
       list_wireguard_connections() {
-          nmcli --get-values ACTIVE,NAME,TYPE connection show \
-              | grep ':wireguard$' \
-              | sed \
-                    -e "s/^no:/$INACTIVE_PREFIX/" \
-                    -e "s/^yes:/$ACTIVE_PREFIX/" \
-                    -e 's/:wireguard$//'
+          ${pkgs.networkmanager}/bin/nmcli --get-values ACTIVE,NAME,TYPE connection show \
+              | ${pkgs.busybox}/bin/grep ':wireguard$' \
+              | ${pkgs.busybox}/bin/sed \
+                  -e "s/^no:/$INACTIVE_PREFIX/" \
+                  -e "s/^yes:/$ACTIVE_PREFIX/" \
+                  -e 's/:wireguard$//'
       }
 
-      # Take a line as displayed by `list_wireguard_connections()` as argument and
-      # use nmcli to toggle the corresponding connection.
+      extract_connection_name_from_result() {
+          result="$1"
+
+          # Remove the ACTIVE or INACTIVE prefix using sed
+          connection=''${result#"$ACTIVE_PREFIX"}
+          connection=''${connection#"$INACTIVE_PREFIX"}
+          # Trim leading and trailing whitespace
+          echo "$connection" | ${pkgs.busybox}/bin/sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+      }
+
       toggle_wireguard_connection() {
           result="$1"
           connection=""
 
+          # Extract the connection name, removing prefixes
           connection=$(extract_connection_name_from_result "$result")
-          echo "$connection"
+          echo "Toggling connection: $connection"
+
+          # List all active WireGuard connections and bring them down
+          active_connections=$(${pkgs.networkmanager}/bin/nmcli --get-values NAME,TYPE connection show --active \
+            | ${pkgs.busybox}/bin/grep ':wireguard$' \
+            | cut -d: -f1)
+
+          for active_connection in $active_connections; do
+              if [ "$active_connection" != "$connection" ]; then
+                  echo "Bringing down active connection: $active_connection"
+                  ${pkgs.networkmanager}/bin/nmcli connection down "$active_connection"
+              fi
+          done
+
+          # Toggle the selected connection
           case "$result" in
-              $ACTIVE_PREFIX*)
-                  echo nmcli connection down "$connection"
-                  nmcli connection down "$connection"
+              "$ACTIVE_PREFIX"*)
+                  ${pkgs.networkmanager}/bin/nmcli connection down "$connection"
                   ;;
               *)
-                  echo nmcli connection up "$connection"
-                  nmcli connection up "$connection"
+                  ${pkgs.networkmanager}/bin/nmcli connection up "$connection"
                   ;;
           esac
       }
 
-      # Take a line as displayed by `list_wireguard_connections()` as argument and
-      # remove `ACTIVE_PREFIX` or `INACTIVE_PREFIX` to only display the
-      # connection name.
-      extract_connection_name_from_result() {
-          result="$1"
-
-          # Remove ACTIVE_PREFIX and INACTIVE_PREFIX
-          result="$result#$ACTIVE_PREFIX}"
-          result="$result#$INACTIVE_PREFIX}"
-
-          # Trim leading whitespace
-          echo "$result#'$result%%[![:space:]]*'"
-      }
-
-      # Execute the `rofi` command. The first argument of the function is
-      # used as lines to select from.
-      start_rofi() {
-          content="$1"
-          echo "$content" | rofi -dmenu
-      }
-
-      # List the wireguard connections and let the user toggle one using rofi.
       main() {
           connections=""
           result=""
 
           connections=$(list_wireguard_connections)
-          result=$(start_rofi "$connections")
+          result=$(echo "$connections" | ${pkgs.rofi-wayland}/bin/rofi -dmenu)
 
-          toggle_wireguard_connection "$result"
+          if [ -n "$result" ]; then
+              toggle_wireguard_connection "$result"
+          else
+              echo "No connection selected."
+          fi
       }
 
       main
-
 
     '';
   };
 in {
   home.packages = [
-    script
+    wireguard-menu
   ];
 }

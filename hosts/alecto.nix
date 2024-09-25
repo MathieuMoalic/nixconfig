@@ -13,12 +13,6 @@
   ];
   home-manager.users.mat.imports = [../home/alecto.nix];
 
-  environment.systemPackages = with pkgs; [
-    inputs.amumax.packages.${pkgs.system}.git
-    inputs.mx3expend.packages.${pkgs.system}.mx3expend
-    nvtopPackages.nvidia
-  ];
-
   security.sudo.extraRules = [
     {
       groups = ["users"];
@@ -52,18 +46,7 @@
   };
 
   hardware = {
-    nvidia-container-toolkit.enable = true;
     graphics.enable = true;
-    nvidia = {
-      modesetting.enable = true;
-      powerManagement = {
-        enable = true;
-        finegrained = false;
-      };
-      open = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
 
@@ -80,9 +63,6 @@
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
       kernelModules = [];
     };
-    kernelParams = [
-      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-    ];
     kernelModules = ["kvm-amd" "debug"];
     extraModulePackages = [];
   };
@@ -96,7 +76,12 @@
     useDHCP = lib.mkDefault true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   fileSystems = {
     "/" = {
@@ -109,12 +94,6 @@
     };
   };
 
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16 * 1024;
-    }
-  ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "23.11";
 }

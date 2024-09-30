@@ -24,11 +24,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1727263436,
-        "narHash": "sha256-5Y9NNdz156q0g+ltL11ovr9RZ9U4HfMKQf7ys4lsmZI=",
+        "lastModified": 1727701246,
+        "narHash": "sha256-hrAigQ3VwreBqLh76CM//p6MiGw4obaKpC364ilQKQQ=",
         "owner": "MathieuMoalic",
         "repo": "amumax",
-        "rev": "b1270145bcbe69e434c82de8ee50d4c336d4c12b",
+        "rev": "f8c87076ffc69ac3547bfac127fe4eccf8e673ee",
         "type": "github"
       },
       "original": {

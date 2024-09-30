@@ -699,6 +699,21 @@
 
       manager.keymap = [
         {
+          on = ["<C-t>"];
+          run = "escape --search";
+          desc = "Cancel the ongoing search";
+        }
+        {
+          on = ["T"];
+          run = "search rg";
+          desc = "Search files by content using ripgrep";
+        }
+        {
+          on = ["t"];
+          run = "search fd";
+          desc = "Search files by name using fd";
+        }
+        {
           on = ["C"];
           run = "plugin ouch --args=zip";
           desc = "Compress with ouch";

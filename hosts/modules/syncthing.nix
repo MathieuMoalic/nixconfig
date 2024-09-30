@@ -9,7 +9,7 @@
       guiAddress = "0.0.0.0:8384";
       overrideDevices = true; # overrides any devices added or deleted through the WebUI
       overrideFolders = true; # overrides any folders added or deleted through the WebUI
-      openDefaultPorts = true;
+      openDefaultPorts = true; # 22000, 21027
       relay = {
         enable = true;
       };
@@ -34,26 +34,8 @@
         };
         folders = {
           docs = {
-            path = "/home/mat/sync/docs";
+            path = "/home/mat/docs";
             id = "docs";
-            versioning = {
-              type = "simple";
-              params.keep = "10";
-            };
-            devices = ["homeserver" "xps" "nyx" "oneplus"];
-          };
-          classes = {
-            path = "/home/mat/sync/classes";
-            id = "classes";
-            versioning = {
-              type = "simple";
-              params.keep = "10";
-            };
-            devices = ["homeserver" "xps" "nyx"];
-          };
-          phone_camera = {
-            path = "/home/mat/sync/phone_camera";
-            id = "phone_camera";
             versioning = {
               type = "simple";
               params.keep = "10";

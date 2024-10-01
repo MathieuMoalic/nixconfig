@@ -3,9 +3,6 @@
   osConfig,
   ...
 }: {
-  home.packages = with pkgs; [
-    hypridle
-  ];
   services.hypridle = {
     enable = true;
     settings = {

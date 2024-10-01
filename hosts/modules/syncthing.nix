@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   services = {
     syncthing = {
       enable = true;
@@ -15,22 +15,10 @@
       };
       settings = {
         devices = {
-          homeserver = {
-            autoAcceptFolders = true;
-            id = "42JBQ4Q-PSWG4JG-LWRF3BI-IOTQNHS-2RPSOGA-YTOFTRY-AYFUJ5X-7QTI5Q5";
-          };
-          oneplus = {
-            id = "PXOELPW-AQXMEXD-7DCHW6O-ID54IYY-T2U35KM-YPU657P-6IBPJDY-ENFH3AP";
-            autoAcceptFolders = true;
-          };
-          xps = {
-            id = "GCEPPMO-ZGT2AK3-3Y7C55R-YVZMZ4U-WJMGPL7-RDPQOEI-L3TMRVN-W2E6DAX";
-            autoAcceptFolders = true;
-          };
-          nyx = {
-            id = "Y5XKMHT-3T7OOE6-EESSVJ3-ZDRENEA-64HKJ64-MP34CAO-CKDHAVG-EKLUKQI";
-            autoAcceptFolders = true;
-          };
+          homeserver.id = "42JBQ4Q-PSWG4JG-LWRF3BI-IOTQNHS-2RPSOGA-YTOFTRY-AYFUJ5X-7QTI5Q5";
+          oneplus.id = "PXOELPW-AQXMEXD-7DCHW6O-ID54IYY-T2U35KM-YPU657P-6IBPJDY-ENFH3AP";
+          xps.id = "GCEPPMO-ZGT2AK3-3Y7C55R-YVZMZ4U-WJMGPL7-RDPQOEI-L3TMRVN-W2E6DAX";
+          nyx.id = "Y5XKMHT-3T7OOE6-EESSVJ3-ZDRENEA-64HKJ64-MP34CAO-CKDHAVG-EKLUKQI";
         };
         folders = {
           docs = {

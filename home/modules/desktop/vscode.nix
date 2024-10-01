@@ -1,4 +1,7 @@
 {...}: {
+  home.packages = with pkgs; [
+    vscode
+  ];
   xdg.configFile."Code/User/keybindings.json".text = ''
     [
         {

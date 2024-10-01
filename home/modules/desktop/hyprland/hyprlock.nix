@@ -1,7 +1,4 @@
 {...}: {
-  home.packages = with pkgs; [
-    hyprlock
-  ];
   # PAM must be configured to enable hyprlock to perform authentication
   programs.hyprlock = {
     enable = true;

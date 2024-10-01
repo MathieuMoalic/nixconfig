@@ -3,63 +3,83 @@
     vscode
   ];
   xdg.configFile."Code/User/keybindings.json".text = ''
-    [
-        {
-            "key": "ctrl+up",
-            "command": "editor.action.insertLineBefore",
-            "when": "editorTextFocus && !editorReadonly"
-        },
-        {
-            "key": "ctrl+down",
-            "command": "editor.action.insertLineAfter",
-            "when": "editorTextFocus && !editorReadonly"
-        },
-        {
-            "key": "shift+alt+down",
-            "command": "editor.action.copyLinesDownAction",
-            "when": "editorTextFocus && !editorReadonly"
-        },
-        {
-            "key": "ctrl+shift+alt+down",
-            "command": "-editor.action.copyLinesDownAction",
-            "when": "editorTextFocus && !editorReadonly"
-        },
-        {
-            "key": "shift+alt+up",
-            "command": "editor.action.copyLinesUpAction",
-            "when": "editorTextFocus && !editorReadonly"
-        },
-        {
-            "key": "ctrl+shift+alt+up",
-            "command": "-editor.action.copyLinesUpAction",
-            "when": "editorTextFocus && !editorReadonly"
-        },
-        {
-            "command": "runCommands",
-            "key": "ctrl+s", // whatever keybinding
-            "when": "editorLangId == python",
-            "args": {
-                "commands": [
-                    "ruff.executeOrganizeImports",
-                    "ruff.executeFormat",
-                    "workbench.action.files.save",
-                ]
-            }
-        },
-        {
-            "command": "runCommands",
-            "key": "ctrl+shift+s", // whatever keybinding
-            "when": "editorLangId == python",
-            "args": {
-                "commands": [
-                    "ruff.executeAutofix",
-                    "ruff.executeOrganizeImports",
-                    "ruff.executeFormat",
-                    "workbench.action.files.save",
-                ]
-            }
+        [
+      {
+        "key": "ctrl+d",
+        "command": "references-view.findReferences",
+        "when": "editorHasReferenceProvider"
+      },
+      {
+        "key": "ctrl+up",
+        "command": "editor.action.insertLineBefore",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+down",
+        "command": "editor.action.insertLineAfter",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "shift+alt+down",
+        "command": "editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+shift+alt+down",
+        "command": "-editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "shift+alt+up",
+        "command": "editor.action.copyLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "key": "ctrl+shift+alt+up",
+        "command": "-editor.action.copyLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "command": "runCommands",
+        "key": "ctrl+s", // whatever keybinding
+        "when": "editorLangId == python",
+        "args": {
+          "commands": [
+            "ruff.executeOrganizeImports",
+            "ruff.executeFormat",
+            "workbench.action.files.save"
+          ]
         }
-    }
+      },
+      {
+        "command": "runCommands",
+        "key": "ctrl+shift+s", // whatever keybinding
+        "when": "editorLangId == python",
+        "args": {
+          "commands": [
+            "ruff.executeAutofix",
+            "ruff.executeOrganizeImports",
+            "ruff.executeFormat",
+            "workbench.action.files.save"
+          ]
+        }
+      },
+      {
+        "key": "shift+alt+f12",
+        "command": "-references-view.findReferences",
+        "when": "editorHasReferenceProvider"
+      },
+      {
+        "key": "ctrl+d",
+        "command": "-notebook.addFindMatchToSelection",
+        "when": "config.notebook.multiSelect.enabled && notebookCellEditorFocused && activeEditor == 'workbench.editor.notebook'"
+      },
+      {
+        "key": "ctrl+d",
+        "command": "-editor.action.addSelectionToNextFindMatch",
+        "when": "editorFocus"
+      }
+    ]
   '';
   xdg.configFile."Code/User/settings.json".text = ''
     {

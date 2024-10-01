@@ -6,6 +6,9 @@
   pkgs,
   ...
 }: {
+  home.packages = with pkgs; [
+    inputs.hyprsome.packages.${pkgs.system}.default
+  ];
   wayland.windowManager.hyprland = {
     systemd.variables = ["--all"];
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;

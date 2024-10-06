@@ -1,12 +1,11 @@
 {
   inputs,
-  config,
   osConfig,
   lib,
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
+  home.packages = [
     inputs.hyprsome.packages.${pkgs.system}.default
   ];
   wayland.windowManager.hyprland = {
@@ -222,10 +221,11 @@
       binde=$mod, F3, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 +10%
       bind=$mod, Return, exec, ${pkgs.foot}/bin/foot
       bind=$mod, J, exec, ${pkgs.rofi-wayland}/bin/rofi -modi drun,run -show drun
-      bind=$mod, F11, exec,  ${pkgs.grimblast}/bin/grimblast --notify copy area
+      bind=$mod, F11, exec,  ${pkgs.flameshot}/bin/flameshot gui
       bind=$mod, N, exec, wireguard-menu
       bind=$mod, M, exec, wifi-menu
-      bind=$mod, T, exec, quicktranslate
+      bind=$mod, T, exec, ${inputs.quicktranslate.packages.${pkgs.system}.quicktranslate}
+
       bind=$mod, L, exec, lock
       bind=$mod, P, exec, power-menu
 

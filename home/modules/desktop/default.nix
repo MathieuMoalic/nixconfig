@@ -21,14 +21,13 @@
     rofi-bluetooth # bluetooth manager
     udiskie # automount usb
     pulseaudio # audio
-    grimblast # screenshots
+    (flameshot.override {enableWlrSupport = true;}) # screenshots
     hyprpaper # wallpaper
     brillo # brightness
     libnotify # notifications
     wl-clipboard # wayland clipboard
     ripdrag # ripgrep + drag and drop
 
-    inputs.quicktranslate.packages.${pkgs.system}.quicktranslate
     libreoffice # document editor
     teams-for-linux # chat
     mpv # video player

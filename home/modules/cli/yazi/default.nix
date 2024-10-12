@@ -24,7 +24,7 @@
         linemode = "size";
         show_hidden = false;
         show_symlink = true;
-        sort_by = "modified";
+        sort_by = "mtime";
         sort_dir-first = false;
         sort_reverse = true;
         sort_sensitive = true;

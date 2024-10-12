@@ -7,14 +7,20 @@
       add_newline = true;
 
       format = ''
-        [ ](fg:#${base00} bg:#${orange})$username[ ](fg:#${orange} bg:#${base0E})$hostname[](fg:#${base0E} bg:#${base0B})$directory[](fg:#${base0B} bg:#${blue})$nix_shell[](fg:#${blue} bg:#${base0A})''${custom.microconda}[](fg:#${base0A} bg:#${base0E})''${custom.direnv}[](fg:#${base0E} bg:#${base00}ff)$git_branch$git_status$fill$time
+        [ ](fg:#${base00} bg:#${orange})$username[ ](fg:#${orange} bg:#${base0E})$hostname[](fg:#${base0E} bg:#${base0B})$directory[](fg:#${base0B} bg:#${blue})$nix_shell[](fg:#${blue} bg:#${base0A})''${custom.microconda}[](fg:#${base0A} bg:#${base0E})''${custom.direnv}[](fg:#${base0E} bg:#${orange})''${custom.nix_ns}[ ](fg:#${orange} bg:#${base00})$git_branch$git_status$fill$time
         $character'';
 
       custom = {
+        nix_ns = {
+          when = "env | grep -E '^NS_PACKAGES='";
+          command = "echo $NS_PACKAGES";
+          format = "[ 󱄅 $output ]($style)";
+          style = "bold fg:#${base00} bg:#${orange}";
+        };
         direnv = {
+          when = "env | grep -E '^DIRENV_FILE='";
           format = "[  ]($style)";
           style = "fg:#${base00} bg:#${base0E}";
-          when = "env | grep -E '^DIRENV_FILE='";
         };
         microconda = {
           when = ''test -n "$CONDA_PREFIX"'';

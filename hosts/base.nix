@@ -12,7 +12,10 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
   ];
-
+  services.udisks2 = {
+    enable = true;
+    mountOnMedia = true;
+  };
   sops = {
     defaultSopsFile = ../secrets.yaml;
     age.keyFile = "/home/mat/.ssh/age_key";

@@ -14,7 +14,6 @@
     yazi.url = "github:sxyazi/yazi";
     ags.url = "github:Aylur/ags";
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
-    mx3expend.url = "github:MathieuMoalic/mx3expend";
     amumax.url = "github:MathieuMoalic/amumax";
     sops-nix.url = "github:Mic92/sops-nix";
   };

@@ -866,11 +866,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1728644358,
-        "narHash": "sha256-6pKVB7uvB6g6ehmd/o3jxwb4jkJwXhqB6GAEQ0+DTsc=",
+        "lastModified": 1728889458,
+        "narHash": "sha256-Y9Kk/IFKstB06ZfrgwiKwZj3VqxM3IjkKo17m1hsUlQ=",
         "owner": "MathieuMoalic",
         "repo": "quicktranslate",
-        "rev": "db3957e41e1d13dd53ae4eaded2b9883ac1982d4",
+        "rev": "4b5216a761839f88e2714cc9ba81bee475ca965e",
         "type": "github"
       },
       "original": {

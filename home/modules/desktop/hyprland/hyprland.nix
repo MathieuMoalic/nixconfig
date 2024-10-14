@@ -28,7 +28,6 @@
       exec-once=${pkgs.hyprpaper}/bin/hyprpaper
       exec-once=${pkgs.hypridle}/bin/hypridle
       exec-once=${pkgs.dunst}/bin/dunst
-      exec-once=${pkgs.udiskie}/bin/udiskie
 
       general {
         border_size = 2 # size of the border around windows
@@ -221,7 +220,7 @@
       binde=$mod, F3, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-volume 0 +10%
       bind=$mod, Return, exec, ${pkgs.foot}/bin/foot
       bind=$mod, J, exec, ${pkgs.rofi-wayland}/bin/rofi -modi drun,run -show drun
-      bind=$mod, F11, exec,  ${pkgs.flameshot}/bin/flameshot gui
+      bind=$mod, F11, exec, sc
       bind=$mod, N, exec, wireguard-menu
       bind=$mod, M, exec, wifi-menu
       bind=$mod, T, exec, ${inputs.quicktranslate.packages.${pkgs.system}.quicktranslate}

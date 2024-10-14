@@ -19,7 +19,6 @@
   ];
   home.packages = with pkgs; [
     rofi-bluetooth # bluetooth manager
-    udiskie # automount usb
     pulseaudio # audio
     (flameshot.override {enableWlrSupport = true;}) # screenshots
     hyprpaper # wallpaper

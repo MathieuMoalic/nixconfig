@@ -1,6 +1,7 @@
 {pkgs, ...}: let
   script = pkgs.writeShellApplication {
     name = "dec";
+    runtimeInputs = with pkgs; [openssl gnutar];
     text = ''
       if [ -z "$1" ]; then
         echo "No file specified"
@@ -13,7 +14,7 @@
       fi
 
       output=$1_$RANDOM
-      ${pkgs.openssl}/bin/openssl enc -aes-256-cbc -d -salt -pbkdf2 -iter 100000 -in "$1" -out "$output"
+      openssl enc -aes-256-cbc -d -salt -pbkdf2 -iter 100000 -in "$1" -out "$output"
 
       # Create a directory with the same name as the input file (without .encrypted)
       output_dir="''${1%.encrypted}"
@@ -21,7 +22,7 @@
       mkdir -p "$output_dir"
 
       # Extract the tarball contents into the newly created directory
-      ${pkgs.gnutar}/bin/tar -xzf "$output" -C "$output_dir"
+      tar -xzf "$output" -C "$output_dir"
       rm "$output"
       echo "Decrypted $1 to $output_dir"
     '';

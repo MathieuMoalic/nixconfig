@@ -1,15 +1,16 @@
 {pkgs, ...}: let
   wireguard-menu = pkgs.writeShellApplication {
     name = "wireguard-menu";
+    runtimeInputs = with pkgs; [networkmanager busybox rofi-wayland];
     text = ''
       set +o pipefail
       ACTIVE_PREFIX="  ✓ "
       INACTIVE_PREFIX="  ✗ "
 
       list_wireguard_connections() {
-          ${pkgs.networkmanager}/bin/nmcli --get-values ACTIVE,NAME,TYPE connection show \
-              | ${pkgs.busybox}/bin/grep ':wireguard$' \
-              | ${pkgs.busybox}/bin/sed \
+          nmcli --get-values ACTIVE,NAME,TYPE connection show \
+              | grep ':wireguard$' \
+              | sed \
                   -e "s/^no:/$INACTIVE_PREFIX/" \
                   -e "s/^yes:/$ACTIVE_PREFIX/" \
                   -e 's/:wireguard$//'
@@ -22,7 +23,7 @@
           connection=''${result#"$ACTIVE_PREFIX"}
           connection=''${connection#"$INACTIVE_PREFIX"}
           # Trim leading and trailing whitespace
-          echo "$connection" | ${pkgs.busybox}/bin/sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+          echo "$connection" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
       }
 
       toggle_wireguard_connection() {
@@ -34,24 +35,24 @@
           echo "Toggling connection: $connection"
 
           # List all active WireGuard connections and bring them down
-          active_connections=$(${pkgs.networkmanager}/bin/nmcli --get-values NAME,TYPE connection show --active \
-            | ${pkgs.busybox}/bin/grep ':wireguard$' \
+          active_connections=$(nmcli --get-values NAME,TYPE connection show --active \
+            | grep ':wireguard$' \
             | cut -d: -f1)
 
           for active_connection in $active_connections; do
               if [ "$active_connection" != "$connection" ]; then
                   echo "Bringing down active connection: $active_connection"
-                  ${pkgs.networkmanager}/bin/nmcli connection down "$active_connection"
+                  nmcli connection down "$active_connection"
               fi
           done
 
           # Toggle the selected connection
           case "$result" in
               "$ACTIVE_PREFIX"*)
-                  ${pkgs.networkmanager}/bin/nmcli connection down "$connection"
+                  nmcli connection down "$connection"
                   ;;
               *)
-                  ${pkgs.networkmanager}/bin/nmcli connection up "$connection"
+                  nmcli connection up "$connection"
                   ;;
           esac
       }
@@ -61,7 +62,7 @@
           result=""
 
           connections=$(list_wireguard_connections)
-          result=$(echo "$connections" | ${pkgs.rofi-wayland}/bin/rofi -dmenu)
+          result=$(echo "$connections" | rofi -dmenu)
 
           if [ -n "$result" ]; then
               toggle_wireguard_connection "$result"

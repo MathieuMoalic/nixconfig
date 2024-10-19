@@ -61,7 +61,7 @@
           openFile = "o";
           scrollUpMain = "<pgup>";
           scrollDownMain = "<pgdown>";
-          executeCustomCommand = ":";
+          executeShellCommand = ":";
           createRebaseOptionsMenu = "m";
           pushFiles = "P";
           pullFiles = "p";

@@ -14,7 +14,7 @@
     ./rclone.nix
     ./ssh.nix
     ./starship.nix
-    ./zellij.nix
+    ./zellij
     ./zsh.nix
   ];
   home.packages = with pkgs; [

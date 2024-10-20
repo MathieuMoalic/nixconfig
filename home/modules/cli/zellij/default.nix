@@ -1,9 +1,39 @@
-{...}: {
+{
+  config,
+  inputs,
+  ...
+}:
+with config.colorScheme.palette; {
   home.shellAliases = {
     tl = "zellij ls";
     ta = "zellij a -c";
-    tk = "zellij k";
+    tk = "zellij d";
+    tka = "zellij da -y";
   };
+  home.file.".config/zellij/plugins/monocle.wasm".source = ./plugins/monocle.wasm;
+  home.file.".config/zellij/plugins/zjstatus.wasm".source = ./plugins/zjstatus.wasm;
+  home.file.".config/zellij/layouts/default.kdl".text = ''
+    layout {
+        default_tab_template{
+            pane split_direction="vertical" {
+                pane
+            }
+            pane size=1 borderless=true {
+                plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+                    format_left  "{tabs}"
+                    format_right ""
+                    format_space "#[bg=#${base00}ff]"
+                    hide_frame_for_single_pane "false"
+                    mode_normal  ""
+                    tab_normal "#[fg=#${base00},bg=#${base07}]#[fg=#${base00},bold,bg=#${base07}] {index} {name} #[fg=#${base07},bg=#${base00}ff]"
+                    tab_active "#[fg=#${base00},bg=#${base01}]#[fg=#${base00},bold,bg=#${base01}] {index} {name} #[fg=#${base02},bg=#${base00}ff]"
+                }
+            }
+        }
+        tab name=" "
+    }
+  '';
+
   programs.zellij = {
     enable = true;
     settings = {
@@ -13,7 +43,6 @@
       default_shell = "zsh";
       pane_frames = true;
       auto_layout = true;
-      default_layout = "compact";
       default_mode = "normal";
       mouse_mode = true;
       scroll_buffer_size = 10000;
@@ -32,7 +61,13 @@
       pane_viewport_serialization = true;
       scrollback_lines_to_serialize = 500;
       keybinds = {
-        "normal clear_defaults=true" = {
+        "normal clear-defaults=true" = {
+          "bind \"Alt F\"" = {
+            "LaunchPlugin \"file:~/.config/zellij/plugins/monocle.wasm\"" = {
+              in_place = true;
+              kiosk = true;
+            };
+          };
           "bind \"Alt i\"" = {Detach = {};};
           "bind \"Alt p\"" = {ToggleFloatingPanes = {};};
           "bind \"Alt P\"" = {TogglePaneEmbedOrFloating = {};};
@@ -55,7 +90,7 @@
           "bind \"Alt Down\"" = {MovePane = "Down";};
           "bind \"Alt Up\"" = {MovePane = "Up";};
           "bind \"Alt Right\"" = {MovePane = "Right";};
-          "bind \"Alt n\"" = {NewTab = {};};
+          "bind \"Alt n\"" = {NewTab = {name = " ";};};
           "bind \"Alt k\"" = {CloseTab = {};};
           "bind \"Alt 1\"" = {GoToTab = 1;};
           "bind \"Alt 2\"" = {GoToTab = 2;};
@@ -165,17 +200,17 @@
       };
       themes = {
         mydracula = {
-          fg = [248 248 242];
-          bg = [68 71 90];
-          black = [68 70 91];
-          red = [255 85 85];
-          green = [80 250 123];
-          yellow = [241 250 140];
-          blue = [98 114 164];
-          magenta = [255 121 198];
-          cyan = [139 233 253];
-          white = [255 255 255];
-          orange = [255 184 108];
+          fg = "#${base05}";
+          bg = "#${base00}";
+          black = "#${base00}";
+          red = "#${base08}";
+          green = "#${base0B}";
+          yellow = "#${base0A}";
+          blue = "#${base03}";
+          magenta = "#${base0E}";
+          cyan = "#${base0C}";
+          white = "#${base07}";
+          orange = "#${orange}";
         };
       };
     };

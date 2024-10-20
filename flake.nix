@@ -36,6 +36,7 @@
       zeus = makeNixosSystem ./hosts/zeus.nix;
       iso = makeNixosSystem ./hosts/iso.nix;
       alecto = makeNixosSystem ./hosts/alecto.nix;
+      zagreus = makeNixosSystem ./hosts/zagreus.nix;
     };
   };
 }

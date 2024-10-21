@@ -6,7 +6,7 @@
   imports = [
     ./base.nix
     ./modules/desktop.nix
-    ./modules/sddm.nix
+    ./modules/sddm/sddm.nix
     ./modules/syncthing.nix
     ./modules/samba.nix
     ./modules/sshd.nix

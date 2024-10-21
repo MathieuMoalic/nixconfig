@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./base.nix
-    ./modules/sddm.nix
+    ./modules/sddm/sddm.nix
     ./modules/desktop.nix
   ];
   programs.steam.enable = true;

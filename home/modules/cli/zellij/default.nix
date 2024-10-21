@@ -26,7 +26,7 @@ with config.colorScheme.palette; {
                     hide_frame_for_single_pane "false"
                     mode_normal  ""
                     tab_normal "#[fg=#${base00},bg=#${base07}]#[fg=#${base00},bold,bg=#${base07}] {index} {name} #[fg=#${base07},bg=#${base00}ff]"
-                    tab_active "#[fg=#${base00},bg=#${base01}]#[fg=#${base00},bold,bg=#${base01}] {index} {name} #[fg=#${base02},bg=#${base00}ff]"
+                    tab_active "#[fg=#${base00},bg=#${base01}]#[fg=#${base00},bold,bg=#${base01}] {index} {name} #[fg=#${base01},bg=#${base00}ff]"
                 }
             }
         }

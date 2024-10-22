@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./base.nix
-    ./modules/sddm.nix
+    ./modules/sddm/sddm.nix
     ./modules/sshd.nix
     ./modules/wireguard.nix
   ];

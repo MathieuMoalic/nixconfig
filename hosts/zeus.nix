@@ -7,7 +7,7 @@
 }: {
   imports = [
     ./base.nix
-    ./modules/sddm.nix
+    ./modules/sddm/sddm.nix
     ./modules/sshd.nix
   ];
   home-manager.users.mat.imports = [../home/zeus.nix];

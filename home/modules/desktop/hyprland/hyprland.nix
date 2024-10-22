@@ -22,6 +22,9 @@
         ++ (lib.optionals (osConfig.networking.hostName == "xps") [
           ",highres,auto,1"
           "HDMI-1,preferred,auto,auto" # potential external display
+        ])
+        ++ (lib.optionals (osConfig.networking.hostName == "zagreus") [
+          "DP-2, 2560x1440@240.00,auto,1"
         ]);
     };
     extraConfig = ''

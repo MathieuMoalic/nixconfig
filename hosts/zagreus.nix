@@ -9,6 +9,7 @@
     ./modules/sddm.nix
     ./modules/desktop.nix
   ];
+  hardware.wooting.enable = true;
   programs.steam.enable = true;
   home-manager.users.mat.imports = [../home/zagreus.nix];
   hardware = {

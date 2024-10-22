@@ -17,15 +17,21 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # rtkit is optional but recommended
+  # make pipewire realtime-capable
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
+    # pulse.enable = true;
     #jack.enable = true;
+    lowLatency = {
+      # enable this module
+      enable = true;
+      # defaults (no need to be set unless modified)
+      quantum = 64;
+      rate = 48000;
+    };
   };
   # security.polkit.enable = true;
   systemd = {

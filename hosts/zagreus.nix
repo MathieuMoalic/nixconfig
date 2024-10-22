@@ -9,7 +9,31 @@
     ./modules/sddm/sddm.nix
     ./modules/desktop.nix
   ];
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    platformOptimizations.enable = true;
+  };
+  programs.gamemode = {
+    enable = true;
+    enableRenice = true;
+    settings = {
+      general = {
+        renice = 10;
+      };
+
+      # Warning: GPU optimisations have the potential to damage hardware
+      gpu = {
+        apply_gpu_optimisations = "accept-responsibility";
+        gpu_device = 0;
+        amd_performance_level = "high";
+      };
+
+      custom = {
+        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+        end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+      };
+    };
+  };
   home-manager.users.mat.imports = [../home/zagreus.nix];
   hardware = {
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -26,6 +50,7 @@
       kernelModules = [];
     };
     kernelModules = ["kvm-amd" "debug"];
+    kernelPackages = pkgs.linux_xanmod_stable;
     extraModulePackages = [];
   };
 

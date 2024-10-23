@@ -50,7 +50,6 @@
       kernelModules = [];
     };
     kernelModules = ["kvm-amd" "debug"];
-    # kernelPackages = pkgs.linux_xanmod_stable;
     kernelPackages = pkgs.linuxPackages_xanmod_stable;
     extraModulePackages = [];
   };

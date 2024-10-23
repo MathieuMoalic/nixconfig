@@ -25,13 +25,6 @@
     alsa.support32Bit = true;
     # pulse.enable = true;
     #jack.enable = true;
-    lowLatency = {
-      # enable this module
-      enable = true;
-      # defaults (no need to be set unless modified)
-      quantum = 64;
-      rate = 48000;
-    };
   };
   # security.polkit.enable = true;
   systemd = {

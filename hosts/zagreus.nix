@@ -12,7 +12,6 @@
   hardware.wooting.enable = true;
   programs.steam = {
     enable = true;
-    platformOptimizations.enable = true;
   };
   programs.gamemode = {
     enable = true;
@@ -51,7 +50,8 @@
       kernelModules = [];
     };
     kernelModules = ["kvm-amd" "debug"];
-    kernelPackages = pkgs.linux_xanmod_stable;
+    # kernelPackages = pkgs.linux_xanmod_stable;
+    kernelPackages = pkgs.linuxPackages_xanmod_stable;
     extraModulePackages = [];
   };
 

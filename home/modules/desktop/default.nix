@@ -7,9 +7,7 @@
     ./librewolf.nix
     ./rofi.nix
     ./theme.nix
-    ./vscode.nix
     ./waybar.nix
-    ./xdg-desktop-entries.nix
     ./zathura.nix
     ./mimeapps.nix
   ];
@@ -22,6 +20,7 @@
     libnotify # notifications
     wl-clipboard # wayland clipboard
     ripdrag # ripgrep + drag and drop
+    vscode # code editor
 
     libreoffice # document editor
     teams-for-linux # chat

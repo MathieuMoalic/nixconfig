@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   programs.ssh = {
     enable = true;
     serverAliveCountMax = 120;

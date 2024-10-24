@@ -1,13 +1,27 @@
 {
-  inputs,
   config,
   pkgs,
   ...
-}: {
+}: let
+  yaziPicker = pkgs.writeShellApplication {
+    name = "yazi-picker";
+    runtimeInputs = with pkgs; [yazi zellij];
+    text = ''
+      paths=$(yazi --chooser-file=/dev/stdout | while read -r; do printf "%q " "$REPLY"; done)
+      if [[ -n "$paths" ]]; then
+              zellij action toggle-floating-panes
+              zellij action write 27 # send <Escape> key
+              zellij action write-chars ":open $paths"
+              zellij action write 13 # send <Enter> key
+              zellij action toggle-floating-panes
+      fi
+      zellij action close-pane
+    '';
+  };
+in {
   programs.helix = {
     defaultEditor = true;
     enable = true;
-    package = inputs.helix.packages.${pkgs.system}.helix;
     settings = {
       theme = "mytheme";
       editor = {
@@ -112,7 +126,7 @@
         h = "select_regex";
         C-f = "file_picker";
         C-q = ["insert_mode" ":q!"];
-        C-space = ["insert_mode" ":q!"];
+        # C-space = ["insert_mode" ":q!"];
         C-s = ":w!";
         C-O = ":config-reload";
         C-o = ["insert_mode" ":o"];
@@ -126,7 +140,7 @@
         D = "goto_next_buffer";
         A = "goto_previous_buffer";
         C-w = ":buffer-close";
-        C-g = ":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh";
+        C-g = ":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- ${yaziPicker}/bin/yazi-picker";
         # v	Enter select (extend) mode	select_mode
         # g	Enter goto mode	N/A
         # m	Enter match mode	N/A
@@ -250,235 +264,157 @@
         k = "delete_selection";
       };
     };
+    themes = let
+      c = config.colorScheme.palette;
+    in {
+      mytheme = let
+        foreground = "#${c.base05}";
+        background = "#${c.base00}";
+        cursorline = "#${c.hx-cursor-line}";
+        darker = "#${c.hx-darker}";
+        black = "#${c.hx-black}";
+        grey = "#${c.hx-grey}";
+        comment = "#${c.base03}";
+        current_line = "#${c.hx-current-line}";
+        selection = "#${c.hx-selection}";
+        red = "#${c.base08}";
+        orange = "#${c.orange}";
+        yellow = "#${c.base0A}";
+        green = "#${c.base0B}";
+        cyan = "#${c.base0C}";
+        purple = "#${c.base0D}";
+        pink = "#${c.base0E}";
+      in {
+        "annotation" = {fg = foreground;};
+        "attribute" = {
+          fg = green;
+          modifiers = ["italic"];
+        };
+        "comment" = {fg = comment;};
+        "constant" = {fg = purple;};
+        "constant.numeric" = {fg = purple;};
+        "constant.character.escape" = {fg = pink;};
+        "constructor" = {fg = purple;};
+        "function" = {fg = green;};
+        "keyword" = {fg = pink;};
+        "keyword.storage.type" = {
+          fg = cyan;
+          modifiers = ["italic"];
+        };
+        "label" = {fg = cyan;};
+        "string" = {fg = yellow;};
+        "string.special" = {fg = orange;};
+        "type" = {
+          fg = cyan;
+          modifiers = ["italic"];
+        };
+        "variable.builtin" = {
+          fg = purple;
+          modifiers = ["italic"];
+        };
+        "variable.parameter" = {
+          fg = orange;
+          modifiers = ["italic"];
+        };
+        "diff.plus" = {fg = green;};
+        "diff.minus" = {fg = red;};
+        "ui.background" = {
+          fg = foreground;
+          bg = background;
+        };
+        "ui.cursor.match" = {
+          fg = foreground;
+          bg = grey;
+        };
+        "ui.cursor" = {
+          fg = background;
+          bg = purple;
+          modifiers = ["dim"];
+        };
+        "ui.cursorline.primary" = {bg = cursorline;};
+        "ui.statusline" = {
+          fg = foreground;
+          bg = darker;
+        };
+        "ui.menu" = {
+          fg = foreground;
+          bg = current_line;
+        };
+        "ui.selection.primary" = {bg = current_line;};
+        "ui.selection" = {bg = selection;};
+        "diagnostic" = {
+          underline = {
+            color = orange;
+            style = "curl";
+          };
+        };
+        "diagnostic.hint" = {
+          underline = {
+            color = purple;
+            style = "curl";
+          };
+        };
+        "diagnostic.warning" = {
+          underline = {
+            color = yellow;
+            style = "curl";
+          };
+        };
+        "diagnostic.error" = {
+          underline = {
+            color = red;
+            style = "curl";
+          };
+        };
+        "info" = {fg = cyan;};
+        "error" = {fg = red;};
+        "warning" = {fg = yellow;};
+        "hint" = {fg = purple;};
+        "ui.help" = {
+          fg = foreground;
+          bg = black;
+        };
+        "ui.text" = {fg = foreground;};
+        "ui.window" = {fg = foreground;};
+        "ui.virtual.whitespace" = {fg = current_line;};
+      };
+    };
+    languages = {
+      language-server.ruff-lsp = {
+        command = pkgs.ruff-lsp;
+        config = {
+          settings = {
+            run = "onSave";
+          };
+        };
+      };
+
+      language = [
+        {
+          name = "nix";
+          auto-format = true;
+          scope = "source.nix";
+          injection-regex = "nix";
+          file-types = ["nix"];
+          shebangs = [];
+          comment-token = "#";
+          language-servers = ["nixd"];
+          indent = {
+            tab-width = 2;
+            unit = "  ";
+          };
+          formatter = {
+            command = "alejandra";
+            args = ["-q"];
+          };
+        }
+        {
+          name = "python";
+          auto-format = true;
+          language-servers = ["ruff-lsp"];
+          roots = ["pyproject.toml"];
+        }
+      ];
+    };
   };
-  xdg.configFile."helix/languages.toml".text = ''
-    [[language]]
-    name = "nix"
-    auto-format = true
-    scope = "source.nix"
-    injection-regex = "nix"
-    file-types = ["nix"]
-    shebangs = []
-    comment-token = "#"
-    language-servers = [ "nil" ]
-    indent = { tab-width = 2, unit = "  " }
-    formatter = {command = 'alejandra', args = ["-q"]}
-
-    [[language]]
-    name = "python"
-    auto-format = true
-    # formatter = {command = 'ruff', args = ["--quiet", "-"]}
-    language-servers = ["ruff-lsp"]
-    roots = ["pyproject.toml"]
-
-    [language-server.ruff-lsp]
-    command = "ruff-lsp"
-    config = {settings = {run = "onSave"}}
-
-    [[language]]
-    name = "mx3"
-    grammar = "go"
-    scope = "source.mx3"
-    injection-regex = "mx3"
-    file-types = ["mx3"]
-    comment-token = "//"
-    indent = { tab-width = 2, unit = "  " }
-    roots = []
-
-    [[grammar]]
-    name = "mx3"
-    source = { git = "https://github.com/tree-sitter/tree-sitter-go", rev = "64457ea6b73ef5422ed1687178d4545c3e91334a" }
-
-    [[language]]
-    name = "typescript"
-    language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "eslint"] # shouldn't need to override this
-    roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this
-    formatter = { command = "prettier" }
-    auto-format = true
-
-    [[language]]
-    name = "tsx"
-    language-servers = [{ except-features = ["format"], name = "typescript-language-server" }, "eslint"] # shouldn't need to override this
-    roots = ["package-lock.json", "tsconfig.json", ".prettierrc.json"] # shouldn't need to override this!
-    formatter = { command = "prettier" } # works without any args, the modifications end up in the buffer, unsaved
-    auto-format = true
-    [language-server.eslint]
-    args = ["--stdio"] # should come by def with helix
-    command = "vscode-eslint-language-server"
-
-    [language-server.eslint.config]
-    validate = "on" # I assume this enabled eslit to validate the file, which now shows me counts for errors, warnings, etc in helix
-    experimental = { useFlatConfig = false } # not sure why this is here
-    rulesCustomizations = []
-    run = "onType"
-    problems = { shortenToSingleLine = false }
-    nodePath = "" # seems redundant, why do we need to override this, should get detected autom.
-
-    [language-server.eslint.config.codeAction]
-    [language-server.eslint.config.codeAction.disableRuleComment]
-    enable = true
-    location = "separateLine"
-
-    [language-server.eslint.config.codeAction.showDocumentation]
-    enable = true # why?
-
-    [language-server.eslint.config.codeActionOnSave]
-    enable = true
-    mode = "fixAll"
-
-    [language-server.eslint.config.workingDirectory]
-    mode = "location" # do we need to override this?
-
-    [language-server.typescript-language-server.config]
-    documentFormatting = false # use eslint instead, do we have to override this ourselves? I think if eslint LSP is detected and enabled, this should be done automatically for us as generally everyone lets eslint take over linting+prettying, which uses prettier by default if detected by it
-
-
-
-  '';
-  xdg.configFile."helix/themes/mytheme.toml".text = with config.colorScheme.palette; ''
-    "annotation"                      = { fg = "foreground"                                                     }
-    "attribute"                       = { fg = "green",              modifiers = ["italic"]                     }
-    "comment"                         = { fg = "comment"                                                        }
-    "comment.block.documentation"     = { fg = "comment"                                                        }
-    "comment.block"                   = { fg = "comment"                                                        }
-    "comment.line"                    = { fg = "comment"                                                        }
-    "constant"                        = { fg = "purple"                                                         }
-    "constant.numeric"                = { fg = "purple"                                                         }
-    "constant.builtin"                = { fg = "purple"                                                         }
-    "constant.builtin.boolean"        = { fg = "purple"                                                         }
-    "constant.character"              = { fg = "cyan"                                                           }
-    "constant.character.escape"       = { fg = "pink"                                                           }
-    "constant.macro"                  = { fg = "purple"                                                         }
-    "constructor"                     = { fg = "purple"                                                         }
-    "function"                        = { fg = "green"                                                          }
-    "function.builtin"                = { fg = "green"                                                          }
-    "function.method"                 = { fg = "green"                                                          }
-    "function.macro"                  = { fg = "purple"                                                         }
-    "function.call"                   = { fg = "green"                                                          }
-    "keyword"                         = { fg = "pink"                                                           }
-    "keyword.operator"                = { fg = "pink"                                                           }
-    "keyword.function"                = { fg = "pink"                                                           }
-    "keyword.return"                  = { fg = "pink"                                                           }
-    "keyword.control.import"          = { fg = "pink"                                                           }
-    "keyword.directive"               = { fg = "green"                                                          }
-    "keyword.control.repeat"          = { fg = "pink"                                                           }
-    "keyword.control.conditional"     = { fg = "pink"                                                           }
-    "keyword.control.exception"       = { fg = "purple"                                                         }
-    "keyword.storage"                 = { fg = "pink"                                                           }
-    "keyword.storage.type"            = { fg = "cyan",               modifiers = ["italic"]                     }
-    "keyword.storage.modifier"        = { fg = "pink"                                                           }
-    "tag"                             = { fg = "pink"                                                           }
-    "tag.attribute"                   = { fg = "purple"                                                         }
-    "tag.delimiter"                   = { fg = "foreground"                                                     }
-    "label"                           = { fg = "cyan"                                                           }
-    "punctuation"                     = { fg = "foreground"                                                     }
-    "punctuation.bracket"             = { fg = "foreground"                                                     }
-    "punctuation.delimiter"           = { fg = "foreground"                                                     }
-    "punctuation.special"             = { fg = "pink"                                                           }
-    "special"                         = { fg = "pink"                                                           }
-    "string"                          = { fg = "yellow"                                                         }
-    "string.special"                  = { fg = "orange"                                                         }
-    "string.symbol"                   = { fg = "yellow"                                                         }
-    "string.regexp"                   = { fg = "red"                                                            }
-    "type.builtin"                    = { fg = "cyan"                                                           }
-    "type"                            = { fg = "cyan",               modifiers = ["italic"]                     }
-    "type.enum.variant"               = { fg = "foreground",         modifiers = ["italic"]                     }
-    "variable"                        = { fg = "foreground"                                                     }
-    "variable.builtin"                = { fg = "purple",             modifiers = ["italic"]                     }
-    "variable.parameter"              = { fg = "orange",             modifiers = ["italic"]                     }
-    "variable.other"                  = { fg = "foreground"                                                     }
-    "variable.other.member"           = { fg = "foreground"                                                     }
-
-
-    "diff.plus"                       = { fg    = "green"                                                       }
-    "diff.delta"                      = { fg    = "orange"                                                      }
-    "diff.minus"                      = { fg    = "red"                                                         }
-    "ui.background"                   = { fg    = "foreground",      bg = "background"                          }
-    "ui.cursor.match"                 = { fg    = "foreground",      bg = "grey"                                }
-    "ui.cursor"                       = { fg    = "background",      bg = "purple",         modifiers = ["dim"] }
-    "ui.cursor.normal"                = { fg    = "background",      bg = "purple",         modifiers = ["dim"] }
-    "ui.cursor.insert"                = { fg    = "background",      bg = "green",          modifiers = ["dim"] }
-    "ui.cursor.select"                = { fg    = "background",      bg = "cyan",           modifiers = ["dim"] }
-    "ui.cursor.primary.normal"        = { fg    = "background",      bg = "purple"                              }
-    "ui.cursor.primary.insert"        = { fg    = "background",      bg = "green"                               }
-    "ui.cursor.primary.select"        = { fg    = "background",      bg = "cyan"                                }
-    "ui.cursorline.primary"           = {                            bg = "cursorline"                          }
-    "ui.help"                         = { fg    = "foreground",      bg = "black"                               }
-    "ui.debug"                        = { fg    = "red"                                                         }
-    "ui.highlight.frameline"          = { fg    = "background",      bg = "red"                                 }
-    "ui.linenr"                       = { fg    = "comment"                                                     }
-    "ui.linenr.selected"              = { fg    = "foreground"                                                  }
-    "ui.menu"                         = { fg    = "foreground",      bg = "current_line"                        }
-    "ui.menu.selected"                = { fg    = "current_line",    bg = "purple",         modifiers = ["dim"] }
-    "ui.menu.scroll"                  = { fg    = "foreground",      bg = "current_line"                        }
-    "ui.popup"                        = { fg    = "foreground",      bg = "black"                               }
-    "ui.selection.primary"            = {                            bg = "current_line"                        }
-    "ui.selection"                    = {                            bg = "selection"                           }
-    "ui.statusline"                   = { fg    = "foreground",      bg = "darker"                              }
-    "ui.statusline.inactive"          = { fg    = "comment",         bg = "darker"                              }
-    "ui.statusline.normal"            = { fg    = "black",           bg = "purple"                              }
-    "ui.statusline.insert"            = { fg    = "black",           bg = "green"                               }
-    "ui.statusline.select"            = { fg    = "black",           bg = "cyan"                                }
-    "ui.text"                         = { fg    = "foreground"                                                  }
-    "ui.text.focus"                   = { fg    = "cyan"                                                        }
-    "ui.window"                       = { fg    = "foreground"                                                  }
-    "ui.virtual.whitespace"           = { fg    = "current_line"                                                }
-    "ui.virtual.wrap"                 = { fg    = "current_line"                                                }
-    "ui.virtual.ruler"                = { bg    = "black"                                                       }
-    "ui.virtual.indent-guide"         = { fg    = "indent"                                                      }
-    "ui.virtual.inlay-hint"           = { fg    = "cyan"                                                        }
-    "ui.virtual.inlay-hint.parameter" = { fg    = "cyan",            modifiers = ["italic", "dim"]              }
-    "ui.virtual.inlay-hint.type"      = { fg    = "cyan",            modifiers = ["italic", "dim"]              }
-    "hint"                            = { fg    = "purple"                                                      }
-    "error"                           = { fg    = "red"                                                         }
-    "warning"                         = { fg    = "yellow"                                                      }
-    "info"                            = { fg    = "cyan"                                                        }
-    "markup.heading"                  = { fg    = "purple",          modifiers = ["bold"]                       }
-    "markup.list"                     = { fg    = "cyan"                                                        }
-    "markup.bold"                     = { fg    = "orange",          modifiers = ["bold"]                       }
-    "markup.italic"                   = { fg    = "yellow",          modifiers = ["italic"]                     }
-    "markup.strikethrough"            = {                            modifiers = ["crossed_out"]                }
-    "markup.link.url"                 = { fg    = "cyan"                                                        }
-    "markup.link.text"                = { fg    = "pink"                                                        }
-    "markup.quote"                    = { fg    = "yellow",          modifiers = ["italic"]                     }
-    "markup.raw"                      = { fg    = "foreground"                                                  }
-    "diagnostic"                      = { underline = { color = "orange",          style = "curl"             } }
-    "diagnostic.hint"                 = { underline = { color = "purple",          style = "curl"             } }
-    "diagnostic.warning"              = { underline = { color = "yellow",          style = "curl"             } }
-    "diagnostic.error"                = { underline = { color = "red",             style = "curl"             } }
-    "diagnostic.info"                 = { underline = { color = "cyan",            style = "curl"             } }
-    "definition"                      = { underline = { color = "cyan"                                        } }
-
-
-    [palette]
-    foreground        = "#${base05}"
-    background        = "#${base00}"
-    cursorline        = "#2d303e"
-    darker            = "#222430"
-    black             = "#191A21"
-    grey              = "#666771"
-    comment           = "#${base03}"
-    current_line      = "#44475a"
-    indent            = "#56596a"
-    selection         = "#363848"
-    red               = "#${base08}"
-    orange            = "#${orange}"
-    yellow            = "#${base0A}"
-    green             = "#${base0B}"
-    cyan              = "#${base0C}"
-    purple            = "#${base0D}"
-    pink              = "#${base0E}"
-  '';
-  xdg.configFile."helix/yazi-picker.sh".text = ''
-    #!/usr/bin/env bash
-    paths=$(yazi --chooser-file=/dev/stdout | while read -r; do printf "%q " "$REPLY"; done)
-    if [[ -n "$paths" ]]; then
-            zellij action toggle-floating-panes
-            zellij action write 27 # send <Escape> key
-            zellij action write-chars ":open $paths"
-            zellij action write 13 # send <Enter> key
-            zellij action toggle-floating-panes
-    fi
-    zellij action close-pane
-  '';
 }

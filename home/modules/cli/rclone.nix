@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [rclone];
   home.shellAliases = {
     rmv = "rclone move --progress";

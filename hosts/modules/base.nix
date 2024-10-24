@@ -6,8 +6,9 @@
   config,
   ...
 }: {
+  # This file is the base configuration for all hosts.
   imports = [
-    ./modules/ld.nix
+    ./ld.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
@@ -17,7 +18,7 @@
     mountOnMedia = true;
   };
   sops = {
-    defaultSopsFile = ../secrets.yaml;
+    defaultSopsFile = ../../secrets.yaml;
     age.keyFile = "/home/mat/.ssh/age_key";
   };
 

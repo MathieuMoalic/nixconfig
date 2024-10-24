@@ -4,10 +4,10 @@
   ...
 }: {
   imports = [
-    ./modules
-    ./modules/cli
-    ./modules/desktop
-    ./modules/dev
+    ./modules/base.nix
+    ./modules/cli/cli.nix
+    ./modules/dev/dev.nix
+    ./modules/desktop/desktop.nix
   ];
   home.packages = with pkgs; [
     inputs.amumax.packages.${pkgs.system}.git

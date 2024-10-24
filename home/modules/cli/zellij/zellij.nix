@@ -1,4 +1,8 @@
-{config, ...}:
+{
+  config,
+  pkgs,
+  ...
+}:
 with config.colorScheme.palette; {
   home.shellAliases = {
     tl = "zellij ls";
@@ -6,8 +10,16 @@ with config.colorScheme.palette; {
     tk = "zellij d";
     tka = "zellij da -y";
   };
-  home.file.".config/zellij/plugins/monocle.wasm".source = ./plugins/monocle.wasm;
-  home.file.".config/zellij/plugins/zjstatus.wasm".source = ./plugins/zjstatus.wasm;
+  home.file.".config/zellij/plugins/monocle.wasm".source = pkgs.fetchurl {
+    url = "https://github.com/imsnif/monocle/releases/download/v0.100.0/monocle.wasm";
+    sha256 = "sha256-MxS5OBEUdrcuRfvewLt+q24lb8J+3O4/yjbgMD6nnqQ=";
+  };
+
+  home.file.".config/zellij/plugins/zjstatus.wasm".source = pkgs.fetchurl {
+    url = "https://github.com/dj95/zjstatus/releases/download/v0.17.0/zjstatus.wasm";
+    sha256 = "sha256-IgTfSl24Eap+0zhfiwTvmdVy/dryPxfEF7LhVNVXe+U=";
+  };
+
   home.file.".config/zellij/layouts/default.kdl".text = let
     background = base00;
     tab = base05;

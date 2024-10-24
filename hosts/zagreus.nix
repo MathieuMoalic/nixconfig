@@ -8,6 +8,7 @@
     ./base.nix
     ./modules/sddm/sddm.nix
     ./modules/desktop.nix
+    ./modules/syncthing.nix
   ];
   hardware.wooting.enable = true;
   programs.steam = {

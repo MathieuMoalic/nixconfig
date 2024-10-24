@@ -1,11 +1,6 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     xwayland = {enable = true;};
   };
   fonts.packages = with pkgs; [
@@ -23,10 +18,7 @@
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    # pulse.enable = true;
-    #jack.enable = true;
   };
-  # security.polkit.enable = true;
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{...}: {
   home.file.".config/yazi/plugins/smart-filter.yazi/init.lua".source = ./plugins/smart-filter.lua;
   home.file.".config/yazi/plugins/max-preview.yazi/init.lua".source = ./plugins/max-preview.lua;
   home.file.".config/yazi/plugins/hide-preview.yazi/init.lua".source = ./plugins/hide-preview.lua;
@@ -15,7 +11,6 @@
 
   programs.yazi = {
     enable = true;
-    package = inputs.yazi.packages.${pkgs.system}.default;
     enableZshIntegration = true;
     initLua = ./init.lua;
     settings = {
@@ -24,7 +19,7 @@
         linemode = "size";
         show_hidden = false;
         show_symlink = true;
-        sort_by = "mtime";
+        sort_by = "modified";
         sort_dir-first = false;
         sort_reverse = true;
         sort_sensitive = true;
@@ -201,7 +196,7 @@
         # create
         create_offset = [0 2 50 3];
         create_origin = "top-center";
-        create_title = ["Create:" "Create (dir):"];
+        create_title = "Create:";
 
         # rename
         rename_offset = [0 1 50 3];
@@ -899,9 +894,9 @@
           run = "linemode permissions";
         }
         {
-          desc = "mtime";
+          desc = "modified";
           on = ["l" "m"];
-          run = "linemode mtime";
+          run = "linemode modified";
         }
         {
           desc = "none";

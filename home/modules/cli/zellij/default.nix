@@ -1,8 +1,4 @@
-{
-  config,
-  inputs,
-  ...
-}:
+{config, ...}:
 with config.colorScheme.palette; {
   home.shellAliases = {
     tl = "zellij ls";
@@ -12,7 +8,11 @@ with config.colorScheme.palette; {
   };
   home.file.".config/zellij/plugins/monocle.wasm".source = ./plugins/monocle.wasm;
   home.file.".config/zellij/plugins/zjstatus.wasm".source = ./plugins/zjstatus.wasm;
-  home.file.".config/zellij/layouts/default.kdl".text = ''
+  home.file.".config/zellij/layouts/default.kdl".text = let
+    background = base00;
+    tab = base05;
+    tab-active = base0E;
+  in ''
     layout {
         default_tab_template{
             pane split_direction="vertical" {
@@ -22,11 +22,11 @@ with config.colorScheme.palette; {
                 plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
                     format_left  "{tabs}"
                     format_right ""
-                    format_space "#[bg=#${base00}ff]"
+                    format_space "#[bg=#${background}ff]"
                     hide_frame_for_single_pane "false"
                     mode_normal  ""
-                    tab_normal "#[fg=#${base00},bg=#${base07}]#[fg=#${base00},bold,bg=#${base07}] {index} {name} #[fg=#${base07},bg=#${base00}ff]"
-                    tab_active "#[fg=#${base00},bg=#${base01}]#[fg=#${base00},bold,bg=#${base01}] {index} {name} #[fg=#${base01},bg=#${base00}ff]"
+                    tab_normal "#[fg=#${background},bg=#${tab}]#[fg=#${background},bold,bg=#${tab}] {index} {name} #[fg=#${tab},bg=#${background}ff]"
+                    tab_active "#[fg=#${background},bg=#${tab-active}]#[fg=#${background},bold,bg=#${tab-active}] {index} {name} #[fg=#${tab-active},bg=#${background}ff]"
                 }
             }
         }
@@ -202,7 +202,7 @@ with config.colorScheme.palette; {
         mydracula = {
           fg = "#${base05}";
           bg = "#${base00}";
-          black = "#${base00}";
+          black = "#${zellij-highlight}";
           red = "#${base08}";
           green = "#${base0B}";
           yellow = "#${base0A}";

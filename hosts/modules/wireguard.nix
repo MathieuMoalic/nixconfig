@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{...}: {
   services.caddy = {
     enable = true;
     email = "matmoa@pm.me";

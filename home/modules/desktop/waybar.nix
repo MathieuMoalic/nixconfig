@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{config, ...}: let
   theme = config.colorScheme.palette;
 in {
   programs.waybar = {

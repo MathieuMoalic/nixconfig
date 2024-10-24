@@ -24,7 +24,6 @@
       };
       nvidiaSettings = true;
       open = false;
-      # package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  osConfig,
-  ...
-}: let
+{pkgs, ...}: let
   script = pkgs.writeShellApplication {
     name = "up";
     runtimeInputs = with pkgs; [alejandra git nh zsh];

@@ -10,7 +10,6 @@
   ];
   wayland.windowManager.hyprland = {
     systemd.variables = ["--all"];
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     settings = {
       monitor =
         (lib.optionals (osConfig.networking.hostName == "nyx") [
@@ -27,6 +26,7 @@
           "DP-2, 2560x1440@240.00,auto,1"
         ]);
     };
+
     extraConfig = ''
       exec-once=${pkgs.hyprpaper}/bin/hyprpaper
       exec-once=${pkgs.hypridle}/bin/hypridle

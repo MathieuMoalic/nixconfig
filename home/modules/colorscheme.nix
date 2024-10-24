@@ -25,6 +25,13 @@
       base0F = "#a4ffff"; # bright cyan
       orange = "#ffb86c"; # orange
       blue = "#6e9bcb"; # gray-blue
+      hx-cursor-line = "#2d303e"; # dark gray
+      hx-darker = "#222430"; # darker gray
+      hx-black = "#191A21"; # black
+      hx-grey = "#666771"; # light grey
+      hx-current-line = "#44475a"; # grey
+      hx-selection = "#363848"; # medium dark grey
+      zellij-highlight = "#000000";
     };
   };
 }

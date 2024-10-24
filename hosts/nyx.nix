@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./base.nix
+    ./modules/base.nix
     ./modules/desktop.nix
     ./modules/sddm/sddm.nix
     ./modules/syncthing.nix

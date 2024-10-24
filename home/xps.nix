@@ -1,9 +1,9 @@
 {...}: {
   imports = [
-    ./modules
-    ./modules/cli
-    ./modules/desktop
-    ./modules/dev
+    ./modules/base.nix
+    ./modules/cli/cli.nix
+    ./modules/dev/dev.nix
+    ./modules/desktop/desktop.nix
   ];
   home.stateVersion = "23.05";
 }

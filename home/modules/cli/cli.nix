@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   imports = [
-    ./scripts
-    ./yazi
+    ./scripts/cli-scripts.nix
+    ./yazi/yazi.nix
+    ./zellij/zellij.nix
     ./aliases.nix
     ./atuin.nix
     ./btop.nix
@@ -14,7 +15,6 @@
     ./rclone.nix
     ./ssh.nix
     ./starship.nix
-    ./zellij
     ./zsh.nix
   ];
   home.packages = with pkgs; [

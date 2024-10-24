@@ -5,6 +5,13 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./hypridle.nix
+    ./hyprlock.nix
+    ./hyprpaper.nix
+  ];
+  wayland.windowManager.hyprland.enable = true;
+
   home.packages = [
     inputs.hyprsome.packages.${pkgs.system}.default
   ];

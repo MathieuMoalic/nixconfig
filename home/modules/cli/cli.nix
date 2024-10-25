@@ -2,7 +2,7 @@
   imports = [
     ./scripts/cli-scripts.nix
     ./yazi/yazi.nix
-    ./zellij/zellij.nix
+    ./zellij.nix
     ./aliases.nix
     ./atuin.nix
     ./btop.nix

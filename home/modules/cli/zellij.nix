@@ -7,8 +7,8 @@ with config.colorScheme.palette; {
   home.shellAliases = {
     tl = "zellij ls";
     ta = "zellij a -c";
-    tk = "zellij d";
-    tka = "zellij da -y";
+    tk = "zellij d --force";
+    tka = "zellij da -y --force";
   };
   home.file.".config/zellij/plugins/monocle.wasm".source = pkgs.fetchurl {
     url = "https://github.com/imsnif/monocle/releases/download/v0.100.0/monocle.wasm";
@@ -213,7 +213,7 @@ with config.colorScheme.palette; {
       themes = {
         mydracula = {
           fg = "#${base05}";
-          bg = "#${base00}";
+          bg = "#${zellij-highlight}";
           black = "#${zellij-highlight}";
           red = "#${base08}";
           green = "#${base0B}";

@@ -7,7 +7,6 @@
     ./atuin.nix
     ./btop.nix
     ./direnv.nix
-    ./dunst.nix
     ./git.nix
     ./helix.nix
     ./lazygit.nix

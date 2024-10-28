@@ -3,7 +3,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nix-colors.url = "github:misterio77/nix-colors";
     hyprsome.url = "github:sopa0/hyprsome";
     nix-index-database.url = "github:Mic92/nix-index-database";

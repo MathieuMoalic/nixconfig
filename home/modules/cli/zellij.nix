@@ -104,6 +104,8 @@ with config.colorScheme.palette; {
           "bind \"Alt Right\"" = {MovePane = "Right";};
           "bind \"Alt n\"" = {NewTab = {name = " ";};};
           "bind \"Alt k\"" = {CloseTab = {};};
+          "bind \"Alt t\"" = {MoveTab = "Left";};
+          "bind \"Alt u\"" = {MoveTab = "Right";};
           "bind \"Alt 1\"" = {GoToTab = 1;};
           "bind \"Alt 2\"" = {GoToTab = 2;};
           "bind \"Alt 3\"" = {GoToTab = 3;};

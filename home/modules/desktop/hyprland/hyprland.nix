@@ -291,6 +291,7 @@
       windowrulev2=idleinhibit focus, class:^(mpv|.+exe|celluloid)$
       windowrulev2=idleinhibit focus, title:^(.*YouTube.*)$
       windowrulev2=idleinhibit focus, title:^(.*Twitch.*)$
+      windowrulev2=suppressevent,class:.*
 
       workspace=DP-3,21
       workspace=DP-1,1

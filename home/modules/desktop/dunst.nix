@@ -1,4 +1,10 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter ["${pkgs.dunst}/bin/dunst"];
   services.dunst = with config.colorScheme.palette; {
     enable = true;
     settings = {
@@ -63,6 +69,4 @@
       };
     };
   };
-
-  # xdg.configFile."dunst/dunstrc".source = ./dunstrc;
 }

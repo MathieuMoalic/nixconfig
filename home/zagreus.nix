@@ -9,5 +9,6 @@
   home.packages = with pkgs; [
     nvtopPackages.amd
     wootility
+    element-desktop-wayland
   ];
 }

@@ -8,11 +8,11 @@
       # scroll-full-overlap = "0.01";
       # scroll-step = "100";
       # font = "Source Code Pro 11";
-      recolor = "true";
+      # recolor = "true";
       # Don't allow original hue when recoloring
-      recolor-keephue = "true";
+      # recolor-keephue = "true";
       # Don't keep original image colors while recoloring
-      recolor-reverse-video = "false";
+      # recolor-reverse-video = "false";
       # Command line completion entries
       completion-fg = "#c0caf5";
       completion-bg = "#${base00}";
@@ -43,8 +43,8 @@
       highlight-color = "#7aa2f7";
       highlight-active-color = "#7aa2f7";
       # Represent light/dark colors in recoloring mode
-      recolor-lightcolor = "#dcdccc";
-      recolor-darkcolor = "#1f1f1f";
+      # recolor-lightcolor = "#dcdccc";
+      # recolor-darkcolor = "#1f1f1f";
       # 'Loading...' text
       render-loading-fg = "#c0caf5";
       render-loading-bg = "#1a1b26";

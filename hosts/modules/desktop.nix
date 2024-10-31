@@ -6,6 +6,9 @@
   fonts.packages = with pkgs; [
     corefonts # Arial, Times New Roman, etc.
     (nerdfonts.override {fonts = ["FiraCode" "FiraMono"];}) # FiraMono is for waybar
+    roboto
+    font-awesome
+    source-sans-pro
   ];
   security.pam.services.hyprlock = {}; # needed for hyprlock
 

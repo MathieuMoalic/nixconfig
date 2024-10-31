@@ -21,8 +21,8 @@
       monitor =
         (lib.optionals (osConfig.networking.hostName == "nyx") [
           "DP-3, 1920x1200@59.95, -1920x0, 1"
-          "DP-1, 1920x1200@59.95, 0x0, 1"
-          "DP-2, 1920x1200@59.95, 1920x0, 1"
+          "DP-1, 2560x1440@59.95, 0x0, 1"
+          "DP-2, 2560x1440@59.95, 2560x0, 1"
           "Unknown-1, disable"
         ])
         ++ (lib.optionals (osConfig.networking.hostName == "xps") [
@@ -262,8 +262,11 @@
         "$mod SHIFT,down,resizeactive,0 20"
         "$mod SHIFT,R, movetoworkspace,special"
         "$mod ,R , togglespecialworkspace,"
+      ];
+      bindm = [
         "$mod, mouse:272, movewindow"
       ];
+
       windowrulev2 = [
         "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
         "idleinhibit focus, title:^(.*YouTube.*)$"

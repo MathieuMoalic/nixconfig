@@ -6,7 +6,7 @@
   imports = [
     ./modules/base.nix
     ./modules/syncthing.nix
-    ./modules/sddm/sshd.nix
+    ./modules/sddm/sddm.nix
     ./modules/restic.nix
   ];
 

@@ -10,12 +10,11 @@
     ./hyprlock.nix
     ./hyprpaper.nix
   ];
-  wayland.windowManager.hyprland.enable = true;
-
   home.packages = [
     inputs.hyprsome.packages.${pkgs.system}.default
   ];
   wayland.windowManager.hyprland = {
+    enable = true;
     systemd.variables = ["--all"];
     settings = {
       monitor =
@@ -32,10 +31,6 @@
         ++ (lib.optionals (osConfig.networking.hostName == "zagreus") [
           "DP-2, 2560x1440@240.00,auto,1"
         ]);
-      exec-once = [
-        "${pkgs.hyprpaper}/bin/hyprpaper"
-        "${pkgs.hypridle}/bin/hypridle"
-      ];
       general = {
         border_size = 2;
         no_border_on_floating = false;

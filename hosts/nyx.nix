@@ -10,6 +10,7 @@
     ./modules/syncthing.nix
     ./modules/samba.nix
     ./modules/sshd.nix
+    ./modules/podman.nix
   ];
   home-manager.users.mat.imports = [../home/nyx.nix];
 
@@ -27,12 +28,6 @@
     };
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
-
-  virtualisation = {
-    containers.enable = true;
-    podman.enable = true;
-  };
-
   boot = {
     kernelModules = ["kvm-amd" "debug"];
     kernel = {

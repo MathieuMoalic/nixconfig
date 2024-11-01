@@ -9,18 +9,12 @@
     '';
   };
 
-  virtualisation.oci-containers.backend = "podman"; # Can also use "docker"
-
-  # Define the WG-Easy container
   virtualisation.oci-containers.containers.wg-easy = {
-    autoStart = true; # Automatically start on boot
-    image = "ghcr.io/wg-easy/wg-easy:14"; # The WG-Easy container image
+    autoStart = true;
+    image = "ghcr.io/wg-easy/wg-easy:14";
     environment = {
       WG_HOST = "vpn2.zfns.eu.org";
       PASSWORD = "your-password"; # Admin password for WG-Easy
-      # UI_TRAFFIC_STATS = "true";
-      # UI_CHART_TYPE = "1";
-      # UI_ENABLE_SORT_CLIENTS = "true";
     };
     ports = ["51820:51820/udp" "51821:51821/tcp"];
     volumes = [

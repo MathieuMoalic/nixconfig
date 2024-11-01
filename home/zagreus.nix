@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./modules/base.nix
     ./modules/cli/cli.nix
@@ -10,5 +14,9 @@
     nvtopPackages.amd
     wootility
     element-desktop-wayland
+  ];
+  wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter [
+    "[workspace 1 silent] ${pkgs.librewolf}/bin/librewolf"
+    "[workspace 3 silent] ${pkgs.steam}/bin/steam"
   ];
 }

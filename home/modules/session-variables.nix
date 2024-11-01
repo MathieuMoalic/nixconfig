@@ -11,5 +11,6 @@
     CARGO_HOME = "$HOME/.local/share/cargo";
     CUDA_CACHE_PATH = "$HOME/.cache/nv";
     DOTNET_CLI_HOME = "$HOME/.local/share/dotnet";
+    DOCKER_HOST = "unix:///run/user/1000/podman/podman.sock";
   };
 }

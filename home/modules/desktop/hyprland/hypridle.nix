@@ -1,4 +1,11 @@
-{...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter [
+    "${pkgs.hypridle}/bin/hypridle"
+  ];
   services.hypridle = {
     enable = true;
     settings = {

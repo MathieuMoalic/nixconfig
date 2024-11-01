@@ -9,6 +9,11 @@
     ./modules/base.nix
     ./modules/sddm/sddm.nix
     ./modules/sshd.nix
+    ./modules/podman.nix
+    ./modules/sudo-rules.nix
+    ./modules/users/mz.nix
+    ./modules/users/kelvas.nix
+    ./modules/users/syam.nix
   ];
   home-manager.users.mat.imports = [../home/zeus.nix];
 
@@ -16,59 +21,6 @@
     inputs.amumax.packages.${pkgs.system}.default
     nvtopPackages.nvidia
   ];
-
-  security.sudo.extraRules = [
-    {
-      groups = ["users"];
-      commands = [
-        {
-          command = "/run/wrappers/bin/mount";
-          options = ["NOPASSWD"];
-        }
-        {
-          command = "/run/wrappers/bin/umount";
-          options = ["NOPASSWD"];
-        }
-        {
-          command = "/run/wrappers/bin/reboot";
-          options = ["NOPASSWD"];
-        }
-      ];
-    }
-  ];
-
-  users.users.mz = {
-    isNormalUser = true;
-    uid = 1001;
-    shell = pkgs.zsh;
-    openssh.authorizedKeys.keys =
-      [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKJT9ZTSPiYwsVoaSBRTZ6WLVn1wt5FTIwwO6BEcusXa mateusz@DESKTOP-LC7F3KD"
-      ]
-      ++ config.users.users.mat.openssh.authorizedKeys.keys;
-  };
-
-  users.users.kelvas = {
-    isNormalUser = true;
-    uid = 1002;
-    shell = pkgs.zsh;
-    openssh.authorizedKeys.keys =
-      [
-        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNNLMQFqQvcw2/OyVIsKTxi8WUqcBKFIcYGwZZYM3DT2wQ3uJ1Z2u5KGoJI9DEaf8nZPsIsQnYHNAwYqeMbxdgenLgbtJmS2Afxzv7wD/3w/Ydn2HTTLMmm7gUbJ7RT3NWo5nYHhBTXiPmuYCGJ5TggbXuZhT3kN4Gy5czItpIQlDHUzVrgYbvkUQEhxB+rt5bgwAtk2V8QGFaOo7qkXK3hlq/Ff3SLRvtXQo3v3wEUr7ULO/xkzp5go+Tn5iM0ZyTyzOyBqHmqZKeuCc3P087WuUNn7WH0qTwbQUrHS7anXv5AB23J/bf3A7OSmLx9oEyJQ42r5KRfG/SITjKo5VtrOMMn6sADjF2B7vbGBWisQVbIRdvtEdRhpPGfs7Cz0QCphjNlGCGdghSY2e51p/IUoWWUIA+m6AtACFXr2ZOSBzi4OL5GXpmFpV/dgY6T01CXKPfrkML6vGnw8kwLk7ERng6nn3Gpl1yOi+Bt07qzXu8OKJDP0EFv+BW/wMIFcU="
-      ]
-      ++ config.users.users.mat.openssh.authorizedKeys.keys;
-  };
-
-  users.users.syam = {
-    isNormalUser = true;
-    uid = 1003;
-    shell = pkgs.zsh;
-    openssh.authorizedKeys.keys =
-      [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO3nskcuXUBuIikiFZ1MT8L+srlSVJnARaLTNdfAGbmZ syam@megaera"
-      ]
-      ++ config.users.users.mat.openssh.authorizedKeys.keys;
-  };
 
   hardware = {
     nvidia-container-toolkit.enable = true;
@@ -84,11 +36,6 @@
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  };
-
-  virtualisation = {
-    containers.enable = true;
-    podman.enable = true;
   };
 
   boot = {

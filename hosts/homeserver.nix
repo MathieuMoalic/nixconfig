@@ -6,17 +6,12 @@
   imports = [
     ./modules/base.nix
     ./modules/syncthing.nix
-    ./modules/sddm/sddm.nix
+    ./modules/sshd.nix
     ./modules/restic.nix
+    ./modules/podman.nix
   ];
 
   home-manager.users.mat.imports = [../home/homeserver.nix];
-
-  # Virtualization Configuration
-  virtualisation = {
-    containers.enable = true;
-    podman.enable = true;
-  };
 
   # Boot Configuration
   boot = {

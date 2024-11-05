@@ -10,6 +10,8 @@
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     amumax.url = "github:MathieuMoalic/amumax";
     sops-nix.url = "github:Mic92/sops-nix";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = {nixpkgs, ...} @ inputs: let
     makeNixosSystem = host:
@@ -27,6 +29,7 @@
       iso = makeNixosSystem ./hosts/iso.nix;
       alecto = makeNixosSystem ./hosts/alecto.nix;
       zagreus = makeNixosSystem ./hosts/zagreus.nix;
+      kiosk = makeNixosSystem ./hosts/kiosk.nix;
     };
   };
 }

@@ -1,4 +1,5 @@
 {...}: {
+  # in ~/.config/nix/nix.conf
   nix.settings = {
     # for home manager
     experimental-features = "nix-command flakes";
@@ -11,6 +12,7 @@
     allowUnfree = true;
     allowUnfreePredicate = _: true;
   };
+
   # needed for nix-shell
   xdg.configFile."nixpkgs/config.nix".text = ''{allowUnfree = true;}'';
 }

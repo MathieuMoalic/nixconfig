@@ -47,6 +47,14 @@
         user = "mat";
         port = 46464;
       };
+      kiosk1 = {
+        hostname = "kiosk1.zfns.eu.org";
+        user = "root";
+      };
+      kiosk2 = {
+        hostname = "kiosk2.zfns.eu.org";
+        user = "root";
+      };
     };
   };
 }

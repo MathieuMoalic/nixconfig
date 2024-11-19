@@ -92,7 +92,7 @@
       device = "/dev/disk/by-label/z1";
       fsType = "ext4";
     };
-    "/home/mat/shared" = {
+    "/home/mat/z2" = {
       device = "/dev/disk/by-label/shared";
       fsType = "ext4";
     };

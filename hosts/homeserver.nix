@@ -28,7 +28,7 @@
         enable = true;
         ssh = {
           enable = true;
-          port = 46464;
+          port = 46466;
           authorizedKeys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPcmHHg1pEOAxvEAyr6p5MY0m3/+BOn8nJOcAf7mMaej"
           ];

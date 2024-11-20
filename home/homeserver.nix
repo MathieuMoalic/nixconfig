@@ -6,6 +6,7 @@
   ];
   home.packages = with pkgs; [
     caddy
+    slirp4netns
   ];
   home.stateVersion = "23.11";
 }

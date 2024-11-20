@@ -3,6 +3,7 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
+      auto_sync = false;
       dialect = "uk";
       update_check = false;
       style = "compact";

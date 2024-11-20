@@ -3,6 +3,7 @@
     enable = true;
     serverAliveCountMax = 120;
     serverAliveInterval = 60;
+    extraConfig = "StrictHostKeyChecking accept-new";
     matchBlocks = {
       faculty = {
         hostname = "150.254.111.35";
@@ -16,6 +17,11 @@
         hostname = "matmoa.xyz";
         user = "mat";
         port = 46464;
+      };
+      homeserver-initrd = {
+        hostname = "matmoa.xyz";
+        user = "root";
+        port = 46466;
       };
       nyx = {
         hostname = "nyx.zfns.eu.org";

@@ -49,7 +49,8 @@
       # pihole: 12553
       # wireguard: 51820
       # terraria: 7777
-      allowedTCPPorts = [80 443 12553 7777];
+      # jellyfin: 8096
+      allowedTCPPorts = [80 443 12553 7777 8096];
       allowedUDPPorts = [12553 51820];
     };
     useDHCP = lib.mkDefault true;

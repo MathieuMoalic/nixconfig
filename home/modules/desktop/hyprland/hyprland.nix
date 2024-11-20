@@ -53,13 +53,6 @@
         active_opacity = 1.0;
         inactive_opacity = 1.0;
         fullscreen_opacity = 1.0;
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        shadow_ignore_window = true;
-        "col.shadow" = "0xee1a1a1a";
-        shadow_offset = "0, 0";
-        shadow_scale = 1.0;
         dim_inactive = false;
         dim_strength = 0.5;
         dim_special = 0.2;

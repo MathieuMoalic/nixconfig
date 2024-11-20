@@ -4,14 +4,26 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  quicktranslate = "${inputs.quicktranslate.packages.${pkgs.system}.quicktranslate}/bin/quicktranslate";
+  hyprsome = "${inputs.hyprsome.packages.${pkgs.system}.default}/bin/hyprsome";
+  lock = import ../scripts/lock.nix {inherit pkgs;};
+  power-menu = import ../scripts/power-menu.nix {inherit pkgs;};
+  wireguard-menu = import ../scripts/wireguard-menu.nix {inherit pkgs;};
+  sc = import ../scripts/screenshot.nix {inherit pkgs;};
+in {
   imports = [
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
   ];
   home.packages = [
-    inputs.hyprsome.packages.${pkgs.system}.default
+    # hyprsome
+    # quicktranslate
+    wireguard-menu
+    lock
+    power-menu
+    sc
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -121,7 +133,6 @@
         workspace_swipe_forever = true;
         workspace_swipe_use_r = false;
       };
-
       group = {
         insert_after_current = true;
         focus_removed_window = true;
@@ -202,12 +213,11 @@
         "$mod, F1, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle"
         "$mod, Return, exec, ${pkgs.foot}/bin/foot"
         "$mod, J, exec, ${pkgs.rofi-wayland}/bin/rofi -modi drun,run -show drun"
-        "$mod, F11, exec, sc"
-        "$mod, N, exec, wireguard-menu"
-        "$mod, M, exec, wifi-menu"
-        "$mod, T, exec, ${inputs.quicktranslate.packages.${pkgs.system}.quicktranslate}/bin/quicktranslate"
-        "$mod, L, exec, lock"
-        "$mod, P, exec, power-menu"
+        "$mod, F11, exec, ${sc}"
+        "$mod, N, exec, ${wireguard-menu}"
+        "$mod, T, exec, ${quicktranslate}"
+        "$mod, L, exec, ${lock}"
+        "$mod, P, exec, ${power-menu}"
 
         "$mod, F, fullscreen"
         "$mod, Q, killactive,"
@@ -222,28 +232,28 @@
         "$mod, W, movefocus, u"
         "$mod, S, movefocus, d"
 
-        "$mod, 1, exec, hyprsome workspace 1"
-        "$mod, 2, exec, hyprsome workspace 2"
-        "$mod, 3, exec, hyprsome workspace 3"
-        "$mod, 4, exec, hyprsome workspace 4"
-        "$mod, 5, exec, hyprsome workspace 5"
-        "$mod, 6, exec, hyprsome workspace 6"
-        "$mod, 7, exec, hyprsome workspace 7"
-        "$mod, 8, exec, hyprsome workspace 8"
-        "$mod, 9, exec, hyprsome workspace 9"
-        "$mod, 0, exec, hyprsome workspace 10"
-        "$mod SHIFT, 1, exec, hyprsome move 1"
-        "$mod SHIFT, 2, exec, hyprsome move 2"
-        "$mod SHIFT, 3, exec, hyprsome move 3"
-        "$mod SHIFT, 4, exec, hyprsome move 4"
-        "$mod SHIFT, 5, exec, hyprsome move 5"
-        "$mod SHIFT, 6, exec, hyprsome move 6"
-        "$mod SHIFT, 7, exec, hyprsome move 7"
-        "$mod SHIFT, 8, exec, hyprsome move 8"
-        "$mod SHIFT, 9, exec, hyprsome move 9"
-        "$mod SHIFT, 0, exec, hyprsome move 10"
-        "$mod, mouse_down, exec, hyprsome workspace e+1"
-        "$mod, mouse_up, exec, hyprsome workspace e-1"
+        "$mod, 1, exec, ${hyprsome} workspace 1"
+        "$mod, 2, exec, ${hyprsome} workspace 2"
+        "$mod, 3, exec, ${hyprsome} workspace 3"
+        "$mod, 4, exec, ${hyprsome} workspace 4"
+        "$mod, 5, exec, ${hyprsome} workspace 5"
+        "$mod, 6, exec, ${hyprsome} workspace 6"
+        "$mod, 7, exec, ${hyprsome} workspace 7"
+        "$mod, 8, exec, ${hyprsome} workspace 8"
+        "$mod, 9, exec, ${hyprsome} workspace 9"
+        "$mod, 0, exec, ${hyprsome} workspace 10"
+        "$mod SHIFT, 1, exec, ${hyprsome} move 1"
+        "$mod SHIFT, 2, exec, ${hyprsome} move 2"
+        "$mod SHIFT, 3, exec, ${hyprsome} move 3"
+        "$mod SHIFT, 4, exec, ${hyprsome} move 4"
+        "$mod SHIFT, 5, exec, ${hyprsome} move 5"
+        "$mod SHIFT, 6, exec, ${hyprsome} move 6"
+        "$mod SHIFT, 7, exec, ${hyprsome} move 7"
+        "$mod SHIFT, 8, exec, ${hyprsome} move 8"
+        "$mod SHIFT, 9, exec, ${hyprsome} move 9"
+        "$mod SHIFT, 0, exec, ${hyprsome} move 10"
+        "$mod, mouse_down, exec, ${hyprsome} workspace e+1"
+        "$mod, mouse_up, exec, ${hyprsome} workspace e-1"
         "$mod SHIFT,right,resizeactive,20 0"
         "$mod SHIFT,left,resizeactive,-20 0"
         "$mod SHIFT,up,resizeactive,0 -20"

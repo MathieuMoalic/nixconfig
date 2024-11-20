@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./hyprland/hyprland.nix
-    ./scripts/desktop-scripts.nix
     ./bluetooth.nix
     ./foot.nix
     ./librewolf.nix

@@ -1,6 +1,6 @@
 {pkgs, ...}:
 pkgs.writeShellApplication {
-  name = "sc";
+  name = "screenshot";
   runtimeInputs = with pkgs; [grim slurp satty wl-clipboard];
   text = ''
     grim -g "$(slurp)" -t ppm - | satty --filename - \

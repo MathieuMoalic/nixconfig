@@ -5,12 +5,12 @@
   pkgs,
   ...
 }: let
-  quicktranslate = "${inputs.quicktranslate.packages.${pkgs.system}.quicktranslate}/bin/quicktranslate";
+  quicktranslate = inputs.quicktranslate.packages.${pkgs.system}.quicktranslate;
   hyprsome = "${inputs.hyprsome.packages.${pkgs.system}.default}/bin/hyprsome";
   lock = import ../scripts/lock.nix {inherit pkgs;};
   power-menu = import ../scripts/power-menu.nix {inherit pkgs;};
   wireguard-menu = import ../scripts/wireguard-menu.nix {inherit pkgs;};
-  sc = import ../scripts/screenshot.nix {inherit pkgs;};
+  screenshot = import ../scripts/screenshot.nix {inherit pkgs;};
 in {
   imports = [
     ./hypridle.nix
@@ -18,12 +18,12 @@ in {
     ./hyprpaper.nix
   ];
   home.packages = [
-    # hyprsome
-    # quicktranslate
+    inputs.hyprsome.packages.${pkgs.system}.default
+    quicktranslate
     wireguard-menu
     lock
     power-menu
-    sc
+    screenshot
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -213,11 +213,11 @@ in {
         "$mod, F1, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle"
         "$mod, Return, exec, ${pkgs.foot}/bin/foot"
         "$mod, J, exec, ${pkgs.rofi-wayland}/bin/rofi -modi drun,run -show drun"
-        "$mod, F11, exec, ${sc}"
-        "$mod, N, exec, ${wireguard-menu}"
-        "$mod, T, exec, ${quicktranslate}"
-        "$mod, L, exec, ${lock}"
-        "$mod, P, exec, ${power-menu}"
+        "$mod, F11, exec, ${screenshot}/bin/screenshot"
+        "$mod, N, exec, ${wireguard-menu}/bin/wireguard-menu"
+        "$mod, T, exec, ${quicktranslate}/bin/quicktranslate"
+        "$mod, L, exec, ${lock}/bin/lock"
+        "$mod, P, exec, ${power-menu}/bin/power-menu"
 
         "$mod, F, fullscreen"
         "$mod, Q, killactive,"

@@ -2,6 +2,7 @@
   programs.hyprland = {
     enable = true;
     xwayland = {enable = true;};
+    withUWSM = true;
   };
   fonts.packages = with pkgs; [
     corefonts # Arial, Times New Roman, etc.

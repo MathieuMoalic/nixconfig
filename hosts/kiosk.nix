@@ -45,6 +45,23 @@
     };
   };
 
+  systemd.services.restart-cage = {
+    description = "Restart the cage service";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.systemd}/bin/systemctl restart cage.service";
+    };
+  };
+
+  systemd.timers.restart-cage = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnCalendar = "*-*-* 07:00:00";
+      Persistent = true;
+      Unit = "restart-cage.service";
+    };
+  };
+
   services.cage = {
     enable = true;
     program = "${pkgs.firefox}/bin/firefox --private-window https://wanatowka.pl/kiosk --kiosk --no-remote";

@@ -6,7 +6,8 @@
   };
   fonts.packages = with pkgs; [
     corefonts # Arial, Times New Roman, etc.
-    (nerdfonts.override {fonts = ["FiraCode" "FiraMono"];}) # FiraMono is for waybar
+    nerd-fonts.fira-code
+    nerd-fonts.fira-mono
     roboto
     font-awesome
     source-sans-pro

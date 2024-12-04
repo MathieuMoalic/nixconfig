@@ -14,8 +14,6 @@
   home.packages = with pkgs; [
     rofi-bluetooth # bluetooth manager
     pulseaudio # audio
-    (flameshot.override {enableWlrSupport = true;}) # screenshots
-    hyprpaper # wallpaper
     brillo # brightness
     libnotify # notifications
     wl-clipboard # wayland clipboard
@@ -30,7 +28,6 @@
     nomacs # image viewer
     zathura # pdf viewer
     anki-bin # flash cards
-    spotify # music
     localsend # send files
   ];
   home.shellAliases = {

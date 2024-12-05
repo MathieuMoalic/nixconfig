@@ -6,7 +6,7 @@
   ...
 }: let
   quicktranslate = inputs.quicktranslate.packages.${pkgs.system}.quicktranslate;
-  hyprsome = "${inputs.hyprsome.packages.${pkgs.system}.default}/bin/hyprsome";
+  hyprsome = "${pkgs.hyprsome}/bin/hyprsome";
   lock = import ../scripts/lock.nix {inherit pkgs;};
   power-menu = import ../scripts/power-menu.nix {inherit pkgs;};
   wireguard-menu = import ../scripts/wireguard-menu.nix {inherit pkgs;};
@@ -18,7 +18,7 @@ in {
     ./hyprpaper.nix
   ];
   home.packages = [
-    inputs.hyprsome.packages.${pkgs.system}.default
+    pkgs.hyprsome
     quicktranslate
     wireguard-menu
     lock

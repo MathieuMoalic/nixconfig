@@ -62,9 +62,8 @@
         "root"
         "@wheel"
       ];
-      # for nixos
       experimental-features = "nix-command flakes";
-      auto-optimise-store = true;
+      # auto-optimise-store = true; # This makes nixos-rebuild slower
       use-xdg-base-directories = true;
       substituters = [
         "https://nix-community.cachix.org"
@@ -74,13 +73,22 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
+    # Purge Unused Nix-Store Entries
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
   };
   nixpkgs.config.allowUnfree = true;
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
-      systemd-boot.editor = false;
+      systemd-boot = {
+        enable = true;
+        editor = false;
+        configurationLimit = 15;
+      };
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = ["ntfs"];

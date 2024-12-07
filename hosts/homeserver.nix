@@ -28,7 +28,7 @@
         enable = true;
         ssh = {
           enable = true;
-          port = 46464;
+          port = 46466;
           authorizedKeys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPcmHHg1pEOAxvEAyr6p5MY0m3/+BOn8nJOcAf7mMaej"
           ];
@@ -48,9 +48,10 @@
       enable = true;
       # pihole: 12553
       # wireguard: 51820
-      # terraria: 7777
-      allowedTCPPorts = [80 443 12553 7777];
-      allowedUDPPorts = [12553 51820];
+      # jellyfin: 8096
+      # jellyfin discovery: 7359/udp
+      allowedTCPPorts = [80 443 12553 8096];
+      allowedUDPPorts = [12553 51820 7359];
     };
     useDHCP = lib.mkDefault true;
   };

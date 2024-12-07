@@ -1,6 +1,12 @@
-{config, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   theme = config.colorScheme.palette;
 in {
+  wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter ["${pkgs.waybar}/bin/waybar"];
   programs.waybar = {
     enable = true;
     systemd.enable = true;

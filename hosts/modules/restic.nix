@@ -17,7 +17,7 @@
     commonSettings = {
       initialize = true;
       user = "mat";
-      paths = ["/home/mat/podman"];
+      paths = ["${config.users.users.mat.home}/podman"];
       passwordFile = config.sops.secrets.restic.path;
       runCheck = true;
       timerConfig = {
@@ -29,14 +29,14 @@
     podmanBackupLocal =
       commonSettings
       // {
-        repository = "/home/mat/backup";
+        repository = "${config.users.users.mat.home}/backup";
       };
 
     podmanBackupRemote =
       commonSettings
       // {
         repository = "rclone:nyx:z1/backup";
-        rcloneConfigFile = /home/mat/.config/rclone/rclone.conf;
+        rcloneConfigFile = "${config.users.users.mat.home}/.config/rclone/rclone.conf";
       };
   };
 }

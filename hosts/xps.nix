@@ -10,7 +10,6 @@
     ./modules/syncthing.nix
     ./modules/desktop.nix
   ];
-  programs.steam.enable = true;
   programs.ssh.startAgent = true;
   home-manager.users.mat.imports = [../home/xps.nix];
   hardware = {

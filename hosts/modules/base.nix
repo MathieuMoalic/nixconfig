@@ -14,7 +14,7 @@
     inputs.sops-nix.nixosModules.sops
     ./users/mat.nix
   ];
-  keyboard.qmk.enable = true;
+  hardware.keyboard.qmk.enable = true;
   services.udisks2 = {
     enable = true;
     mountOnMedia = true;

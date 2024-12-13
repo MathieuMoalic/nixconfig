@@ -9,7 +9,7 @@
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys =
       [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKJT9ZTSPiYwsVoaSBRTZ6WLVn1wt5FTIwwO6BEcusXa mateusz@DESKTOP-LC7F3KD"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFUUC3kya8Ft2EafiA+4EyivIrOI6X++VkhCig93Yzhq mateusz@Orion"
       ]
       ++ config.users.users.mat.openssh.authorizedKeys.keys;
   };

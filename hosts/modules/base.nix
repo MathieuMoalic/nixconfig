@@ -38,8 +38,6 @@
     ];
   };
 
-  security.sudo.wheelNeedsPassword = false;
-
   nix = {
     distributedBuilds = true;
     buildMachines =

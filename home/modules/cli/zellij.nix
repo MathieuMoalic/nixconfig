@@ -80,22 +80,22 @@ with config.colorScheme.palette; {
               kiosk = true;
             };
           };
-          "bind \"Alt j\"" = {MoveFocus = "Left";};
-          "bind \"Alt ;\"" = {MoveFocus = "Right";};
+          "bind \"Alt h\"" = {MoveFocus = "Left";};
+          "bind \"Alt j\"" = {MoveFocus = "Right";};
           "bind \"Alt k\"" = {MoveFocus = "Down";};
           "bind \"Alt l\"" = {MoveFocus = "Up";};
 
-          "bind \"Alt m\"" = {Resize = "Increase Left";};
-          "bind \"Alt ,\"" = {Resize = "Increase Down";};
-          "bind \"Alt .\"" = {Resize = "Increase Up";};
-          "bind \"Alt /\"" = {Resize = "Increase Right";};
-          "bind \"Alt =\"" = {Resize = "Increase";};
+          "bind \"Alt H\"" = {Resize = "Increase Left";};
+          "bind \"Alt J\"" = {Resize = "Increase Down";};
+          "bind \"Alt K\"" = {Resize = "Increase Up";};
+          "bind \"Alt L\"" = {Resize = "Increase Right";};
+          "bind \"Alt +\"" = {Resize = "Increase";};
           "bind \"Alt -\"" = {Resize = "Decrease";};
 
-          "bind \"Alt u\"" = {MovePane = "Left";};
-          "bind \"Alt i\"" = {MovePane = "Down";};
-          "bind \"Alt o\"" = {MovePane = "Up";};
-          "bind \"Alt p\"" = {MovePane = "Right";};
+          "bind \"Alt Left\"" = {MovePane = "Left";};
+          "bind \"Alt Down\"" = {MovePane = "Down";};
+          "bind \"Alt Up\"" = {MovePane = "Up";};
+          "bind \"Alt Right\"" = {MovePane = "Right";};
 
           "bind \"Alt w\"" = {GoToTab = 1;};
           "bind \"Alt e\"" = {GoToTab = 2;};
@@ -108,74 +108,73 @@ with config.colorScheme.palette; {
           "bind \"Alt v\"" = {GoToTab = 9;};
           "bind \"Alt g\"" = {GoToTab = 10;};
 
-          "bind \"Alt *\"" = {NewPane = "Down";};
-          "bind \"Alt )\"" = {NewPane = "Right";};
+          "bind \"Alt u\"" = {NewPane = "Down";};
+          "bind \"Alt o\"" = {NewPane = "Right";};
 
-          "bind \"Alt }\"" = {MoveTab = "Left";};
-          "bind \"Alt <\"" = {MoveTab = "Right";};
+          "bind \"Alt t\"" = {MoveTab = "Left";};
+          "bind \"Alt y\"" = {MoveTab = "Right";};
 
           "bind \"Alt n\"" = {NewTab = {name = " ";};};
           "bind \"Alt q\"" = {CloseTab = {};};
 
           "bind \"Alt a\"" = {CloseFocus = {};};
 
-          "bind \"Alt !\"" = {Detach = {};};
-          "bind \"Alt @\"" = {ToggleFloatingPanes = {};};
-          "bind \"Alt #\"" = {TogglePaneEmbedOrFloating = {};};
-          "bind \"Alt $\"" = {TogglePaneFrames = {};};
-          "bind \"Alt %\"" = {ToggleFocusFullscreen = {};};
+          "bind \"Alt z\"" = {Detach = {};};
+          "bind \"Alt p\"" = {ToggleFloatingPanes = {};};
+          "bind \"Alt i\"" = {TogglePaneFrames = {};};
+          "bind \"Alt b\"" = {ToggleFocusFullscreen = {};};
 
-          "bind \"Alt *\"" = {
-            SwitchToMode = "RenameTab";
-            TabNameInput = 0;
-          };
-          "bind \"Alt &\"" = {
+          "bind \"Alt F1\"" = {
             SwitchToMode = "EnterSearch";
             SearchInput = 0;
           };
-          "bind \"Alt (\"" = {
+          "bind \"Alt F2\"" = {
+            SwitchToMode = "RenameTab";
+            TabNameInput = 0;
+          };
+          "bind \"Alt F3\"" = {
             SwitchToMode = "Scroll";
           };
-          "bind \"Alt b\"" = {
+          "bind \"Alt F4\"" = {
             SwitchToMode = "Session";
           };
         };
         scroll = {
-          "bind \"L\"" = {HalfPageScrollUp = {};};
-          "bind \"K\"" = {HalfPageScrollDown = {};};
-          "bind \"l\"" = {ScrollUp = {};};
-          "bind \"k\"" = {ScrollDown = {};};
-          "bind \"Alt *\"" = {
+          "bind \"PageUp\"" = {HalfPageScrollUp = {};};
+          "bind \"PageDown\"" = {HalfPageScrollDown = {};};
+          "bind \"k\"" = {ScrollUp = {};};
+          "bind \"j\"" = {ScrollDown = {};};
+          "bind \"Alt F2\"" = {
             SwitchToMode = "RenameTab";
             TabNameInput = 0;
           };
-          "bind \"Alt &\"" = {
+          "bind \"Alt F1\"" = {
             SwitchToMode = "EnterSearch";
             SearchInput = 0;
           };
-          "bind \"Alt (\"" = {
+          "bind \"Alt F3\"" = {
             SwitchToMode = "Normal";
           };
-          "bind \"Alt y\"" = {
+          "bind \"Alt F4\"" = {
             SwitchToMode = "Session";
           };
         };
         search = {
-          "bind \"K\"" = {HalfPageScrollDown = {};};
-          "bind \"L\"" = {HalfPageScrollUp = {};};
-          "bind \"l\"" = {Search = "up";};
-          "bind \"k\"" = {Search = "down";};
+          "bind \"PageDown\"" = {HalfPageScrollDown = {};};
+          "bind \"PageUp\"" = {HalfPageScrollUp = {};};
+          "bind \"k\"" = {Search = "up";};
+          "bind \"j\"" = {Search = "down";};
           "bind \"c\"" = {SearchToggleOption = "CaseSensitivity";};
-          "bind \"k\"" = {SearchToggleOption = "Wrap";};
+          "bind \"w\"" = {SearchToggleOption = "Wrap";};
           "bind \"o\"" = {SearchToggleOption = "WholeWord";};
-          "bind \"Alt *\"" = {
+          "bind \"Alt F2\"" = {
             SwitchToMode = "RenameTab";
             TabNameInput = 0;
           };
-          "bind \"Alt &\"" = {
+          "bind \"Alt F1\"" = {
             SwitchToMode = "Normal";
           };
-          "bind \"Alt (\"" = {
+          "bind \"Alt F3\"" = {
             SwitchToMode = "Scroll";
           };
         };
@@ -183,14 +182,14 @@ with config.colorScheme.palette; {
           "bind \"Esc\"" = {
             SwitchToMode = "Normal";
           };
-          "bind \"Alt *\"" = {
+          "bind \"Alt F2\"" = {
             SwitchToMode = "RenameTab";
             TabNameInput = 0;
           };
-          "bind \"Alt &\"" = {
+          "bind \"Alt F1\"" = {
             SwitchToMode = "Normal";
           };
-          "bind \"Alt (\"" = {
+          "bind \"Alt F3\"" = {
             SwitchToMode = "Scroll";
           };
         };
@@ -198,15 +197,15 @@ with config.colorScheme.palette; {
           "bind \"Esc\"" = {
             "UndoRenameTab; SwitchToMode" = "Tab";
           };
-          "bind \"Alt *\"" = {
+          "bind \"Alt F2\"" = {
             "UndoRenameTab; SwitchToMode" = "Tab";
           };
-          "bind \"Alt &\"" = {
+          "bind \"Alt F1\"" = {
             UndoRenameTab = {};
             SwitchToMode = "EnterSearch";
             SearchInput = 0;
           };
-          "bind \"Alt (\"" = {
+          "bind \"Alt F3\"" = {
             UndoRenameTab = {};
             SwitchToMode = "Normal";
           };

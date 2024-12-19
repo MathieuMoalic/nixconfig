@@ -6,6 +6,13 @@
       vpn2.zfns.eu.org {
         reverse_proxy localhost:51821
       }
+      has.zfns.eu.org {
+        reverse_proxy localhost:8123
+      }
+      siemens.mzelent.pl {
+        root * /etc/caddy/site/SiemensClassWebsite
+        file_server
+      }
     '';
   };
 

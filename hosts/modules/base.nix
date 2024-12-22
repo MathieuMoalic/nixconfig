@@ -13,6 +13,7 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
     ./users/mat.nix
+    ./smb.nix
   ];
   hardware.keyboard.qmk.enable = true;
   services.udisks2 = {
@@ -22,6 +23,11 @@
   sops = {
     defaultSopsFile = ../../secrets.yaml;
     age.keyFile = "/home/mat/.ssh/age_key";
+    secrets = {
+      restic = {};
+      smb_mat = {};
+      smb_syam = {};
+    };
   };
 
   # Supposedly fixes some themeing/cursor issues might be useless.

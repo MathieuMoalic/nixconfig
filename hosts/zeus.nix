@@ -17,6 +17,29 @@
   ];
   home-manager.users.mat.imports = [../home/zeus.nix];
 
+  nasMounts = {
+    "/home/mat/nas" = {
+      user = "mat";
+      deviceAndShare = "//150.254.111.48/zfn";
+      credentials = "${config.sops.secrets.smb_mat.path}";
+    };
+    "/home/mat/nas2" = {
+      user = "mat";
+      deviceAndShare = "//150.254.111.3/zfn2";
+      credentials = "${config.sops.secrets.smb_mat.path}";
+    };
+    "/home/syam/nas" = {
+      user = "syam";
+      deviceAndShare = "//150.254.111.48/zfn";
+      credentials = "${config.sops.secrets.smb_syam.path}";
+    };
+    "/home/syam/nas2" = {
+      user = "syam";
+      deviceAndShare = "//150.254.111.3/zfn2";
+      credentials = "${config.sops.secrets.smb_syam.path}";
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     inputs.amumax.packages.${pkgs.system}.default
     nvtopPackages.nvidia

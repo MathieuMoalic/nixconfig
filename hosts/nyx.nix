@@ -8,11 +8,23 @@
     ./modules/desktop.nix
     ./modules/sddm/sddm.nix
     ./modules/syncthing.nix
-    ./modules/samba.nix
     ./modules/sshd.nix
     ./modules/podman.nix
   ];
   home-manager.users.mat.imports = [../home/nyx.nix];
+
+  nasMounts = {
+    "/home/mat/nas" = {
+      user = "mat";
+      deviceAndShare = "//150.254.111.48/zfn";
+      credentials = "${config.sops.secrets.smb_mat.path}";
+    };
+    "/home/mat/nas2" = {
+      user = "mat";
+      deviceAndShare = "//150.254.111.3/zfn2";
+      credentials = "${config.sops.secrets.smb_mat.path}";
+    };
+  };
 
   hardware = {
     nvidia-container-toolkit.enable = true;

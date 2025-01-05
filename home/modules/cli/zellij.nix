@@ -81,9 +81,9 @@ with config.colorScheme.palette; {
             };
           };
           "bind \"Alt h\"" = {MoveFocus = "Left";};
-          "bind \"Alt j\"" = {MoveFocus = "Right";};
-          "bind \"Alt k\"" = {MoveFocus = "Down";};
-          "bind \"Alt l\"" = {MoveFocus = "Up";};
+          "bind \"Alt j\"" = {MoveFocus = "Down";};
+          "bind \"Alt k\"" = {MoveFocus = "Up";};
+          "bind \"Alt l\"" = {MoveFocus = "Right";};
 
           "bind \"Alt H\"" = {Resize = "Increase Left";};
           "bind \"Alt J\"" = {Resize = "Increase Down";};

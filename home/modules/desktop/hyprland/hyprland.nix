@@ -219,7 +219,7 @@ in {
         "SUPER, p, exec, ${power-menu}/bin/power-menu"
 
         "SUPER, t, fullscreen"
-        "SUPER, q, killactive,"
+        "SUPER SHIFT, q, killactive,"
         "SUPER SHIFT, z, exit,"
         "SUPER, m, togglesplit,"
         "SUPER, space, togglefloating,"
@@ -259,8 +259,6 @@ in {
         "SUPER,home,resizeactive,-20 0"
         "SUPER,pageup,resizeactive,0 -20"
         "SUPER,pagedown,resizeactive,0 20"
-        # "SUPER SHIFT,R, movetoworkspace,special"
-        # "SUPER ,R , togglespecialworkspace,"
       ];
       bindm = [
         "SUPER, mouse:272, movewindow"
@@ -271,6 +269,8 @@ in {
         "idleinhibit focus, title:^(.*YouTube.*)$"
         "idleinhibit focus, title:^(.*Twitch.*)$"
         "suppressevent,class:.*"
+        "workspace 3 silent, class:steam"
+        "workspace 2 silent, class:^(steam_app_.*)$"
       ];
     };
   };

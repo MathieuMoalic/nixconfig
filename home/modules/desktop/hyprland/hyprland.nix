@@ -264,14 +264,20 @@ in {
         "SUPER, mouse:272, movewindow"
       ];
 
-      windowrulev2 = [
-        "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
-        "idleinhibit focus, title:^(.*YouTube.*)$"
-        "idleinhibit focus, title:^(.*Twitch.*)$"
-        "suppressevent,class:.*"
-        "workspace 3 silent, class:steam"
-        "workspace 2 silent, class:^(steam_app_.*)$"
-      ];
+      windowrulev2 =
+        [
+          "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
+          "idleinhibit focus, title:^(.*YouTube.*)$"
+          "idleinhibit focus, title:^(.*Twitch.*)$"
+          "suppressevent,class:.*"
+        ]
+        ++ (lib.optionals (osConfig.networking.hostName == "nix") [
+          "workspace 13 silent, class:teams-for-linux"
+        ])
+        ++ (lib.optionals (osConfig.networking.hostName == "zagreus") [
+          "workspace 3 silent, class:steam"
+          "workspace 2 silent, class:^(steam_app_.*)$"
+        ]);
     };
   };
 }

@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
@@ -15,6 +16,12 @@
     caddy # web server
     blender # 3d editor
     remmina # rdc
+  ];
+  wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter [
+    "[workspace 1 silent] ${pkgs.vscode}/bin/code"
+    "[workspace 11] ${pkgs.librewolf}/bin/librewolf"
+    "[workspace 21] ${pkgs.foot}/bin/foot"
+    "[workspace 13 silent] ${pkgs.teams-for-linux}/bin/teams-for-linux"
   ];
   home.stateVersion = "23.05";
 }

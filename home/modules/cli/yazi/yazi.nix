@@ -598,22 +598,22 @@
     keymap = {
       help.keymap = [
         {
-          on = ["w"];
+          on = ["k"];
           run = "arrow -1";
           desc = "Move cursor up";
         }
         {
-          on = ["s"];
+          on = ["j"];
           run = "arrow 1";
           desc = "Move cursor down";
         }
         {
-          on = ["W"];
+          on = ["K"];
           run = "arrow -5";
           desc = "Move cursor up 5";
         }
         {
-          on = ["S"];
+          on = ["J"];
           run = "arrow 5";
           desc = "Move cursor down 5";
         }
@@ -646,29 +646,9 @@
           run = "move 1";
         }
         {
-          desc = "Move forward a character";
-          on = ["<C-d>"];
-          run = "move 1";
-        }
-        {
           desc = "Move back a character";
           on = ["<Left>"];
           run = "move -1";
-        }
-        {
-          desc = "Move back a character";
-          on = ["<C-a>"];
-          run = "move -1";
-        }
-        {
-          desc = "Move forward to the end of the current or next word";
-          on = ["<C-e>"];
-          run = "forward --end-of-word";
-        }
-        {
-          desc = "Move back to the start of the current or previous word";
-          on = ["<C-q>"];
-          run = "backward";
         }
         {
           desc = "Delete the character before the cursor";
@@ -681,7 +661,7 @@
           run = "backspace --under";
         }
         {
-          desc = "Redo the last operation";
+          desc = "Undo the last operation";
           on = ["<C-z>"];
           run = "undo";
         }
@@ -693,11 +673,6 @@
       ];
 
       manager.keymap = [
-        {
-          on = ["<C-t>"];
-          run = "escape --search";
-          desc = "Cancel the ongoing search";
-        }
         {
           on = ["T"];
           run = "search rg";
@@ -714,32 +689,32 @@
           desc = "Compress with ouch";
         }
         {
-          on = ["w"];
+          on = ["k"];
           run = "arrow -1";
           desc = "Move cursor up";
         }
         {
-          on = ["s"];
+          on = ["j"];
           run = "arrow 1";
           desc = "Move cursor down";
         }
         {
-          on = ["W"];
+          on = ["K"];
           run = "arrow -5";
           desc = "Move cursor up 5";
         }
         {
-          on = ["S"];
+          on = ["J"];
           run = "arrow 5";
           desc = "Move cursor down 5";
         }
         {
-          on = ["a"];
+          on = ["h"];
           run = ["leave" "escape --visual --select"];
           desc = "Parent directory";
         }
         {
-          on = ["d"];
+          on = ["l"];
           run = ["plugin --sync smart-enter"];
           desc = "Child directory";
         }
@@ -788,7 +763,7 @@
           run = "plugin --sync max-preview";
         }
         {
-          on = ["h"];
+          on = ["w"];
           run = "plugin --sync hide-preview";
         }
         {
@@ -865,12 +840,12 @@
         }
         {
           desc = "Move the files to the trash";
-          on = ["k"];
+          on = ["d"];
           run = ["remove --force"];
         }
         {
           desc = "Permanently delete the files";
-          on = ["K"];
+          on = ["D"];
           run = ["remove --permanently" "escape --visual --select"];
         }
         {
@@ -885,22 +860,22 @@
         }
         {
           desc = "size";
-          on = ["l" "s"];
+          on = ["s" "s"];
           run = "linemode size";
         }
         {
           desc = "permissions";
-          on = ["l" "p"];
+          on = ["s" "p"];
           run = "linemode permissions";
         }
         {
           desc = "modified";
-          on = ["l" "m"];
+          on = ["s" "m"];
           run = "linemode modified";
         }
         {
           desc = "none";
-          on = ["l" "n"];
+          on = ["s" "n"];
           run = "linemode none";
         }
         {
@@ -1018,27 +993,27 @@
         }
         {
           desc = "Submit the selection";
-          on = ["d"];
+          on = ["l"];
           run = "close --submit";
         }
         {
           desc = "Move cursor up";
-          on = ["w"];
+          on = ["k"];
           run = "arrow -1";
         }
         {
           desc = "Move cursor down";
-          on = ["s"];
+          on = ["j"];
           run = "arrow 1";
         }
         {
           desc = "Move cursor up 5 lines";
-          on = ["W"];
+          on = ["K"];
           run = "arrow -5";
         }
         {
           desc = "Move cursor down 5 lines";
-          on = ["S"];
+          on = ["J"];
           run = "arrow 5";
         }
         {
@@ -1056,12 +1031,12 @@
         }
         {
           desc = "Move cursor up";
-          on = ["w"];
+          on = ["k"];
           run = "arrow -1";
         }
         {
           desc = "Move cursor down";
-          on = ["s"];
+          on = ["j"];
           run = "arrow 1";
         }
         {
@@ -1071,7 +1046,7 @@
         }
         {
           desc = "Cancel the task";
-          on = ["k"];
+          on = ["d"];
           run = "cancel";
         }
         {

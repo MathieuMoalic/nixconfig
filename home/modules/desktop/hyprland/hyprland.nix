@@ -11,6 +11,7 @@
   power-menu = import ../scripts/power-menu.nix {inherit pkgs;};
   wireguard-menu = import ../scripts/wireguard-menu.nix {inherit pkgs;};
   screenshot = import ../scripts/screenshot.nix {inherit pkgs;};
+  screenshot-edit = import ../scripts/screenshot-edit.nix {inherit pkgs;};
 in {
   imports = [
     ./hypridle.nix
@@ -24,6 +25,7 @@ in {
     lock
     power-menu
     screenshot
+    screenshot-edit
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -213,6 +215,7 @@ in {
         "SUPER, a, exec, ${pkgs.foot}/bin/foot"
         "SUPER, i, exec, ${pkgs.rofi-wayland}/bin/rofi -modi drun,run -show drun"
         "SUPER, o, exec, ${screenshot}/bin/screenshot"
+        "SUPER SHIFT, o, exec, ${screenshot-edit}/bin/screenshot-edit"
         "SUPER, n, exec, ${wireguard-menu}/bin/wireguard-menu"
         "SUPER, y, exec, ${quicktranslate}/bin/quicktranslate"
         "SUPER, u, exec, ${lock}/bin/lock"

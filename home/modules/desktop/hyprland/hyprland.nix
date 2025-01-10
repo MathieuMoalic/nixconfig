@@ -232,9 +232,9 @@ in {
         "SUPER SHIFT, k, changegroupactive, f"
 
         "SUPER, h, movefocus, l"
-        "SUPER, j, movefocus, r"
+        "SUPER, j, movefocus, d"
         "SUPER, k, movefocus, u"
-        "SUPER, l, movefocus, d"
+        "SUPER, l, movefocus, r"
 
         "SUPER, w, exec, ${hyprsome} workspace 1"
         "SUPER, e, exec, ${hyprsome} workspace 2"

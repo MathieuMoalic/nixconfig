@@ -15,6 +15,11 @@
     ./users/mat.nix
     ./smb.nix
   ];
+  services.earlyoom = {
+    enable = true;
+    extraArgs = ["-g" "--prefer '(^|/)(python)$'"];
+    enableNotifications = true;
+  };
   hardware.keyboard.qmk.enable = true;
   services.udisks2 = {
     enable = true;
@@ -29,6 +34,8 @@
       smb_syam = {};
     };
   };
+  # remove the need to type in the password for sudo
+  security.sudo.wheelNeedsPassword = false;
 
   # Supposedly fixes some themeing/cursor issues might be useless.
   programs.dconf.enable = true;

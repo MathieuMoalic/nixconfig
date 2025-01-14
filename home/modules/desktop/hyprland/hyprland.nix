@@ -226,7 +226,6 @@ in {
         "SUPER SHIFT, z, exit,"
         "SUPER, m, togglesplit,"
         "SUPER, space, togglefloating,"
-        "SUPER, y, togglegroup"
 
         "SUPER SHIFT, j, changegroupactive, b"
         "SUPER SHIFT, k, changegroupactive, f"

@@ -17,7 +17,6 @@
       "wsize=65536" # Write buffer size (64 KB for many small files).
       "vers=3.1.1" # Use SMB protocol version 3.1.1 for performance and encryption.
       "gid=100" # Group ID for the mount (users).
-      "direct_io" # Use direct I/O to avoid page cache.
     ];
   };
 in {

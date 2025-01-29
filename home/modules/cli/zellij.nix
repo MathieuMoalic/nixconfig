@@ -52,7 +52,6 @@ with config.colorScheme.palette; {
       theme = "mydracula";
       on_force_close = "detach";
       simplified_ui = false;
-      default_shell = "zsh";
       pane_frames = true;
       auto_layout = true;
       default_mode = "normal";

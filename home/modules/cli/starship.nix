@@ -1,8 +1,6 @@
 {config, ...}: {
   programs.starship = with config.colorScheme.palette; {
     enable = true;
-    enableZshIntegration = true;
-
     settings = {
       add_newline = true;
 

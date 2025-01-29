@@ -11,7 +11,6 @@
 
   programs.yazi = {
     enable = true;
-    enableZshIntegration = true;
     initLua = ./init.lua;
     settings = {
       manager = {

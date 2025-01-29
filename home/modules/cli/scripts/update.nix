@@ -1,7 +1,7 @@
 {pkgs, ...}: let
   script = pkgs.writeShellApplication {
     name = "up";
-    runtimeInputs = with pkgs; [alejandra git nh zsh];
+    runtimeInputs = with pkgs; [alejandra git nh nushell];
     text = ''
       set -e
       cd "$HOME"/nix
@@ -10,8 +10,7 @@
       git add .
       NIXOS_LABEL="$(date)" nh os switch "$HOME/nix"
       cd -
-      rm -f ~/.zshenv
-      exec zsh -l
+      exec nu -l
     '';
   };
 in {

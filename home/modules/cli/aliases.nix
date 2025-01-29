@@ -3,7 +3,6 @@
     wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
     py = "nix develop $HOME/gh/micromamba/env";
     man = "${pkgs.bat-extras.batman}/bin/batman";
-    rl = "exec zsh -l";
     rm = " rm -vdrf";
     cp = "cp -r";
     mkdir = " mkdir -p";

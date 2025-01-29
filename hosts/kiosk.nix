@@ -11,80 +11,26 @@
   # nixos-anywhere --flake <URL to your flake> root@<ip address>
   # nixos-rebuild switch --flake <URL to your flake> --target-host "root@<ip address>"
 
-  systemd.services.monitor-on = {
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = pkgs.writeShellScript "monitor-on" ''
-        echo "on 0" | ${pkgs.libcec}/bin/cec-client -s -d 1
-      '';
-    };
-  };
-  systemd.services.monitor-off = {
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = pkgs.writeShellScript "monitor-off" ''
-        echo "standby 0" | ${pkgs.libcec}/bin/cec-client -s -d 1
-      '';
-    };
-  };
-  systemd.timers.monitor-on = {
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnCalendar = "*-*-* 07:00:00";
-      Persistent = true;
-      Unit = "monitor-on.service";
-    };
-  };
-
-  systemd.timers.monitor-off = {
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnCalendar = "*-*-* 19:00:00";
-      Persistent = true;
-      Unit = "monitor-off.service";
-    };
-  };
-
-  systemd.services.restart-cage = {
-    description = "Restart the cage service";
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.systemd}/bin/systemctl restart cage.service";
-    };
-  };
-
-  systemd.timers.restart-cage = {
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnCalendar = "*-*-* 07:00:00";
-      Persistent = true;
-      Unit = "restart-cage.service";
-    };
-  };
-
   services.cage = {
     enable = true;
-    program = "${pkgs.firefox}/bin/firefox --private-window https://wanatowka.pl/kiosk --kiosk --no-remote";
+    program = "${pkgs.chromium}/bin/chromium --incognito --app=https://wanatowka.pl/kiosk --kiosk --no-sandbox --disable-features=Translate";
     user = "root";
     environment = {WLR_LIBINPUT_NO_DEVICES = "1";};
   };
 
-  # Wait for network and DNS
   systemd.services."cage-tty1" = {
     after = [
       "network-online.target"
       "systemd-resolved.service"
-      "firefox-cleanup.service"
     ];
-    wants = ["network-online.target" "firefox-cleanup.service"];
+    wants = ["network-online.target"];
   };
 
-  # Service to clean up Firefox files before Cage starts
-  systemd.services.firefox-cleanup = {
-    serviceConfig = {
-      ExecStart = "${pkgs.coreutils}/bin/rm -rf /root/.config/firefox /root/.cache/firefox /root/.mozilla/firefox";
+  nix = {
+    channel.enable = false;
+    settings = {
+      experimental-features = "nix-command flakes";
     };
-    wantedBy = ["cage-tty1.service"];
   };
 
   services = {

@@ -1,9 +1,8 @@
 {pkgs, ...}:
 pkgs.writeShellApplication {
   name = "screenshot";
-  runtimeInputs = with pkgs; [grim slurp satty wl-clipboard];
+  runtimeInputs = with pkgs; [grim slurp wl-clipboard];
   text = ''
-    grim -g "$(slurp)" -t ppm - | satty --filename - \
-    --output-filename /tmp/satty-"$(date '+%Y%m%d-%H:%M:%S')".png \
-    --initial-tool brush --copy-command wl-copy --early-exit'';
+    grim -g "$(slurp)" - | wl-copy --type image/png
+  '';
 }

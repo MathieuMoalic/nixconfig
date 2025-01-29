@@ -11,6 +11,7 @@
   power-menu = import ../scripts/power-menu.nix {inherit pkgs;};
   wireguard-menu = import ../scripts/wireguard-menu.nix {inherit pkgs;};
   screenshot = import ../scripts/screenshot.nix {inherit pkgs;};
+  screenshot-edit = import ../scripts/screenshot-edit.nix {inherit pkgs;};
 in {
   imports = [
     ./hypridle.nix
@@ -24,6 +25,7 @@ in {
     lock
     power-menu
     screenshot
+    screenshot-edit
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -213,6 +215,7 @@ in {
         "SUPER, a, exec, ${pkgs.foot}/bin/foot"
         "SUPER, i, exec, ${pkgs.rofi-wayland}/bin/rofi -modi drun,run -show drun"
         "SUPER, o, exec, ${screenshot}/bin/screenshot"
+        "SUPER SHIFT, o, exec, ${screenshot-edit}/bin/screenshot-edit"
         "SUPER, n, exec, ${wireguard-menu}/bin/wireguard-menu"
         "SUPER, y, exec, ${quicktranslate}/bin/quicktranslate"
         "SUPER, u, exec, ${lock}/bin/lock"
@@ -223,15 +226,14 @@ in {
         "SUPER SHIFT, z, exit,"
         "SUPER, m, togglesplit,"
         "SUPER, space, togglefloating,"
-        "SUPER, y, togglegroup"
 
         "SUPER SHIFT, j, changegroupactive, b"
         "SUPER SHIFT, k, changegroupactive, f"
 
         "SUPER, h, movefocus, l"
-        "SUPER, j, movefocus, r"
+        "SUPER, j, movefocus, d"
         "SUPER, k, movefocus, u"
-        "SUPER, l, movefocus, d"
+        "SUPER, l, movefocus, r"
 
         "SUPER, w, exec, ${hyprsome} workspace 1"
         "SUPER, e, exec, ${hyprsome} workspace 2"
@@ -264,14 +266,20 @@ in {
         "SUPER, mouse:272, movewindow"
       ];
 
-      windowrulev2 = [
-        "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
-        "idleinhibit focus, title:^(.*YouTube.*)$"
-        "idleinhibit focus, title:^(.*Twitch.*)$"
-        "suppressevent,class:.*"
-        "workspace 3 silent, class:steam"
-        "workspace 2 silent, class:^(steam_app_.*)$"
-      ];
+      windowrulev2 =
+        [
+          "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
+          "idleinhibit focus, title:^(.*YouTube.*)$"
+          "idleinhibit focus, title:^(.*Twitch.*)$"
+          "suppressevent,class:.*"
+        ]
+        ++ (lib.optionals (osConfig.networking.hostName == "nix") [
+          "workspace 13 silent, class:teams-for-linux"
+        ])
+        ++ (lib.optionals (osConfig.networking.hostName == "zagreus") [
+          "workspace 3 silent, class:steam"
+          "workspace 2 silent, class:^(steam_app_.*)$"
+        ]);
     };
   };
 }

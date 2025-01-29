@@ -14,7 +14,8 @@
     ./rclone.nix
     ./ssh.nix
     ./starship.nix
-    ./zsh.nix
+    # ./zsh.nix
+    ./nu.nix
   ];
   home.packages = with pkgs; [
     bat-extras.batman # man

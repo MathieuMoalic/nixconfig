@@ -6,7 +6,6 @@ in {
     server.enable = true;
     settings = {
       main = {
-        # term = "xterm-256color";
         font = "FiraCode Nerd Font Mono:size=13";
         selection-target = "both";
       };

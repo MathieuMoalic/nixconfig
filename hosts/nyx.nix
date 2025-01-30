@@ -13,18 +13,29 @@
   ];
   home-manager.users.mat.imports = [../home/nyx.nix];
 
-  nasMounts = {
-    "/home/mat/nas" = {
-      user = "mat";
-      deviceAndShare = "//150.254.111.48/zfn";
-      credentials = "${config.sops.secrets.smb_mat.path}";
-    };
-    "/home/mat/nas2" = {
-      user = "mat";
-      deviceAndShare = "//150.254.111.3/zfn2";
-      credentials = "${config.sops.secrets.smb_mat.path}";
-    };
+  fileSystems."/home/mat/nas" = {
+    device = "150.254.111.48:/mnt/Primary/zfn";
+    fsType = "nfs";
+    options = ["nfsvers=4.2"];
   };
+  fileSystems."/home/mat/nas2" = {
+    device = "150.254.111.3:/mnt/zfn2/zfn2";
+    fsType = "nfs";
+    options = ["nfsvers=4.2"];
+  };
+
+  # nasMounts = {
+  #   "/home/mat/nas" = {
+  #     user = "mat";
+  #     deviceAndShare = "//150.254.111.48/zfn";
+  #     credentials = "${config.sops.secrets.smb_mat.path}";
+  #   };
+  #   "/home/mat/nas2" = {
+  #     user = "mat";
+  #     deviceAndShare = "//150.254.111.3/zfn2";
+  #     credentials = "${config.sops.secrets.smb_mat.path}";
+  #   };
+  # };
 
   hardware = {
     nvidia-container-toolkit.enable = true;

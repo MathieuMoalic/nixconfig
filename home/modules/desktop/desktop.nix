@@ -30,7 +30,7 @@
     anki-bin # flash cards
     localsend # send files
   ];
-  home.shellAliases = {
+  programs.nushell.shellAliases = {
     rd = "ripdrag -x";
   };
 }

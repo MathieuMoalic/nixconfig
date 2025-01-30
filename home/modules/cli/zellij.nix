@@ -4,7 +4,7 @@
   ...
 }:
 with config.colorScheme.palette; {
-  home.shellAliases = {
+  programs.nushell.shellAliases = {
     tl = "zellij ls";
     ta = "zellij a -c";
     tk = "zellij d --force";

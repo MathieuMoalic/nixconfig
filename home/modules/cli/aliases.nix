@@ -21,7 +21,6 @@
     "..." = "cd ../..";
     "...." = "cd ../../..";
     myip = "curl ifconfig.me; echo";
-    dev = "nix develop -c zsh";
     ghs = "gh copilot suggest -t shell";
     ghe = "gh copilot explain";
     ghc = "gh copilot";

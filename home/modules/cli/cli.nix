@@ -14,7 +14,6 @@
     ./rclone.nix
     ./ssh.nix
     ./starship.nix
-    # ./zsh.nix
     ./nu.nix
   ];
   home.packages = with pkgs; [
@@ -23,7 +22,6 @@
     funzzy # watch files
     github-cli # gh
     wget # download
-    zsh # shell
     zoxide # a smarter cd in rust
     skim # fuzzy finder `sk`
     ouch # de-compress files

@@ -10,7 +10,6 @@
       git add .
       NIXOS_LABEL="$(date)" nh os switch "$HOME/nix"
       cd -
-      exec nu -l
     '';
   };
 in {

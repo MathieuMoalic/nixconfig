@@ -28,6 +28,14 @@
         user = "mat";
         port = 46464;
       };
+      vscode-nix = {
+        hostname = "nyx.zfns.eu.org";
+        user = "mat";
+        port = 46464;
+        extraOptions = {
+          RemoteCommand = "bash";
+        };
+      };
       alecto = {
         hostname = "alecto.zfns.eu.org";
         user = "mat";

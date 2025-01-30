@@ -45,7 +45,6 @@
       nameserver 109.173.160.203
       nameserver 1.1.1.1'';
     binsh = "${pkgs.dash}/bin/dash";
-    # variables.ZDOTDIR = "$HOME/.config/zsh";
     systemPackages = with pkgs; [
       home-manager
     ];

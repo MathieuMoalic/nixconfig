@@ -4,7 +4,6 @@
     ./yazi/yazi.nix
     ./zellij.nix
     ./aliases.nix
-    ./atuin.nix
     ./btop.nix
     ./direnv.nix
     ./git.nix

@@ -5,8 +5,7 @@
       add_newline = true;
 
       format = ''
-        [ ](fg:#${base00} bg:#${orange})$username[ ](fg:#${orange} bg:#${base0E})$hostname[](fg:#${base0E} bg:#${base0B})$directory[](fg:#${base0B} bg:#${blue})$nix_shell[](fg:#${blue} bg:#${orange})''${custom.nix_ns}[ ](fg:#${orange} bg:#${base00}ff)$git_branch$git_status$fill$time
-        $character'';
+        [ ](fg:#${base00} bg:#${orange})$username[ ](fg:#${orange} bg:#${base0E})$hostname[](fg:#${base0E} bg:#${base0B})$directory[](fg:#${base0B} bg:#${blue})$nix_shell[](fg:#${blue} bg:#${orange})''${custom.nix_ns}[ ](fg:#${orange} bg:#${base00}ff)$git_branch$git_status$fill$time'';
 
       custom = {
         nix_ns = {
@@ -72,11 +71,6 @@
         time_format = "%X";
         style = "bold fg:#${orange}";
         format = "[ $time ]($style)";
-      };
-
-      character = {
-        error_symbol = "[❯](bold #${base08})";
-        success_symbol = "[❯](bold #${base0B})";
       };
     };
   };

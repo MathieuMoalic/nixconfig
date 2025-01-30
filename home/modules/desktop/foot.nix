@@ -35,6 +35,9 @@ in {
         bright6 = theme.base0F;
         bright7 = theme.base07;
       };
+      "key-bindings" = {
+        "clipboard-paste" = "Control+v XF86Paste";
+      };
     };
   };
 }

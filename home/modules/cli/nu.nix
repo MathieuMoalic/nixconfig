@@ -2,6 +2,18 @@
   imports = [
     inputs.nix-index-database.hmModules.nix-index # weekly nix-index refresh
   ];
+  programs.nushell = {
+    enable = true;
+    extraConfig = ''
+      $env.config = {
+        show_banner: false,
+        completions: {
+          algorithm: "fuzzy",
+          },
+        }
+      $env.DIRENV_LOG_FORMAT = ""
+    '';
+  };
   programs.zoxide = {
     enable = true;
     enableNushellIntegration = true;

@@ -1,15 +1,13 @@
 {pkgs, ...}: {
-  home.shellAliases = {
-    wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts";
-    py = "nix develop $HOME/gh/micromamba/env";
+  programs.nushell.shellAliases = {
+    wget = "wget --hsts-file=$env.XDG_DATA_HOME/wget-hsts";
     man = "${pkgs.bat-extras.batman}/bin/batman";
-    rm = " rm -vdrf";
+    rm = " rm -vrf";
     cp = "cp -r";
-    mkdir = " mkdir -p";
     l = "exa -al --across --icons -s age";
     ll = "exa -ahlg --across --icons -s age";
     lt = "l --tree";
-    e = "$EDITOR";
+    e = "hx";
     m = "amumax";
     op = "xdg-open";
     se = "sudoedit";
@@ -18,7 +16,6 @@
     pmps = "pm ps -a  --sort status --format \"table {{.Names}} {{.Status}} {{.Created}} {{.Image}}\"";
     sysu = "systemctl --user";
     cd = "z";
-    d = "z";
     tldr = "tldr -q";
     ".." = "cd ..";
     "..." = "cd ../..";
@@ -28,7 +25,6 @@
     ghs = "gh copilot suggest -t shell";
     ghe = "gh copilot explain";
     ghc = "gh copilot";
-    colors = "curl -Ls 'https://raw.githubusercontent.com/NNBnh/textart-collections/main/color/colortest.textart' | bash; echo";
     lg = "lazygit";
   };
 }

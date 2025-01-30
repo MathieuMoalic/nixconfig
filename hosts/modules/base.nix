@@ -125,7 +125,6 @@
   };
 
   programs.zsh.enable = true;
-  programs.nushell.enable = true;
 
   home-manager = {
     backupFileExtension = "hmbak";

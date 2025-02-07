@@ -26,6 +26,36 @@
         },
         use_kitty_protocol: true,
         bracketed_paste: true,
+        keybindings: [
+          {
+            name: l
+            modifier: CONTROL
+            keycode: Char_l
+            mode: vi_insert
+            event:[
+                { edit: Clear }
+                { edit: InsertString,
+                  value: "l"
+
+                }
+                { send: Enter }
+              ]
+          }
+          {
+            name: clear_screen
+            modifier: CONTROL
+            keycode: Char_k
+            mode: vi_insert
+            event:[
+                { edit: Clear }
+                { edit: InsertString,
+                  value: "clear"
+
+                }
+                { send: Enter }
+              ]
+          }
+        ]
       };
       $env.DIRENV_LOG_FORMAT = ""
     '';

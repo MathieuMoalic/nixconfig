@@ -31,6 +31,9 @@ in {
     enable = true;
     systemd.variables = ["--all"];
     settings = {
+      exec-once = [
+        "${pkgs.waybar}/bin/waybar"
+      ];
       monitor =
         (lib.optionals (osConfig.networking.hostName == "nyx") [
           "DP-3, 1920x1200@59.95, -1920x0, 1"

@@ -2,9 +2,12 @@
   imports = [
     inputs.nix-index-database.hmModules.nix-index # weekly nix-index refresh
   ];
+  programs.carapace = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
   programs.nushell = {
     enable = true;
-
     # https://github.com/nushell/nushell/blob/main/crates/nu-utils/src/default_files/doc_config.nu
     extraConfig = ''
       $env.config = {

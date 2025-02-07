@@ -3,7 +3,7 @@
 in {
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
+    systemd.enable = false;
     style = ''
       #waybar {
         font-family: "FiraMono Nerd Font", sans-serif;

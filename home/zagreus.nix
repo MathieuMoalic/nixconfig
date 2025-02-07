@@ -13,7 +13,6 @@
   home.packages = with pkgs; [
     nvtopPackages.amd
     wootility
-    element-desktop-wayland
   ];
   wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter [
     "[workspace 1 silent] ${pkgs.librewolf}/bin/librewolf"

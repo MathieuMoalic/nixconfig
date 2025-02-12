@@ -10,6 +10,7 @@
     ./modules/syncthing.nix
     ./modules/sshd.nix
     ./modules/podman.nix
+    ./modules/kmonad.nix
   ];
   home-manager.users.mat.imports = [../home/nyx.nix];
 

@@ -1,7 +1,7 @@
 {config, ...}: let
   keyboardDevices = {
     "nyx" = "/dev/input/by-id/usb-Dwctor_kaly_kaly42_32005D00165133353238323100000000-event-kbd";
-    "xps" = "/dev/input/by-id/";
+    "xps" = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
     "zagreus" = "/dev/input/by-id/";
   };
 in {
@@ -13,8 +13,8 @@ in {
       defcfg.enable = true;
       config = ''
         (defalias
-          pl (tap-next g (layer-toggle pl-layer))
-          fr (tap-next f (layer-toggle fr-layer))
+          pl (tap-hold 200 g (layer-toggle pl-layer))
+          fr (tap-hold 200 f (layer-toggle fr-layer))
         )
 
         (defsrc

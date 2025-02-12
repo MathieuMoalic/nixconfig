@@ -9,6 +9,7 @@
     ./modules/sddm/sddm.nix
     ./modules/syncthing.nix
     ./modules/desktop.nix
+    ./modules/kmonad.nix
   ];
   programs.ssh.startAgent = true;
   home-manager.users.mat.imports = [../home/xps.nix];

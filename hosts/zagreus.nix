@@ -9,6 +9,7 @@
     ./modules/sddm/sddm.nix
     ./modules/desktop.nix
     ./modules/syncthing.nix
+    ./modules/kmonad.nix
   ];
   hardware.wooting.enable = true;
   programs.steam = {

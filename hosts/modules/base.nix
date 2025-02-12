@@ -14,6 +14,7 @@
     inputs.sops-nix.nixosModules.sops
     ./users/mat.nix
     ./smb.nix
+    ./kmonad.nix
   ];
   services.earlyoom = {
     enable = true;

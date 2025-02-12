@@ -48,6 +48,7 @@
     binsh = "${pkgs.dash}/bin/dash";
     systemPackages = with pkgs; [
       home-manager
+      inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     ];
   };
 

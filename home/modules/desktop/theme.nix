@@ -11,9 +11,9 @@
     theme.name = "adw-gtk3";
   };
   home.pointerCursor = {
-    package = pkgs.graphite-cursors;
+    package = pkgs.rose-pine-cursor;
     gtk.enable = true;
-    name = "graphite-dark";
+    name = "BreezeX-RosePine-Linux";
   };
 
   qt = {

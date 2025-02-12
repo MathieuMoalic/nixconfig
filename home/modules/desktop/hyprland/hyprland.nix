@@ -31,6 +31,10 @@ in {
     enable = true;
     systemd.variables = ["--all"];
     settings = {
+      env = [
+        "HYPRCURSOR_THEME,rose-pine-hyprcursor"
+        "HYPRCURSOR_SIZE,32"
+      ];
       exec-once = [
         "${pkgs.waybar}/bin/waybar"
       ];

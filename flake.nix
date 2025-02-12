@@ -8,6 +8,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     amumax.url = "github:MathieuMoalic/amumax";
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     sops-nix.url = "github:Mic92/sops-nix";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";

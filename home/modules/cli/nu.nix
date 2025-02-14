@@ -58,6 +58,7 @@
         ]
       };
       $env.DIRENV_LOG_FORMAT = ""
+      $env.EDITOR = "hx"
     '';
   };
   programs.zoxide = {

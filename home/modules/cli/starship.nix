@@ -5,7 +5,7 @@
       add_newline = true;
 
       format = ''
-        [ ](fg:#${base00} bg:#${orange})$username[ ](fg:#${orange} bg:#${base0E})$hostname[](fg:#${base0E} bg:#${base0B})$directory[](fg:#${base0B} bg:#${blue})$nix_shell[](fg:#${blue} bg:#${orange})''${custom.nix_ns}[ ](fg:#${orange} bg:#${base00}ff)$git_branch$git_status'';
+        [ ](fg:#${base00} bg:#${orange})$username[ ](fg:#${orange} bg:#${base0E})$hostname[](fg:#${base0E} bg:#${base0B})$directory[](fg:#${base0B} bg:#${blue})$nix_shell[](fg:#${blue} bg:#${orange})''${custom.nix_ns}[ ](fg:#${orange} bg:#${base00}ff)'';
 
       custom = {
         nix_ns = {
@@ -37,40 +37,9 @@
         format = "[ $path ]($style)";
       };
 
-      git_branch = {
-        style = "bold fg:#${base0E}";
-        format = "[ $symbol$branch ]($style)";
-      };
-
-      git_status = {
-        style = "bold fg:#${base0E}";
-        format = "[$conflicted$ahead$behind$untracked$modified$staged$renamed$deleted]($style)";
-        conflicted = "$count= ";
-        ahead = "$count⇡ ";
-        behind = "$count⇣ ";
-        untracked = "$count? ";
-        stashed = "$count$ ";
-        modified = "$count! ";
-        staged = "$count+ ";
-        renamed = "$count» ";
-        deleted = "$count✘ ";
-      };
-
-      fill = {
-        symbol = " ";
-        style = "bold #${base0B}";
-      };
-
       nix_shell = {
         format = "[  ]($style)";
         style = "fg:#${base00} bg:#${blue}";
-      };
-
-      time = {
-        disabled = false;
-        time_format = "%X";
-        style = "bold fg:#${orange}";
-        format = "[ $time ]($style)";
       };
     };
   };

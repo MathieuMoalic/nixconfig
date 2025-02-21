@@ -15,30 +15,43 @@ in {
         (defalias
           pl (tap-hold 200 g (layer-toggle pl-layer))
           fr (tap-hold 200 f (layer-toggle fr-layer))
+          lock (layer-switch lock-layer)
+          unlock (layer-switch base)
         )
 
         (defsrc
           q    w    e    r    t    y    u    i    o    p
           a    s    d    f    g    h    j    k    l
           z    x    c    v    b    n    m
+          f7
         )
 
         (deflayer base
           q     w    e    r    t    y    u    i    o    p
-          a     s    d    @fr  @pl  h    j    k    l
+          a     s    d    f    g    h    j    k    l
           z     x    c    v    b    n    m
+          @lock
+        )
+
+        (deflayer lock-layer
+          q    w    e    r    t    y    u    i    o    p
+          a    s    d    @fr  @pl  h    j    k    l
+          z    x    c    v    b    n    m
+          @unlock
         )
 
         (deflayer pl-layer
           q     w    ę    r    t    y    u    i    ó    p
           ą     ś    d    f    g    h    j    k    ł
           ż     ź    ć    v    b    ń    m
+          f7
         )
 
         (deflayer fr-layer
           â     ê    é    r    t    ÿ    ù    î    ô    ö
           à     è    ë    f    g    h    û    ï    l
           ä     x    ç    v    b    n    ü
+          f7
         )
       '';
     };

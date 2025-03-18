@@ -40,10 +40,19 @@
   # Supposedly fixes some themeing/cursor issues might be useless.
   programs.dconf.enable = true;
 
+  networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "systemd-resolved";
+
+  networking.nameservers = ["9.9.9.9#dns.quad9.net" "149.112.112.112#dns.quad9.net"];
+  services.resolved = {
+    enable = true;
+    fallbackDns = ["9.9.9.9" "149.112.112.112"];
+    domains = ["~."];
+    dnsovertls = "true";
+    dnssec = "true";
+  };
+  networking.enableIPv6 = true;
   environment = {
-    etc."resolv.conf".text = ''
-      nameserver 109.173.160.203
-      nameserver 1.1.1.1'';
     binsh = "${pkgs.dash}/bin/dash";
     systemPackages = with pkgs; [
       home-manager
@@ -103,9 +112,8 @@
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = ["ntfs"];
+    initrd.systemd.enable = true; # Needed for hibernation
   };
-
-  networking.networkmanager.enable = true;
 
   time.timeZone = lib.mkDefault "Europe/Warsaw";
 

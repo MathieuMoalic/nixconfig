@@ -5,7 +5,6 @@
     serverAliveInterval = 60;
     extraConfig = ''
       StrictHostKeyChecking accept-new
-      Include ~/.ssh/config2
     '';
     matchBlocks = {
       faculty = {

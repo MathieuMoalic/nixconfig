@@ -12,6 +12,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    nvf.url = "github:notashelf/nvf";
   };
   outputs = {nixpkgs, ...} @ inputs: let
     makeNixosSystem = host:

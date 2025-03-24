@@ -1,9 +1,11 @@
-{...}: {
+{
   programs.ssh = {
     enable = true;
     serverAliveCountMax = 120;
     serverAliveInterval = 60;
-    extraConfig = "StrictHostKeyChecking accept-new";
+    extraConfig = ''
+      StrictHostKeyChecking accept-new
+    '';
     matchBlocks = {
       faculty = {
         hostname = "150.254.111.35";
@@ -18,14 +20,6 @@
         user = "mat";
         port = 46464;
       };
-      homeserver-vscode = {
-        hostname = "matmoa.xyz";
-        user = "mat";
-        port = 46464;
-        extraOptions = {
-          RemoteCommand = "bash";
-        };
-      };
       homeserver-initrd = {
         hostname = "matmoa.xyz";
         user = "root";
@@ -36,39 +30,15 @@
         user = "mat";
         port = 46464;
       };
-      vscode-nyx = {
-        hostname = "nyx.zfns.eu.org";
-        user = "mat";
-        port = 46464;
-        extraOptions = {
-          RemoteCommand = "bash";
-        };
-      };
       alecto = {
         hostname = "alecto.zfns.eu.org";
         user = "mat";
         port = 46464;
       };
-      alecto-vscode = {
-        hostname = "alecto.zfns.eu.org";
-        user = "mat";
-        port = 46464;
-        extraOptions = {
-          RemoteCommand = "bash";
-        };
-      };
       zeus = {
         hostname = "zeus.zfns.eu.org";
         user = "mat";
         port = 46464;
-      };
-      zeus-vscode = {
-        hostname = "zeus.zfns.eu.org";
-        user = "mat";
-        port = 46464;
-        extraOptions = {
-          RemoteCommand = "bash";
-        };
       };
       kiosk1 = {
         hostname = "kiosk1.zfns.eu.org";
@@ -78,22 +48,34 @@
         hostname = "kiosk2.zfns.eu.org";
         user = "root";
       };
-      # These 3 are broken
-      # prometheus = {
-      #   hostname = "prometheus.zfns.eu.org";
-      #   user = "matmoa";
-      #   port = 28561;
-      # };
-      # zephyros = {
-      #   hostname = "zephyros.zfns.eu.org";
-      #   user = "admin";
-      #   port = 23099;
-      # };
-      # eos = {
-      #   hostname = "eos.zfns.eu.org";
-      #   user = "matmoa";
-      #   port = 4545;
-      # };
     };
+  };
+
+  home.file.".ssh/config2" = {
+    text = ''
+      Host homeserver
+        HostName matmoa.xyz
+        User mat
+        Port 46464
+        RemoteCommand bash
+
+      Host nyx
+        HostName nyx.zfns.eu.org
+        User mat
+        Port 46464
+        RemoteCommand bash
+
+      Host alecto
+        HostName alecto.zfns.eu.org
+        User mat
+        Port 46464
+        RemoteCommand bash
+
+      Host zeus
+        HostName zeus.zfns.eu.org
+        User mat
+        Port 46464
+        RemoteCommand bash
+    '';
   };
 }

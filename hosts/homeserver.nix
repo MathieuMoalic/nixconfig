@@ -50,8 +50,9 @@
       # wireguard: 51820
       # jellyfin: 8096
       # jellyfin discovery: 7359/udp
-      allowedTCPPorts = [80 443 12553 8096];
-      allowedUDPPorts = [12553 51820 7359];
+      # coturn: 3478 5349 49160-49200/udp
+      allowedTCPPorts = [80 443 12553 8096 3478 5349];
+      allowedUDPPorts = [12553 51820 7359 3478 5349] ++ (map (x: x) (builtins.genList (x: 49160 + x) (49200 - 49160 + 1)));
     };
     useDHCP = lib.mkDefault true;
   };

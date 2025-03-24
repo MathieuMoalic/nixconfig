@@ -15,7 +15,7 @@
   home-manager.users.mat.imports = [../home/nyx.nix];
 
   fileSystems."/home/mat/nas" = {
-    device = "150.254.111.48:/mnt/Primary/zfn";
+    device = "150.254.111.48:/mnt/Primary/zfn/matmoa";
     fsType = "nfs";
     options = ["nfsvers=4.2"];
   };

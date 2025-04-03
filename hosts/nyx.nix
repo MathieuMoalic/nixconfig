@@ -24,6 +24,11 @@
     fsType = "nfs";
     options = ["nfsvers=4.2"];
   };
+  fileSystems."/home/mat/z1/preludium/nas" = {
+    device = "150.254.111.3:/mnt/zfn2/zfn2/matmoa/jobs/preludium";
+    fsType = "nfs";
+    options = ["nfsvers=4.2"];
+  };
 
   # nasMounts = {
   #   "/home/mat/nas" = {

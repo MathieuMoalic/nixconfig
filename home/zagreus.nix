@@ -15,7 +15,7 @@
     wootility
   ];
   wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter [
-    "[workspace 1 silent] ${pkgs.librewolf}/bin/librewolf"
-    "[workspace 3 silent] ${pkgs.steam}/bin/steam"
+    "[workspace 11 silent] ${pkgs.librewolf}/bin/librewolf"
+    "[workspace 12 silent] ${pkgs.steam}/bin/steam"
   ];
 }

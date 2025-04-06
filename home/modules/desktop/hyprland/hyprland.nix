@@ -302,6 +302,7 @@ in {
           "27,monitor:DP-3"
           "28,monitor:DP-3"
           "29,monitor:DP-3"
+          "30,monitor:DP-3"
           "1,monitor:DP-1"
           "2,monitor:DP-1"
           "3,monitor:DP-1"
@@ -311,6 +312,7 @@ in {
           "7,monitor:DP-1"
           "8,monitor:DP-1"
           "9,monitor:DP-1"
+          "10,monitor:DP-1"
           "11,monitor:DP-2"
           "12,monitor:DP-2"
           "13,monitor:DP-2"
@@ -319,6 +321,7 @@ in {
           "17,monitor:DP-2"
           "18,monitor:DP-2"
           "19,monitor:DP-2"
+          "20,monitor:DP-2"
         ])
         ++ (lib.optionals (osConfig.networking.hostName == "zagreus") [
           "1,monitor:DP-2"
@@ -330,6 +333,7 @@ in {
           "7,monitor:DP-2"
           "8,monitor:DP-2"
           "9,monitor:DP-2"
+          "10,monitor:DP-2"
           "11,monitor:HDMI-A-1"
           "12,monitor:HDMI-A-1"
           "13,monitor:HDMI-A-1"
@@ -338,6 +342,7 @@ in {
           "17,monitor:HDMI-A-1"
           "18,monitor:HDMI-A-1"
           "19,monitor:HDMI-A-1"
+          "20,monitor:HDMI-A-1"
         ]);
     };
   };

@@ -12,7 +12,6 @@
     op = "xdg-open";
     se = "sudoedit";
     pm = "podman";
-    cat = "bat -Pp";
     pmps = "pm ps -a  --sort status --format \"table {{.Names}} {{.Status}} {{.Created}} {{.Image}}\"";
     sysu = "systemctl --user";
     cd = "z";

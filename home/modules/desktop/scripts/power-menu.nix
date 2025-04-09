@@ -11,7 +11,7 @@ pkgs.writeShellApplication {
       "  Restart") reboot ;;
       "⏾  Sleep") systemctl suspend && lock ;;
       "  Lock") lock ;;
-      "󰋑  Logout") hyprctl dispatch exit ;;
+      "󰋑  Logout") loginctl terminate-session "$XDG_SESSION_ID" ;;
       "⏾ Hibernate") systemctl hibernate && lock ;;
       *) exit 1 ;;
     esac

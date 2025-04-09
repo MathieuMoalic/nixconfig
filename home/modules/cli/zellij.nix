@@ -25,8 +25,8 @@ with config.colorScheme.palette; {
     tab = base05;
     tab-active = base0E;
   in ''
-    layout {
-        default_tab_template{
+    layout cwd="/home/mat" {
+        default_tab_template {
             pane split_direction="vertical" {
                 pane
             }

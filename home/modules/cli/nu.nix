@@ -59,6 +59,13 @@
       };
       $env.DIRENV_LOG_FORMAT = ""
       $env.EDITOR = "hx"
+      $env.IPYTHONDIR = "$HOME/.local/share/ipython"
+      $env.JUPYTER_CONFIG_DIR = "$HOME/.config/jupyter"
+      $env.RUSTUP_HOME = "$HOME/.local/share/rust"
+      $env.CARGO_HOME = "$HOME/.local/share/cargo"
+      $env.CUDA_CACHE_PATH = "$HOME/.cache/nv"
+      $env.DOTNET_CLI_HOME = "$HOME/.local/share/dotnet"
+      $env.DOCKER_HOST = "unix:///run/user/1000/podman/podman.sock"
     '';
   };
   programs.zoxide = {

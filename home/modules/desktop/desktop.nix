@@ -28,7 +28,7 @@
     nomacs # image viewer
     zathura # pdf viewer
     anki-bin # flash cards
-    localsend # send files
+    freetube # youtube client
   ];
   programs.nushell.shellAliases = {
     rd = "ripdrag -x";

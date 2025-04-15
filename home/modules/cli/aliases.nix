@@ -12,7 +12,7 @@
     op = "xdg-open";
     se = "sudoedit";
     pm = "podman";
-    pmps = "pm ps -a  --sort status --format \"table {{.Names}} {{.Status}} {{.Created}} {{.Image}}\"";
+    pmps = "pm ps -a  --sort status --format \"table {{.Names}} {{.Status}} {{.Image}}\"";
     sysu = "systemctl --user";
     cd = "z";
     tldr = "tldr -q";

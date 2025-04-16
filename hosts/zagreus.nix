@@ -12,6 +12,13 @@
     ./modules/kmonad.nix
   ];
   hardware.wooting.enable = true;
+  environment.systemPackages = with pkgs; [
+    (steam.override {
+      extraBwrapArgs = [
+        "--bind $HOME/.config/steam $HOME"
+      ];
+    })
+  ];
   programs.steam = {
     enable = true;
   };

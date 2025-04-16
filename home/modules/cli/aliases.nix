@@ -7,7 +7,7 @@
     l = "exa -al --across --icons -s age";
     ll = "exa -ahlg --across --icons -s age";
     lt = "l --tree";
-    e = "hx";
+    e = "nvim";
     m = "amumax";
     op = "xdg-open";
     se = "sudoedit";

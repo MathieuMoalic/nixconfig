@@ -20,7 +20,7 @@
   # };
 in {
   programs.helix = {
-    defaultEditor = true;
+    defaultEditor = false;
     enable = true;
     settings = {
       theme = "mytheme";

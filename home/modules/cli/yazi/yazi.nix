@@ -50,7 +50,7 @@
         ];
         open = [
           {
-            run = "xdg-open \"$@\"";
+            run = "xdg-open \"$@\"  &";
             desc = "Open";
             for = "linux";
           }
@@ -840,7 +840,7 @@
         {
           desc = "Move the files to the trash";
           on = ["d"];
-          run = ["remove --force"];
+          run = ["remove" "escape --visual --select"];
         }
         {
           desc = "Permanently delete the files";

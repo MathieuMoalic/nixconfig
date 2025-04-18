@@ -14,6 +14,7 @@
     ./ssh.nix
     ./starship.nix
     ./nu.nix
+    ./nvim.nix
   ];
   home.packages = with pkgs; [
     bat-extras.batman # man

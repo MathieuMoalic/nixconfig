@@ -13,21 +13,43 @@
     ./modules/kmonad.nix
   ];
   home-manager.users.mat.imports = [../home/nyx.nix];
-
-  fileSystems."/home/mat/nas" = {
-    device = "150.254.111.48:/mnt/Primary/zfn/matmoa";
-    fsType = "nfs";
-    options = ["nfsvers=4.2"];
-  };
-  fileSystems."/home/mat/nas2" = {
-    device = "150.254.111.3:/mnt/zfn2/zfn2";
-    fsType = "nfs";
-    options = ["nfsvers=4.2"];
-  };
-  fileSystems."/home/mat/z1/preludium/nas" = {
-    device = "150.254.111.3:/mnt/zfn2/zfn2/matmoa/jobs/preludium";
-    fsType = "nfs";
-    options = ["nfsvers=4.2"];
+  fileSystems = {
+    "/home/mat/nas" = {
+      device = "150.254.111.48:/mnt/Primary/zfn/matmoa";
+      fsType = "nfs";
+      options = ["nfsvers=4.2"];
+    };
+    "/home/mat/nas2" = {
+      device = "150.254.111.3:/mnt/zfn2/zfn2";
+      fsType = "nfs";
+      options = ["nfsvers=4.2"];
+    };
+    "/home/mat/z2/double_freq_gen/nas" = {
+      device = "150.254.111.3:/mnt/zfn2/zfn2/matmoa/jobs/double_freq_gen";
+      fsType = "nfs";
+      options = ["nfsvers=4.2"];
+    };
+    "/home/mat/z1/preludium/nas" = {
+      device = "150.254.111.3:/mnt/zfn2/zfn2/matmoa/jobs/preludium";
+      fsType = "nfs";
+      options = ["nfsvers=4.2"];
+    };
+    "/" = {
+      device = "/dev/disk/by-label/NIXROOT";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-label/NIXBOOT";
+      fsType = "vfat";
+    };
+    "/home/mat/z1" = {
+      device = "/dev/disk/by-label/z1";
+      fsType = "ext4";
+    };
+    "/home/mat/z2" = {
+      device = "/dev/disk/by-label/shared";
+      fsType = "ext4";
+    };
   };
 
   # nasMounts = {
@@ -107,25 +129,6 @@
       size = 16 * 1024;
     }
   ];
-
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-label/NIXROOT";
-      fsType = "ext4";
-    };
-    "/boot" = {
-      device = "/dev/disk/by-label/NIXBOOT";
-      fsType = "vfat";
-    };
-    "/home/mat/z1" = {
-      device = "/dev/disk/by-label/z1";
-      fsType = "ext4";
-    };
-    "/home/mat/z2" = {
-      device = "/dev/disk/by-label/shared";
-      fsType = "ext4";
-    };
-  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   system.stateVersion = "23.11";

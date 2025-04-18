@@ -10,41 +10,49 @@ with config.colorScheme.palette; {
     tk = "zellij d --force";
     tka = "zellij da -y --force";
   };
-  home.file.".config/zellij/plugins/monocle.wasm".source = pkgs.fetchurl {
-    url = "https://github.com/imsnif/monocle/releases/download/v0.100.0/monocle.wasm";
-    sha256 = "sha256-MxS5OBEUdrcuRfvewLt+q24lb8J+3O4/yjbgMD6nnqQ=";
-  };
+  home.file = {
+    ".config/zellij/plugins/monocle.wasm".source = pkgs.fetchurl {
+      url = "https://github.com/imsnif/monocle/releases/download/v0.100.0/monocle.wasm";
+      sha256 = "sha256-MxS5OBEUdrcuRfvewLt+q24lb8J+3O4/yjbgMD6nnqQ=";
+    };
 
-  home.file.".config/zellij/plugins/zjstatus.wasm".source = pkgs.fetchurl {
-    url = "https://github.com/dj95/zjstatus/releases/download/v0.17.0/zjstatus.wasm";
-    sha256 = "sha256-IgTfSl24Eap+0zhfiwTvmdVy/dryPxfEF7LhVNVXe+U=";
-  };
+    ".config/zellij/plugins/zjstatus.wasm".source = pkgs.fetchurl {
+      url = "https://github.com/dj95/zjstatus/releases/download/v0.17.0/zjstatus.wasm";
+      sha256 = "sha256-IgTfSl24Eap+0zhfiwTvmdVy/dryPxfEF7LhVNVXe+U=";
+    };
 
-  home.file.".config/zellij/layouts/default.kdl".text = let
-    background = base00;
-    tab = base05;
-    tab-active = base0E;
-  in ''
-    layout cwd="/home/mat" {
-        default_tab_template {
-            pane split_direction="vertical" {
-                pane
-            }
-            pane size=1 borderless=true {
-                plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
-                    format_left  "{tabs}"
-                    format_right ""
-                    format_space "#[bg=#${background}ff]"
-                    hide_frame_for_single_pane "false"
-                    mode_normal  ""
-                    tab_normal "#[fg=#${background},bg=#${tab}]#[fg=#${background},bold,bg=#${tab}] {index} {name} #[fg=#${tab},bg=#${background}ff]"
-                    tab_active "#[fg=#${background},bg=#${tab-active}]#[fg=#${background},bold,bg=#${tab-active}] {index} {name} #[fg=#${tab-active},bg=#${background}ff]"
-                }
-            }
-        }
-        tab name=" "
-    }
-  '';
+    ".config/zellij/layouts/default.kdl".text = let
+      background = base00;
+      tab = base05;
+      tab-active = base0E;
+    in ''
+      layout cwd="/home/mat" {
+          default_tab_template {
+              pane split_direction="vertical" {
+                  pane
+              }
+              pane size=1 borderless=true {
+                  plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+                      format_left  "{tabs}"
+                      format_right ""
+                      format_space "#[bg=#${background}ff]"
+                      hide_frame_for_single_pane "false"
+                      mode_normal  ""
+                      tab_normal "#[fg=#${background},bg=#${tab}]#[fg=#${background},bold,bg=#${tab}] {index} {name} #[fg=#${tab},bg=#${background}ff]"
+                      tab_active "#[fg=#${background},bg=#${tab-active}]#[fg=#${background},bold,bg=#${tab-active}] {index} {name} #[fg=#${tab-active},bg=#${background}ff]"
+                  }
+              }
+          }
+          tab name=" "
+
+          swap_floating_layout {
+              floating_panes max_panes=1 {
+                  pane x="5%" y="5%" width="90%" height="90%"
+              }
+          }
+      }
+    '';
+  };
 
   programs.zellij = {
     enable = true;
@@ -88,7 +96,7 @@ with config.colorScheme.palette; {
           "bind \"Alt J\"" = {Resize = "Increase Down";};
           "bind \"Alt K\"" = {Resize = "Increase Up";};
           "bind \"Alt L\"" = {Resize = "Increase Right";};
-          "bind \"Alt +\"" = {Resize = "Increase";};
+          "bind \"Alt =\"" = {Resize = "Increase";};
           "bind \"Alt -\"" = {Resize = "Decrease";};
 
           "bind \"Alt Left\"" = {MovePane = "Left";};

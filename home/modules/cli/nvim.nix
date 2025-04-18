@@ -16,6 +16,9 @@
           cursorlineopt = "both";
           tabstop = 2;
           scrolloff = 20;
+          mouse = "nvi";
+          hlsearch = false;
+          incsearch = true;
         };
         assistant.copilot = {
           cmp.enable = true;

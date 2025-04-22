@@ -46,6 +46,7 @@
             "<leader>l" = "LSP";
             "<leader>s" = "Yazi";
 
+            "<leader>b" = "Last buffer";
             "<leader>w" = "Write";
             "<leader>q" = "Quit";
             "<leader>c" = "Crates";
@@ -99,10 +100,10 @@
             action = ":q<CR>";
           }
           {
-            key = "<leader>e";
+            key = "<leader>b";
             mode = ["n"];
             silent = true;
-            action = ":Neotree toggle<CR>";
+            action = "<C-^>";
           }
           {
             key = "<leader>w";

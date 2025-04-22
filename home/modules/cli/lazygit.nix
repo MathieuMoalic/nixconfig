@@ -21,8 +21,8 @@
       confirmOnQuit = false;
       quitOnTopLevelReturn = false;
       disableStartupPopups = false;
-      notARepository = "quit"; # one of: 'prompt' | 'create' | 'skip' | 'quit'
-      promptToReturnFromSubprocess = false; # display confirmation when subprocess terminates
+      notARepository = "quit";
+      promptToReturnFromSubprocess = false;
     };
   };
 }

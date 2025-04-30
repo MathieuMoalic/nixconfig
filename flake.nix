@@ -13,6 +13,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     nvf.url = "github:notashelf/nvf";
+    homepage.url = "github:MathieuMoalic/homepage";
   };
   outputs = {nixpkgs, ...} @ inputs: let
     makeNixosSystem = host:

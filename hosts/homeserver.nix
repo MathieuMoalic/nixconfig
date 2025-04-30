@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   ...
 }: {
   imports = [
@@ -9,8 +10,13 @@
     ./modules/sshd.nix
     ./modules/restic.nix
     ./modules/podman.nix
+    inputs.homepage.nixosModules.homepage-service
   ];
 
+  services.homepage = {
+    enable = true;
+    port = 9090;
+  };
   home-manager.users.mat.imports = [../home/homeserver.nix];
 
   # Boot Configuration

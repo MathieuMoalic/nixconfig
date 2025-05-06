@@ -11,6 +11,9 @@
     ./modules/syncthing.nix
     ./modules/kmonad.nix
   ];
+  services.udev.extraRules = ''
+    ACTION=="add" SUBSYSTEM=="pci" ATTR{vendor}=="0x1987" ATTR{device}=="0x5013" ATTR{power/wakeup}="disabled"
+  '';
   hardware.wooting.enable = true;
   environment.systemPackages = with pkgs; [
     (steam.override {
@@ -51,6 +54,7 @@
   networking = {
     useDHCP = lib.mkDefault true;
     hostName = "zagreus";
+    firewall.allowedTCPPorts = [4173];
   };
 
   boot = {

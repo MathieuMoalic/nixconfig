@@ -170,14 +170,17 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1746429680,
-        "narHash": "sha256-8yyRYj3J0eBduwDTj3TIBFG3aWqqUP8g5JXrnv5shX0=",
-        "path": "/home/mat/gh/homepage",
-        "type": "path"
+        "lastModified": 1746221463,
+        "narHash": "sha256-8q6927wqklntMx6hctvtp6PTIMiMpxmGrMQaPlPK/xY=",
+        "owner": "MathieuMoalic",
+        "repo": "homepage",
+        "rev": "13394a1d3fa2306dfbe645f6221e5e7e1f2eed22",
+        "type": "github"
       },
       "original": {
-        "path": "/home/mat/gh/homepage",
-        "type": "path"
+        "owner": "MathieuMoalic",
+        "repo": "homepage",
+        "type": "github"
       }
     },
     "hyprlang": {

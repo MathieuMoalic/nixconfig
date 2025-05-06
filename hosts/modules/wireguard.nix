@@ -1,7 +1,7 @@
 {...}: {
   services.caddy = {
     enable = true;
-    configFile = "/home/mz/mateusz_change_this_caddyfile";
+    configFile = "/mateusz_change_this_caddyfile";
   };
 
   virtualisation.oci-containers.containers.wg-easy = {

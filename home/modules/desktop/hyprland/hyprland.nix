@@ -51,7 +51,7 @@ in {
         ])
         ++ (lib.optionals (osConfig.networking.hostName == "zagreus") [
           "DP-2, 2560x1440@240.00,0x0,1"
-          "HDMI-A-1, 1920x1080@60.00Hz,2560x0,1"
+          "HDMI-A-1, 1920x1080@60.00Hz,2560x360,1"
         ]);
       general = {
         border_size = 2;

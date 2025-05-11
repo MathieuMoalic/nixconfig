@@ -63,7 +63,7 @@
   nix = {
     distributedBuilds = true;
     buildMachines =
-      lib.optionals (config.networking.hostName != "nyx")
+      lib.optionals (!(config.networking.hostName == "nyx" || config.networking.hostName == "zagreus"))
       [
         {
           hostName = "nyx";

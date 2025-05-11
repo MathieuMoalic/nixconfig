@@ -14,6 +14,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     nvf.url = "github:notashelf/nvf";
     homepage.url = "github:MathieuMoalic/homepage";
+    pleustradenn.url = "path:/home/mat/gh/pleustradenn";
   };
   outputs = {nixpkgs, ...} @ inputs: let
     makeNixosSystem = host:

@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs_unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-colors.url = "github:misterio77/nix-colors";
@@ -14,6 +15,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     nvf.url = "github:notashelf/nvf";
     homepage.url = "github:MathieuMoalic/homepage";
+    pleustradenn.url = "path:/home/mat/gh/pleustradenn";
   };
   outputs = {nixpkgs, ...} @ inputs: let
     makeNixosSystem = host:

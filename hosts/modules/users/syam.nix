@@ -7,6 +7,7 @@
     isNormalUser = true;
     uid = 1003;
     shell = pkgs.zsh;
+    extraGroups = ["networkmanager" "wheel" "video" "input" "uinput"];
     openssh.authorizedKeys.keys =
       [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO3nskcuXUBuIikiFZ1MT8L+srlSVJnARaLTNdfAGbmZ syam@megaera"

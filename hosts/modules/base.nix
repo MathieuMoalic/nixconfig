@@ -15,16 +15,32 @@
     ./users/mat.nix
     ./smb.nix
   ];
-  services.earlyoom = {
+
+  security.sudo-rs = {
     enable = true;
-    extraArgs = ["-g" "--prefer '(^|/)(python)$'"];
-    enableNotifications = true;
+    wheelNeedsPassword = false;
+    execWheelOnly = true;
+  };
+
+  services = {
+    earlyoom = {
+      enable = true;
+      extraArgs = ["-g" "--prefer '(^|/)(python)$'"];
+      enableNotifications = true;
+    };
+    udisks2 = {
+      enable = true;
+      mountOnMedia = true;
+    };
+    resolved = {
+      enable = true;
+      fallbackDns = ["9.9.9.9" "149.112.112.112"];
+      domains = ["~."];
+      dnsovertls = "true";
+      dnssec = "true";
+    };
   };
   hardware.keyboard.qmk.enable = true;
-  services.udisks2 = {
-    enable = true;
-    mountOnMedia = true;
-  };
   sops = {
     defaultSopsFile = ../../secrets.yaml;
     age.keyFile = "/home/mat/.ssh/age_key";
@@ -39,19 +55,13 @@
 
   # Supposedly fixes some themeing/cursor issues might be useless.
   programs.dconf.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    networkmanager.dns = "systemd-resolved";
 
-  networking.networkmanager.enable = true;
-  networking.networkmanager.dns = "systemd-resolved";
-
-  networking.nameservers = ["9.9.9.9#dns.quad9.net" "149.112.112.112#dns.quad9.net"];
-  services.resolved = {
-    enable = true;
-    fallbackDns = ["9.9.9.9" "149.112.112.112"];
-    domains = ["~."];
-    dnsovertls = "true";
-    dnssec = "true";
+    nameservers = ["9.9.9.9#dns.quad9.net" "149.112.112.112#dns.quad9.net"];
+    enableIPv6 = true;
   };
-  networking.enableIPv6 = true;
   environment = {
     binsh = "${pkgs.dash}/bin/dash";
     systemPackages = with pkgs; [

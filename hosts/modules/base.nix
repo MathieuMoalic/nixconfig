@@ -102,6 +102,9 @@
   };
   nixpkgs.config.allowUnfree = true;
 
+  # this is to silence the warning when using the `nixos-rebuild` command
+  systemd.services."systemd-hibernate-clear".enable = false;
+
   boot = {
     loader = {
       systemd-boot = {

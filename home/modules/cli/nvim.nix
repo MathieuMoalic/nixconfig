@@ -6,6 +6,7 @@
     enable = true;
     settings = {
       vim = {
+        package = inputs.nixpkgs_unstable.legacyPackages."x86_64-linux".neovim-unwrapped;
         viAlias = false;
         vimAlias = true;
         lsp = {

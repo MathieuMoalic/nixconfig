@@ -17,10 +17,23 @@
     homepage.url = "github:MathieuMoalic/homepage";
     pleustradenn.url = "path:/home/mat/gh/pleustradenn";
   };
-  outputs = {nixpkgs, ...} @ inputs: let
+  outputs = {
+    nixpkgs,
+    pleustradenn,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+
     makeNixosSystem = host:
       nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [pleustradenn.overlays.default];
+          config = {
+            allowUnfree = true;
+          };
+        };
         specialArgs = {inherit inputs;};
         modules = [host];
       };

@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   ...
 }: {
   imports = [
@@ -11,8 +12,31 @@
     ./modules/sshd.nix
     ./modules/podman.nix
     ./modules/kmonad.nix
+    inputs.pleustradenn.nixosModules.default
   ];
+  services.pleustradenn = {
+    enable = true;
+    databaseUrl = "sqlite:///var/lib/pleustradenn/prod.db";
+    firstUserUsername = "mat";
+    firstUserPassword = "matmat";
+    allowRegistration = true;
+    # port = 443;
+    # origin = "https://example.org";
+  };
   home-manager.users.mat.imports = [../home/nyx.nix];
+  services.nfs.idmapd.settings = {
+    General = {
+      Domain = "localdomain";
+      Pipefs-Directory = "/var/lib/nfs/rpc_pipefs";
+    };
+    Mapping = {
+      Nobody-User = "nobody";
+      Nobody-Group = "nogroup";
+    };
+    Translation = {
+      Method = "nsswitch";
+    };
+  };
   fileSystems = {
     "/home/mat/nas" = {
       device = "150.254.111.48:/mnt/Primary/zfn/matmoa";
@@ -34,6 +58,11 @@
       fsType = "nfs";
       options = ["nfsvers=4.2"];
     };
+    "/home/mat/z1/mannga/nas" = {
+      device = "150.254.111.3:/mnt/zfn2/zfn2/matmoa/jobs/mannga";
+      fsType = "nfs";
+      options = ["nfsvers=4.2"];
+    };
     "/" = {
       device = "/dev/disk/by-label/NIXROOT";
       fsType = "ext4";
@@ -51,19 +80,6 @@
       fsType = "ext4";
     };
   };
-
-  # nasMounts = {
-  #   "/home/mat/nas" = {
-  #     user = "mat";
-  #     deviceAndShare = "//150.254.111.48/zfn";
-  #     credentials = "${config.sops.secrets.smb_mat.path}";
-  #   };
-  #   "/home/mat/nas2" = {
-  #     user = "mat";
-  #     deviceAndShare = "//150.254.111.3/zfn2";
-  #     credentials = "${config.sops.secrets.smb_mat.path}";
-  #   };
-  # };
 
   hardware = {
     nvidia-container-toolkit.enable = true;

@@ -15,6 +15,9 @@
     ./users/mat.nix
     ./smb.nix
   ];
+  # this fixes the dns in rootless podman containers
+  environment.etc."resolv.conf".mode = "direct-symlink";
+
   services.earlyoom = {
     enable = true;
     extraArgs = ["-g" "--prefer '(^|/)(python)$'"];

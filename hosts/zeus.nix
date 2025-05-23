@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }: {
   imports = [
@@ -41,7 +40,7 @@
   # };
 
   environment.systemPackages = with pkgs; [
-    inputs.amumax.packages.${pkgs.system}.default
+    amumax
     nvtopPackages.nvidia
   ];
 

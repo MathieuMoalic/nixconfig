@@ -1,13 +1,9 @@
 {
   config,
   lib,
-  inputs,
   pkgs,
   ...
 }: {
-  imports = [
-    inputs.disko.nixosModules.disko
-  ];
   # nixos-anywhere --flake <URL to your flake> root@<ip address>
   # nixos-rebuild switch --flake <URL to your flake> --target-host "root@<ip address>"
 

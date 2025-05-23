@@ -1,17 +1,10 @@
 {
-  inputs,
   osConfig,
   lib,
   pkgs,
   ...
 }: let
-  quicktranslate = inputs.quicktranslate.packages.${pkgs.system}.quicktranslate;
   hyprsome = "${pkgs.hyprsome}/bin/hyprsome";
-  lock = import ../scripts/lock.nix {inherit pkgs;};
-  power-menu = import ../scripts/power-menu.nix {inherit pkgs;};
-  wireguard-menu = import ../scripts/wireguard-menu.nix {inherit pkgs;};
-  screenshot = import ../scripts/screenshot.nix {inherit pkgs;};
-  screenshot-edit = import ../scripts/screenshot-edit.nix {inherit pkgs;};
 in {
   imports = [
     ./hypridle.nix
@@ -20,12 +13,12 @@ in {
   ];
   home.packages = [
     pkgs.hyprsome
-    quicktranslate
-    wireguard-menu
-    lock
-    power-menu
-    screenshot
-    screenshot-edit
+    pkgs.quicktranslate
+    pkgs.wireguard-menu
+    pkgs.lock
+    pkgs.power-menu
+    pkgs.screenshot
+    pkgs.screenshot-edit
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -222,12 +215,12 @@ in {
         "SUPER, backslash, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle"
         "SUPER, a, exec, ${pkgs.foot}/bin/foot"
         "SUPER, i, exec, ${pkgs.rofi-wayland}/bin/rofi -modi drun,run -show drun"
-        "SUPER, o, exec, ${screenshot}/bin/screenshot"
-        "SUPER SHIFT, o, exec, ${screenshot-edit}/bin/screenshot-edit"
-        "SUPER, n, exec, ${wireguard-menu}/bin/wireguard-menu"
-        "SUPER, y, exec, ${quicktranslate}/bin/quicktranslate"
-        "SUPER, u, exec, ${lock}/bin/lock"
-        "SUPER, p, exec, ${power-menu}/bin/power-menu"
+        "SUPER, o, exec, ${pkgs.screenshot}/bin/screenshot"
+        "SUPER SHIFT, o, exec, ${pkgs.screenshot-edit}/bin/screenshot-edit"
+        "SUPER, n, exec, ${pkgs.wireguard-menu}/bin/wireguard-menu"
+        "SUPER, y, exec, ${pkgs.quicktranslate}/bin/quicktranslate"
+        "SUPER, u, exec, ${pkgs.lock}/bin/lock"
+        "SUPER, p, exec, ${pkgs.power-menu}/bin/power-menu"
 
         "SUPER, t, fullscreen"
         "SUPER SHIFT, q, killactive,"

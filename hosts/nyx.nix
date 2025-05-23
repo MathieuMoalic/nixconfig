@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  inputs,
   ...
 }: {
   imports = [
@@ -12,17 +11,16 @@
     ./modules/sshd.nix
     ./modules/podman.nix
     ./modules/kmonad.nix
-    inputs.pleustradenn.nixosModules.default
   ];
-  services.pleustradenn = {
-    enable = true;
-    databaseUrl = "sqlite:///var/lib/pleustradenn/prod.db";
-    firstUserUsername = "mat";
-    firstUserPassword = "matmat";
-    allowRegistration = true;
-    # port = 443;
-    # origin = "https://example.org";
-  };
+  # services.pleustradenn = {
+  #   enable = true;
+  #   databaseUrl = "sqlite:///var/lib/pleustradenn/prod.db";
+  #   firstUserUsername = "mat";
+  #   firstUserPassword = "matmat";
+  #   allowRegistration = true;
+  #   # port = 443;
+  #   # origin = "https://example.org";
+  # };
   home-manager.users.mat.imports = [../home/nyx.nix];
   services.nfs.idmapd.settings = {
     General = {

@@ -1,11 +1,4 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
-  imports = [
-    inputs.nvf.homeManagerModules.default
-  ];
+{pkgs, ...}: {
   programs.nvf = {
     enable = true;
     settings = {

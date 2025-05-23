@@ -1,11 +1,4 @@
-{
-  inputs,
-  config,
-  ...
-}: {
-  imports = [
-    inputs.nix-index-database.hmModules.nix-index # weekly nix-index refresh
-  ];
+{config, ...}: {
   programs = {
     carapace = {
       enable = true;

@@ -11,12 +11,16 @@
     ./ld.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.home-manager.nixosModules.home-manager
+    inputs.homepage.nixosModules.homepage-service
     inputs.sops-nix.nixosModules.sops
+    inputs.disko.nixosModules.disko
     ./users/mat.nix
     ./smb.nix
   ];
   # this fixes the dns in rootless podman containers
   environment.etc."resolv.conf".mode = "direct-symlink";
+  services.chrony.enable = true;
+  services.timesyncd.enable = false;
 
   security.sudo-rs = {
     enable = true;
@@ -68,7 +72,7 @@
     binsh = "${pkgs.dash}/bin/dash";
     systemPackages = with pkgs; [
       home-manager
-      inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+      rose-pine-hyprcursor
     ];
   };
 

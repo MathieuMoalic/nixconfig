@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   imports = [
-    ./scripts/cli-scripts.nix
     ./yazi/yazi.nix
     ./zellij.nix
     ./aliases.nix
@@ -9,7 +8,6 @@
     ./git.nix
     ./helix.nix
     ./lazygit.nix
-    ./pager.nix
     ./rclone.nix
     ./ssh.nix
     ./starship.nix
@@ -43,5 +41,12 @@
     gitui # git TUI
     nh # nix helper
     comma # wraps together nix shell -c and nix-index
+    # custom scripts below
+    decode
+    encode
+    lnmv
+    nix-run
+    nix-shell
+    update
   ];
 }

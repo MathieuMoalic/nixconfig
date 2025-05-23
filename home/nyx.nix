@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   lib,
   ...
@@ -11,7 +10,7 @@
     ./modules/desktop/desktop.nix
   ];
   home.packages = with pkgs; [
-    inputs.amumax.packages.${pkgs.system}.default
+    amumax
     nvtopPackages.nvidia
     caddy # web server
     blender # 3d editor

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  inputs,
   ...
 }: {
   imports = [
@@ -10,7 +9,6 @@
     ./modules/sshd.nix
     ./modules/restic.nix
     ./modules/podman.nix
-    inputs.homepage.nixosModules.homepage-service
   ];
 
   services.homepage = {

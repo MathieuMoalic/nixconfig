@@ -1,7 +1,4 @@
-{inputs, ...}: {
-  imports = [
-    inputs.nix-colors.homeManagerModules.default
-  ];
+{...}: {
   colorScheme = {
     slug = "mydracula";
     name = "mydracula";

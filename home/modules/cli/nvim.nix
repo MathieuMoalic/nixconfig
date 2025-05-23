@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.nvf.homeManagerModules.default
   ];
@@ -6,7 +10,7 @@
     enable = true;
     settings = {
       vim = {
-        package = inputs.nixpkgs_unstable.legacyPackages."x86_64-linux".neovim-unwrapped;
+        package = pkgs.nvim-unstable;
         viAlias = false;
         vimAlias = true;
         lsp = {

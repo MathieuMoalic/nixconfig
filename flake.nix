@@ -15,21 +15,18 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     nvf.url = "github:notashelf/nvf";
     homepage.url = "github:MathieuMoalic/homepage";
-    pleustradenn.url = "path:/home/mat/gh/pleustradenn";
+    # pleustradenn.url = "path:/home/mat/gh/pleustradenn";
   };
-  outputs = {
-    nixpkgs,
-    pleustradenn,
-    ...
-  } @ inputs: let
+  outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";
-
     makeNixosSystem = host:
       nixpkgs.lib.nixosSystem {
         inherit system;
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [pleustradenn.overlays.default];
+          overlays = [
+            ((import ./overlays/overlays.nix) inputs)
+          ];
           config = {
             allowUnfree = true;
           };

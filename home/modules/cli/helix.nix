@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{config, ...}: let
 in {
   programs.helix = {
     defaultEditor = false;
@@ -365,15 +361,6 @@ in {
       };
     };
     languages = {
-      language-server.ruff-lsp = {
-        command = pkgs.ruff-lsp;
-        config = {
-          settings = {
-            run = "onSave";
-          };
-        };
-      };
-
       language = [
         {
           name = "nix";

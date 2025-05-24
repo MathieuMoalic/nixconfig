@@ -7,7 +7,8 @@
   fonts.packages = with pkgs; [
     corefonts # Arial, Times New Roman, etc.
     newcomputermodern # default overleaf font
-    (nerdfonts.override {fonts = ["FiraCode" "FiraMono"];}) # FiraMono is for waybar
+    pkgs.nerd-fonts.fira-code
+    pkgs.nerd-fonts.fira-mono # For waybar
     roboto
     font-awesome
     source-sans-pro

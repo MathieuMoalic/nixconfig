@@ -31,7 +31,7 @@
   services = {
     earlyoom = {
       enable = true;
-      extraArgs = ["-g" "--prefer '(^|/)(python)$'"];
+      extraArgs = ["-g" "--prefer" "(^|/)(python)$"];
       enableNotifications = true;
     };
     udisks2 = {

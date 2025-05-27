@@ -18,7 +18,7 @@
         linemode = "size";
         show_hidden = false;
         show_symlink = true;
-        sort_by = "modified";
+        sort_by = "mtime";
         sort_dir-first = false;
         sort_reverse = true;
         sort_sensitive = true;
@@ -868,9 +868,9 @@
           run = "linemode permissions";
         }
         {
-          desc = "modified";
+          desc = "mtime";
           on = ["s" "m"];
-          run = "linemode modified";
+          run = "linemode mtime";
         }
         {
           desc = "none";
@@ -883,14 +883,14 @@
           run = "copy path";
         }
         {
-          desc = "Sort by modified time";
+          desc = "Sort by mtime time";
           on = ["," "m"];
-          run = "sort modified --dir_first";
+          run = "sort mtime --dir_first";
         }
         {
-          desc = "Sort by modified time (reverse)";
+          desc = "Sort by mtime time (reverse)";
           on = ["," "M"];
-          run = "sort modified --reverse --dir_first";
+          run = "sort mtime --reverse --dir_first";
         }
         {
           desc = "Sort by created time";

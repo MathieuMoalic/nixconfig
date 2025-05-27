@@ -41,8 +41,8 @@
       fsType = "nfs";
       options = ["nfsvers=4.2"];
     };
-    "/home/mat/nas2" = {
-      device = "150.254.111.3:/mnt/zfn2/zfn2";
+    "/home/mat/nas2/matmoa" = {
+      device = "150.254.111.3:/mnt/zfn2/zfn2/matmoa";
       fsType = "nfs";
       options = ["nfsvers=4.2"];
     };

@@ -14,26 +14,34 @@
   ];
   services.caddy = {
     enable = true;
-    virtualHosts."homepage.nyx.zfns.eu.org" = {
-      extraConfig = ''
-        reverse_proxy localhost:9090
-      '';
+    virtualHosts = {
+      "homepage.nyx.zfns.eu.org" = {
+        extraConfig = ''
+          reverse_proxy localhost:9090
+        '';
+      };
+      "pleustradenn.nyx.zfns.eu.org" = {
+        extraConfig = ''
+          reverse_proxy localhost:9091
+        '';
+      };
     };
   };
+  services.pleustradenn = {
+    enable = true;
+    databaseUrl = "sqlite:///var/lib/pleustradenn/prod.db";
+    firstUserUsername = "mat";
+    firstUserPassword = "matmat";
+    allowRegistration = true;
+    port = 9091;
+    origin = "https://pleustradenn.nyx.zfns.eu.org";
+  };
+
   services.homepage = {
     enable = true;
     port = 9090;
   };
 
-  # services.pleustradenn = {
-  #   enable = true;
-  #   databaseUrl = "sqlite:///var/lib/pleustradenn/prod.db";
-  #   firstUserUsername = "mat";
-  #   firstUserPassword = "matmat";
-  #   allowRegistration = true;
-  #   # port = 443;
-  #   # origin = "https://example.org";
-  # };
   home-manager.users.mat.imports = [../home/nyx.nix];
 
   fileSystems = {

@@ -19,8 +19,6 @@
   ];
   # this fixes the dns in rootless podman containers
   environment.etc."resolv.conf".mode = "direct-symlink";
-  services.chrony.enable = true;
-  services.timesyncd.enable = false;
 
   security.sudo-rs = {
     enable = true;

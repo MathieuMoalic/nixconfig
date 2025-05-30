@@ -12,6 +12,19 @@
     ./modules/podman.nix
     ./modules/kmonad.nix
   ];
+  services.caddy = {
+    enable = true;
+    virtualHosts."homepage.nyx.zfns.eu.org" = {
+      extraConfig = ''
+        reverse_proxy localhost:9090
+      '';
+    };
+  };
+  services.homepage = {
+    enable = true;
+    port = 9090;
+  };
+
   # services.pleustradenn = {
   #   enable = true;
   #   databaseUrl = "sqlite:///var/lib/pleustradenn/prod.db";
@@ -22,19 +35,7 @@
   #   # origin = "https://example.org";
   # };
   home-manager.users.mat.imports = [../home/nyx.nix];
-  services.nfs.idmapd.settings = {
-    General = {
-      Domain = "localdomain";
-      Pipefs-Directory = "/var/lib/nfs/rpc_pipefs";
-    };
-    Mapping = {
-      Nobody-User = "nobody";
-      Nobody-Group = "nogroup";
-    };
-    Translation = {
-      Method = "nsswitch";
-    };
-  };
+
   fileSystems = {
     "/home/mat/nas" = {
       device = "150.254.111.48:/mnt/Primary/zfn/matmoa";

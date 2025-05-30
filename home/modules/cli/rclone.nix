@@ -1,8 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [rclone];
   programs.nushell.shellAliases = {
-    rmv = "rclone move --progress";
-    rcp = "rclone copy --progress";
     rs = "rclone sync --progress --delete-after=false";
   };
 

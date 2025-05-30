@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./yazi/yazi.nix
+    ./yazi.nix
     ./zellij.nix
     ./aliases.nix
     ./btop.nix
@@ -15,6 +15,8 @@
     ./nvim.nix
   ];
   home.packages = with pkgs; [
+    uutils-coreutils-noprefix
+
     bat-extras.batman # man
     trash-cli # trash
     funzzy # watch files

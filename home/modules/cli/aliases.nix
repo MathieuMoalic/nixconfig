@@ -16,7 +16,7 @@
     tldr = "tldr -q";
     myip = "curl ifconfig.me; echo";
     lg = "lazygit";
-    mv = "rclone move --delete-empty-src-dirs --create-empty-src-dirs -P";
-    cp = "rclone copy --create-empty-src-dirs -P";
+    mv = "rclone moveto -P";
+    cp = "rclone copyto -P";
   };
 }

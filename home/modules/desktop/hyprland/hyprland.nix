@@ -10,6 +10,7 @@ in {
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    # ./hyprpanel.nix
   ];
   home.packages = [
     pkgs.hyprsome
@@ -29,7 +30,7 @@ in {
         "HYPRCURSOR_SIZE,32"
       ];
       exec-once = [
-        "${pkgs.uwsm}/bin/uwsm app -- ${pkgs.waybar}/bin/waybar"
+        "${pkgs.uwsm}/bin/uwsm app -- ${pkgs.hyprpanel}/bin/hyprpanel"
       ];
       monitor =
         (lib.optionals (osConfig.networking.hostName == "nyx") [
@@ -199,7 +200,6 @@ in {
       };
       opengl = {
         nvidia_anti_flicker = true;
-        force_introspection = 2;
       };
       debug = {
         disable_logs = false;

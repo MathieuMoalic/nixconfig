@@ -6,10 +6,10 @@
     ./librewolf.nix
     ./rofi.nix
     ./theme.nix
-    ./waybar.nix
+    # ./waybar.nix
     ./zathura.nix
     ./mimeapps.nix
-    ./dunst.nix
+    # ./dunst.nix
   ];
   home.packages = with pkgs; [
     rofi-bluetooth # bluetooth manager
@@ -29,6 +29,7 @@
     zathura # pdf viewer
     anki-bin # flash cards
     freetube # youtube client
+    hyprpanel
   ];
   programs.nushell.shellAliases = {
     rd = "ripdrag -x";

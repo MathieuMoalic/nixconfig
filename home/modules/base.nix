@@ -6,6 +6,7 @@
     ./colorscheme.nix
     inputs.nix-colors.homeManagerModules.default
     inputs.nvf.homeManagerModules.default
+    # inputs.hyprpanel.homeManagerModules.hyprpanel
     inputs.nix-index-database.hmModules.nix-index
   ];
 

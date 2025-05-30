@@ -15,6 +15,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     nvf.url = "github:notashelf/nvf";
     homepage.url = "github:MathieuMoalic/homepage";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     # pleustradenn.url = "path:/home/mat/gh/pleustradenn";
   };
   outputs = {nixpkgs, ...} @ inputs: let
@@ -26,6 +27,7 @@
           inherit system;
           overlays = [
             ((import ./overlays/overlays.nix) inputs)
+            inputs.hyprpanel.overlay
           ];
           config = {
             allowUnfree = true;

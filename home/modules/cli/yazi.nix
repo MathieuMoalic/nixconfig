@@ -1,20 +1,39 @@
-{...}: {
-  home.file.".config/yazi/plugins/smart-filter.yazi/init.lua".source = ./plugins/smart-filter.lua;
-  home.file.".config/yazi/plugins/max-preview.yazi/init.lua".source = ./plugins/max-preview.lua;
-  home.file.".config/yazi/plugins/hide-preview.yazi/init.lua".source = ./plugins/hide-preview.lua;
-  home.file.".config/yazi/plugins/chmod.yazi/init.lua".source = ./plugins/chmod.lua;
-  home.file.".config/yazi/plugins/starship.yazi/init.lua".source = ./plugins/starship.lua;
-  home.file.".config/yazi/plugins/fg.yazi/init.lua".source = ./plugins/fg.lua;
-  home.file.".config/yazi/plugins/ouch.yazi/init.lua".source = ./plugins/ouch.lua;
-  home.file.".config/yazi/plugins/hexyl.yazi/init.lua".source = ./plugins/hexyl.lua;
-  home.file.".config/yazi/plugins/smart-enter.yazi/init.lua".source = ./plugins/smart-enter.lua;
+{pkgs, ...}: {
+  xdg.configFile."yazi/init.lua".text = ''
+    require("git"):setup()
+    require("starship"):setup()
 
+    Status:children_add(function()
+      local h = cx.active.current.hovered
+      if h == nil or ya.target_family() ~= "unix" then
+        return ""
+      end
+
+      return ui.Line {
+        ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):fg("magenta"),
+        ":",
+        ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
+        " ",
+      }
+    end, 500, Status.RIGHT)
+
+    Status:children_add(function(self)
+      local h = self._current.hovered
+      if h and h.link_to then
+        return " -> " .. tostring(h.link_to)
+      else
+        return ""
+      end
+    end, 3300, Status.LEFT)
+  '';
   programs.yazi = {
     enable = true;
-    initLua = ./init.lua;
+    plugins = with pkgs.yaziPlugins; {
+      inherit toggle-pane chmod ouch smart-enter starship git mime-ext mount rich-preview restore;
+    };
     settings = {
       manager = {
-        layout = [0 3 5];
+        ratio = [0 1 2];
         linemode = "size";
         show_hidden = false;
         show_symlink = true;
@@ -154,6 +173,26 @@
         preload = [];
         prepend_previewers = [
           {
+            name = "*.csv";
+            run = "rich-preview";
+          }
+          {
+            name = "*.md";
+            run = "rich-preview";
+          }
+          {
+            name = "*.rst";
+            run = "rich-preview";
+          }
+          {
+            name = "*.ipynb";
+            run = "rich-preview";
+          }
+          {
+            name = "*.json";
+            run = "rich-preview";
+          }
+          {
             mime = "application/*zip";
             run = "ouch";
           }
@@ -179,9 +218,25 @@
           }
         ];
         append_previewers = [
+        ];
+      };
+      plugin = {
+        prepend_fetchers = [
           {
+            id = "git";
             name = "*";
-            run = "hexyl";
+            run = "git";
+          }
+          {
+            id = "git";
+            name = "/";
+            run = "git";
+          }
+          {
+            id = "mime";
+            name = "*";
+            run = "mime-ext";
+            prio = "high";
           }
         ];
       };
@@ -195,7 +250,7 @@
         # create
         create_offset = [0 2 50 3];
         create_origin = "top-center";
-        create_title = "Create:";
+        create_title = ["Create:" "Create directory:"];
 
         # rename
         rename_offset = [0 1 50 3];
@@ -673,6 +728,10 @@
 
       manager.keymap = [
         {
+          on = ["u"];
+          run = "plugin restore";
+        }
+        {
           on = ["T"];
           run = "search rg";
           desc = "Search files by content using ripgrep";
@@ -714,7 +773,7 @@
         }
         {
           on = ["l"];
-          run = ["plugin --sync smart-enter"];
+          run = ["plugin smart-enter"];
           desc = "Child directory";
         }
         {
@@ -733,9 +792,8 @@
           desc = "close, without writing cwd file";
         }
         {
-          on = ["F"];
-          run = "plugin fg";
-          desc = "find file by content";
+          on = ["M"];
+          run = "plugin mount";
         }
         {
           on = ["y"];
@@ -759,11 +817,11 @@
         }
         {
           on = ["m"];
-          run = "plugin --sync max-preview";
+          run = "plugin toggle-pane max-preview";
         }
         {
           on = ["w"];
-          run = "plugin --sync hide-preview";
+          run = "plugin toggle-pane min-preview";
         }
         {
           on = ["c"];
@@ -785,17 +843,17 @@
         {
           desc = "Toggle the current selection state";
           on = ["<Space>"];
-          run = ["select --state=none" "arrow 1"];
+          run = ["toggle" "arrow 1"];
         }
         {
           desc = "Select all files";
           on = ["<C-a>"];
-          run = "select-all --state=true";
+          run = "toggle_all --state=on";
         }
         {
           desc = "Inverse selection of all files";
           on = ["<C-r>"];
-          run = "select-all --state=none";
+          run = "toggle_all --state=off";
         }
         {
           desc = "Open the selected files";

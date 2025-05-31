@@ -15,7 +15,8 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     nvf.url = "github:notashelf/nvf";
     homepage.url = "github:MathieuMoalic/homepage";
-    pleustradenn.url = "path:/home/mat/gh/pleustradenn";
+    pleustradenn.url = "github:MathieuMoalic/pleustradenn";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
   outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";

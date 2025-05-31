@@ -10,7 +10,7 @@ in {
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
-    # ./hyprpanel.nix
+    ./hyprpanel.nix
   ];
   home.packages = [
     pkgs.hyprsome
@@ -28,9 +28,6 @@ in {
       env = [
         "HYPRCURSOR_THEME,rose-pine-hyprcursor"
         "HYPRCURSOR_SIZE,32"
-      ];
-      exec-once = [
-        "${pkgs.uwsm}/bin/uwsm app -- ${pkgs.hyprpanel}/bin/hyprpanel"
       ];
       monitor =
         (lib.optionals (osConfig.networking.hostName == "nyx") [

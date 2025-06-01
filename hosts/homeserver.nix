@@ -9,12 +9,20 @@
     ./modules/sshd.nix
     ./modules/restic.nix
     ./modules/podman.nix
+    ./modules/caddy.nix
   ];
+  services.pleustradenn = {
+    enable = true;
+    databaseUrl = "file:///var/lib/pleustradenn/prod.db";
+    allowRegistration = true;
+    port = 10026;
+  };
 
   services.homepage = {
     enable = true;
-    port = 9090;
+    port = 10033;
   };
+
   home-manager.users.mat.imports = [../home/homeserver.nix];
 
   # Boot Configuration

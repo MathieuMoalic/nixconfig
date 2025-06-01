@@ -29,12 +29,9 @@
   };
   services.pleustradenn = {
     enable = true;
-    databaseUrl = "sqlite:///var/lib/pleustradenn/prod.db";
-    firstUserUsername = "mat";
-    firstUserPassword = "matmat";
+    databaseUrl = "file:///var/lib/pleustradenn/prod.db";
     allowRegistration = true;
     port = 9091;
-    origin = "https://pleustradenn.nyx.zfns.eu.org";
   };
 
   services.homepage = {

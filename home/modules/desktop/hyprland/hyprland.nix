@@ -62,7 +62,7 @@ in {
         allow_tearing = false;
       };
       decoration = {
-        rounding = 0;
+        rounding = 2;
         active_opacity = 1.0;
         inactive_opacity = 1.0;
         fullscreen_opacity = 1.0;

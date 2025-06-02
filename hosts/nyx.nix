@@ -12,22 +12,6 @@
     ./modules/podman.nix
     ./modules/kmonad.nix
   ];
-  # services.caddy = {
-  #   enable = true;iux
-  #   virtualHosts = {
-  #     "homepage.nyx.zfns.eu.org" = {
-  #       extraConfig = ''
-  #         reverse_proxy localhost:9090
-  #       '';
-  #     };
-  #   };
-  # };
-
-  # services.homepage = {
-  #   enable = true;
-  #   port = 9090;
-  # };
-
   home-manager.users.mat.imports = [../home/nyx.nix];
 
   fileSystems = {

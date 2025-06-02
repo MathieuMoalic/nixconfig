@@ -23,6 +23,15 @@
     port = 10033;
   };
 
+  services.boued = {
+    enable = true;
+    port = 10034;
+    databaseUrl = "sqlite:////var/lib/boued/db.sqlite";
+    secretKey = "supersecret";
+    admin.username = "mat";
+    admin.password = "1234";
+  };
+
   home-manager.users.mat.imports = [../home/homeserver.nix];
 
   # Boot Configuration

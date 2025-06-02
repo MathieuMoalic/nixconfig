@@ -44,7 +44,7 @@
       bar.bluetooth.scrollDown = "";
       bar.bluetooth.scrollUp = "";
 
-      bar.clock.format = "%Y.%m.%d. %H:%M:%S";
+      bar.clock.format = "%Y.%m.%d %H:%M:%S";
       bar.clock.icon = "󰸗";
       bar.clock.middleClick = "";
       bar.clock.rightClick = "";

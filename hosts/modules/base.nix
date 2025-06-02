@@ -13,6 +13,7 @@
     inputs.home-manager.nixosModules.home-manager
     inputs.homepage.nixosModules.homepage-service
     inputs.pleustradenn.nixosModules.pleustradenn-service
+    inputs.boued.nixosModules.pleustradenn-service
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
     ./users/mat.nix

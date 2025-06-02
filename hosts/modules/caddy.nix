@@ -208,6 +208,11 @@
           reverse_proxy localhost:10025
         '';
       };
+      "boued2.matmoa.eu" = {
+        extraConfig = ''
+          reverse_proxy localhost:10034
+        '';
+      };
     };
   };
 }

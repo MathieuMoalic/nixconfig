@@ -7,16 +7,18 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     amumax.url = "github:MathieuMoalic/amumax";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     sops-nix.url = "github:Mic92/sops-nix";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     nvf.url = "github:notashelf/nvf";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+
+    quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     homepage.url = "github:MathieuMoalic/homepage";
     pleustradenn.url = "github:MathieuMoalic/pleustradenn";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    boued.url = "github:MathieuMoalic/boued";
   };
   outputs = {nixpkgs, ...} @ inputs: let
     system = "x86_64-linux";

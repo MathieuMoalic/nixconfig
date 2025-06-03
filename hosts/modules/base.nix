@@ -18,6 +18,7 @@
     inputs.disko.nixosModules.disko
     ./users/mat.nix
     ./smb.nix
+    ./sops.nix
   ];
   # this fixes the dns in rootless podman containers
   environment.etc."resolv.conf".mode = "direct-symlink";
@@ -47,15 +48,7 @@
     };
   };
   hardware.keyboard.qmk.enable = true;
-  sops = {
-    defaultSopsFile = ../../secrets.yaml;
-    age.keyFile = "/home/mat/.ssh/age_key";
-    secrets = {
-      restic = {};
-      smb_mat = {};
-      smb_syam = {};
-    };
-  };
+
   # remove the need to type in the password for sudo
   security.sudo.wheelNeedsPassword = false;
 

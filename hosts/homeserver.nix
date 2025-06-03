@@ -10,6 +10,7 @@
     ./modules/restic.nix
     ./modules/podman.nix
     ./modules/caddy.nix
+    ./modules/authelia.nix
   ];
   services.pleustradenn = {
     enable = true;

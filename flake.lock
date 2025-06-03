@@ -104,11 +104,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1748898266,
-        "narHash": "sha256-/dKNsDUHbB+E3pBbE74XOnKXVX4UHAZ6AEEm1ixKBzo=",
+        "lastModified": 1748936452,
+        "narHash": "sha256-C/XYVjUcBVQILiOrujpywxtHc0wWdvEOn8WVTWolkdg=",
         "owner": "MathieuMoalic",
         "repo": "boued",
-        "rev": "dcd87f79246767d0d68bd4d79b95cefd88d8d2f5",
+        "rev": "af3bd4cbc5c3184bff68d4a97cb6bc25bd76f621",
         "type": "github"
       },
       "original": {
@@ -636,11 +636,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1748790217,
-        "narHash": "sha256-gc0YwU0hChfb226amYoMrKgM+smc3JG0XV52IsICXDA=",
+        "lastModified": 1748935471,
+        "narHash": "sha256-6qayI5qcafMkrdbW2Atw/+UhHUZOmMvpN538NwpzCPQ=",
         "owner": "MathieuMoalic",
         "repo": "pleustradenn",
-        "rev": "39ee49f399ed0f3907c669e1c60ed40679c76156",
+        "rev": "3ae1de17ebe2fa9f4eb3dccfea5a5927761907f1",
         "type": "github"
       },
       "original": {

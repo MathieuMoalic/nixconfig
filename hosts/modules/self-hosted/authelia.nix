@@ -1,8 +1,10 @@
-{config, ...}: {
+{config, ...}: let
+  port = 9091;
+in {
   services.caddy = {
     extraConfig = ''
       (authelia) {
-        forward_auth localhost:9091 {
+        forward_auth localhost:${toString port} {
           uri /api/verify?rd=https://authelia.matmoa.eu/
           copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
         }
@@ -10,7 +12,7 @@
     '';
     virtualHosts = {
       "authelia.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:9091'';
+        extraConfig = ''reverse_proxy localhost:${toString port}'';
       };
     };
   };
@@ -51,7 +53,7 @@
       };
 
       server = {
-        address = "0.0.0.0:9091";
+        address = "0.0.0.0:${toString port}";
       };
 
       totp = {

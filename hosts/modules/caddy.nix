@@ -6,14 +6,6 @@
         extraConfig = ''reverse_proxy localhost:10000'';
       };
 
-      "matmoa.xyz" = {
-        extraConfig = ''redir https://matmoa.eu permanent'';
-      };
-
-      "matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10033'';
-      };
-
       "matrix.matmoa.eu" = {
         extraConfig = ''
           header /.well-known/matrix/* Content-Type application/json
@@ -186,12 +178,6 @@
         extraConfig = ''
           import authelia
           reverse_proxy localhost:10032
-        '';
-      };
-
-      "boued.matmoa.eu" = {
-        extraConfig = ''
-          reverse_proxy localhost:10025
         '';
       };
     };

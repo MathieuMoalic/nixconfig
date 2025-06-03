@@ -10,24 +10,12 @@
     ./modules/restic.nix
     ./modules/podman.nix
     ./modules/caddy.nix
-    ./modules/authelia.nix
+    ./modules/self-hosted/authelia.nix
+    ./modules/self-hosted/pleustradenn.nix
+    ./modules/self-hosted/homepage.nix
+    ./modules/self-hosted/boued.nix
+    ./modules/self-hosted/wireguard.nix
   ];
-  services.pleustradenn = {
-    enable = true;
-    databaseUrl = "file:///var/lib/pleustradenn/prod.db";
-    allowRegistration = false;
-    port = 10026;
-  };
-
-  services.homepage = {
-    enable = true;
-    port = 10033;
-  };
-
-  services.boued = {
-    enable = true;
-    port = 10025;
-  };
 
   home-manager.users.mat.imports = [../home/homeserver.nix];
 

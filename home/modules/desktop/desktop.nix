@@ -6,10 +6,8 @@
     ./librewolf.nix
     ./rofi.nix
     ./theme.nix
-    # ./waybar.nix
     ./zathura.nix
     ./mimeapps.nix
-    # ./dunst.nix
   ];
   home.packages = with pkgs; [
     rofi-bluetooth # bluetooth manager

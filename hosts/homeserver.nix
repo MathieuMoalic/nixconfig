@@ -10,31 +10,15 @@
     ./modules/restic.nix
     ./modules/podman.nix
     ./modules/caddy.nix
+    ./modules/self-hosted/authelia.nix
+    ./modules/self-hosted/pleustradenn.nix
+    ./modules/self-hosted/homepage.nix
+    ./modules/self-hosted/boued.nix
+    ./modules/self-hosted/wireguard.nix
   ];
-  services.pleustradenn = {
-    enable = true;
-    databaseUrl = "file:///var/lib/pleustradenn/prod.db";
-    allowRegistration = true;
-    port = 10026;
-  };
-
-  services.homepage = {
-    enable = true;
-    port = 10033;
-  };
-
-  services.boued = {
-    enable = true;
-    port = 10034;
-    databaseUrl = "sqlite:////var/lib/boued/db.sqlite";
-    secretKey = "supersecret";
-    admin.username = "mat";
-    admin.password = "1234";
-  };
 
   home-manager.users.mat.imports = [../home/homeserver.nix];
 
-  # Boot Configuration
   boot = {
     kernelModules = ["kvm-intel"];
     kernel = {
@@ -62,23 +46,20 @@
     };
   };
 
-  # Networking Configuration
   networking = {
     hostName = "homeserver";
     firewall = {
       enable = true;
       # pihole: 12553
       # wireguard: 51820
-      # jellyfin: 8096
-      # jellyfin discovery: 7359/udp
+      # jellyfin: 10024
       # coturn: 3478 5349 49160-49200/udp
-      allowedTCPPorts = [80 443 12553 8096 3478 5349];
+      allowedTCPPorts = [80 443 12553 10024 3478 5349];
       allowedUDPPorts = [12553 51820 7359 3478 5349] ++ (map (x: x) (builtins.genList (x: 49160 + x) (49200 - 49160 + 1)));
     };
     useDHCP = lib.mkDefault true;
   };
 
-  # File Systems Configuration
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/6ec0c25e-0553-4506-891e-235341dbd067";
@@ -99,12 +80,10 @@
     };
   };
 
-  # Swap Devices
   swapDevices = [
     {device = "/dev/disk/by-uuid/5bc36e18-4c22-4853-9442-9f4a591de4da";}
   ];
 
-  # Miscellaneous Configuration
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   system.stateVersion = "23.11";

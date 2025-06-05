@@ -1,27 +1,9 @@
 {...}: {
   services.caddy = {
     enable = true;
-
-    extraConfig = ''
-      (authelia) {
-        forward_auth localhost:10003 {
-          uri /api/verify?rd=https://authelia.matmoa.eu/
-          copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
-        }
-      }
-    '';
-
     virtualHosts = {
       "files.matmoa.eu" = {
         extraConfig = ''reverse_proxy localhost:10000'';
-      };
-
-      "matmoa.xyz" = {
-        extraConfig = ''redir https://matmoa.eu permanent'';
-      };
-
-      "matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10033'';
       };
 
       "matrix.matmoa.eu" = {
@@ -66,10 +48,6 @@
 
       "spotify-api.matmoa.eu" = {
         extraConfig = ''reverse_proxy localhost:10012'';
-      };
-
-      "authelia.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10003'';
       };
 
       "ntfy.matmoa.eu" = {
@@ -200,17 +178,6 @@
         extraConfig = ''
           import authelia
           reverse_proxy localhost:10032
-        '';
-      };
-
-      "boued.matmoa.eu" = {
-        extraConfig = ''
-          reverse_proxy localhost:10025
-        '';
-      };
-      "boued2.matmoa.eu" = {
-        extraConfig = ''
-          reverse_proxy localhost:10034
         '';
       };
     };

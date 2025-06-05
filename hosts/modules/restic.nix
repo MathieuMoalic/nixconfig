@@ -3,10 +3,10 @@
   config,
   ...
 }: {
-  sops.secrets = {
-    restic = {
-      owner = config.users.users.mat.name;
-    };
+  sops.secrets."restic/password" = {
+    owner = "mat";
+    group = "mat";
+    mode = "0400";
   };
 
   environment.systemPackages = with pkgs; [
@@ -18,7 +18,7 @@
       initialize = true;
       user = "mat";
       paths = ["${config.users.users.mat.home}/podman"];
-      passwordFile = config.sops.secrets.restic.path;
+      passwordFile = config.sops.secrets."restic/password".path;
       runCheck = true;
       timerConfig = {
         OnCalendar = "daily";

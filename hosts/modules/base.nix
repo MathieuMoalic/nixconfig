@@ -8,7 +8,6 @@
 }: {
   # This file is the base configuration for all hosts.
   imports = [
-    ./ld.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     inputs.home-manager.nixosModules.home-manager
     inputs.homepage.nixosModules.homepage-service
@@ -17,11 +16,18 @@
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
     ./users/mat.nix
-    ./smb.nix
-    ./sops.nix
   ];
   # this fixes the dns in rootless podman containers
   environment.etc."resolv.conf".mode = "direct-symlink";
+
+  sops = {
+    defaultSopsFile = ../../secrets.yaml;
+    age.keyFile = "/home/mat/.ssh/age_key";
+  };
+
+  programs.nix-ld = {
+    enable = true;
+  };
 
   security.sudo-rs = {
     enable = true;

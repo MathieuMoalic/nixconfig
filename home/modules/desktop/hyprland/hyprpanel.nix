@@ -123,7 +123,7 @@
       bar.workspaces.show_numbered = false;
       bar.workspaces.spacing = 1.0;
       bar.workspaces.workspaceMask = false;
-      bar.workspaces.workspaces = 5;
+      bar.workspaces.workspaces = 1;
 
       dummy = true;
       hyprpanel.restartAgs = true;

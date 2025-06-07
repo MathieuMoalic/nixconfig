@@ -16,7 +16,5 @@
     tldr = "tldr -q";
     myip = "curl ifconfig.me; echo";
     lg = "lazygit";
-    mv = "rclone moveto -P";
-    cp = "rclone copyto -P";
   };
 }

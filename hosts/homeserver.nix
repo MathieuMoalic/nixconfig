@@ -15,6 +15,10 @@
     ./modules/self-hosted/homepage.nix
     ./modules/self-hosted/boued.nix
     ./modules/self-hosted/wireguard.nix
+    ./modules/self-hosted/stirling-pdf.nix
+    ./modules/self-hosted/ntfy.nix
+    ./modules/self-hosted/vaultwarden.nix
+    ./modules/self-hosted/your-spotify.nix
   ];
 
   home-manager.users.mat.imports = [../home/homeserver.nix];

@@ -18,5 +18,6 @@
     lg = "lazygit";
     mv = "rclone moveto -P";
     cp = "rclone copyto -P";
+    sopsedit = "SOPS_AGE_KEY_FILE=/home/mat/.ssh/age_key sops /home/mat/nix/secrets.yaml";
   };
 }

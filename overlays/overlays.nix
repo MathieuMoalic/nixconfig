@@ -20,6 +20,7 @@ in
     amumax = inputs.amumax.packages.${self.system}.default;
     nvim-unstable = inputs.nixpkgs_unstable.legacyPackages.${self.system}.neovim-unwrapped;
     quicktranslate = inputs.quicktranslate.packages.${self.system}.quicktranslate;
+    hyprpanel = inputs.hyprpanel.packages.${self.system}.default;
     rose-pine-hyprcursor = inputs.rose-pine-hyprcursor.packages.${self.system}.default;
   }
   // scriptPackages

@@ -7,7 +7,6 @@
     nix-colors.url = "github:misterio77/nix-colors";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    amumax.url = "github:MathieuMoalic/amumax";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     sops-nix.url = "github:Mic92/sops-nix";
     disko.url = "github:nix-community/disko";
@@ -15,6 +14,7 @@
     nvf.url = "github:notashelf/nvf";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
+    amumax.url = "github:MathieuMoalic/amumax";
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     homepage.url = "github:MathieuMoalic/homepage";
     pleustradenn.url = "github:MathieuMoalic/pleustradenn";
@@ -43,7 +43,6 @@
       nyx = makeNixosSystem ./hosts/nyx.nix;
       homeserver = makeNixosSystem ./hosts/homeserver.nix;
       zeus = makeNixosSystem ./hosts/zeus.nix;
-      iso = makeNixosSystem ./hosts/iso.nix;
       alecto = makeNixosSystem ./hosts/alecto.nix;
       zagreus = makeNixosSystem ./hosts/zagreus.nix;
       kiosk = makeNixosSystem ./hosts/kiosk.nix;

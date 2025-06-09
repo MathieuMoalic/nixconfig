@@ -15,7 +15,6 @@ in {
   home.packages = [
     pkgs.hyprsome
     pkgs.quicktranslate
-    pkgs.wireguard-menu
     pkgs.lock
     pkgs.power-menu
     pkgs.screenshot
@@ -214,7 +213,6 @@ in {
         "SUPER, i, exec, ${pkgs.rofi-wayland}/bin/rofi -modi drun,run -show drun"
         "SUPER, o, exec, ${pkgs.screenshot}/bin/screenshot"
         "SUPER SHIFT, o, exec, ${pkgs.screenshot-edit}/bin/screenshot-edit"
-        "SUPER, n, exec, ${pkgs.wireguard-menu}/bin/wireguard-menu"
         "SUPER, y, exec, ${pkgs.quicktranslate}/bin/quicktranslate"
         "SUPER, u, exec, ${pkgs.lock}/bin/lock"
         "SUPER, p, exec, ${pkgs.power-menu}/bin/power-menu"

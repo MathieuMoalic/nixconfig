@@ -31,33 +31,6 @@
         extraConfig = ''reverse_proxy localhost:10010'';
       };
 
-      "pdf.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10001'';
-      };
-
-      "pihole.matmoa.eu" = {
-        extraConfig = ''
-          import authelia
-          reverse_proxy localhost:10002
-        '';
-      };
-
-      "spotify.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10011'';
-      };
-
-      "spotify-api.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10012'';
-      };
-
-      "ntfy.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10013'';
-      };
-
-      "vw.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10014'';
-      };
-
       "bar.matmoa.eu" = {
         extraConfig = ''
           handle_path /bar/* {
@@ -116,23 +89,11 @@
         extraConfig = ''reverse_proxy localhost:10024'';
       };
 
-      "groceries.matmoa.xyz" = {
-        extraConfig = ''reverse_proxy localhost:10025'';
-      };
-
-      "pleustradenn.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10026'';
-      };
-
       "router.matmoa.eu" = {
         extraConfig = ''
           import authelia
           reverse_proxy 192.168.1.1
         '';
-      };
-
-      "wg-easy.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10027'';
       };
 
       "watcharr.matmoa.eu" = {

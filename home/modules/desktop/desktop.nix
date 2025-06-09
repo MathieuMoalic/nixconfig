@@ -19,7 +19,6 @@
     vscode # code editor
 
     libreoffice # document editor
-    teams-for-linux # chat
     mpv # video player
     gimp # image editor
     inkscape # svf editor

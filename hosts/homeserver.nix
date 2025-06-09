@@ -9,7 +9,7 @@
     ./modules/sshd.nix
     ./modules/restic.nix
     ./modules/podman.nix
-    ./modules/caddy.nix
+    ./modules/self-hosted/caddy.nix
     ./modules/self-hosted/authelia.nix
     ./modules/self-hosted/pleustradenn.nix
     ./modules/self-hosted/homepage.nix

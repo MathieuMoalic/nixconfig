@@ -271,9 +271,6 @@ in {
           "idleinhibit focus, title:^(.*Twitch.*)$"
           "suppressevent,class:.*"
         ]
-        ++ (lib.optionals (osConfig.networking.hostName == "nix") [
-          "workspace 13 silent, class:teams-for-linux"
-        ])
         ++ (lib.optionals (osConfig.networking.hostName == "zagreus") [
           "workspace 12 silent, class:steam"
           "workspace 1 silent, class:^(steam_app_.*)$"

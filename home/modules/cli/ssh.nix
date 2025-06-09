@@ -51,6 +51,7 @@
     };
   };
 
+  # for vscode remote only
   home.file.".ssh/config2" = {
     text = ''
       Host homeserver

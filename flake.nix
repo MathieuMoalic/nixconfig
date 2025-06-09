@@ -29,7 +29,6 @@
           inherit system;
           overlays = [
             ((import ./overlays/overlays.nix) inputs)
-            inputs.hyprpanel.overlay
           ];
           config = {
             allowUnfree = true;

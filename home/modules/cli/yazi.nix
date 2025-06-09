@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   xdg.configFile."yazi/init.lua".text = ''
-    require("git"):setup()
     require("starship"):setup()
 
     Status:children_add(function()
@@ -29,10 +28,10 @@
   programs.yazi = {
     enable = true;
     plugins = with pkgs.yaziPlugins; {
-      inherit toggle-pane chmod ouch smart-enter starship git mime-ext mount rich-preview restore;
+      inherit toggle-pane chmod ouch smart-enter starship mime-ext mount rich-preview restore;
     };
     settings = {
-      manager = {
+      mgr = {
         ratio = [0 1 2];
         linemode = "size";
         show_hidden = false;
@@ -223,16 +222,6 @@
       plugin = {
         prepend_fetchers = [
           {
-            id = "git";
-            name = "*";
-            run = "git";
-          }
-          {
-            id = "git";
-            name = "/";
-            run = "git";
-          }
-          {
             id = "mime";
             name = "*";
             run = "mime-ext";
@@ -304,7 +293,7 @@
       };
     };
     theme = {
-      manager = {
+      mgr = {
         cwd = {fg = "cyan";};
 
         hovered = {
@@ -726,7 +715,7 @@
         }
       ];
 
-      manager.keymap = [
+      mgr.keymap = [
         {
           on = ["u"];
           run = "plugin restore";

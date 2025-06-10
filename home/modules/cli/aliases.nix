@@ -16,6 +16,5 @@
     tldr = "tldr -q";
     myip = "curl ifconfig.me; echo";
     lg = "lazygit";
-    sopsedit = "SOPS_AGE_KEY_FILE=/home/mat/.ssh/age_key sops /home/mat/nix/secrets.yaml";
   };
 }

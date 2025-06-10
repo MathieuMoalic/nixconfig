@@ -235,7 +235,6 @@
           nix.enable = true;
 
           bash.enable = true;
-          nu.enable = true;
           svelte.enable = true;
           tailwind.enable = true;
           ts.enable = true;

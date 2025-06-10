@@ -11,5 +11,6 @@ pkgs.writeShellApplication {
     NIXOS_LABEL="$(date)" nh os switch "$HOME/nix"
     cd -
     rm -rf "$HOME/.icons"
+    rm -rf "$HOME/.manpath"
   '';
 }

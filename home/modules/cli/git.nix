@@ -30,7 +30,7 @@
       diff = {colorMoved = "default";};
     };
   };
-  programs.nushell.shellAliases = {
+  programs.fish.shellAliases = {
     gs = "git status";
     gc = "git commit -S -m";
     ga = "git add";

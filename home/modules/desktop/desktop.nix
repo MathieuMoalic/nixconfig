@@ -28,7 +28,7 @@
     freetube # youtube client
     hyprpanel
   ];
-  programs.nushell.shellAliases = {
+  programs.fish.shellAliases = {
     rd = "ripdrag -x";
   };
 }

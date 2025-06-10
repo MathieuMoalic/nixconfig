@@ -78,7 +78,8 @@
       bar.network.scrollUp = "";
       bar.network.showWifiInfo = false;
       bar.network.truncation = true;
-      bar.network.truncation_size = 7;
+      bar.network.truncation_size = 50;
+      # bar.network.icon = "󰈀"; # Example: Ethernet or Wi-Fi icon
 
       bar.notifications.hideCountWhenZero = false;
       bar.notifications.middleClick = "";
@@ -245,7 +246,7 @@
       theme.bar.shadow = "0px 1px 2px 1px #16161e";
       theme.bar.shadowMargins = "0px 0px 4px 0px";
       theme.bar.transparent = false;
-      theme.font.name = "Ubuntu Nerd Font";
+      theme.font.name = "FiraCode Nerd Font";
       theme.font.size = "1.1rem";
       theme.font.weight = 600;
       theme.matugen = false;

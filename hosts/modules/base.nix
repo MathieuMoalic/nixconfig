@@ -24,6 +24,7 @@
     defaultSopsFile = ../../secrets.yaml;
     age.keyFile = "/home/mat/.ssh/age_key";
   };
+  programs.fish.enable = true;
 
   programs.nix-ld = {
     enable = true;

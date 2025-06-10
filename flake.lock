@@ -636,11 +636,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1749398730,
-        "narHash": "sha256-odKrN7AWFyJAn0PMW9AKAohhV1ZHDZwiAoKgnABB56E=",
+        "lastModified": 1749497331,
+        "narHash": "sha256-exCIRNVcUTCBJATsQAwr0CdPt4ssKAlRXszk7WdI/4s=",
         "owner": "MathieuMoalic",
         "repo": "pleustradenn",
-        "rev": "4bd3a91bed57bfee6d004265587519cc15f4be64",
+        "rev": "4b5d7ecc3623366a99d65f15f255bcaa585e059c",
         "type": "github"
       },
       "original": {

@@ -11,7 +11,8 @@
     ./rclone.nix
     ./ssh.nix
     ./starship.nix
-    ./nu.nix
+    # ./nu.nix
+    ./fish.nix
     ./nvim.nix
   ];
   home.packages = with pkgs; [

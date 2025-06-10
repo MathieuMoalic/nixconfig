@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [rclone];
-  programs.nushell.shellAliases = {
+  programs.fish.shellAliases = {
     rs = "rclone sync --progress --delete-after=false";
   };
 

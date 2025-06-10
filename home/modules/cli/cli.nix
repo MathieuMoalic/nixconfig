@@ -11,7 +11,6 @@
     ./rclone.nix
     ./ssh.nix
     ./starship.nix
-    # ./nu.nix
     ./fish.nix
     ./nvim.nix
   ];

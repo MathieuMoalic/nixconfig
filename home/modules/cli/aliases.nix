@@ -1,8 +1,8 @@
-{pkgs, ...}: {
+{...}: {
   programs.fish = {
-    shellAliases = {
-      wget = "wget --hsts-file=$env.XDG_DATA_HOME/wget-hsts";
-      man = "${pkgs.bat-extras.batman}/bin/batman";
+    shellAliases = {};
+    shellAbbrs = {
+      lg = "lazygit";
       rm = " rm -vrf";
       l = "exa -al --across --icons -s age";
       ll = "exa -algh --across --icons -s age";
@@ -11,12 +11,10 @@
       m = "amumax";
       op = "xdg-open";
       pm = "podman";
-      pmps = "pm ps -a  --sort status --format \"table {{.Names}} {{.Status}} {{.Image}}\"";
-      sysu = "systemctl --user";
+      pmps = "pm ps -a --sort status --format \"table {{.Names}} {{.Status}} {{.Image}}\"";
       cd = "z";
       tldr = "tldr -q";
       myip = "curl ifconfig.me; echo";
     };
-    shellAbbrs = {lg = "lazygit";};
   };
 }

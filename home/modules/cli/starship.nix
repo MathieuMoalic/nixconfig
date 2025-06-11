@@ -10,7 +10,7 @@
       custom = {
         nix_ns = {
           when = "env | grep -E '^NS_PACKAGES='";
-          command = "$env.NS_PACKAGES";
+          command = "echo $NS_PACKAGES";
           format = "[ 󱄅 $output ]($style)";
           style = "bold fg:#${base00} bg:#${orange}";
         };

@@ -8,7 +8,6 @@
     systemd.enable = true;
     hyprland.enable = false;
     overwrite.enable = true; # the config panel will overwrite the config below
-    # overlay.enable = true; # doesn't work
 
     settings = {
       layout = let

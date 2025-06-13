@@ -3,6 +3,9 @@
   pkgs,
   ...
 }: {
+  home.packages = with pkgs; [
+    adwaita-icon-theme
+  ];
   programs.hyprpanel = {
     enable = true;
     systemd.enable = true;

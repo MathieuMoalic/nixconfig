@@ -55,5 +55,7 @@
     nix-run
     nix-shell
     update
+    journalctl
+    sopsedit
   ];
 }

@@ -1,5 +1,5 @@
 {...}: {
-  home.file.".config/fish/completions".text = ''
+  home.file.".config/fish/completions/j.fish".text = ''
     function __fish_systemd_units
         systemctl list-unit-files --type=service --no-legend |
             awk '{print $1}' |

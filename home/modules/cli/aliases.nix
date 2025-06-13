@@ -1,6 +1,6 @@
 {...}: {
   programs.fish = {
-    shellAliases = {};
+    shellAliases = {cd = "z";};
     shellAbbrs = {
       lg = "lazygit";
       rm = " rm -vrf";
@@ -12,7 +12,6 @@
       op = "xdg-open";
       pm = "podman";
       pmps = "pm ps -a --sort status --format \"table {{.Names}} {{.Status}} {{.Image}}\"";
-      cd = "z";
       tldr = "tldr -q";
       myip = "curl ifconfig.me; echo";
     };

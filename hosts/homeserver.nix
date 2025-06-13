@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   imports = [
@@ -18,7 +19,7 @@
     ./modules/self-hosted/stirling-pdf.nix
     ./modules/self-hosted/ntfy.nix
     ./modules/self-hosted/vaultwarden.nix
-    ./modules/self-hosted/your-spotify.nix
+    # ./modules/self-hosted/your-spotify.nix
   ];
 
   home-manager.users.mat.imports = [../home/homeserver.nix];
@@ -33,6 +34,7 @@
     kernelParams = ["ip=dhcp"];
     initrd = {
       systemd.users.root.shell = "/bin/cryptsetup-askpass";
+      # systemd.initrdBin = with pkgs; [cryptsetup];
       network = {
         enable = true;
         ssh = {

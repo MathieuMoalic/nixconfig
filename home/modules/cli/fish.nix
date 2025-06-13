@@ -1,4 +1,14 @@
 {...}: {
+  home.file.".config/fish/completions".text = ''
+    function __fish_systemd_units
+        systemctl list-unit-files --type=service --no-legend |
+            awk '{print $1}' |
+            grep -E '^[a-zA-Z0-9@_.@-]+\.service$' |
+            sort -u
+    end
+
+    complete -c j --no-files -a "(__fish_systemd_units)" -d "Systemd service unit"
+  '';
   programs = {
     fish = {
       enable = true;

@@ -55,9 +55,10 @@
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
       kernelModules = [];
+      systemd.enable = true;
     };
     kernelModules = ["kvm-amd" "debug"];
-    kernelPackages = pkgs.linuxPackages_xanmod_stable;
+    kernelPackages = pkgs.linuxPackages_zen;
     extraModulePackages = [];
   };
 

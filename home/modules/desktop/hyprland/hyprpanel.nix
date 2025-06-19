@@ -21,7 +21,7 @@
 
         commonBarLayout = {
           left = ["workspaces" "windowtitle"];
-          middle = [];
+          middle = ["media"];
           right = rightModules;
         };
       in {

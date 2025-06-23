@@ -1,7 +1,15 @@
 {...}: {
+  environment.etc."caddy/laverdiere/index.html".source = ../laverdiere/index.html;
   services.caddy = {
     enable = true;
     virtualHosts = {
+      "laverdiere.matmoa.eu" = {
+        extraConfig = ''
+          root * /etc/caddy/laverdiere
+          file_server
+        '';
+      };
+
       "files.matmoa.eu" = {
         extraConfig = ''reverse_proxy localhost:10000'';
       };

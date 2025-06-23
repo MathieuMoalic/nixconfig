@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Sous le soleil de La Verdière</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: #00ffff;
+            color: #000080;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-top: 20%;
+        }
+
+        h1 {
+            font-size: 48px;
+            text-shadow: 2px 2px 5px #ff00ff;
+            border: 4px dashed #ff0000;
+            display: inline-block;
+            padding: 20px;
+            background-color: #ffff00;
+        }
+
+        #countdown {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 20px;
+            background: #ffffff;
+            border: 3px groove #000000;
+            padding: 15px;
+            display: inline-block;
+            color: #ff0000;
+        }
+
+        marquee {
+            font-size: 24px;
+            color: #0000ff;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🔥 La Verdière 🔥</h1>
+        <div id="countdown">Chargement...</div>
+        <marquee scrollamount="10">🍉 Melon, rosé et atmosphère,
+            voilà l’esprit de La Verdière ! 🍷</marquee>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            // Cible : 26 juillet 2025 à 15:00:00 CEST (UTC+2)
+            const target = new Date("2025-07-26T13:00:00Z"); // UTC équivalent de 15:00 CEST
+
+            const now = new Date();
+            const diff = target - now;
+
+            if (diff <= 0) {
+                document.getElementById("countdown").innerHTML = "🎉 C'est le moment ! 🎉";
+                return;
+            }
+
+            const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const heures = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const secondes = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("countdown").innerHTML =
+                `${jours}j ${heures}h ${minutes}m ${secondes}s`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+
+</html>

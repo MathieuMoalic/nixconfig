@@ -49,7 +49,7 @@
   networking = {
     useDHCP = lib.mkDefault true;
     hostName = "zagreus";
-    firewall.allowedTCPPorts = [4173];
+    firewall.allowedTCPPorts = [4173 5173];
   };
 
   boot = {

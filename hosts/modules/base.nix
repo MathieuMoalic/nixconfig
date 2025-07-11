@@ -17,17 +17,36 @@
     inputs.disko.nixosModules.disko
     ./users/mat.nix
   ];
-  # this fixes the dns in rootless podman containers
-  environment.etc."resolv.conf".mode = "direct-symlink";
+  environment = {
+    # this fixes the dns in rootless podman containers
+    etc."resolv.conf".mode = "direct-symlink";
 
+    binsh = "${pkgs.dash}/bin/dash";
+    systemPackages = with pkgs; [
+      home-manager
+      rose-pine-hyprcursor
+    ];
+
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
+  };
+  services.ntp.enable = true;
   sops = {
     defaultSopsFile = ../../secrets.yaml;
     age.keyFile = "/home/mat/.ssh/age_key";
   };
-  programs.fish.enable = true;
+  programs = {
+    fish.enable = true;
 
-  programs.nix-ld = {
-    enable = true;
+    nix-ld = {
+      enable = true;
+    };
+
+    # Supposedly fixes some themeing/cursor issues might be useless.
+    dconf.enable = true;
+
+    zsh.enable = true;
   };
 
   security.sudo-rs = {
@@ -58,22 +77,12 @@
 
   # remove the need to type in the password for sudo
   security.sudo.wheelNeedsPassword = false;
-
-  # Supposedly fixes some themeing/cursor issues might be useless.
-  programs.dconf.enable = true;
   networking = {
     networkmanager.enable = true;
     networkmanager.dns = "systemd-resolved";
 
     nameservers = ["9.9.9.9#dns.quad9.net" "149.112.112.112#dns.quad9.net"];
     enableIPv6 = true;
-  };
-  environment = {
-    binsh = "${pkgs.dash}/bin/dash";
-    systemPackages = with pkgs; [
-      home-manager
-      rose-pine-hyprcursor
-    ];
   };
 
   nix = {
@@ -150,16 +159,10 @@
     };
   };
 
-  programs.zsh.enable = true;
-
   home-manager = {
     backupFileExtension = "hmbak";
     extraSpecialArgs = {inherit inputs;};
     useUserPackages = true;
     useGlobalPkgs = true;
-  };
-
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
   };
 }

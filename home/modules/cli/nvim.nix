@@ -235,9 +235,9 @@
           nix.enable = true;
 
           bash.enable = true;
-          svelte.enable = true;
+          # svelte.enable = true;
           tailwind.enable = true;
-          ts.enable = true;
+          # ts.enable = true;
         };
       };
     };

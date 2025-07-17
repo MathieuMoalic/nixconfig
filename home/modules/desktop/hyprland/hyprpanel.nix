@@ -9,8 +9,6 @@
   programs.hyprpanel = {
     enable = true;
     systemd.enable = true;
-    hyprland.enable = false;
-    overwrite.enable = true;
 
     settings = {
       layout = let

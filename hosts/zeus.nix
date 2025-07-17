@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./modules/base.nix
-    ./modules/sddm/sddm.nix
     ./modules/sshd.nix
     ./modules/podman.nix
     ./modules/sudo-rules.nix

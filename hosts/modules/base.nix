@@ -75,8 +75,6 @@
   };
   hardware.keyboard.qmk.enable = true;
 
-  # remove the need to type in the password for sudo
-  security.sudo.wheelNeedsPassword = false;
   networking = {
     networkmanager.enable = true;
     networkmanager.dns = "systemd-resolved";
@@ -125,15 +123,13 @@
       options = "--delete-older-than 14d";
     };
   };
-  # this is to silence the warning when using the `nixos-rebuild` command
-  # systemd.services."systemd-hibernate-clear".enable = false;
 
   boot = {
     loader = {
       timeout = 0;
       systemd-boot = {
         enable = true;
-        editor = false;
+        editor = true;
         configurationLimit = 15;
       };
       efi.canTouchEfiVariables = true;

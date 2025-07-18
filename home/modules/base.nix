@@ -6,7 +6,8 @@
     ./colorscheme.nix
     inputs.nix-colors.homeManagerModules.default
     inputs.nvf.homeManagerModules.default
-    inputs.nix-index-database.homeModules.nix-index
+    inputs.hyprpanel.homeManagerModules.hyprpanel
+    inputs.nix-index-database.hmModules.nix-index
   ];
 
   systemd.user.startServices = "sd-switch";

@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     nvtopPackages.amd
     wootility
+    lutris
   ];
   wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter [
     "[workspace 11 silent] ${pkgs.librewolf}/bin/librewolf"

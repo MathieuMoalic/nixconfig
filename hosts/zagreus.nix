@@ -11,7 +11,12 @@
     ./modules/syncthing.nix
     ./modules/kmonad.nix
   ];
-
+  services.sunshine = {
+    enable = true;
+    openFirewall = true;
+    autoStart = true;
+    capSysAdmin = true;
+  };
   services.udev.extraRules = ''
     ACTION=="add" SUBSYSTEM=="pci" ATTR{vendor}=="0x1987" ATTR{device}=="0x5013" ATTR{power/wakeup}="disabled"
     ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="31e3", ATTR{idProduct}=="1312", ATTR{power/wakeup}="disabled"
@@ -59,7 +64,7 @@
       systemd.enable = true;
     };
     kernelModules = ["kvm-amd" "debug"];
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_6_6;
     extraModulePackages = [];
   };
 

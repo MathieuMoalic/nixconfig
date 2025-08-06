@@ -10,24 +10,22 @@
     enable = true;
     systemd.enable = true;
 
-    settings = {
-      layout = let
-        rightModules =
-          if osConfig.networking.hostName == "xps"
-          then ["volume" "microphone" "network" "bluetooth" "battery" "clock" "notifications"]
-          else ["network" "volume" "microphone" "clock" "notifications"];
+    settings = let
+      rightModules =
+        if osConfig.networking.hostName == "xps"
+        then ["network" "volume" "microphone" "bluetooth" "battery" "clock" "notifications"]
+        else ["network" "volume" "microphone" "clock" "notifications"];
 
-        commonBarLayout = {
-          left = ["workspaces" "windowtitle"];
-          middle = ["media"];
-          right = rightModules;
-        };
-      in {
-        "bar.layouts" = {
-          "0" = commonBarLayout;
-          "1" = commonBarLayout;
-          "2" = commonBarLayout;
-        };
+      commonBarLayout = {
+        left = ["workspaces" "windowtitle"];
+        middle = ["media"];
+        right = rightModules;
+      };
+    in {
+      "bar.layouts" = {
+        "0" = commonBarLayout;
+        "1" = commonBarLayout;
+        "2" = commonBarLayout;
       };
 
       scalingPriority = "gdk";
@@ -177,26 +175,40 @@
         timeout = 7000;
       };
 
-      theme = {
-        name = "dracula";
-        font = {
-          name = "FiraCode Nerd Font";
-          size = "1.1rem";
-          weight = 600;
-        };
-        matugen = false;
-        matugen_settings = {
-          contrast = 0;
-          mode = "dark";
-          scheme_type = "tonal-spot";
-          variation = "standard_1";
-        };
+      theme = let
+        colBg = "#282a36";
+        colCard = "#44475a";
+        colLabel = "#bd93f9";
+        colDim = "#6272a4";
+        colText = "#f8f8f2";
+        colShadow = "#16161e";
+        colRed = "#ff5555";
+      in {
         bar = {
           border = {
             location = "none";
             width = "0.15em";
           };
           border_radius = "0.4em";
+          dropdownGap = "2.9em";
+          enableShadow = false;
+          floating = false;
+          label_spacing = "0.5em";
+          layer = "top";
+          location = "top";
+          margin_bottom = "0em";
+          margin_sides = "0.5em";
+          margin_top = "0.5em";
+          opacity = 0;
+          outer_spacing = "0em";
+          scaling = 100;
+          shadow = "0px 1px 2px 1px ${colShadow}";
+          shadowMargins = "0px 0px 4px 0px";
+          transparent = false;
+
+          background = colBg;
+          border.color = colLabel;
+
           buttons = {
             background_hover_opacity = 100;
             background_opacity = 85;
@@ -211,6 +223,8 @@
             spacing = "0.25em";
             style = "default";
             y_margins = "0.4em";
+            borderColor = colLabel;
+
             battery = {
               enableBorder = false;
               spacing = "0.5em";
@@ -222,20 +236,6 @@
             clock = {
               enableBorder = false;
               spacing = "0.5em";
-            };
-            modules = {
-              microphone = {
-                enableBorder = false;
-                spacing = "0.45em";
-              };
-              netstat = {
-                enableBorder = false;
-                spacing = "0.45em";
-              };
-              weather = {
-                enableBorder = false;
-                spacing = "0.45em";
-              };
             };
             network = {
               enableBorder = false;
@@ -259,25 +259,31 @@
               numbered_active_highlight_border = "0.2em";
               numbered_active_highlight_padding = "0.2em";
               numbered_inactive_padding = "0.2em";
+              smartHighlight = true;
+              spacing = "0.5em";
               pill = {
                 active_width = "12em";
                 height = "4em";
                 radius = "1.9rem * 0.6";
                 width = "4em";
               };
-              smartHighlight = true;
-              spacing = "0.5em";
+            };
+            modules = {
+              microphone = {
+                enableBorder = false;
+                spacing = "0.45em";
+              };
+              netstat = {
+                enableBorder = false;
+                spacing = "0.45em";
+              };
+              weather = {
+                enableBorder = false;
+                spacing = "0.45em";
+              };
             };
           };
-          dropdownGap = "2.9em";
-          enableShadow = false;
-          floating = false;
-          label_spacing = "0.5em";
-          layer = "top";
-          location = "top";
-          margin_bottom = "0em";
-          margin_sides = "0.5em";
-          margin_top = "0.5em";
+
           menus = {
             border = {
               radius = "0.7em";
@@ -286,28 +292,23 @@
             buttons.radius = "0.4em";
             card_radius = "0.4em";
             enableShadow = false;
-            menu = {
-              battery.scaling = 100;
-              bluetooth.scaling = 100;
-              clock.scaling = 100;
-              network.scaling = 100;
-              notifications = {
-                height = "58em";
-                pager.show = true;
-                scaling = 100;
-                scrollbar = {
-                  radius = "0.2em";
-                  width = "0.35em";
-                };
-              };
-              power = {
-                radius = "0.4em";
-                scaling = 90;
-              };
-              volume.scaling = 100;
-            };
             monochrome = false;
             opacity = 100;
+
+            background = colDim;
+            border.color = colCard;
+            cards = colCard;
+            label = colLabel;
+            text = colText;
+            feinttext = colCard;
+            dimtext = colDim;
+
+            dropdownmenu = {
+              background = colBg;
+              divider = colCard;
+              text = "#f8f2f2";
+            };
+
             popover = {
               radius = "0.4em";
               scaling = 100;
@@ -317,7 +318,7 @@
               radius = "0.7em";
               width = "0.25em";
             };
-            shadow = "0px 0px 3px 1px #16161e";
+            shadow = "0px 0px 3px 1px ${colShadow}";
             shadowMargins = "5px 5px";
             slider = {
               progress_radius = "0.3rem";
@@ -328,22 +329,52 @@
               slider_radius = "0.2em";
             };
             tooltip.radius = "0.3em";
+
+            menu = {
+              battery.scaling = 100;
+              bluetooth.scaling = 100;
+              clock.scaling = 100;
+              network.scaling = 100;
+              volume.scaling = 100;
+              power = {
+                radius = "0.4em";
+                scaling = 90;
+              };
+              notifications = {
+                height = "58em";
+                scaling = 100;
+                pager.show = true;
+                scrollbar = {
+                  radius = "0.2em";
+                  width = "0.35em";
+                };
+              };
+            };
           };
-          opacity = 0;
-          outer_spacing = "0em";
-          scaling = 100;
-          shadow = "0px 1px 2px 1px #16161e";
-          shadowMargins = "0px 0px 4px 0px";
-          transparent = false;
         };
+
         notification = {
           border_radius = "0.6em";
           enableShadow = false;
           opacity = 100;
           scaling = 100;
-          shadow = "0px 1px 2px 1px #16161e";
+          shadow = "0px 1px 2px 1px ${colShadow}";
           shadowMargins = "4px 4px";
+          background = colBg;
+          border = colCard;
+          label = colLabel;
+          text = colText;
+          time = colDim;
+          close_button = {
+            label = colBg;
+            background = colLabel;
+          };
+          actions = {
+            text = colBg;
+            background = colLabel;
+          };
         };
+
         osd = {
           active_monitor = true;
           duration = 2500;
@@ -358,8 +389,17 @@
           radius = "0.4em";
           border.size = "0em";
           scaling = 100;
-          shadow = "0px 0px 3px 2px #16161e";
+          shadow = "0px 0px 3px 2px ${colShadow}";
+
+          label = colLabel;
+          icon = colBg;
+          bar_color = colLabel;
+          bar_empty_color = colCard;
+          bar_overflow_color = colRed;
+          icon_container = colLabel;
+          bar_container = colBg;
         };
+
         tooltip.scaling = 100;
       };
     };

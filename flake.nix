@@ -12,7 +12,6 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     nvf.url = "github:notashelf/nvf";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     amumax.url = "github:MathieuMoalic/amumax";
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     homepage.url = "github:MathieuMoalic/homepage";

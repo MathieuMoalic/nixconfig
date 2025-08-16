@@ -2,13 +2,14 @@
   keyboardDevices = {
     "nyx" = "/dev/input/by-id/usb-Dwctor_kaly_kaly42_32005D00165133353238323100000000-event-kbd";
     "xps" = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
-    "zagreus" = "/dev/input/by-id/usb-Wooting_Wooting_60HE__ARM__A02B2336W052H50713-if03-event-kbd";
+    "zagreus" = "/dev/input/by-id/usb-Wooting_Wooting_60HE__ARM__A02B2336W052H50713-if01-event-kbd";
   };
 in {
   services.kmonad = {
     enable = true;
     keyboards."en-pl-fr" = {
       device = builtins.getAttr config.networking.hostName keyboardDevices;
+      # device = "/dev/input/by-path/*-kbd";
       defcfg.fallthrough = true;
       defcfg.enable = true;
       config = ''

@@ -39,11 +39,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1750227437,
-        "narHash": "sha256-G3lKKp0YamdZP31zQ9Jytu1C7sw2owXlCLjhbAiFGUI=",
+        "lastModified": 1755951029,
+        "narHash": "sha256-0Jbh4EqCM8cr0A6tYT0G4L6W/XK1Fs1d9RYKPVcIDx4=",
         "owner": "MathieuMoalic",
         "repo": "boued",
-        "rev": "1f1c70ff261b8dcb5a6288c692ad36de0b4048e8",
+        "rev": "ee895ccfc66accf4f9e4ce31a45f691a20e6d879",
         "type": "github"
       },
       "original": {
@@ -327,16 +327,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1748708770,
-        "narHash": "sha256-q8jG2HJWgooWa9H0iatZqBPF3bp0504e05MevFmnFLY=",
-        "owner": "nixos",
+        "lastModified": 1746576598,
+        "narHash": "sha256-FshoQvr6Aor5SnORVvh/ZdJ1Sa2U4ZrIMwKBX5k2wu0=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a59eb7800787c926045d51b70982ae285faa2346",
+        "rev": "b3582c75c7f21ce0b429898980eddbbf05c68e55",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-25.05",
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }

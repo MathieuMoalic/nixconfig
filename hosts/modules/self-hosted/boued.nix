@@ -13,5 +13,6 @@ in {
   services.boued = {
     enable = true;
     port = port;
+    allowRegistration = false;
   };
 }

@@ -25,17 +25,17 @@
       fsType = "nfs";
       options = ["nfsvers=4.2"];
     };
-    "/home/mat/z2/double_freq_gen/nas" = {
+    "/home/mat/projects/double_freq_gen/nas" = {
       device = "150.254.111.3:/mnt/zfn2/zfn2/matmoa/jobs/double_freq_gen";
       fsType = "nfs";
       options = ["nfsvers=4.2"];
     };
-    "/home/mat/z1/preludium/nas" = {
+    "/home/mat/projects/preludium/nas" = {
       device = "150.254.111.3:/mnt/zfn2/zfn2/matmoa/jobs/preludium";
       fsType = "nfs";
       options = ["nfsvers=4.2"];
     };
-    "/home/mat/z1/mannga/nas" = {
+    "/home/mat/projects/mannga/nas" = {
       device = "150.254.111.3:/mnt/zfn2/zfn2/matmoa/jobs/mannga";
       fsType = "nfs";
       options = ["nfsvers=4.2"];
@@ -50,10 +50,6 @@
     };
     "/home/mat/z1" = {
       device = "/dev/disk/by-label/z1";
-      fsType = "ext4";
-    };
-    "/home/mat/z2" = {
-      device = "/dev/disk/by-label/shared";
       fsType = "ext4";
     };
   };

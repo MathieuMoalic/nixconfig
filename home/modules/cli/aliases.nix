@@ -11,9 +11,13 @@
       m = "amumax";
       op = "xdg-open";
       pm = "podman";
-      pmps = "pm ps -a --sort status --format \"table {{.Names}} {{.Status}} {{.Image}}\"";
+      pmps = "podman ps -a --sort status --format \"table {{.Names}} {{.Status}} {{.Image}}\"";
       tldr = "tldr -q";
       myip = "curl ifconfig.me; echo";
+      "..." = "../..";
+      "...." = "../../..";
+      "....." = "../../../..";
+      "......" = "../../../../..";
     };
   };
 }

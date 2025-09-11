@@ -31,14 +31,6 @@
       NIXOS_OZONE_WL = "1";
     };
   };
-  # services.timesyncd.enable = false; # disable timesyncd
-  # services.chrony = {
-  #   enable = true;
-  #   servers = ["0.pl.pool.ntp.org" "1.pl.pool.ntp.org" "2.pl.pool.ntp.org" "3.pl.pool.ntp.org"];
-  #   extraConfig = ''
-  #     makestep 1.0 3   # allow big corrections at start
-  #     rtcsync           # periodically sync RTC from system time
-  #   '';
   # };
   sops = {
     defaultSopsFile = ../../secrets.yaml;

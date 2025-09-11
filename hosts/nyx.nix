@@ -48,10 +48,6 @@
       device = "/dev/disk/by-label/NIXBOOT";
       fsType = "vfat";
     };
-    "/home/mat/z1" = {
-      device = "/dev/disk/by-label/z1";
-      fsType = "ext4";
-    };
   };
 
   hardware = {

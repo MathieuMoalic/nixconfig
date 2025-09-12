@@ -17,7 +17,7 @@ inputs: self: super: let
     scriptDirEntries;
 in
   {
-    amumax = inputs.amumax.packages.${self.system}.default;
+    amumax = inputs.amumax.packages.${self.system}.git;
     nvim-unstable = inputs.nixpkgs_unstable.legacyPackages.${self.system}.neovim-unwrapped;
     quicktranslate = inputs.quicktranslate.packages.${self.system}.quicktranslate;
     rose-pine-hyprcursor = inputs.rose-pine-hyprcursor.packages.${self.system}.default;

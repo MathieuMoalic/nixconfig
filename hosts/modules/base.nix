@@ -16,6 +16,7 @@
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
     ./users/mat.nix
+    ./dns.nix
   ];
   environment = {
     # this fixes the dns in rootless podman containers
@@ -31,22 +32,13 @@
       NIXOS_OZONE_WL = "1";
     };
   };
-  # };
   sops = {
     defaultSopsFile = ../../secrets.yaml;
     age.keyFile = "/home/mat/.ssh/age_key";
   };
   programs = {
     fish.enable = true;
-
-    nix-ld = {
-      enable = true;
-    };
-
-    # Supposedly fixes some themeing/cursor issues might be useless.
-    dconf.enable = true;
-
-    zsh.enable = true;
+    nix-ld.enable = true;
   };
 
   security.sudo-rs = {

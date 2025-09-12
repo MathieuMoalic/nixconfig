@@ -43,7 +43,6 @@
   };
 
   networking = {
-    useDHCP = lib.mkDefault true;
     hostName = "zagreus";
     firewall.allowedTCPPorts = [4173 5173];
   };
@@ -68,9 +67,6 @@
     wifi.powersave=2
   '';
 
-  # Optional but often smoother with Intel:
-  # networking.networkmanager.enable = true;
-  # networking.networkmanager.wifi.backend = "iwd";
   services = {
     sunshine = {
       enable = true;
@@ -82,7 +78,6 @@
       ACTION=="add" SUBSYSTEM=="pci" ATTR{vendor}=="0x1987" ATTR{device}=="0x5013" ATTR{power/wakeup}="disabled"
       ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="31e3", ATTR{idProduct}=="1312", ATTR{power/wakeup}="disabled"
     '';
-    # iwd.enable = true;
   };
 
   fileSystems = {

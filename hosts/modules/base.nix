@@ -65,22 +65,6 @@
       enable = true;
       mountOnMedia = true;
     };
-    resolved = {
-      enable = true;
-      fallbackDns = ["9.9.9.9" "149.112.112.112"];
-      domains = ["~."];
-      dnsovertls = "true";
-      dnssec = "true";
-    };
-  };
-  hardware.keyboard.qmk.enable = true;
-
-  networking = {
-    networkmanager.enable = true;
-    networkmanager.dns = "systemd-resolved";
-
-    nameservers = ["9.9.9.9#dns.quad9.net" "149.112.112.112#dns.quad9.net"];
-    enableIPv6 = true;
   };
 
   nix = {

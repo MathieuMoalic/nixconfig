@@ -1,13 +1,15 @@
 {...}: {
   programs.fish = {
-    shellAliases = {cd = "z";};
+    shellAliases = {};
     shellAbbrs = {
+      cd = "z";
       lg = "lazygit";
-      rm = " rm -vrf";
-      l = "exa -al --across --icons -s age";
-      ll = "exa -algh --across --icons -s age";
-      lt = "exa -al --across --icons -s age --tree";
-      e = "$EDITOR";
+      rm = "trash -vrf";
+      cp = "cp -r";
+      l = "eza -al --across --icons -s age";
+      ll = "eza -algh --across --icons -s age";
+      lt = "eza -al --across --icons -s age --tree";
+      e = "nvim";
       m = "amumax";
       op = "xdg-open";
       pm = "podman";

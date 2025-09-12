@@ -11,6 +11,9 @@
     ./modules/desktop.nix
     ./modules/kmonad.nix
   ];
+  programs.steam = {
+    enable = true;
+  };
   services.upower.enable = true; # needed for hyprpanel battery module
   programs.ssh.startAgent = true;
   home-manager.users.mat.imports = [../home/xps.nix];

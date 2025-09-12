@@ -9,7 +9,7 @@
     ./modules/nfs.nix
   ];
   home-manager.users.mat.imports = [../home/nyx.nix];
-
+  hardware.keyboard.qmk.enable = true;
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXROOT";
@@ -36,7 +36,6 @@
 
   networking = {
     hostName = "nyx";
-    useDHCP = lib.mkDefault true;
   };
 
   swapDevices = [

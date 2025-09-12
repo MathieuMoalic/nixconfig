@@ -32,11 +32,11 @@
         repository = "${config.users.users.mat.home}/backup";
       };
 
-    podmanBackupRemote =
-      commonSettings
-      // {
-        repository = "rclone:nyx:z1/backup";
-        rcloneConfigFile = "${config.users.users.mat.home}/.config/rclone/rclone.conf";
-      };
+    # podmanBackupRemote =
+    #   commonSettings
+    #   // {
+    #     repository = "rclone:nyx:z1/backup";
+    #     rcloneConfigFile = "${config.users.users.mat.home}/.config/rclone/rclone.conf";
+    #   };
   };
 }

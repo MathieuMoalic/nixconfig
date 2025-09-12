@@ -62,7 +62,6 @@
       allowedTCPPorts = [80 443 51821]; # WG-Easy Web UI
       allowedUDPPorts = [51820]; # WireGuard port
     };
-    useDHCP = lib.mkDefault true;
   };
 
   swapDevices = [

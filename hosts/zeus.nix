@@ -54,7 +54,6 @@
       enable = true;
       allowedTCPPorts = [80 443];
     };
-    useDHCP = lib.mkDefault true;
   };
 
   services.xserver.videoDrivers = ["nvidia"];

@@ -25,7 +25,6 @@
 
   networking = {
     wireless.userControlled.enable = true;
-    useDHCP = lib.mkDefault true;
     hostName = "xps";
   };
   powerManagement = {

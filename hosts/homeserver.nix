@@ -19,6 +19,8 @@
     ./modules/self-hosted/ntfy.nix
     ./modules/self-hosted/vaultwarden.nix
     # ./modules/self-hosted/your-spotify.nix
+    # ./modules/podman/ddns.nix
+    # ./modules/podman/nginx.nix
   ];
 
   home-manager.users.mat.imports = [../home/homeserver.nix];
@@ -62,7 +64,6 @@
       allowedTCPPorts = [80 443 12553 10024 3478 5349];
       allowedUDPPorts = [12553 51820 7359 3478 5349] ++ (map (x: x) (builtins.genList (x: 49160 + x) (49200 - 49160 + 1)));
     };
-    useDHCP = lib.mkDefault true;
   };
 
   fileSystems = {

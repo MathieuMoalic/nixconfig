@@ -9,7 +9,6 @@ in {
     enable = true;
     keyboards."en-pl-fr" = {
       device = builtins.getAttr config.networking.hostName keyboardDevices;
-      # device = "/dev/input/by-path/*-kbd";
       defcfg.fallthrough = true;
       defcfg.enable = true;
       config = ''

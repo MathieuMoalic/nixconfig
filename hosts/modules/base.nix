@@ -16,6 +16,7 @@
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
     ./users/mat.nix
+    ./dns.nix
   ];
   environment = {
     # this fixes the dns in rootless podman containers
@@ -31,30 +32,13 @@
       NIXOS_OZONE_WL = "1";
     };
   };
-  # services.timesyncd.enable = false; # disable timesyncd
-  # services.chrony = {
-  #   enable = true;
-  #   servers = ["0.pl.pool.ntp.org" "1.pl.pool.ntp.org" "2.pl.pool.ntp.org" "3.pl.pool.ntp.org"];
-  #   extraConfig = ''
-  #     makestep 1.0 3   # allow big corrections at start
-  #     rtcsync           # periodically sync RTC from system time
-  #   '';
-  # };
   sops = {
     defaultSopsFile = ../../secrets.yaml;
     age.keyFile = "/home/mat/.ssh/age_key";
   };
   programs = {
     fish.enable = true;
-
-    nix-ld = {
-      enable = true;
-    };
-
-    # Supposedly fixes some themeing/cursor issues might be useless.
-    dconf.enable = true;
-
-    zsh.enable = true;
+    nix-ld.enable = true;
   };
 
   security.sudo-rs = {
@@ -73,22 +57,6 @@
       enable = true;
       mountOnMedia = true;
     };
-    resolved = {
-      enable = true;
-      fallbackDns = ["9.9.9.9" "149.112.112.112"];
-      domains = ["~."];
-      dnsovertls = "true";
-      dnssec = "true";
-    };
-  };
-  hardware.keyboard.qmk.enable = true;
-
-  networking = {
-    networkmanager.enable = true;
-    networkmanager.dns = "systemd-resolved";
-
-    nameservers = ["9.9.9.9#dns.quad9.net" "149.112.112.112#dns.quad9.net"];
-    enableIPv6 = true;
   };
 
   nix = {

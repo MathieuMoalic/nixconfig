@@ -28,20 +28,17 @@
         "2" = commonBarLayout;
       };
 
-      scalingPriority = "gdk";
-      tear = false;
-      terminal = "$TERM";
-
-      dummy = true;
       hyprpanel = {
         restartAgs = true;
         restartCommand = "${pkgs.hyprpanel}/bin/hyprpanel q; ${pkgs.hyprpanel}/bin/hyprpanel";
       };
-
+      scalingPriority = "gdk";
+      tear = false;
+      terminal = "$TERM";
+      dummy = true;
       wallpaper.enable = false;
-      bar.autoHide = "never";
-
       bar = {
+        autoHide = "never";
         battery = {
           hideLabelWhenFull = false;
           label = true;
@@ -185,10 +182,14 @@
         colRed = "#ff5555";
       in {
         bar = {
+          background = colBg;
+
           border = {
+            color = "#bd93f9";
             location = "none";
             width = "0.15em";
           };
+
           border_radius = "0.4em";
           dropdownGap = "2.9em";
           enableShadow = false;
@@ -206,10 +207,15 @@
           shadowMargins = "0px 0px 4px 0px";
           transparent = false;
 
-          background = colBg;
-          border.color = colLabel;
-
           buttons = {
+            background = "#282936";
+            borderColor = "#bd93f9";
+            style = "default";
+            icon = "#bd93f9";
+            text = "#bd93f9";
+            hover = "#44475a";
+            icon_background = "#44475a";
+
             background_hover_opacity = 100;
             background_opacity = 85;
             borderSize = "0.1em";
@@ -221,39 +227,18 @@
             padding_y = "0.2rem";
             radius = "0.3em";
             spacing = "0.25em";
-            style = "default";
             y_margins = "0.4em";
-            borderColor = colLabel;
 
-            battery = {
-              enableBorder = false;
-              spacing = "0.5em";
-            };
-            bluetooth = {
-              enableBorder = false;
-              spacing = "0.5em";
-            };
-            clock = {
-              enableBorder = false;
-              spacing = "0.5em";
-            };
-            network = {
-              enableBorder = false;
-              spacing = "0.5em";
-            };
-            notifications = {
-              enableBorder = false;
-              spacing = "0.5em";
-            };
-            volume = {
-              enableBorder = false;
-              spacing = "0.5em";
-            };
-            windowtitle = {
-              enableBorder = false;
-              spacing = "0.5em";
-            };
             workspaces = {
+              numbered_active_underline_color = "#e23ee2";
+              numbered_active_highlighted_text_color = "#21252b";
+              active = "#ff79c6";
+              occupied = "#ffb86c";
+              available = "#8be9fd";
+              hover = "#44475a";
+              background = "#44475a";
+              border = "#44475a";
+
               enableBorder = false;
               fontSize = "1.1em";
               numbered_active_highlight_border = "0.2em";
@@ -261,6 +246,7 @@
               numbered_inactive_padding = "0.2em";
               smartHighlight = true;
               spacing = "0.5em";
+
               pill = {
                 active_width = "12em";
                 height = "4em";
@@ -268,78 +254,169 @@
                 width = "4em";
               };
             };
+
             modules = {
+              cava = {
+                text = "#8be9fd";
+                background = "#44475a";
+                icon_background = "#44475a";
+                icon = "#8be9fd";
+                border = "#8be9fd";
+              };
               microphone = {
+                icon = "#50fa7b";
+                text = "#50fa7b";
+                background = "#44475a";
+                border = "#50fa7b";
+                icon_background = "#44475a";
                 enableBorder = false;
                 spacing = "0.45em";
               };
-              netstat = {
-                enableBorder = false;
-                spacing = "0.45em";
+              hyprsunset = {
+                icon = "#f1fa8c";
+                text = "#f1fa8c";
+                background = "#44475a";
+                border = "#f1fa8c";
+                icon_background = "#f1fa8c";
               };
-              weather = {
-                enableBorder = false;
-                spacing = "0.45em";
+              hypridle = {
+                icon = "#bd93f9";
+                text = "#bd93f9";
+                background = "#44475a";
+                border = "#bd93f9";
+                icon_background = "#bd93f9";
+              };
+              worldclock = {
+                icon = "#ff79c6";
+                text = "#ff79c6";
+                background = "#44475a";
+                border = "#ff79c6";
+                icon_background = "#ff79c6";
               };
             };
           };
 
           menus = {
-            border = {
-              radius = "0.7em";
-              size = "0.13em";
+            tooltip = {
+              text = "#f8f8f2";
+              background = "#282a36";
+              radius = "0.3em";
             };
-            buttons.radius = "0.4em";
-            card_radius = "0.4em";
-            enableShadow = false;
-            monochrome = false;
-            opacity = 100;
-
-            background = colDim;
-            border.color = colCard;
-            cards = colCard;
-            label = colLabel;
-            text = colText;
-            feinttext = colCard;
-            dimtext = colDim;
 
             dropdownmenu = {
-              background = colBg;
-              divider = colCard;
-              text = "#f8f2f2";
+              divider = "#44475a";
+              text = "#f8f8f2";
+              background = "#282a36";
+            };
+
+            slider = {
+              puck = "#44475a";
+              backgroundhover = "#44475a";
+              background = "#44475a";
+              primary = "#bd93f9";
+              progress_radius = "0.3rem";
+              slider_radius = "0.3rem";
+            };
+
+            progressbar = {
+              background = "#44475a";
+              foreground = "#bd93f9";
+              radius = "0.3rem";
+            };
+
+            iconbuttons = {
+              active = "#bd93f9";
+              passive = "#f8f8f2";
+            };
+
+            buttons = {
+              text = "#282a36";
+              disabled = "#44475a";
+              active = "#ff79c6";
+              default = "#bd93f9";
+              radius = "0.4em";
+            };
+
+            check_radio_button = {
+              active = "#bd93f9";
+              background = "#282936";
+            };
+
+            switch = {
+              puck = "#44475a";
+              disabled = "#44475a";
+              enabled = "#bd93f9";
+              radius = "0.2em";
+              slider_radius = "0.2em";
+            };
+
+            icons = {
+              active = "#bd93f9";
+              passive = "#44475a";
+            };
+
+            listitems = {
+              active = "#bd93f9";
+              passive = "#f8f8f2";
             };
 
             popover = {
+              border = "#282a36";
+              background = "#282a36";
+              text = "#bd93f9";
               radius = "0.4em";
               scaling = 100;
             };
-            progressbar.radius = "0.3rem";
+
+            label = "#bd93f9";
+            feinttext = "#44475a";
+            dimtext = "#6272a4";
+            text = "#f8f8f2";
+
+            border = {
+              color = "#44475a";
+              radius = "0.7em";
+              size = "0.13em";
+            };
+
+            cards = "#44475a";
+            background = "#6272a4";
+
+            opacity = 100;
+            monochrome = false;
+            enableShadow = false;
+            card_radius = "0.4em";
+            shadow = "0px 0px 3px 1px ${colShadow}";
+            shadowMargins = "5px 5px";
+
             scroller = {
               radius = "0.7em";
               width = "0.25em";
             };
-            shadow = "0px 0px 3px 1px ${colShadow}";
-            shadowMargins = "5px 5px";
-            slider = {
-              progress_radius = "0.3rem";
-              slider_radius = "0.3rem";
-            };
-            switch = {
-              radius = "0.2em";
-              slider_radius = "0.2em";
-            };
-            tooltip.radius = "0.3em";
 
             menu = {
+              network = {
+                switch = {
+                  enabled = "#bd93f9";
+                  disabled = "#44475a";
+                  puck = "#44475a";
+                };
+                scroller.color = "#bd93f9";
+              };
+              bluetooth.scroller.color = "#8be9fd";
+              media.timestamp = "#f8f8f2";
+
               battery.scaling = 100;
               bluetooth.scaling = 100;
               clock.scaling = 100;
               network.scaling = 100;
               volume.scaling = 100;
+
               power = {
                 radius = "0.4em";
                 scaling = 90;
               };
+
               notifications = {
                 height = "58em";
                 scaling = 100;
@@ -349,6 +426,35 @@
                   width = "0.35em";
                 };
               };
+            };
+          };
+
+          theme = {
+            osd = {
+              label = "#bd93f9";
+              icon = "#282a36";
+              bar_overflow_color = "#ff5555";
+              bar_empty_color = "#44475a";
+              bar_color = "#bd93f9";
+              icon_container = "#bd93f9";
+              bar_container = "#282a36";
+            };
+
+            notification = {
+              close_button = {
+                label = "#282a36";
+                background = "#bd93f9";
+              };
+              labelicon = "#bd93f9";
+              text = "#f8f8f2";
+              time = "#6272a4";
+              border = "#44475a";
+              label = "#bd93f9";
+              actions = {
+                text = "#282a36";
+                background = "#bd93f9";
+              };
+              background = "#282a36";
             };
           };
         };
@@ -390,7 +496,6 @@
           border.size = "0em";
           scaling = 100;
           shadow = "0px 0px 3px 2px ${colShadow}";
-
           label = colLabel;
           icon = colBg;
           bar_color = colLabel;
@@ -400,7 +505,9 @@
           bar_container = colBg;
         };
 
-        tooltip.scaling = 100;
+        tooltip = {
+          scaling = 100;
+        };
       };
     };
   };

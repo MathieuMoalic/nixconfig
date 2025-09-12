@@ -39,11 +39,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1756555916,
-        "narHash": "sha256-ITS3o1imkl27/njn1onUnFTRqwZ10ny+8vwcOgyWqx4=",
+        "lastModified": 1757664662,
+        "narHash": "sha256-GXeuHpCdob7StmOInPrqpwkZdI+Zv7oUWz5ejgWgqW8=",
         "owner": "MathieuMoalic",
         "repo": "boued",
-        "rev": "15446a2c7128c81433eb9b47502adfab1f925ddc",
+        "rev": "2ffc7a69ff803345325d519d95319511476ae2af",
         "type": "github"
       },
       "original": {

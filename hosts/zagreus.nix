@@ -10,7 +10,6 @@
     ./modules/desktop.nix
     ./modules/syncthing.nix
     ./modules/kmonad.nix
-    ./modules/podman.nix
   ];
   hardware.wooting.enable = true;
   programs.steam = {
@@ -44,7 +43,6 @@
 
   networking = {
     hostName = "zagreus";
-    firewall.allowedTCPPorts = [4173 5173];
   };
 
   boot = {

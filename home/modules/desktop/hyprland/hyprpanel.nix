@@ -22,10 +22,24 @@
         right = rightModules;
       };
     in {
-      "bar.layouts" = {
-        "0" = commonBarLayout;
-        "1" = commonBarLayout;
-        "2" = commonBarLayout;
+      bar = {
+        layouts = {
+          "0" = commonBarLayout;
+          "1" = commonBarLayout;
+          "2" = commonBarLayout;
+        };
+        autoHide = "fullscreen";
+        clock = {
+          format = "%Y.%m.%d %H:%M:%S";
+        };
+      };
+      menus = {
+        clock = {
+          time = {
+            military = true;
+          };
+          weather.enabled = false;
+        };
       };
 
       hyprpanel = {
@@ -141,11 +155,6 @@
               background = "#44475a";
               border = "#f1fa8c";
             };
-            systray = {
-              background = "#44475a";
-              border = "#6272a4";
-              customIcon = "#f8f8f2";
-            };
             bluetooth = {
               icon_background = "#89dbeb";
               icon = "#8be9fd";
@@ -191,11 +200,6 @@
               border = "#44475a";
               background = "#44475a";
             };
-            dashboard = {
-              icon = "#8be8fd";
-              border = "#8be8fd";
-              background = "#44475a";
-            };
             icon = "#bd93f9";
             text = "#bd93f9";
             hover = "#44475a";
@@ -203,47 +207,12 @@
             background = "#282936";
             style = "default";
             modules = {
-              submap = {
-                background = "#44475a";
-                text = "#8be9fd";
-                border = "#8be9fd";
-                icon = "#8be9fd";
-                icon_background = "#44475a";
-              };
-              hyprsunset = {
-                icon = "#f1fa8c";
-                background = "#44475a";
-                icon_background = "#f1fa8c";
-                text = "#f1fa8c";
-                border = "#f1fa8c";
-              };
-              hypridle = {
-                icon = "#bd93f9";
-                background = "#44475a";
-                icon_background = "#bd93f9";
-                text = "#bd93f9";
-                border = "#bd93f9";
-              };
-              cava = {
-                text = "#8be9fd";
-                background = "#44475a";
-                icon_background = "#44475a";
-                icon = "#8be9fd";
-                border = "#8be9fd";
-              };
               microphone = {
                 border = "#50fa7b";
                 background = "#44475a";
                 text = "#50fa7b";
                 icon = "#50fa7b";
                 icon_background = "#44475a";
-              };
-              worldclock = {
-                text = "#ff79c6";
-                background = "#44475a";
-                icon_background = "#ff79c6";
-                icon = "#ff79c6";
-                border = "#ff79c6";
               };
             };
             borderColor = "#bd93f9";

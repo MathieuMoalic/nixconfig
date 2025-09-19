@@ -3,6 +3,7 @@
   config,
   ...
 }: {
+  programs.zsh.enable = true;
   users.users.kelvas = {
     isNormalUser = true;
     uid = 1002;

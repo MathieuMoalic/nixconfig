@@ -3,6 +3,7 @@
   config,
   ...
 }: {
+  programs.zsh.enable = true;
   users.users.mz = {
     isNormalUser = true;
     uid = 1001;

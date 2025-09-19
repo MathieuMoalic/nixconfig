@@ -19,7 +19,6 @@
     amumax
     nvtopPackages.nvidia
   ];
-
   hardware = {
     nvidia-container-toolkit.enable = true;
     graphics.enable = true;

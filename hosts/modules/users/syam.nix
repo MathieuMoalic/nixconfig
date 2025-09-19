@@ -3,6 +3,7 @@
   config,
   ...
 }: {
+  programs.zsh.enable = true;
   users.users.syam = {
     isNormalUser = true;
     uid = 1003;

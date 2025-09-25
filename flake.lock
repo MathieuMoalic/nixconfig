@@ -5,11 +5,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1757681807,
-        "narHash": "sha256-e09xgphK40nHk9jrS5/Sg0/Tooj8Yo3D/2Vn5etoL+c=",
+        "lastModified": 1758712678,
+        "narHash": "sha256-ni01SpjoImhv7ZjldPeJGeZHzR49RGwIzMIomtw95/k=",
         "owner": "MathieuMoalic",
         "repo": "amumax",
-        "rev": "9aeca4e3919630868530b574b07ea0dd6c6b4217",
+        "rev": "50b3c95cc5a26c16fdb9018b3756f9d509f36c91",
         "type": "github"
       },
       "original": {
@@ -280,11 +280,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1742800061,
-        "narHash": "sha256-oDJGK1UMArK52vcW9S5S2apeec4rbfNELgc50LqiPNs=",
+        "lastModified": 1758029226,
+        "narHash": "sha256-TjqVmbpoCqWywY9xIZLTf6ANFvDCXdctCjoYuYPYdMI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "1750f3c1c89488e2ffdd47cab9d05454dddfb734",
+        "rev": "08b8f92ac6354983f5382124fef6006cade4a1c1",
         "type": "github"
       },
       "original": {

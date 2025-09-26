@@ -23,15 +23,7 @@
     # ./modules/podman/ddns.nix
     # ./modules/podman/nginx.nix
   ];
-  services.libretranslate = {
-    enable = true;
-    port = 5000;
-    updateModels = true;
-    threads = 4;
-    # optional nginx reverse proxy:
-    # configureNginx = true;
-    # domain = "translate.example.com";
-  };
+
   home-manager.users.mat.imports = [../home/homeserver.nix];
 
   boot = {

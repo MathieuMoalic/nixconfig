@@ -4,6 +4,7 @@
     VISUAL = "$EDITOR";
     SUDO_EDIT = "$EDITOR";
     NIXOS_OZONE_WL = "1";
+    LD_LIBRARY_PATH = "/run/opengl-driver/lib"; # for amumax linker
 
     # Cleaning my home directory
     IPYTHONDIR = "$HOME/.local/share/ipython";

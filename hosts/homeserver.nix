@@ -18,11 +18,20 @@
     ./modules/self-hosted/stirling-pdf.nix
     ./modules/self-hosted/ntfy.nix
     ./modules/self-hosted/vaultwarden.nix
+    ./modules/self-hosted/libretranslate.nix
     # ./modules/self-hosted/your-spotify.nix
     # ./modules/podman/ddns.nix
     # ./modules/podman/nginx.nix
   ];
-
+  services.libretranslate = {
+    enable = true;
+    port = 5000;
+    updateModels = true;
+    threads = 4;
+    # optional nginx reverse proxy:
+    # configureNginx = true;
+    # domain = "translate.example.com";
+  };
   home-manager.users.mat.imports = [../home/homeserver.nix];
 
   boot = {

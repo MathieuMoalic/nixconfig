@@ -762,7 +762,7 @@
         }
         {
           on = ["l"];
-          run = ["plugin smart-enter"];
+          run = ["plugin --sync smart-enter"];
           desc = "Child directory";
         }
         {

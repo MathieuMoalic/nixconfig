@@ -17,6 +17,7 @@
   home.packages = with pkgs; [
     uutils-coreutils-noprefix
 
+    exiftool # file details
     bat-extras.batman # man
     trash-cli # trash
     funzzy # watch files

@@ -9,6 +9,9 @@ in {
         font = "FiraCode Nerd Font Mono:size=13";
         selection-target = "both";
       };
+      security = {
+        osc52 = "copy-enabled";
+      };
       cursor = {
         style = "beam";
         blink = "yes";

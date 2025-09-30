@@ -3,12 +3,7 @@
     enable = true;
     settings = {
       vim = {
-        luaConfigPost = ''
-          -- Force the OSC52 clipboard provider
-          vim.g.clipboard = 'osc52'
-          -- Map <leader>Y to copy the entire buffer to the client clipboard
-          vim.keymap.set('n', '<leader>Y', [[:silent %y +<CR>]], { silent = true, desc = 'Copy file (OSC52)' })
-        '';
+        globals.clipboard = "osc52";
         languages = {
           enableFormat = true;
           enableExtraDiagnostics = true;
@@ -94,6 +89,24 @@
           style = "rounded";
         };
         keymaps = [
+          {
+            key = "<leader>Y";
+            mode = ["n"];
+            silent = true;
+            action = ":silent %y +<CR>";
+          }
+          {
+            key = "<leader>y";
+            mode = ["x"];
+            silent = true;
+            action = "\"+y";
+          }
+          {
+            key = "<leader>Y";
+            mode = ["x"];
+            silent = true;
+            action = "\"+y";
+          }
           {
             key = "jk";
             mode = ["i"];

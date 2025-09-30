@@ -1,9 +1,24 @@
-{pkgs, ...}: {
+{...}: {
   programs.nvf = {
     enable = true;
     settings = {
       vim = {
-        package = pkgs.nvim-unstable;
+        luaConfigPost = ''
+          -- Force the OSC52 clipboard provider
+          vim.g.clipboard = 'osc52'
+          -- Map <leader>Y to copy the entire buffer to the client clipboard
+          vim.keymap.set('n', '<leader>Y', [[:silent %y +<CR>]], { silent = true, desc = 'Copy file (OSC52)' })
+        '';
+        languages = {
+          enableFormat = true;
+          enableExtraDiagnostics = true;
+          enableTreesitter = true;
+
+          python.enable = true;
+          rust.enable = true;
+          nix.enable = true;
+          bash.enable = true;
+        };
         viAlias = false;
         vimAlias = true;
         lsp = {
@@ -222,23 +237,6 @@
             silent = true;
           }
         ];
-        languages = {
-          enableTreesitter = true;
-          enableFormat = true;
-          enableExtraDiagnostics = true;
-
-          python.enable = true;
-          rust = {
-            enable = true;
-            crates.enable = true;
-          };
-          nix.enable = true;
-
-          bash.enable = true;
-          # svelte.enable = true;
-          tailwind.enable = true;
-          # ts.enable = true;
-        };
       };
     };
   };

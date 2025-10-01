@@ -25,10 +25,13 @@
       end
     end, 3300, Status.LEFT)
   '';
+  home.packages = with pkgs; [
+    file
+  ];
   programs.yazi = {
     enable = true;
     plugins = with pkgs.yaziPlugins; {
-      inherit toggle-pane chmod ouch smart-enter starship mime-ext mount rich-preview restore;
+      inherit toggle-pane chmod ouch smart-enter starship mount rich-preview restore;
     };
     settings = {
       mgr = {
@@ -220,14 +223,15 @@
         ];
       };
       plugin = {
-        prepend_fetchers = [
-          {
-            id = "mime";
-            name = "*";
-            run = "mime-ext";
-            prio = "high";
-          }
-        ];
+        # prepend_fetchers = [
+        #   {
+        #     id = "mime";
+        #     name = "*";
+        #     run = "mime-ext";
+        #     "if" = "!(mime|dummy)";
+        #     prio = "high";
+        #   }
+        # ];
       };
 
       input = {

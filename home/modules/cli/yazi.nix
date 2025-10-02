@@ -27,6 +27,9 @@
   '';
   home.packages = with pkgs; [
     file
+    glib # for gio
+    p7zip
+    fd
   ];
   programs.yazi = {
     enable = true;
@@ -71,8 +74,9 @@
         ];
         open = [
           {
-            run = "xdg-open \"$@\"  &";
+            run = "gio open \"$@\"";
             desc = "Open";
+            orphan = true;
             for = "linux";
           }
         ];
@@ -95,6 +99,11 @@
 
       open = {
         rules = [
+          {
+            name = "*";
+            size = 0;
+            use = ["edit" "reveal"];
+          }
           {
             name = "*/";
             use = ["edit" "open" "reveal"];

@@ -209,7 +209,7 @@ in {
         "SUPER, up, exec, ${pkgs.brillo}/bin/brillo -q -A 10"
         "SUPER, down, exec, ${pkgs.brillo}/bin/brillo -q -U 10"
         "SUPER, backslash, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle"
-        "SUPER, a, exec, ${pkgs.foot}/bin/foot"
+        "SUPER, a, exec, ${pkgs.wezterm}/bin/wezterm"
         "SUPER, i, exec, ${pkgs.rofi-wayland}/bin/rofi -modi drun,run -show drun"
         "SUPER, o, exec, ${pkgs.screenshot}/bin/screenshot"
         "SUPER SHIFT, o, exec, ${pkgs.screenshot-edit}/bin/screenshot-edit"

@@ -2,7 +2,7 @@
   imports = [
     ./hyprland/hyprland.nix
     ./bluetooth.nix
-    ./foot.nix
+    ./wezterm.nix
     ./librewolf.nix
     ./rofi.nix
     ./theme.nix

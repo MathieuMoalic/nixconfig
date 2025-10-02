@@ -27,7 +27,6 @@
   '';
   home.packages = with pkgs; [
     file
-    glib # for gio
     p7zip
     fd
   ];
@@ -74,10 +73,10 @@
         ];
         open = [
           {
-            run = "gio open \"$@\"";
+            run = "xdg-open \"$@\"";
             desc = "Open";
             orphan = true;
-            for = "linux";
+            for = "unix";
           }
         ];
         play = [
@@ -98,77 +97,33 @@
       };
 
       open = {
-        rules = [
-          {
-            name = "*";
-            size = 0;
-            use = ["edit" "reveal"];
-          }
-          {
-            name = "*/";
-            use = ["edit" "open" "reveal"];
-          }
-          {
-            mime = "text/*";
-            use = ["edit" "reveal"];
-          }
-          {
-            mime = "image/*";
-            use = ["open" "reveal"];
-          }
-          {
-            mime = "video/*";
-            use = ["play" "reveal"];
-          }
-          {
-            mime = "audio/*";
-            use = ["play" "reveal"];
-          }
-          {
-            mime = "inode/x-empty";
-            use = ["edit" "reveal"];
-          }
-          {
-            mime = "application/json";
-            use = ["edit" "reveal"];
-          }
-          {
-            mime = "*/javascript";
-            use = ["edit" "reveal"];
-          }
-          {
-            mime = "application/zip";
+        rules = let
+          extractMimes = [
+            "application/zip"
+            "application/gzip"
+            "application/x-gzip"
+            "application/x-tar"
+            "application/x-bzip"
+            "application/x-bzip2"
+            "application/x-7z-compressed"
+            "application/x-rar"
+          ];
+          extractRule = mime: {
+            inherit mime;
             use = ["extract" "reveal"];
-          }
-          {
-            mime = "application/gzip";
-            use = ["extract" "reveal"];
-          }
-          {
-            mime = "application/x-tar";
-            use = ["extract" "reveal"];
-          }
-          {
-            mime = "application/x-bzip";
-            use = ["extract" "reveal"];
-          }
-          {
-            mime = "application/x-bzip2";
-            use = ["extract" "reveal"];
-          }
-          {
-            mime = "application/x-7z-compressed";
-            use = ["extract" "reveal"];
-          }
-          {
-            mime = "application/x-rar";
-            use = ["extract" "reveal"];
-          }
-          {
-            mime = "*";
-            use = ["open" "reveal"];
-          }
-        ];
+          };
+        in
+          (map extractRule extractMimes)
+          ++ [
+            {
+              mime = "text/*";
+              use = ["edit" "reveal"];
+            }
+            {
+              mime = "*";
+              use = ["open" "reveal"];
+            }
+          ];
       };
 
       tasks = {
@@ -228,19 +183,7 @@
             run = "ouch";
           }
         ];
-        append_previewers = [
-        ];
-      };
-      plugin = {
-        # prepend_fetchers = [
-        #   {
-        #     id = "mime";
-        #     name = "*";
-        #     run = "mime-ext";
-        #     "if" = "!(mime|dummy)";
-        #     prio = "high";
-        #   }
-        # ];
+        append_previewers = [];
       };
 
       input = {

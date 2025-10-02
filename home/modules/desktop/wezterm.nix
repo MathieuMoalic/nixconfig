@@ -31,8 +31,8 @@ in {
           '${theme.base0D}', '${theme.base0E}', '${theme.base0C}', '${theme.base05}',
         },
         brights = {
-          '${theme.base02}', '${theme.base08}', '${theme.base0B}', '${theme.base0A}',
-          '${theme.base0D}', '${theme.base0E}', '${theme.base0C}', '${theme.base05}',
+          '${theme.base03}', '${theme.base09}', '${theme.base01}', '${theme.base02}',
+          '${theme.base04}', '${theme.base06}', '${theme.base0F}', '${theme.base07}',
         },
       }
       return config

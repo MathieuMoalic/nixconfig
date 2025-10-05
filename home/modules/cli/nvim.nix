@@ -13,6 +13,7 @@
           rust.enable = true;
           nix.enable = true;
           bash.enable = true;
+          dart.enable = true;
         };
         viAlias = false;
         vimAlias = true;

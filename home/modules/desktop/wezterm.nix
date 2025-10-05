@@ -20,8 +20,7 @@ in {
       config.enable_wayland = true
       config.window_close_confirmation = 'NeverPrompt'
       config.keys = {
-        {key = 'V', mods = 'CTRL',  action = wezterm.action.PasteFrom 'Clipboard'},
-        {key = 'Insert', mods = 'SHIFT', action = wezterm.action.PasteFrom 'PrimarySelection'},
+        {key = 'v', mods = 'CTRL',  action = wezterm.action.PasteFrom 'Clipboard'},
       }
       config.colors = {
         foreground = '${theme.base05}',

@@ -16,6 +16,7 @@
       pmps = "podman ps -a --sort status --format \"table {{.Names}} {{.Status}} {{.Image}}\"";
       tldr = "tldr -q";
       myip = "curl ifconfig.me; echo";
+      ipy = "ipython --no-banner --no-tip";
       "..." = "../..";
       "...." = "../../..";
       "....." = "../../../..";

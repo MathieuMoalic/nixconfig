@@ -29,11 +29,11 @@ in {
         cursor_bg = '${theme.base05}',
         cursor_fg = '${theme.base00}',
         ansi = {
-          '${theme.base00}', '${theme.base08}', '${theme.base05}', '${theme.base0A}',
+          '${theme.base00}', '${theme.base08}', '${theme.base0B}', '${theme.base0A}',
           '${theme.base0D}', '${theme.base0E}', '${theme.base0C}', '${theme.base05}',
         },
         brights = {
-          '${theme.base03}', '${theme.base09}', '${theme.base05}', '${theme.base02}',
+          '${theme.base03}', '${theme.base09}', '${theme.base01}', '${theme.base02}',
           '${theme.base04}', '${theme.base06}', '${theme.base0F}', '${theme.base07}',
         },
       }

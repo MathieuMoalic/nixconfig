@@ -10,29 +10,33 @@
     ./modules/desktop.nix
     ./modules/syncthing.nix
     ./modules/kmonad.nix
+    ./modules/adb.nix
   ];
+
   hardware.wooting.enable = true;
-  programs.steam = {
-    enable = true;
-  };
-  programs.gamemode = {
-    enable = true;
-    enableRenice = true;
-    settings = {
-      general = {
-        renice = 10;
-      };
+  programs = {
+    steam = {
+      enable = true;
+    };
+    gamemode = {
+      enable = true;
+      enableRenice = true;
+      settings = {
+        general = {
+          renice = 10;
+        };
 
-      # Warning: GPU optimisations have the potential to damage hardware
-      gpu = {
-        apply_gpu_optimisations = "accept-responsibility";
-        gpu_device = 0;
-        amd_performance_level = "high";
-      };
+        # Warning: GPU optimisations have the potential to damage hardware
+        gpu = {
+          apply_gpu_optimisations = "accept-responsibility";
+          gpu_device = 0;
+          amd_performance_level = "high";
+        };
 
-      custom = {
-        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
-        end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+        custom = {
+          start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+          end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+        };
       };
     };
   };
@@ -43,6 +47,10 @@
 
   networking = {
     hostName = "zagreus";
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [8080];
+    };
   };
 
   boot = {
@@ -51,7 +59,6 @@
       kernelModules = [];
       systemd.enable = true;
     };
-    kernelModules = [];
     kernelPackages = pkgs.linuxPackages_testing;
     extraModprobeConfig = ''
       options iwlwifi power_save=0 uapsd_disable=1 enable_ini=0

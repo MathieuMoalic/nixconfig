@@ -13,12 +13,21 @@
           rust.enable = true;
           nix.enable = true;
           bash.enable = true;
+          dart.enable = true;
         };
         viAlias = false;
         vimAlias = true;
         lsp = {
           enable = true;
           formatOnSave = true;
+          servers.rust-analyzer = {
+            enable = true;
+            settings."rust-analyzer" = {
+              cargo = {allFeatures = true;};
+              check = {command = "clippy";};
+              procMacro = {enable = true;};
+            };
+          };
         };
         options = {
           cursorlineopt = "both";

@@ -12,6 +12,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     nvf.url = "github:notashelf/nvf";
+    zjstatus.url = "github:dj95/zjstatus";
     amumax.url = "github:MathieuMoalic/amumax";
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     homepage.url = "github:MathieuMoalic/homepage";

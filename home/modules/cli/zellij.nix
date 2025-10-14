@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
 with config.colorScheme.palette; {
@@ -11,28 +12,19 @@ with config.colorScheme.palette; {
     tka = "zellij da -y --force";
   };
   home.file = {
-    ".config/zellij/plugins/monocle.wasm".source = pkgs.fetchurl {
-      url = "https://github.com/imsnif/monocle/releases/download/v0.100.0/monocle.wasm";
-      sha256 = "sha256-MxS5OBEUdrcuRfvewLt+q24lb8J+3O4/yjbgMD6nnqQ=";
-    };
-
-    ".config/zellij/plugins/zjstatus.wasm".source = pkgs.fetchurl {
-      url = "https://github.com/dj95/zjstatus/releases/download/v0.17.0/zjstatus.wasm";
-      sha256 = "sha256-IgTfSl24Eap+0zhfiwTvmdVy/dryPxfEF7LhVNVXe+U=";
-    };
-
     ".config/zellij/layouts/default.kdl".text = let
       background = base00;
       tab = base05;
       tab-active = base0E;
+      zjstatus = inputs.zjstatus.packages.${pkgs.system}.default;
     in ''
-      layout cwd="/home/mat" {
+      layout {
           default_tab_template {
               pane split_direction="vertical" {
                   pane
               }
               pane size=1 borderless=true {
-                  plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+                  plugin location="file:${zjstatus}/bin/zjstatus.wasm" {
                       format_left  "{tabs}"
                       format_right ""
                       format_space "#[bg=#${background}ff]"
@@ -82,12 +74,6 @@ with config.colorScheme.palette; {
       scrollback_lines_to_serialize = 500;
       keybinds = {
         "normal clear-defaults=true" = {
-          "bind \"Alt F\"" = {
-            "LaunchPlugin \"file:~/.config/zellij/plugins/monocle.wasm\"" = {
-              in_place = true;
-              kiosk = true;
-            };
-          };
           "bind \"Alt h\"" = {MoveFocus = "Left";};
           "bind \"Alt j\"" = {MoveFocus = "Down";};
           "bind \"Alt k\"" = {MoveFocus = "Up";};

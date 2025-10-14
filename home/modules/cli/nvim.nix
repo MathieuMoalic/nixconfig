@@ -3,6 +3,13 @@
     enable = true;
     settings = {
       vim = {
+        utility = {
+          surround.enable = true;
+          ccc.enable = true;
+          direnv.enable = true;
+          mkdir.enable = true;
+          sleuth.enable = true;
+        };
         globals.clipboard = "osc52";
         languages = {
           enableFormat = true;
@@ -63,11 +70,80 @@
           register = {
             "<leader>l" = "LSP";
             "<leader>s" = "Yazi";
+
             "<leader>t" = "Typst";
+            "<leader>tc" = "Toggle Follow Cursor";
+            "<leader>tp" = "Pin Main Document to Current";
+            "<leader>tt" = "Toggle Preview";
 
             "<leader>b" = "Last buffer";
             "<leader>w" = "Write";
             "<leader>q" = "Quit";
+
+            "[" = "Previous …";
+            "]" = "Next …";
+
+            "[a" = "Previous arglist file";
+            "[A" = "First arglist file (rewind)";
+            "[b" = "Previous buffer";
+            "[B" = "First buffer (rewind)";
+
+            "[d" = "Prev diagnostic in buffer";
+            "[D" = "First diagnostic in buffer";
+
+            "[l" = "Prev location-list entry";
+            "[L" = "First location-list entry";
+
+            "[m" = "Prev method start";
+            "[M" = "Prev method end";
+
+            "[q" = "Prev quickfix entry";
+            "[Q" = "First quickfix entry";
+
+            "[s" = "Prev misspelled word";
+
+            "[t" = "Prev tag";
+            "[T" = "First tag";
+
+            "[%" = "Prev unmatched group";
+            "[(" = "Prev (";
+            "[<" = "Prev <";
+            "[{" = "Prev {";
+
+            "[<C-l>" = "Prev location-list file (:lpfile)";
+            "[<C-q>" = "Prev quickfix file (:cpfile)";
+            "[<C-t>" = "Prev tag in preview (:ptprevious)";
+
+            "]a" = "Next arglist file";
+            "]A" = "Last arglist file (last)";
+            "]b" = "Next buffer";
+            "]B" = "Last buffer (blast)";
+
+            "]d" = "Next diagnostic in buffer";
+            "]D" = "Last diagnostic in buffer";
+
+            "]l" = "Next location-list entry";
+            "]L" = "Last location-list entry";
+
+            "]m" = "Next method start";
+            "]M" = "Next method end";
+
+            "]q" = "Next quickfix entry";
+            "]Q" = "Last quickfix entry";
+
+            "]s" = "Next misspelled word";
+
+            "]t" = "Next tag";
+            "]T" = "Last tag";
+
+            "]%" = "Next unmatched group";
+            "])" = "Next )";
+            "]>" = "Next >";
+            "]}" = "Next }";
+
+            "]<C-l>" = "Next location-list file (:lnfile)";
+            "]<C-q>" = "Next quickfix file (:cnfile)";
+            "]<C-t>" = "Next tag in preview (:ptnext)";
           };
           setupOpts = {
             notify = true;

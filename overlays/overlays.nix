@@ -1,5 +1,5 @@
 inputs: self: super: let
-  lib = super.lib;
+  inherit (super) lib;
   scriptsPath = ./scripts;
   scriptPackages = let
     scriptDirEntries = builtins.readDir scriptsPath;
@@ -19,7 +19,8 @@ in
   {
     amumax = inputs.amumax.packages.${self.system}.git;
     nvim-unstable = inputs.nixpkgs_unstable.legacyPackages.${self.system}.neovim-unwrapped;
-    quicktranslate = inputs.quicktranslate.packages.${self.system}.quicktranslate;
+    inherit (inputs.quicktranslate.packages.${self.system}) quicktranslate;
     rose-pine-hyprcursor = inputs.rose-pine-hyprcursor.packages.${self.system}.default;
+    zjstatus = inputs.zjstatus.packages.${self.system}.default;
   }
   // scriptPackages

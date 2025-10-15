@@ -70,6 +70,9 @@
           bash.enable = true;
           dart.enable = true;
           typst.enable = true;
+          yaml.enable = true;
+          go.enable = true;
+          markdown.enable = true;
         };
         # Make sure the extra LSPs are installed
         # This is normally done in the language modules so you don't have to do it explicitly.

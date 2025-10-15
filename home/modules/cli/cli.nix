@@ -58,5 +58,6 @@
     update
     journalctl
     sopsedit
+    supercat
   ];
 }

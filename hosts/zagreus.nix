@@ -82,7 +82,26 @@
     udev.extraRules = ''
       ACTION=="add" SUBSYSTEM=="pci" ATTR{vendor}=="0x1987" ATTR{device}=="0x5013" ATTR{power/wakeup}="disabled"
       ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="31e3", ATTR{idProduct}=="1312", ATTR{power/wakeup}="disabled"
+      ACTION=="add|bind", SUBSYSTEM=="usb", TEST=="power/wakeup", ATTR{power/wakeup}="disabled"
     '';
+  };
+  systemd.services.disable-usb-acpi-wake = {
+    description = "Disable ACPI wake for USB host controllers";
+    wantedBy = ["multi-user.target"];
+    after = ["local-fs.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = pkgs.writeShellScript "disable-usb-acpi-wake" ''
+        set -eu
+        # Toggle any *enabled* ACPI wake entries whose name looks like USB controllers
+        if [ -e /proc/acpi/wakeup ]; then
+          awk '$0 ~ /(XHC|EHC|USB)/ && $0 ~ /\*enabled/ {print $1}' /proc/acpi/wakeup | \
+          while read -r dev; do
+            echo "$dev" > /proc/acpi/wakeup
+          done
+        fi
+      '';
+    };
   };
 
   fileSystems = {

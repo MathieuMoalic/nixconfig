@@ -1,8 +1,80 @@
-{...}: {
+{pkgs, ...}: {
   programs.nvf = {
     enable = true;
     settings = {
       vim = {
+        lsp = {
+          enable = true;
+
+          inlayHints.enable = true;
+          formatOnSave = true;
+          lspkind.enable = true;
+          lightbulb.enable = true;
+          trouble.enable = true;
+
+          servers = {
+            "*" = {
+              root_markers = [".git"];
+              capabilities = {
+                textDocument = {
+                  semanticTokens = {
+                    multilineTokenSupport = true;
+                  };
+                };
+              };
+            };
+            "typos_lsp" = {};
+            "ruff" = {
+              root_markers = [".git" "pyproject.toml" "setup.py"];
+              filetypes = ["python"];
+            };
+            "pyright" = {
+              root_markers = [".git" "pyproject.toml" "setup.py"];
+              filetypes = ["python"];
+            };
+            #"pyrefly" = {
+            #  root_markers = [".git" "pyproject.toml" "setup.py"];
+            #  filetypes = ["python"];
+            #};
+            "ty" = {
+              root_markers = [".git" "pyproject.toml" "setup.py"];
+              filetypes = ["python"];
+            };
+            rust-analyzer = {
+              enable = true;
+              settings."rust-analyzer" = {
+                cargo = {allFeatures = true;};
+                check = {command = "clippy";};
+                procMacro = {enable = true;};
+              };
+            };
+          };
+
+          mappings = {
+            previousDiagnostic = "[d";
+            nextDiagnostic = "]d";
+          };
+        };
+        languages = {
+          enableFormat = true;
+          enableExtraDiagnostics = true;
+          enableTreesitter = true;
+
+          python = {
+            enable = true;
+            lsp.enable = false; # use `lsp.servers` instead
+            format.type = "ruff"; # default is black and conflicts with ruff
+          };
+          rust.enable = true;
+          nix.enable = true;
+          bash.enable = true;
+          dart.enable = true;
+          typst.enable = true;
+        };
+        # Make sure the extra LSPs are installed
+        # This is normally done in the language modules so you don't have to do it explicitly.
+        extraPackages = [pkgs.pyright pkgs.ruff pkgs.ty];
+
         utility = {
           surround.enable = true;
           ccc.enable = true;
@@ -11,32 +83,10 @@
           sleuth.enable = true;
         };
         globals.clipboard = "osc52";
-        languages = {
-          enableFormat = true;
-          enableExtraDiagnostics = true;
-          enableTreesitter = true;
 
-          python.enable = true;
-          rust.enable = true;
-          nix.enable = true;
-          bash.enable = true;
-          dart.enable = true;
-          typst.enable = true;
-        };
         viAlias = false;
         vimAlias = true;
-        lsp = {
-          enable = true;
-          formatOnSave = true;
-          servers.rust-analyzer = {
-            enable = true;
-            settings."rust-analyzer" = {
-              cargo = {allFeatures = true;};
-              check = {command = "clippy";};
-              procMacro = {enable = true;};
-            };
-          };
-        };
+
         options = {
           cursorlineopt = "both";
           tabstop = 2;

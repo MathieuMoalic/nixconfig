@@ -6,7 +6,6 @@
     ./btop.nix
     ./direnv.nix
     ./git.nix
-    ./helix.nix
     ./lazygit.nix
     ./rclone.nix
     ./ssh.nix
@@ -17,6 +16,7 @@
   home.packages = with pkgs; [
     uutils-coreutils-noprefix
 
+    dig # dns
     exiftool # file details
     bat-extras.batman # man
     trash-cli # trash

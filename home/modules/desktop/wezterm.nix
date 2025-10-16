@@ -21,6 +21,7 @@ in {
       config.window_close_confirmation = 'NeverPrompt'
       config.keys = {
         {key = 'v', mods = 'CTRL',  action = wezterm.action.PasteFrom 'Clipboard'},
+        {key="Backspace", mods="CTRL", action=wezterm.action.SendKey{key="w", mods="CTRL"}},
       }
       config.colors = {
         foreground = '${theme.base05}',

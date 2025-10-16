@@ -5,12 +5,9 @@
       vim = {
         lsp = {
           enable = true;
-
           inlayHints.enable = true;
           formatOnSave = true;
           lspkind.enable = true;
-          lightbulb.enable = true;
-          trouble.enable = true;
 
           servers = {
             "*" = {
@@ -32,10 +29,6 @@
               root_markers = [".git" "pyproject.toml" "setup.py"];
               filetypes = ["python"];
             };
-            #"pyrefly" = {
-            #  root_markers = [".git" "pyproject.toml" "setup.py"];
-            #  filetypes = ["python"];
-            #};
             "ty" = {
               root_markers = [".git" "pyproject.toml" "setup.py"];
               filetypes = ["python"];
@@ -57,7 +50,7 @@
         };
         languages = {
           enableFormat = true;
-          enableExtraDiagnostics = true;
+          enableExtraDiagnostics = false;
           enableTreesitter = true;
 
           python = {
@@ -110,12 +103,64 @@
         statusline.lualine = {
           enable = true;
           theme = "dracula";
+          activeSection.x = [
+            ''
+              {
+                -- Lsp server name
+                function()
+                  local buf_ft = vim.bo.filetype
+                  local excluded_buf_ft = { toggleterm = true, NvimTree = true, ["neo-tree"] = true, TelescopePrompt = true }
+
+                  if excluded_buf_ft[buf_ft] then
+                    return ""
+                    end
+
+                  local bufnr = vim.api.nvim_get_current_buf()
+                  local clients = vim.lsp.get_clients({ bufnr = bufnr })
+
+                  if vim.tbl_isempty(clients) then
+                    return "No Active LSP"
+                  end
+
+                  local active_clients = {}
+                  for _, client in ipairs(clients) do
+                    table.insert(active_clients, client.name)
+                  end
+
+                  return table.concat(active_clients, ", ")
+                end,
+                icon = ' ',
+                separator = {left = ''},
+              }
+            ''
+            ''
+              {
+                "diagnostics",
+                sources = {'nvim_diagnostic'},
+                symbols = {error = '󰅙  ', warn = '  ', info = '  ', hint = '󰌵 '},
+                colored = true,
+                update_in_insert = false,
+                always_visible = false,
+                diagnostics_color = {
+                  color_error = { fg = 'red' },
+                  color_warn = { fg = 'yellow' },
+                  color_info = { fg = 'cyan' },
+                },
+              }
+            ''
+          ];
         };
         telescope.enable = true;
         utility.yazi-nvim = {
           enable = true;
-          mappings.openYazi = "<leader>s";
-          setupOpts.open_for_directories = true;
+          mappings = {
+            openYazi = "<leader>s";
+            openYaziDir = "gyd";
+          };
+          setupOpts = {
+            open_for_directories = true;
+            keymaps = false;
+          };
         };
         autocomplete.nvim-cmp.enable = true;
         binds.whichKey = {
@@ -123,15 +168,18 @@
           register = {
             "<leader>l" = "LSP";
             "<leader>s" = "Yazi";
+            "<leader>b" = "Last buffer";
+            "<leader>w" = "Write";
+            "<leader>q" = "Quit";
+            "<leader>a" = "Code actions";
+            "<leader>h" = "LSP Hints";
+            "<leader>y" = "Yank buffer";
+            "<leader>n" = "Next diagnostic";
 
             "<leader>t" = "Typst";
             "<leader>tc" = "Toggle Follow Cursor";
             "<leader>tp" = "Pin Main Document to Current";
             "<leader>tt" = "Toggle Preview";
-
-            "<leader>b" = "Last buffer";
-            "<leader>w" = "Write";
-            "<leader>q" = "Quit";
 
             "[" = "Previous …";
             "]" = "Next …";
@@ -213,6 +261,31 @@
         };
         keymaps = [
           {
+            key = "<leader>c";
+            mode = ["n" "v" "x"];
+            action = "<Nop>";
+            silent = true;
+            noremap = true;
+          }
+          {
+            key = "<leader>n";
+            mode = ["n"];
+            action = ":lua vim.diagnostic.goto_next()<CR>";
+            silent = true;
+          }
+          {
+            key = "<leader>a";
+            mode = ["n" "v"];
+            action = ":lua vim.lsp.buf.code_action()<CR>";
+            silent = true;
+          }
+          {
+            key = "<leader>h";
+            mode = ["n"];
+            action = ":lua vim.lsp.buf.hover()<CR>";
+            silent = true;
+          }
+          {
             key = "<leader>tt";
             mode = ["n"];
             silent = true;
@@ -231,7 +304,7 @@
             action = ":lua vim.lsp.buf_request(0, 'workspace/executeCommand', { command = 'tinymist.pinMain', arguments = { vim.api.nvim_buf_get_name(0) } }, function() end)<CR>";
           }
           {
-            key = "<leader>Y";
+            key = "<leader>y";
             mode = ["n"];
             silent = true;
             action = ":silent %y +<CR>";

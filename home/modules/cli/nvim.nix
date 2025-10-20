@@ -162,7 +162,24 @@
             keymaps = false;
           };
         };
-        autocomplete.nvim-cmp.enable = true;
+        autocomplete.nvim-cmp = {
+          enable = true;
+          # this actually pulls in the path completion source
+          sourcePlugins = [
+            "cmp-path" # file path completion
+            "cmp-nvim-lsp" # LSP completion (nice to have)
+            "cmp-buffer" # words from current buffer
+            "cmp-luasnip" # snippets, if you use them
+          ];
+
+          # labels in the completion menu (defaults already include [Path])
+          sources = {
+            path = "[Path]";
+            buffer = "[Buffer]";
+            nvim_lsp = "[LSP]";
+            luasnip = "[Snip]";
+          };
+        };
         binds.whichKey = {
           enable = true;
           register = {

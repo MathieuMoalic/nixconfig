@@ -16,12 +16,12 @@
         user = "mathieum";
       };
       homeserver = {
-        hostname = "matmoa.xyz";
+        hostname = "matmoa.eu";
         user = "mat";
         port = 46464;
       };
       homeserver-initrd = {
-        hostname = "matmoa.xyz";
+        hostname = "matmoa.eu";
         user = "root";
         port = 46466;
       };
@@ -49,34 +49,5 @@
         user = "root";
       };
     };
-  };
-
-  # for vscode remote only
-  home.file.".ssh/config2" = {
-    text = ''
-      Host homeserver
-        HostName matmoa.xyz
-        User mat
-        Port 46464
-        RemoteCommand bash
-
-      Host nyx
-        HostName nyx.zfns.eu.org
-        User mat
-        Port 46464
-        RemoteCommand bash
-
-      Host alecto
-        HostName alecto.zfns.eu.org
-        User mat
-        Port 46464
-        RemoteCommand bash
-
-      Host zeus
-        HostName zeus.zfns.eu.org
-        User mat
-        Port 46464
-        RemoteCommand bash
-    '';
   };
 }

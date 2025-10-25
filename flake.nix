@@ -19,7 +19,11 @@
     pleustradenn.url = "github:MathieuMoalic/pleustradenn";
     boued.url = "github:MathieuMoalic/boued";
   };
-  outputs = {nixpkgs, ...} @ inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
     makeNixosSystem = host:
       nixpkgs.lib.nixosSystem {
@@ -34,9 +38,12 @@
           };
         };
         specialArgs = {inherit inputs;};
-        modules = [host];
+        modules = [host self.nixosModules.owntracks-frontend];
       };
   in {
+    nixosModules = {
+      owntracks-frontend = import ./modules/services/owntracks-frontend.nix;
+    };
     nixosConfigurations = {
       xps = makeNixosSystem ./hosts/xps.nix;
       nyx = makeNixosSystem ./hosts/nyx.nix;

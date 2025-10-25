@@ -19,11 +19,13 @@
     ./modules/self-hosted/ntfy.nix
     ./modules/self-hosted/vaultwarden.nix
     ./modules/self-hosted/libretranslate.nix
+    ./modules/self-hosted/owntracks.nix
     # ./modules/self-hosted/your-spotify.nix
-    # ./modules/podman/ddns.nix
-    # ./modules/podman/nginx.nix
   ];
 
+  services.mosquitto = {
+    enable = true;
+  };
   home-manager.users.mat.imports = [../home/homeserver.nix];
 
   boot = {
@@ -35,21 +37,6 @@
     };
     kernelParams = ["ip=dhcp"];
     initrd = {
-      systemd.users.root.shell = "/bin/cryptsetup-askpass";
-      # systemd.initrdBin = with pkgs; [cryptsetup];
-      network = {
-        enable = true;
-        ssh = {
-          enable = true;
-          port = 46466;
-          authorizedKeys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPcmHHg1pEOAxvEAyr6p5MY0m3/+BOn8nJOcAf7mMaej"
-          ];
-          hostKeys = ["/etc/secrets/initrd/ssh_host_rsa_key"];
-        };
-      };
-      luks.devices."luks-ab805dda-b69d-48b5-9f09-5ebe3ea54918".device = "/dev/disk/by-uuid/ab805dda-b69d-48b5-9f09-5ebe3ea54918";
-      luks.devices."luks-83c1b4f6-a6aa-4524-b155-84dc9c016ac6".device = "/dev/disk/by-uuid/83c1b4f6-a6aa-4524-b155-84dc9c016ac6";
       availableKernelModules = ["xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" "r8169"];
     };
   };
@@ -69,7 +56,7 @@
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-uuid/6ec0c25e-0553-4506-891e-235341dbd067";
+      device = "/dev/disk/by-uuid/1ca3b588-bdcd-40ca-baaa-806103f631c0";
       fsType = "ext4";
     };
     "/boot" = {
@@ -86,9 +73,11 @@
       fsType = "ext4";
     };
   };
-
   swapDevices = [
-    {device = "/dev/disk/by-uuid/5bc36e18-4c22-4853-9442-9f4a591de4da";}
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
   ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

@@ -99,44 +99,6 @@
       "recipe.matmoa.eu" = {
         extraConfig = ''reverse_proxy localhost:10029'';
       };
-
-      "owntracks.matmoa.eu" = {
-        extraConfig = ''
-          reverse_proxy localhost:10030
-          encode gzip zstd
-        '';
-      };
-
-      "mqtt.matmoa.eu" = {
-        extraConfig = ''
-          @ws {
-            header Connection *Upgrade*
-            header Upgrade    websocket
-          }
-
-          reverse_proxy @ws localhost:10031 {
-            # make sure Caddy speaks HTTP/1.1 to Mosquitto
-            transport http {
-              versions 1.1
-            }
-            # pass the upgrade headers through unchanged
-            header_up Host       {host}
-            header_up Connection {http.request.header.Connection}
-            header_up Upgrade    {http.request.header.Upgrade}
-          }
-
-          log {
-            output file /var/log/caddy/mqtt_ws_access.log
-          }
-        '';
-      };
-
-      "owntracks-frontend.matmoa.eu" = {
-        extraConfig = ''
-          import authelia
-          reverse_proxy localhost:10032
-        '';
-      };
     };
   };
 }

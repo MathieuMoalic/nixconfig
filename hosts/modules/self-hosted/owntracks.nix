@@ -48,10 +48,25 @@ in {
       };
     };
   };
-  sops.secrets."owntracks/password" = {
-    owner = "mat";
-    group = "mat";
-    mode = "0400";
+  sops = {
+    secrets."owntracks/password" = {
+      owner = "mat";
+      group = "mat";
+      mode = "0400";
+    };
+    templates."owntracks-recorder.env" = {
+      # Only the runtime *rendered* file is readable by the service user
+      owner = "owntracks";
+      group = "owntracks";
+      mode = "0400";
+      content = ''
+        OTR_HOST=127.0.0.1
+        OTR_PORT=1883
+        OTR_TOPICS=owntracks/#
+        OTR_USER=${mqttUser}
+        OTR_PASS=${config.sops.placeholder."owntracks/password"}
+      '';
+    };
   };
   services.owntracks-frontend = {
     enable = true;
@@ -109,20 +124,6 @@ in {
   systemd.tmpfiles.rules = [
     "d /var/spool/owntracks 0750 owntracks owntracks -"
   ];
-
-  sops.templates."owntracks-recorder.env" = {
-    # Only the runtime *rendered* file is readable by the service user
-    owner = "owntracks";
-    group = "owntracks";
-    mode = "0400";
-    content = ''
-      OTR_HOST=127.0.0.1
-      OTR_PORT=1883
-      OTR_TOPICS=owntracks/#
-      OTR_USER=${mqttUser}
-      OTR_PASS=${config.sops.placeholder."owntracks/password"}
-    '';
-  };
 
   systemd.services.owntracks-recorder = {
     description = "OwnTracks Recorder (connects to local Mosquitto)";

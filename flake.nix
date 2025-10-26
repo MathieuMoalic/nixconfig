@@ -25,6 +25,9 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
+    lib = nixpkgs.lib;
+    helpers = import ./hosts/myModules/helper.nix {inherit lib;};
+    myModules = helpers.mkModulesFromDir {dir = ./hosts/myModules;};
     makeNixosSystem = host:
       nixpkgs.lib.nixosSystem {
         inherit system;
@@ -38,12 +41,10 @@
           };
         };
         specialArgs = {inherit inputs;};
-        modules = [host self.nixosModules.owntracks-frontend];
+        modules = [host] ++ helpers.moduleListFromDir {dir = ./hosts/myModules;};
       };
   in {
-    nixosModules = {
-      owntracks-frontend = import ./modules/services/owntracks-frontend.nix;
-    };
+    nixosModules = myModules;
     nixosConfigurations = {
       xps = makeNixosSystem ./hosts/xps.nix;
       nyx = makeNixosSystem ./hosts/nyx.nix;

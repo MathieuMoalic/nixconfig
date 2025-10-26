@@ -4,42 +4,37 @@
   pkgs,
   ...
 }: let
-  cfg = config.myModules.jellyseerr;
+  cfg = config.myModules.audiobookshelf;
   types = lib.types;
 in {
-  options.myModules.jellyseerr = {
-    enable = lib.mkEnableOption "Jellyseerr behind Caddy";
+  options.myModules.audiobookshelf = {
+    enable = lib.mkEnableOption "Audiobookshelf behind Caddy";
 
-    package = lib.mkPackageOption pkgs "jellyseerr" {};
+    package = lib.mkPackageOption pkgs "audiobookshelf" {};
 
     user = lib.mkOption {
       type = types.str;
-      default = "jellyseerr";
-      description = "System user that owns Jellyseerr and media files.";
+      default = "audiobookshelf";
     };
 
     group = lib.mkOption {
       type = types.str;
       default = "media";
-      description = "Group for media ownership.";
     };
 
     url = lib.mkOption {
       type = types.str;
-      default = "jellyseerr.matmoa.eu";
-      description = "Hostname served by Caddy.";
+      default = "audiobookshelf.matmoa.eu";
     };
 
     port = lib.mkOption {
       type = types.port;
-      default = 10023;
-      description = "Jellyseerr port.";
+      default = 10021;
     };
 
-    configDir = lib.mkOption {
-      type = lib.types.path;
-      default = "/var/lib/jellyseerr";
-      description = "Config data directory";
+    dataDir = lib.mkOption {
+      default = "/var/lib/audiobookshelf";
+      type = types.str;
     };
   };
 
@@ -49,20 +44,19 @@ in {
       group = cfg.group;
     };
 
-    systemd.services.jellyseerr = {
-      description = "Jellyseerr, a requests manager for Jellyfin";
+    systemd.services.audiobookshelf = {
+      description = "Audiobookshelf is a self-hosted audiobook and podcast server";
+
       after = ["network.target"];
       wantedBy = ["multi-user.target"];
-      environment = {
-        PORT = toString cfg.port;
-        CONFIG_DIRECTORY = cfg.configDir;
-      };
+
       serviceConfig = {
         Type = "exec";
-        StateDirectory = "jellyseerr";
         User = cfg.user;
         Group = cfg.group;
-        ExecStart = lib.getExe cfg.package;
+        StateDirectory = "audiobookshelf";
+        WorkingDirectory = cfg.dataDir;
+        ExecStart = "${cfg.package}/bin/audiobookshelf --host 127.0.0.1 --port ${toString cfg.port}";
         Restart = "on-failure";
         ProtectHome = true;
         ProtectSystem = "strict";

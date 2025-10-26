@@ -29,6 +29,7 @@
   };
 
   myModules = {
+    audiobookshelf.enable = true;
     jellyfin.enable = true;
     jellyseerr.enable = true;
     prowlarr.enable = true;
@@ -36,6 +37,7 @@
     radarr.enable = true;
     bazarr.enable = true;
     transmission.enable = true;
+    watcharr.enable = true;
   };
 
   home-manager.users.mat.imports = [../home/homeserver.nix];

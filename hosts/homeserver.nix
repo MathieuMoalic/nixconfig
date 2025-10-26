@@ -10,14 +10,6 @@
     ./modules/restic.nix
     ./modules/podman.nix
     ./modules/self-hosted/caddy.nix
-    ./modules/self-hosted/authelia.nix
-    ./modules/self-hosted/pleustradenn.nix
-    ./modules/self-hosted/homepage.nix
-    ./modules/self-hosted/boued.nix
-    ./modules/self-hosted/stirling-pdf.nix
-    ./modules/self-hosted/ntfy.nix
-    ./modules/self-hosted/vaultwarden.nix
-    ./modules/self-hosted/libretranslate.nix
     ./modules/self-hosted/owntracks.nix
   ];
   services = {
@@ -29,6 +21,14 @@
   };
 
   myModules = {
+    authelia.enable = true;
+    boued.enable = true;
+    homepage.enable = true;
+    ntfy.enable = true;
+    libretranslate.enable = true;
+    pleustradenn.enable = true;
+    stirling-pdf.enable = true;
+    vaultwarden.enable = true;
     audiobookshelf.enable = true;
     jellyfin.enable = true;
     jellyseerr.enable = true;

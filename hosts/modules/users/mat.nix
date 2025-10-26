@@ -12,7 +12,7 @@
         group = "mat";
         linger = true;
         uid = 1000;
-        extraGroups = ["networkmanager" "wheel" "video" "input" "uinput"];
+        extraGroups = ["networkmanager" "wheel" "video" "input" "uinput" "media"];
         openssh.authorizedKeys.keys = [
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPcmHHg1pEOAxvEAyr6p5MY0m3/+BOn8nJOcAf7mMaej"
         ];

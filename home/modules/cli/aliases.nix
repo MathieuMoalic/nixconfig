@@ -2,6 +2,7 @@
   programs.fish = {
     shellAliases = {};
     shellAbbrs = {
+      weather = "curl wttr.in/poznan";
       cd = "z";
       lg = "lazygit";
       rm = "trash -vrf";

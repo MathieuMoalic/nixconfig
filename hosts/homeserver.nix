@@ -14,18 +14,30 @@
     ./modules/self-hosted/pleustradenn.nix
     ./modules/self-hosted/homepage.nix
     ./modules/self-hosted/boued.nix
-    ./modules/self-hosted/wireguard.nix
     ./modules/self-hosted/stirling-pdf.nix
     ./modules/self-hosted/ntfy.nix
     ./modules/self-hosted/vaultwarden.nix
     ./modules/self-hosted/libretranslate.nix
     ./modules/self-hosted/owntracks.nix
-    # ./modules/self-hosted/your-spotify.nix
   ];
-
-  services.mosquitto = {
-    enable = true;
+  services = {
+    mosquitto = {
+      enable = true;
+    };
+    flaresolverr.port = 8191;
+    flaresolverr.enable = true;
   };
+
+  myModules = {
+    jellyfin.enable = true;
+    jellyseerr.enable = true;
+    prowlarr.enable = true;
+    sonarr.enable = true;
+    radarr.enable = true;
+    bazarr.enable = true;
+    transmission.enable = true;
+  };
+
   home-manager.users.mat.imports = [../home/homeserver.nix];
 
   boot = {
@@ -45,12 +57,11 @@
     hostName = "homeserver";
     firewall = {
       enable = true;
-      # pihole: 12553
       # wireguard: 51820
       # jellyfin: 10024
       # coturn: 3478 5349 49160-49200/udp
-      allowedTCPPorts = [80 443 12553 10024 3478 5349];
-      allowedUDPPorts = [12553 51820 7359 3478 5349] ++ (map (x: x) (builtins.genList (x: 49160 + x) (49200 - 49160 + 1)));
+      allowedTCPPorts = [80 443 10024 3478 5349];
+      allowedUDPPorts = [51820 7359 3478 5349] ++ (map (x: x) (builtins.genList (x: 49160 + x) (49200 - 49160 + 1)));
     };
   };
 
@@ -65,6 +76,10 @@
       options = ["fmask=0022" "dmask=0022"];
     };
     "/home/mat/media" = {
+      device = "/dev/disk/by-uuid/5a278a0b-c553-4ace-85a0-85234d9a1541";
+      fsType = "ext4";
+    };
+    "/media" = {
       device = "/dev/disk/by-uuid/5a278a0b-c553-4ace-85a0-85234d9a1541";
       fsType = "ext4";
     };

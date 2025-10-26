@@ -19,10 +19,6 @@
         extraConfig = ''reverse_proxy localhost:10008'';
       };
 
-      "firefly.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10009'';
-      };
-
       "photo.matmoa.eu" = {
         extraConfig = ''reverse_proxy localhost:10010'';
       };
@@ -42,58 +38,11 @@
           }
         '';
       };
-
-      "prowlarr.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10016'';
-      };
-
-      "radarr.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10017'';
-      };
-
-      "sonarr.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10018'';
-      };
-
-      "bazarr.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10019'';
-      };
-
-      "readarr.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10020'';
-      };
-
-      "abs.matmoa.eu" = {
-        extraConfig = ''
-          encode gzip zstd
-          reverse_proxy localhost:10021
-        '';
-      };
-
-      "trans.matmoa.eu" = {
-        extraConfig = ''
-          import authelia
-          reverse_proxy localhost:10022
-        '';
-      };
-
-      "jellyseerr.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10023'';
-      };
-
-      "jellyfin.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10024'';
-      };
-
       "router.matmoa.eu" = {
         extraConfig = ''
           import authelia
           reverse_proxy 192.168.1.1
         '';
-      };
-
-      "watcharr.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10028'';
       };
 
       "recipe.matmoa.eu" = {

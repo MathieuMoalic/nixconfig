@@ -48,7 +48,6 @@ in {
     users.users.owntracks-frontend = {
       isSystemUser = true;
       group = "owntracks-frontend";
-      description = "OwnTracks Frontend service user";
     };
 
     systemd.tmpfiles.rules = [

@@ -12,7 +12,7 @@ in {
 
     url = lib.mkOption {
       type = types.str;
-      default = "libretranslate.matmoa.eu";
+      default = "translate.matmoa.eu";
     };
 
     port = lib.mkOption {

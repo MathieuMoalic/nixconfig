@@ -2,23 +2,6 @@
   services.caddy = {
     enable = true;
     virtualHosts = {
-      "matrix.matmoa.eu" = {
-        extraConfig = ''
-          header /.well-known/matrix/* Content-Type application/json
-          header /.well-known/matrix/* Access-Control-Allow-Origin *
-          respond /.well-known/matrix/server  `{"m.server": "matrix.matmoa.eu:443"}`
-          respond /.well-known/matrix/client  `{"m.homeserver":{"base_url":"https://matrix.matmoa.eu"}}`
-
-          reverse_proxy /_matrix/*           localhost:10007
-          reverse_proxy /_synapse/client/*   localhost:10007
-          reverse_proxy                      localhost:10007
-        '';
-      };
-
-      "element.matmoa.eu" = {
-        extraConfig = ''reverse_proxy localhost:10008'';
-      };
-
       "photo.matmoa.eu" = {
         extraConfig = ''reverse_proxy localhost:10010'';
       };

@@ -16,6 +16,7 @@
   home.packages = with pkgs; [
     uutils-coreutils-noprefix
 
+    jq # json parsing
     dig # dns
     exiftool # file details
     bat-extras.batman # man

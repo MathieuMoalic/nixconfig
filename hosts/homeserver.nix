@@ -12,15 +12,10 @@
     ./modules/self-hosted/caddy.nix
     ./modules/self-hosted/owntracks.nix
   ];
-  services = {
-    mosquitto = {
-      enable = true;
-    };
-    flaresolverr.port = 8191;
-    flaresolverr.enable = true;
-  };
-
   myModules = {
+    immich.enable = true;
+    synapse.enable = true;
+    element-web.enable = true;
     authelia.enable = true;
     boued.enable = true;
     homepage.enable = true;
@@ -38,6 +33,13 @@
     bazarr.enable = true;
     transmission.enable = true;
     watcharr.enable = true;
+  };
+  services = {
+    mosquitto = {
+      enable = true;
+    };
+    flaresolverr.port = 8191;
+    flaresolverr.enable = true;
   };
 
   home-manager.users.mat.imports = [../home/homeserver.nix];

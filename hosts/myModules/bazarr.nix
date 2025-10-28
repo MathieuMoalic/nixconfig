@@ -55,23 +55,6 @@ in {
       user = cfg.user;
       group = cfg.group;
       listenPort = cfg.port;
-      # dataDir = "/var/lib/bazarr";
-      # environmentFiles = [config.sops.templates."bazarr/template".path];
-      # settings = {
-      #   log = {
-      #     analyticsEnabled = false;
-      #     level = "info";
-      #   };
-      #   server = {
-      #     bindaddress = "*";
-      #     port = cfg.port;
-      #   };
-      #
-      #   update = {
-      #     mechanism = "external";
-      #     automatically = false;
-      #   };
-      # };
     };
     services.caddy.virtualHosts.${cfg.url}.extraConfig = ''
       reverse_proxy 127.0.0.1:${toString cfg.port}

@@ -44,19 +44,32 @@ in {
       group = cfg.group;
     };
 
+    systemd.tmpfiles.rules = [
+      "d ${cfg.dataDir} 0750 ${cfg.user} ${cfg.group} - -"
+      "d ${cfg.dataDir}/config 0750 ${cfg.user} ${cfg.group} - -"
+      "d ${cfg.dataDir}/metadata 0750 ${cfg.user} ${cfg.group} - -"
+    ];
+
     systemd.services.audiobookshelf = {
       description = "Audiobookshelf is a self-hosted audiobook and podcast server";
 
       after = ["network.target"];
       wantedBy = ["multi-user.target"];
-
       serviceConfig = {
         Type = "exec";
         User = cfg.user;
         Group = cfg.group;
         StateDirectory = "audiobookshelf";
         WorkingDirectory = cfg.dataDir;
-        ExecStart = "${cfg.package}/bin/audiobookshelf --host 127.0.0.1 --port ${toString cfg.port}";
+        ExecStart = "${cfg.package}/bin/audiobookshelf --host 127.0.0.1 --port ${toString cfg.port} \
+            --config ${cfg.dataDir}/config \
+            --metadata ${cfg.dataDir}/metadata";
+
+        BindPaths = [
+          "${cfg.dataDir}/metadata:/metadata"
+          "${cfg.dataDir}/config:/config"
+        ];
+
         Restart = "on-failure";
         ProtectHome = true;
         ProtectSystem = "strict";

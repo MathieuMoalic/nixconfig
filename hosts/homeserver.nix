@@ -12,7 +12,21 @@
     ./modules/self-hosted/caddy.nix
     ./modules/self-hosted/owntracks.nix
   ];
+  myModules.wireguard = {
+    enable = true;
+    peers = [
+      {
+        name = "nyx";
+        publicKey = "e+IOBLCdy3F1KK51mOI1UBbTgfldEKkNZvk8MLUY9gk=";
+        allowedIPs = ["10.8.0.2/32"];
+      }
+    ];
+  };
   myModules = {
+    scrutiny.enable = true;
+    # wireguard.enable = true;
+    uptime.enable = true;
+    # bar.enable = true;
     immich.enable = true;
     synapse.enable = true;
     element-web.enable = true;
@@ -79,14 +93,10 @@
       fsType = "vfat";
       options = ["fmask=0022" "dmask=0022"];
     };
-    "/home/mat/media" = {
-      device = "/dev/disk/by-uuid/5a278a0b-c553-4ace-85a0-85234d9a1541";
-      fsType = "ext4";
-    };
-    "/media" = {
-      device = "/dev/disk/by-uuid/5a278a0b-c553-4ace-85a0-85234d9a1541";
-      fsType = "ext4";
-    };
+    # "/media" = {
+    #   device = "/dev/disk/by-uuid/5a278a0b-c553-4ace-85a0-85234d9a1541";
+    #   fsType = "ext4";
+    # };
     "/home/mat/backup" = {
       device = "/dev/disk/by-uuid/4ae688c8-81d8-41a1-9585-1721b12ccfd2";
       fsType = "ext4";

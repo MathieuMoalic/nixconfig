@@ -71,71 +71,95 @@ in {
         '';
       };
     };
-    services.matrix-synapse = {
-      enable = true;
-      dataDir = "${cfg.dataDir}";
-      withJemalloc = true;
-
-      extraConfigFiles = [config.sops.templates."synapse/template".path];
-
-      settings = {
-        server_name = cfg.url;
-
-        listeners = [
-          {
-            port = cfg.port;
-            tls = false;
-            type = "http";
-            x_forwarded = true;
-            resources = [
-              {
-                names = ["client" "federation"];
-                compress = false;
-              }
-            ];
-          }
-        ];
-
-        database = {
-          name = "sqlite3";
-          args = {database = "${cfg.dataDir}/homeserver.db";};
-        };
-
-        log_config = "${cfg.dataDir}/${cfg.url}.log.config";
-        media_store_path = "${cfg.dataDir}/media_store";
-        report_stats = false;
-        signing_key_path = "${cfg.dataDir}/${cfg.url}.signing.key";
-        trusted_key_servers = [{server_name = "matrix.org";}];
-
-        enable_registration = true;
-        enable_registration_without_verification = true;
-
-        turn_uris = [
-          "turns:matmoa.eu:5349?transport=tcp"
-          "turns:matmoa.eu:5349?transport=udp"
-          "turn:matmoa.eu:3478?transport=tcp"
-          "turn:matmoa.eu:3478?transport=udp"
-        ];
-        turn_user_lifetime = "1h";
-        turn_allow_guests = true;
-      };
-    };
 
     systemd.tmpfiles.rules = [
       "d ${cfg.dataDir} 0750 matrix-synapse matrix-synapse -"
     ];
-    services.caddy.virtualHosts.${cfg.url} = {
-      extraConfig = ''
+    services = {
+      matrix-synapse = {
+        enable = true;
+        dataDir = "${cfg.dataDir}";
+        withJemalloc = true;
 
-        header /.well-known/matrix/* Content-Type application/json
-        header /.well-known/matrix/* Access-Control-Allow-Origin *
-        respond /.well-known/matrix/server  `{"m.server": "${cfg.url}:443"}`
-        respond /.well-known/matrix/client  `{"m.homeserver":{"base_url":"https://${cfg.url}"}}`
+        extraConfigFiles = [config.sops.templates."synapse/template".path];
 
-        reverse_proxy /_matrix/*           localhost:${toString cfg.port}
-        reverse_proxy /_synapse/client/*   localhost:${toString cfg.port}
-        reverse_proxy                      localhost:${toString cfg.port}
-      '';
+        settings = {
+          server_name = cfg.url;
+
+          listeners = [
+            {
+              port = cfg.port;
+              tls = false;
+              type = "http";
+              x_forwarded = true;
+              resources = [
+                {
+                  names = ["client" "federation"];
+                  compress = false;
+                }
+              ];
+            }
+          ];
+
+          database = {
+            name = "sqlite3";
+            args = {database = "${cfg.dataDir}/homeserver.db";};
+          };
+
+          log_config = "${cfg.dataDir}/${cfg.url}.log.config";
+          media_store_path = "${cfg.dataDir}/media_store";
+          report_stats = false;
+          signing_key_path = "${cfg.dataDir}/${cfg.url}.signing.key";
+          trusted_key_servers = [{server_name = "matrix.org";}];
+
+          enable_registration = true;
+          enable_registration_without_verification = true;
+
+          turn_uris = [
+            "turns:matmoa.eu:5349?transport=tcp"
+            "turns:matmoa.eu:5349?transport=udp"
+            "turn:matmoa.eu:3478?transport=tcp"
+            "turn:matmoa.eu:3478?transport=udp"
+          ];
+          turn_user_lifetime = "1h";
+          turn_allow_guests = true;
+        };
+      };
+      caddy.virtualHosts.${cfg.url} = {
+        extraConfig = ''
+          header /.well-known/matrix/* Content-Type application/json
+          header /.well-known/matrix/* Access-Control-Allow-Origin *
+
+          respond /.well-known/matrix/server `{"m.server":"${cfg.url}:443"}`
+          respond /.well-known/matrix/client `{
+            "m.homeserver": { "base_url": "https://${cfg.url}" },
+            "org.matrix.msc4143.rtc_foci": [
+              {
+                "type": "livekit",
+                "livekit_service_url": "https://rtc.matmoa.eu"
+              }
+            ]
+          }`
+
+          reverse_proxy /_matrix/*           localhost:${toString cfg.port}
+          reverse_proxy /_synapse/client/*   localhost:${toString cfg.port}
+          reverse_proxy                      localhost:${toString cfg.port}
+        '';
+      };
+      caddy.virtualHosts."rtc.matmoa.eu" = {
+        extraConfig = ''
+          reverse_proxy / localhost:7880
+
+          @jwt path /token /livekit-jwt /livekit-jwt-service
+          reverse_proxy @jwt localhost:8788
+        '';
+      };
     };
+
+    # networking.firewall = {
+    #   # coturn: 3478 5349 49160-49200/udp
+    #   allowedTCPPorts = [3478 5349];
+    #   allowedUDPPorts = [7359 3478 5349] ++ (map (x: x) (builtins.genList (x: 49160 + x) (49200 - 49160 + 1)));
+    # };
   };
 }

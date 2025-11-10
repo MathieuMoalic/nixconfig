@@ -4,14 +4,13 @@
   lib,
   ...
 }: {
-  imports = [
-    ./modules/base.nix
-    ./modules/sddm/sddm.nix
-    ./modules/desktop.nix
-    ./modules/syncthing.nix
-    ./modules/kmonad.nix
-    ./modules/adb.nix
-  ];
+  myModules = {
+    desktop.enable = true;
+    kmonad.enable = true;
+    base.enable = true;
+    syncthing.enable = true;
+    adb.enable = true;
+  };
 
   hardware.wooting.enable = true;
   programs = {

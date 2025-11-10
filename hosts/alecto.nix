@@ -3,14 +3,13 @@
   config,
   ...
 }: {
-  imports = [
-    ./modules/base.nix
-    ./modules/sddm/sddm.nix
-    ./modules/sshd.nix
-    ./modules/podman.nix
-    ./modules/sudo-rules.nix
-    ./modules/users/mz.nix
-  ];
+  myModules = {
+    sudo-rules.enable = true;
+    users.mz = true;
+    base.enable = true;
+    sshd.enable = true;
+    podman.enable = true;
+  };
   home-manager.users.mat.imports = [../home/alecto.nix];
 
   services.caddy = {

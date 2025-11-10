@@ -41,7 +41,17 @@
           };
         };
         specialArgs = {inherit inputs;};
-        modules = [host] ++ helpers.moduleListFromDir {dir = ./hosts/myModules;};
+        modules =
+          [
+            host
+            inputs.home-manager.nixosModules.home-manager
+            inputs.homepage.nixosModules.homepage-service
+            inputs.pleustradenn.nixosModules.pleustradenn-service
+            inputs.boued.nixosModules.boued-service
+            inputs.sops-nix.nixosModules.sops
+            inputs.disko.nixosModules.disko
+          ]
+          ++ helpers.moduleListFromDir {dir = ./hosts/myModules;};
       };
   in {
     nixosModules = myModules;

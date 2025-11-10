@@ -47,5 +47,6 @@ in {
     services.caddy.virtualHosts.${cfg.url}.extraConfig = ''
       reverse_proxy 127.0.0.1:${toString cfg.port}
     '';
+    networking.firewall.allowedTCPPorts = [cfg.port];
   };
 }

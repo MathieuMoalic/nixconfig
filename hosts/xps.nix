@@ -4,13 +4,12 @@
   lib,
   ...
 }: {
-  imports = [
-    ./modules/base.nix
-    ./modules/sddm/sddm.nix
-    ./modules/syncthing.nix
-    ./modules/desktop.nix
-    ./modules/kmonad.nix
-  ];
+  myModules = {
+    desktop.enable = true;
+    kmonad.enable = true;
+    base.enable = true;
+    syncthing.enable = true;
+  };
   programs.steam = {
     enable = true;
   };

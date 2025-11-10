@@ -1,13 +1,12 @@
 {lib, ...}: {
-  imports = [
-    ./modules/base.nix
-    ./modules/desktop.nix
-    ./modules/sddm/sddm.nix
-    ./modules/syncthing.nix
-    ./modules/sshd.nix
-    ./modules/kmonad.nix
-    ./modules/nfs.nix
-  ];
+  myModules = {
+    desktop.enable = true;
+    kmonad.enable = true;
+    base.enable = true;
+    sshd.enable = true;
+    nfs.enable = true;
+    syncthing.enable = true;
+  };
   home-manager.users.mat.imports = [../home/nyx.nix];
   hardware.keyboard.qmk.enable = true;
   fileSystems = {

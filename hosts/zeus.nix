@@ -4,15 +4,15 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./modules/base.nix
-    ./modules/sshd.nix
-    ./modules/podman.nix
-    ./modules/sudo-rules.nix
-    ./modules/users/mz.nix
-    ./modules/users/kelvas.nix
-    ./modules/users/syam.nix
-  ];
+  myModules = {
+    sudo-rules.enable = true;
+    users.syam = true;
+    users.mz = true;
+    users.kelvas = true;
+    base.enable = true;
+    sshd.enable = true;
+    podman.enable = true;
+  };
   home-manager.users.mat.imports = [../home/zeus.nix];
 
   environment.systemPackages = with pkgs; [

@@ -3,30 +3,16 @@
   lib,
   ...
 }: {
-  imports = [
-    ./modules/base.nix
-    ./modules/syncthing.nix
-    ./modules/sshd.nix
-    ./modules/restic.nix
-    ./modules/podman.nix
-    ./modules/self-hosted/caddy.nix
-    ./modules/self-hosted/owntracks.nix
-  ];
-  myModules.wireguard = {
-    enable = true;
-    peers = [
-      {
-        name = "nyx";
-        publicKey = "e+IOBLCdy3F1KK51mOI1UBbTgfldEKkNZvk8MLUY9gk=";
-        allowedIPs = ["10.8.0.2/32"];
-      }
-    ];
-  };
   myModules = {
+    base.enable = true;
+    podman.enable = true;
+    sshd.enable = true;
+    syncthing.enable = true;
+    nfs.enable = true;
+    caddy-defaults.enable = true;
+    restic.enable = true;
     scrutiny.enable = true;
-    # wireguard.enable = true;
     uptime.enable = true;
-    # bar.enable = true;
     immich.enable = true;
     synapse.enable = true;
     element-web.enable = true;
@@ -45,15 +31,20 @@
     sonarr.enable = true;
     radarr.enable = true;
     bazarr.enable = true;
+    flaresolverr.enable = true;
     transmission.enable = true;
     watcharr.enable = true;
-  };
-  services = {
-    mosquitto = {
-      enable = true;
-    };
-    flaresolverr.port = 8191;
-    flaresolverr.enable = true;
+    # wireguard = {
+    #   enable = true;
+    #   peers = [
+    #     {
+    #       name = "nyx";
+    #       publicKey = "e+IOBLCdy3F1KK51mOI1UBbTgfldEKkNZvk8MLUY9gk=";
+    #       allowedIPs = ["10.8.0.2/32"];
+    #     }
+    #   ];
+    # };
+    # bar.enable = true;
   };
 
   home-manager.users.mat.imports = [../home/homeserver.nix];
@@ -71,16 +62,16 @@
     };
   };
 
-  networking = {
-    hostName = "homeserver";
-    firewall = {
-      enable = true;
-      # wireguard: 51820
-      # jellyfin: 10024
-      # coturn: 3478 5349 49160-49200/udp
-      allowedTCPPorts = [80 443 10024 3478 5349];
-      allowedUDPPorts = [51820 7359 3478 5349] ++ (map (x: x) (builtins.genList (x: 49160 + x) (49200 - 49160 + 1)));
-    };
+  # Make the working and final dirs NOCOW (+C). This affects new files created there.
+  systemd.tmpfiles.rules = [
+    "d /media 0755 mat media -"
+    "h /media - - - - +C"
+  ];
+
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "monthly";
+    fileSystems = ["/media"];
   };
 
   fileSystems = {
@@ -93,11 +84,12 @@
       fsType = "vfat";
       options = ["fmask=0022" "dmask=0022"];
     };
-    # "/media" = {
-    #   device = "/dev/disk/by-uuid/5a278a0b-c553-4ace-85a0-85234d9a1541";
-    #   fsType = "ext4";
-    # };
-    "/home/mat/backup" = {
+    "/media" = {
+      device = "/dev/disk/by-label/media";
+      fsType = "btrfs";
+      options = ["noatime"];
+    };
+    "/mnt/ehdd" = {
       device = "/dev/disk/by-uuid/4ae688c8-81d8-41a1-9585-1721b12ccfd2";
       fsType = "ext4";
     };
@@ -109,6 +101,7 @@
     }
   ];
 
+  networking.hostName = "homeserver";
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   system.stateVersion = "23.11";

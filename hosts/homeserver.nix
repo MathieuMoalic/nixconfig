@@ -8,7 +8,8 @@
     podman.enable = true;
     sshd.enable = true;
     syncthing.enable = true;
-    # nfs.enable = true;
+    nfs.nas = true;
+    nfs.nas2 = true;
     caddy-defaults.enable = true;
     restic.enable = true;
     scrutiny.enable = true;

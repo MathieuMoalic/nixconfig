@@ -1,5 +1,6 @@
 {...}: {
   home.sessionVariables = {
+    RESTIC_PASSWORD_FILE = "/run/secrets/restic/password";
     EDITOR = "nvim";
     VISUAL = "$EDITOR";
     SUDO_EDIT = "$EDITOR";

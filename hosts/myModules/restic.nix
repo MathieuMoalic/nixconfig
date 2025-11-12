@@ -6,9 +6,7 @@
 }: let
   cfg = config.myModules.restic;
 in {
-  options.myModules.restic = {
-    enable = lib.mkEnableOption "restic";
-  };
+  options.myModules.restic.enable = lib.mkEnableOption "restic";
 
   config = lib.mkIf cfg.enable {
     sops.secrets."restic/password" = {
@@ -17,9 +15,7 @@ in {
       mode = "0400";
     };
 
-    environment.systemPackages = with pkgs; [
-      restic
-    ];
+    environment.systemPackages = with pkgs; [restic];
 
     services.restic.backups = let
       commonSettings = {
@@ -34,21 +30,22 @@ in {
         };
       };
     in {
-      eHDD =
-        commonSettings
-        // {
-          repository = "/mnt/ehdd";
-        };
-      nas =
-        commonSettings
-        // {
-          repository = "/mnt/nas/backup";
-        };
-      nas2 =
-        commonSettings
-        // {
-          repository = "/mnt/nas2/backup";
-        };
+      eHDD = commonSettings // {repository = "/mnt/ehdd";};
+      nas = commonSettings // {repository = "/mnt/nas/backup";};
+      nas2 = commonSettings // {repository = "/mnt/nas2/backup";};
+    };
+
+    systemd.services."restic-backups-eHDD" = {
+      unitConfig.ConditionPathIsMountPoint = "/mnt/ehdd";
+      after = ["mnt-ehdd.mount"];
+    };
+    systemd.services."restic-backups-nas" = {
+      unitConfig.ConditionPathIsMountPoint = "/mnt/nas";
+      after = ["mnt-nas.mount"];
+    };
+    systemd.services."restic-backups-nas2" = {
+      unitConfig.ConditionPathIsMountPoint = "/mnt/nas2";
+      after = ["mnt-nas2.mount"];
     };
   };
 }

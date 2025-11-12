@@ -12,7 +12,7 @@ in {
 
     url = lib.mkOption {
       type = types.str;
-      default = "immich.matmoa.eu";
+      default = "photo.matmoa.eu";
     };
 
     port = lib.mkOption {

@@ -4,7 +4,8 @@
     kmonad.enable = true;
     base.enable = true;
     sshd.enable = true;
-    nfs.enable = true;
+    nfs.nas = true;
+    nfs.nas2 = true;
     syncthing.enable = true;
   };
   home-manager.users.mat.imports = [../home/nyx.nix];

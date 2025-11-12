@@ -5,6 +5,7 @@
 }: let
   cfg = config.myModules.synapse;
   types = lib.types;
+  lkPort = 7880;
 in {
   options.myModules.synapse = {
     enable = lib.mkOption {
@@ -74,6 +75,7 @@ in {
 
     systemd.tmpfiles.rules = [
       "d ${cfg.dataDir} 0750 matrix-synapse matrix-synapse -"
+      "d ${cfg.dataDir}/media_store 0750 matrix-synapse matrix-synapse -"
     ];
     services = {
       matrix-synapse = {
@@ -85,6 +87,9 @@ in {
 
         settings = {
           server_name = cfg.url;
+          public_baseurl = "https://${cfg.url}/";
+          max_upload_size = "50M"; # default is ~10M, this raises Element’s limit
+          max_image_pixels = "50M"; # default ~32M; huge photos can exceed it
 
           listeners = [
             {
@@ -146,16 +151,62 @@ in {
           reverse_proxy                      localhost:${toString cfg.port}
         '';
       };
-      caddy.virtualHosts."rtc.matmoa.eu" = {
-        extraConfig = ''
-          reverse_proxy / localhost:7880
-
-          @jwt path /token /livekit-jwt /livekit-jwt-service
-          reverse_proxy @jwt localhost:8788
-        '';
-      };
     };
 
+    ######################################################
+    #################### LIVEKIT #########################
+    ######################################################
+
+    sops.secrets."livekit/keys" = {
+      mode = "0400";
+      owner = "root";
+      group = "root";
+    };
+
+    services = {
+      livekit = {
+        enable = true;
+        openFirewall = true; # opens the UDP range & lkPort below
+        keyFile = config.sops.secrets."livekit/keys".path;
+
+        # This is the JSON config (the module turns it into livekit.json)
+        settings = {
+          port = lkPort;
+
+          # WebRTC UDP ports – match your infra; these work well and are small.
+          rtc = {
+            port_range_start = 49160;
+            port_range_end = 49200;
+            use_external_ip = true; # discover public IP (good behind NAT)
+          };
+
+          # OPTIONAL: if you have a public TURN you want LK to tell clients about:
+          # turn = {
+          #   enabled = true;
+          #   # LiveKit expects 'turn' servers here if you want LK-issued TURN creds.
+          # };
+        };
+      };
+
+      ## --- MatrixRTC JWT/Authorization service ---
+      # This module issues JWTs for LiveKit using the SAME keyFile as above.
+      lk-jwt-service = {
+        enable = true;
+        livekitUrl = "wss://rtc.matmoa.eu";
+        keyFile = config.sops.secrets."livekit/keys".path;
+        # If your module exposes a port option and it differs from 8788, adjust below.
+        port = 8788;
+      };
+
+      caddy.virtualHosts."rtc.matmoa.eu".extraConfig = ''
+        encode zstd gzip
+
+        @jwt path /token* /livekit-jwt* /livekit-jwt-service*
+        reverse_proxy @jwt 127.0.0.1:8788
+
+        reverse_proxy 127.0.0.1:${toString lkPort}
+      '';
+    };
     # networking.firewall = {
     #   # coturn: 3478 5349 49160-49200/udp
     #   allowedTCPPorts = [3478 5349];

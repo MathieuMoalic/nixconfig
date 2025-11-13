@@ -30,7 +30,7 @@ in {
         };
       };
     in {
-      eHDD = commonSettings // {repository = "/mnt/ehdd";};
+      eHDD = commonSettings // {repository = "/mnt/ehdd/backup";};
       nas = commonSettings // {repository = "/mnt/nas/backup";};
       nas2 = commonSettings // {repository = "/mnt/nas2/backup";};
     };

@@ -73,10 +73,6 @@ in {
       };
     };
 
-    systemd.tmpfiles.rules = [
-      "d ${cfg.dataDir} 0750 matrix-synapse matrix-synapse -"
-      "d ${cfg.dataDir}/media_store 0750 matrix-synapse matrix-synapse -"
-    ];
     services = {
       matrix-synapse = {
         enable = true;

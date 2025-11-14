@@ -22,10 +22,13 @@ in {
         initialize = true;
         user = "root";
         paths = ["/var/lib"];
+        exclude = [
+          "/var/lib/containers"
+        ];
         passwordFile = config.sops.secrets."restic/password".path;
         runCheck = true;
         timerConfig = {
-          OnCalendar = "daily";
+          OnCalendar = "04:00";
           Persistent = true;
         };
       };

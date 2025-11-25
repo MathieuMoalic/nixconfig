@@ -217,6 +217,12 @@ in {
         "SUPER, u, exec, ${pkgs.lock}/bin/lock"
         "SUPER, p, exec, ${pkgs.power-menu}/bin/power-menu"
 
+        "SUPER, mouse_up, exec, ${pkgs.a}/bin/a F8"
+        "SUPER, mouse_down, exec, ${pkgs.a}/bin/a F9"
+        "SUPER, mouse:274, exec, ${pkgs.a}/bin/a F10"
+        "SUPER, mouse:276, exec, ${pkgs.a}/bin/a F11"
+        "SUPER, mouse:275, exec, ${pkgs.a}/bin/a F12"
+
         "SUPER, t, fullscreen"
         "SUPER SHIFT, q, killactive,"
         "SUPER SHIFT, z, exit,"

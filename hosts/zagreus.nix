@@ -12,7 +12,6 @@
     adb.enable = true;
   };
 
-  hardware.wooting.enable = true;
   programs = {
     steam = {
       enable = true;
@@ -42,6 +41,7 @@
   home-manager.users.mat.imports = [../home/zagreus.nix];
   hardware = {
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    wooting.enable = true;
   };
 
   networking = {
@@ -58,7 +58,6 @@
       kernelModules = [];
       systemd.enable = true;
     };
-    kernelPackages = pkgs.linuxPackages_testing;
     extraModprobeConfig = ''
       options iwlwifi power_save=0 uapsd_disable=1 enable_ini=0
       options iwlmvm power_scheme=1

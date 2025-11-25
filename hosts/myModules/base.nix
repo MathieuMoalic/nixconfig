@@ -12,6 +12,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    hardware.enableRedistributableFirmware = true;
     myModules = {
       dns.enable = true;
       users = {
@@ -21,18 +22,7 @@ in {
     };
 
     environment = {
-      # this fixes the dns in rootless podman containers
-      etc."resolv.conf".mode = "direct-symlink";
-
       binsh = "${pkgs.dash}/bin/dash";
-      systemPackages = with pkgs; [
-        home-manager
-        rose-pine-hyprcursor
-      ];
-
-      sessionVariables = {
-        NIXOS_OZONE_WL = "1";
-      };
     };
     sops = {
       defaultSopsFile = ../../secrets.yaml;
@@ -104,11 +94,11 @@ in {
 
     boot = {
       loader = {
-        timeout = 0;
+        timeout = 3;
         systemd-boot = {
           enable = true;
           editor = true;
-          configurationLimit = 15;
+          configurationLimit = 50;
         };
         efi.canTouchEfiVariables = true;
       };
@@ -136,7 +126,6 @@ in {
     home-manager = {
       backupFileExtension = "hmbak";
       extraSpecialArgs = {inherit inputs;};
-      useUserPackages = true;
       useGlobalPkgs = true;
     };
   };

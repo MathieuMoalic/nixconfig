@@ -56,7 +56,7 @@
           python = {
             enable = true;
             lsp.enable = false; # use `lsp.servers` instead
-            format.type = "ruff"; # default is black and conflicts with ruff
+            format.type = ["ruff"]; # default is black and conflicts with ruff
           };
           rust.enable = true;
           nix.enable = true;

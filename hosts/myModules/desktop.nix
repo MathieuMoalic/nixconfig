@@ -17,6 +17,15 @@ in {
       xwayland = {enable = true;};
       withUWSM = true;
     };
+    environment = {
+      systemPackages = with pkgs; [
+        rose-pine-hyprcursor
+      ];
+
+      sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+      };
+    };
     fonts.packages = with pkgs; [
       corefonts # Arial, Times New Roman, etc.
       newcomputermodern # default overleaf font

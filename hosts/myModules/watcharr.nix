@@ -13,7 +13,7 @@ in {
 
     package = lib.mkOption {
       type = types.package;
-      default = pkgs.callPackage ../../pkgs/watcharr {};
+      default = pkgs.callPackage pkgs.watcharr {};
     };
 
     user = lib.mkOption {

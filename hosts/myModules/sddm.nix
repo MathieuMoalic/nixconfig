@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.myModules.sddm;
-  sddmTheme = pkgs.callPackage ../../pkgs/sddm-theme {};
+  sddmTheme = pkgs.sddm-theme;
 in {
   options.myModules.sddm = {
     enable = lib.mkEnableOption "custom SDDM theme";

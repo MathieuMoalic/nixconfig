@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.nvf = {
     enable = true;
     settings = {
@@ -20,25 +24,38 @@
                 };
               };
             };
-            "typos_lsp" = {};
-            "ruff" = {
+
+            typos_lsp = {
+              cmd = [(lib.getExe pkgs.typos-lsp)];
+              root_markers = [".git"];
+            };
+
+            ruff = {
+              cmd = [(lib.getExe pkgs.ruff) "server"];
               root_markers = [".git" "pyproject.toml" "setup.py"];
               filetypes = ["python"];
             };
-            "pyright" = {
+
+            pyright = {
+              cmd = ["${pkgs.pyright}/bin/pyright-langserver" "--stdio"];
               root_markers = [".git" "pyproject.toml" "setup.py"];
               filetypes = ["python"];
             };
-            "ty" = {
+
+            ty = {
+              cmd = [(lib.getExe pkgs.ty) "server"];
               root_markers = [".git" "pyproject.toml" "setup.py"];
               filetypes = ["python"];
             };
+
             rust-analyzer = {
+              cmd = [(lib.getExe pkgs.rust-analyzer)];
+              filetypes = ["rust"];
               enable = true;
               settings."rust-analyzer" = {
-                cargo = {allFeatures = true;};
-                check = {command = "clippy";};
-                procMacro = {enable = true;};
+                cargo.allFeatures = true;
+                check.command = "clippy";
+                procMacro.enable = true;
               };
             };
           };
@@ -48,6 +65,7 @@
             nextDiagnostic = "]d";
           };
         };
+
         languages = {
           enableFormat = true;
           enableExtraDiagnostics = false;
@@ -55,9 +73,10 @@
 
           python = {
             enable = true;
-            lsp.enable = false; # use `lsp.servers` instead
-            format.type = ["ruff"]; # default is black and conflicts with ruff
+            lsp.enable = false;
+            format.type = ["ruff"];
           };
+
           rust.enable = true;
           nix.enable = true;
           bash.enable = true;
@@ -67,8 +86,7 @@
           go.enable = true;
           markdown.enable = true;
         };
-        # Make sure the extra LSPs are installed
-        # This is normally done in the language modules so you don't have to do it explicitly.
+
         extraPackages = [pkgs.pyright pkgs.ruff pkgs.ty];
 
         utility = {
@@ -172,7 +190,6 @@
             "cmp-luasnip" # snippets, if you use them
           ];
 
-          # labels in the completion menu (defaults already include [Path])
           sources = {
             path = "[Path]";
             buffer = "[Buffer]";

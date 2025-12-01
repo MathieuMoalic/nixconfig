@@ -29,8 +29,8 @@ in {
     fonts.packages = with pkgs; [
       corefonts # Arial, Times New Roman, etc.
       newcomputermodern # default overleaf font
-      pkgs.nerd-fonts.fira-code
-      pkgs.nerd-fonts.fira-mono # For waybar
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono # For waybar
       roboto
       font-awesome
       source-sans-pro
@@ -61,7 +61,6 @@ in {
           TimeoutStopSec = 10;
         };
       };
-      extraConfig = "DefaultTimeoutStopSec=10s";
     };
   };
 }

@@ -12,6 +12,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    system.nixos-init.enable = true;
+    system.etc.overlay.enable = true;
+    services.userborn.enable = true;
     hardware.enableRedistributableFirmware = true;
     myModules = {
       dns.enable = true;

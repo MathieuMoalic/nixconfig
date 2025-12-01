@@ -1,6 +1,9 @@
 inputs: self: super: let
   inherit (super) lib;
 
+  # Use the new, non-deprecated way to get the system
+  system = super.stdenv.hostPlatform.system;
+
   scriptsPath = ./scripts;
   pkgsPath = ../pkgs;
 
@@ -57,18 +60,18 @@ inputs: self: super: let
 in
   {
     amumax =
-      inputs.amumax.packages.${self.system}.git;
+      inputs.amumax.packages.${system}.git;
 
     nvim-unstable =
-      inputs.nixpkgs_unstable.legacyPackages.${self.system}.neovim-unwrapped;
+      inputs.nixpkgs_unstable.legacyPackages.${system}.neovim-unwrapped;
 
-    inherit (inputs.quicktranslate.packages.${self.system}) quicktranslate;
+    inherit (inputs.quicktranslate.packages.${system}) quicktranslate;
 
     rose-pine-hyprcursor =
-      inputs.rose-pine-hyprcursor.packages.${self.system}.default;
+      inputs.rose-pine-hyprcursor.packages.${system}.default;
 
     zjstatus =
-      inputs.zjstatus.packages.${self.system}.default;
+      inputs.zjstatus.packages.${system}.default;
   }
   // scriptPackages
   // autoPkgs

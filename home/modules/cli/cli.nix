@@ -31,7 +31,7 @@
     tealdeer # tldr in rust
     bat # cat in rust
     fd # find in rust
-    du-dust # du in rust
+    dust # du in rust
     duf # df in rust
     eza # ls in rust
     neofetch # flex

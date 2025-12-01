@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }:
 with config.colorScheme.palette; {
@@ -16,7 +15,6 @@ with config.colorScheme.palette; {
       background = base00;
       tab = base05;
       tab-active = base0E;
-      zjstatus = inputs.zjstatus.packages.${pkgs.system}.default;
     in ''
       layout {
           default_tab_template {
@@ -24,7 +22,7 @@ with config.colorScheme.palette; {
                   pane
               }
               pane size=1 borderless=true {
-                  plugin location="file:${zjstatus}/bin/zjstatus.wasm" {
+                  plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
                       format_left  "{tabs}"
                       format_right ""
                       format_space "#[bg=#${background}ff]"

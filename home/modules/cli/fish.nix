@@ -44,11 +44,6 @@
       enableFishIntegration = true;
     };
 
-    thefuck = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-
     eza = {
       enable = true;
       enableFishIntegration = true;

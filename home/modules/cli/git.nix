@@ -4,9 +4,7 @@
   '';
   programs.git = {
     enable = true;
-    userName = "Mathieu Moalic";
-    userEmail = "matmoa@pm.me";
-    extraConfig = {
+    settings = {
       init = {defaultBranch = "main";};
       credential = {helper = "store --file ~/.config/git/.git-credentials";};
       commit = {gpgSign = true;};
@@ -19,7 +17,11 @@
           allowedSignersFile = "~/.config/git/allowed_signers";
         };
       };
-      user = {signingkey = "~/.ssh/id_ed25519.pub";};
+      user = {
+        signingkey = "~/.ssh/id_ed25519.pub";
+        name = "Mathieu Moalic";
+        email = "matmoa@pm.me";
+      };
       core = {pager = "delta";};
       interactive = {diffFilter = "delta --color-only";};
       delta = {

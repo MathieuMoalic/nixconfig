@@ -17,10 +17,10 @@ in {
       wayland.enable = true;
       theme = "${sddmTheme}";
       autoLogin.relogin = true;
-      extraPackages = with pkgs; [
-        libsForQt5.qt5.qtquickcontrols2
-        libsForQt5.qt5.qtgraphicaleffects
-      ];
+      # extraPackages = with pkgs; [
+      #   libsForQt5.qt5.qtquickcontrols2
+      #   libsForQt5.qt5.qtgraphicaleffects
+      # ];
     };
   };
 }

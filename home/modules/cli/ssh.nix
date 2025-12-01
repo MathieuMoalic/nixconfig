@@ -1,12 +1,15 @@
 {
   programs.ssh = {
     enable = true;
-    serverAliveCountMax = 120;
-    serverAliveInterval = 60;
     extraConfig = ''
       StrictHostKeyChecking accept-new
     '';
+    enableDefaultConfig = false;
     matchBlocks = {
+      "*" = {
+        forwardAgent = false;
+        serverAliveInterval = 300;
+      };
       faculty = {
         hostname = "150.254.111.35";
         user = "matmoa";

@@ -1,7 +1,7 @@
 {pkgs, ...}:
 pkgs.writeShellApplication {
   name = "power-menu";
-  runtimeInputs = with pkgs; [rofi-wayland systemd hyprlock];
+  runtimeInputs = with pkgs; [rofi systemd hyprlock];
   text = ''
     #!/bin/sh
     chosen=$(printf "  Lock\n⏾  Hibernate\n  Power Off\n  Restart\n󰋑  Logout\n⏾  Sleep" | rofi -dmenu -i)

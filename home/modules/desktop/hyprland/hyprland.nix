@@ -73,7 +73,7 @@ in {
       };
       animations = {
         enabled = true;
-        first_launch_animation = false;
+        # first_launch_animation = false;
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
           "windows, 1, 1, myBezier"
@@ -121,8 +121,8 @@ in {
         };
       };
       gestures = {
-        workspace_swipe = true;
-        workspace_swipe_fingers = 3;
+        # workspace_swipe = true;
+        # workspace_swipe_fingers = 3;
         workspace_swipe_distance = 100;
         workspace_swipe_invert = false;
         workspace_swipe_min_speed_to_force = 10;
@@ -176,8 +176,8 @@ in {
         swallow_exception_regex = "Empty";
         focus_on_activate = false;
         mouse_move_focuses_monitor = true;
-        render_ahead_of_time = false;
-        render_ahead_safezone = 1;
+        # render_ahead_of_time = false;
+        # render_ahead_safezone = 1;
         allow_session_lock_restore = false;
         background_color = "rgba(000000ff)";
         close_special_on_empty = true;
@@ -193,6 +193,9 @@ in {
         ignore_group_lock = false;
         movefocus_cycles_fullscreen = true;
         disable_keybind_grabbing = false;
+      };
+      ecosystem = {
+        no_update_news = true;
       };
       opengl = {
         nvidia_anti_flicker = true;

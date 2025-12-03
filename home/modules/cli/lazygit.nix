@@ -13,10 +13,12 @@
         animateExplosion = true;
       };
       git = {
-        paging = {
-          colorArg = "always";
-          pager = "${pkgs.delta}/bin/delta --dark --paging=never";
-        };
+        pagers = [
+          {
+            colorArg = "always";
+            pager = "${pkgs.delta}/bin/delta --dark --paging=never";
+          }
+        ];
       };
       confirmOnQuit = false;
       quitOnTopLevelReturn = false;

@@ -5,6 +5,7 @@
 }: {
   myModules = {
     base.enable = true;
+    users.cerebre = true;
     podman.enable = true;
     sshd.enable = true;
     syncthing.enable = true;

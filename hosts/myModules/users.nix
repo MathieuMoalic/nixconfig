@@ -32,6 +32,10 @@ in {
       type = types.bool;
       default = false;
     };
+    cerebre = lib.mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
@@ -94,6 +98,21 @@ in {
 
     (lib.mkIf (cfg.mz || cfg.kelvas || cfg.syam) {
       programs.zsh.enable = true;
+    })
+    (lib.mkIf cfg.cerebre {
+      users.groups.cerebre = {};
+      users.users.cerebre = {
+        isSystemUser = true;
+        group = "cerebre";
+        description = "Restic backup user for friend";
+        home = "/mnt/ehdd/cerebre";
+        shell = "${pkgs.shadow}/bin/nologin";
+        openssh.authorizedKeys.keys =
+          [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMXoZPjHGfkAAaSqg8/p9R1920caIw0vkHywAtck3kYl"
+          ]
+          ++ lib.optionals cfg.mat matKeys;
+      };
     })
   ]);
 }

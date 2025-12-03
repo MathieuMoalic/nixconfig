@@ -19,7 +19,16 @@ in {
           PermitRootLogin = "no";
           PasswordAuthentication = true;
           GatewayPorts = "yes";
+          Subsystem = "sftp internal-sftp"; # for restic
         };
+        extraConfig = ''
+          Match User cerebre
+            ForceCommand internal-sftp
+            AllowTcpForwarding no
+            X11Forwarding no
+            PermitTTY no
+          Match all
+        '';
       };
     };
     programs.mosh = {

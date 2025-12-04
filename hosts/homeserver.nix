@@ -36,6 +36,7 @@
     flaresolverr.enable = true;
     transmission.enable = true;
     watcharr.enable = true;
+    blaz.enable = true;
     # wireguard = {
     #   enable = true;
     #   peers = [

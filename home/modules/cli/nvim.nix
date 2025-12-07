@@ -47,17 +47,6 @@
               root_markers = [".git" "pyproject.toml" "setup.py"];
               filetypes = ["python"];
             };
-
-            rust-analyzer = {
-              cmd = [(lib.getExe pkgs.rust-analyzer)];
-              filetypes = ["rust"];
-              enable = true;
-              settings."rust-analyzer" = {
-                cargo.allFeatures = true;
-                check.command = "clippy";
-                procMacro.enable = true;
-              };
-            };
           };
 
           mappings = {

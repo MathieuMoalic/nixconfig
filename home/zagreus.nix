@@ -13,6 +13,7 @@
     nvtopPackages.amd
     wootility
     lutris
+    teams-for-linux
   ];
   wayland.windowManager.hyprland.settings.exec-once = lib.mkAfter [
     "[workspace 11 silent] ${pkgs.librewolf}/bin/librewolf"

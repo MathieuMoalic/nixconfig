@@ -17,6 +17,7 @@
     wl-clipboard # wayland clipboard
     ripdrag # ripgrep + drag and drop
     vscode # code editor
+    brave
 
     libreoffice # document editor
     mpv # video player

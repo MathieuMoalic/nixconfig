@@ -18,6 +18,7 @@
     ripdrag # ripgrep + drag and drop
     vscode # code editor
     brave
+    codex
 
     libreoffice # document editor
     mpv # video player

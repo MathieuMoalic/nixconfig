@@ -7,6 +7,17 @@
     enable = true;
     settings = {
       vim = {
+        luaConfigRC."mx3-go-colors" = {
+          after = [];
+          before = [];
+          data = ''
+            vim.filetype.add({extension = { mx3 = "mx3" }})
+            pcall(function()
+              vim.treesitter.language.register("go", "mx3")
+            end)
+          '';
+        };
+
         lsp = {
           enable = true;
           inlayHints.enable = true;
@@ -23,11 +34,6 @@
                   };
                 };
               };
-            };
-
-            typos_lsp = {
-              cmd = [(lib.getExe pkgs.typos-lsp)];
-              root_markers = [".git"];
             };
 
             ruff = {

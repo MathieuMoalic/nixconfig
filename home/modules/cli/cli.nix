@@ -47,8 +47,7 @@
     comma # wraps together nix shell -c and nix-index
     delta # diff
     just # makefile in rust
-    alejandra # format nix
-    nixd # nix LSP
+    television # fuzzyfinder
 
     # custom scripts below
     decode

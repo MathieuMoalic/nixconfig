@@ -4,7 +4,7 @@
   ...
 }:
 with config.colorScheme.palette; {
-  programs.fish.shellAliases = {
+  programs.fish.shellAbbrs = {
     tl = "zellij ls";
     ta = "zellij a -c";
     tk = "zellij d --force";

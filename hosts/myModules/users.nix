@@ -53,7 +53,7 @@ in {
         linger = true;
         uid = 1000;
         shell = pkgs.fish;
-        extraGroups = ["networkmanager" "wheel" "video" "input" "uinput" "media"];
+        extraGroups = ["networkmanager" "wheel" "video" "input" "uinput" "media" "audio" "seat"];
         openssh.authorizedKeys.keys = matKeys;
         hashedPassword = matPasswordHash;
       };

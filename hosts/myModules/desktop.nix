@@ -11,7 +11,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # myModules.sddm.enable = true;
+    myModules.lemurs.enable = true;
     programs.hyprland = {
       enable = true;
       xwayland = {enable = true;};

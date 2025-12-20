@@ -12,13 +12,13 @@ in {
     ./hyprpaper.nix
     ./hyprpanel.nix
   ];
-  home.packages = [
+  home.packages = with pkgs; [
     pkgs.hyprsome
-    pkgs.quicktranslate
-    pkgs.lock
-    pkgs.power-menu
-    pkgs.screenshot
-    pkgs.screenshot-edit
+    quicktranslate
+    lock
+    power-menu
+    screenshot
+    screenshot-edit
   ];
   wayland.windowManager.hyprland = {
     enable = true;

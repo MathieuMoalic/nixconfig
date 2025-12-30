@@ -40,13 +40,34 @@ in {
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
+    # Bluetooth (BlueZ)
+    services.blueman.enable = true;
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+
     # make pipewire realtime-capable
     security.rtkit.enable = true;
+    services.pulseaudio.enable = false;
+
     services.pipewire = {
       enable = true;
+      pulse.enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
+      wireplumber.enable = true;
+      wireplumber.configPackages = [
+        (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/90-bluez-seat.conf" ''
+          wireplumber.profiles = {
+            main = {
+              monitor.bluez.seat-monitoring = disabled
+            }
+          }
+        '')
+      ];
     };
+
     systemd = {
       user.services.polkit-gnome-authentication-agent-1 = {
         description = "polkit-gnome-authentication-agent-1";
@@ -62,5 +83,17 @@ in {
         };
       };
     };
+
+    security.polkit.extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if ((action.id == "org.freedesktop.login1.reboot" ||
+             action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+             action.id == "org.freedesktop.login1.power-off" ||
+             action.id == "org.freedesktop.login1.power-off-multiple-sessions") &&
+            subject.isInGroup("wheel")) {
+          return polkit.Result.YES;
+        }
+      });
+    '';
   };
 }

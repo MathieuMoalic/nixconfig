@@ -86,10 +86,28 @@ in {
 
     security.polkit.extraConfig = ''
       polkit.addRule(function(action, subject) {
-        if ((action.id == "org.freedesktop.login1.reboot" ||
-             action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-             action.id == "org.freedesktop.login1.power-off" ||
-             action.id == "org.freedesktop.login1.power-off-multiple-sessions") &&
+        var a = action.id;
+
+        var allow = [
+          // power actions
+          "org.freedesktop.login1.reboot",
+          "org.freedesktop.login1.reboot-multiple-sessions",
+          "org.freedesktop.login1.power-off",
+          "org.freedesktop.login1.power-off-multiple-sessions",
+
+          // hibernate actions
+          "org.freedesktop.login1.hibernate",
+          "org.freedesktop.login1.hibernate-multiple-sessions",
+          "org.freedesktop.login1.suspend-then-hibernate",
+          "org.freedesktop.login1.suspend-then-hibernate-multiple-sessions",
+
+          // suspend without prompt too
+          "org.freedesktop.login1.suspend",
+          "org.freedesktop.login1.suspend-multiple-sessions"
+        ];
+
+        if (allow.indexOf(a) !== -1 &&
+            subject.active && subject.local &&
             subject.isInGroup("wheel")) {
           return polkit.Result.YES;
         }

@@ -86,31 +86,33 @@ in {
 
     security.polkit.extraConfig = ''
       polkit.addRule(function(action, subject) {
-        var a = action.id;
+        if (!subject.isInGroup("wheel")) return null;
 
-        var allow = [
-          // power actions
-          "org.freedesktop.login1.reboot",
-          "org.freedesktop.login1.reboot-multiple-sessions",
-          "org.freedesktop.login1.power-off",
-          "org.freedesktop.login1.power-off-multiple-sessions",
-
-          // hibernate actions
+        // login1 path
+        var allowLogin1 = [
+          "org.freedesktop.login1.suspend",
+          "org.freedesktop.login1.suspend-multiple-sessions",
           "org.freedesktop.login1.hibernate",
           "org.freedesktop.login1.hibernate-multiple-sessions",
           "org.freedesktop.login1.suspend-then-hibernate",
           "org.freedesktop.login1.suspend-then-hibernate-multiple-sessions",
-
-          // suspend without prompt too
-          "org.freedesktop.login1.suspend",
-          "org.freedesktop.login1.suspend-multiple-sessions"
+          "org.freedesktop.login1.hibernate-ignore-inhibit"
         ];
 
-        if (allow.indexOf(a) !== -1 &&
-            subject.active && subject.local &&
-            subject.isInGroup("wheel")) {
+        if (allowLogin1.indexOf(action.id) !== -1) {
           return polkit.Result.YES;
         }
+
+        // systemd fallback used by `systemctl hibernate`
+        if (action.id === "org.freedesktop.systemd1.manage-units") {
+          var verb = action.lookup("verb");
+          var unit = action.lookup("unit");
+          if (verb === "start" && (unit === "hibernate.target" || unit === "suspend-then-hibernate.target")) {
+            return polkit.Result.YES;
+          }
+        }
+
+        return null;
       });
     '';
   };

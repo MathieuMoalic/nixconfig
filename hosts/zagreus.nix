@@ -12,6 +12,33 @@
     adb.enable = true;
   };
 
+  # KVM/libvirt
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      swtpm.enable = true; # vTPM (harmless if unused)
+      runAsRoot = false; # user session
+    };
+  };
+
+  # Virt-manager UI and viewer
+  programs.virt-manager.enable = true;
+
+  # Allow redirecting USB devices over SPICE (webcam, mic, etc.)
+  virtualisation.spiceUSBRedirection.enable = true;
+
+  # Optional: tools you’ll use
+  environment.systemPackages = with pkgs; [
+    virt-manager
+    virt-viewer
+    spice-gtk
+    usbutils
+    wget
+  ];
+
+  # Put your user in the right groups
+  users.users.mat.extraGroups = ["wheel" "kvm" "libvirtd"];
+
   programs = {
     steam = {
       enable = true;

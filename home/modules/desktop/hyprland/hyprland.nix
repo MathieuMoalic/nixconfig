@@ -24,6 +24,7 @@ in {
     enable = true;
     systemd.variables = ["--all"];
     settings = {
+      source = "~/.config/hypr/hyprland_local.conf";
       # https://wiki.hypr.land/Configuring/Variables
       env = [
         "HYPRCURSOR_THEME,rose-pine-hyprcursor"
@@ -347,7 +348,7 @@ in {
 
       binds = {
         pass_mouse_when_bound = false;
-        scroll_event_delay = 300;
+        scroll_event_delay = 30;
         workspace_back_and_forth = false;
 
         hide_special_on_workspace_change = false;
@@ -384,7 +385,7 @@ in {
         xp_mode = false;
         ctm_animation = 2;
         cm_fs_passthrough = 2;
-        cm_enabled = true;
+        cm_enabled = false;
         send_content_type = true;
         cm_auto_hdr = 1;
         new_render_scheduling = false;
@@ -458,12 +459,6 @@ in {
         "SUPER, y, exec, ${pkgs.quicktranslate}/bin/quicktranslate"
         "SUPER, u, exec, ${pkgs.lock}/bin/lock"
         "SUPER, p, exec, ${pkgs.power-menu}/bin/power-menu"
-
-        "SUPER, mouse_up, exec, ${pkgs.a}/bin/a F8"
-        "SUPER, mouse_down, exec, ${pkgs.a}/bin/a F9"
-        "SUPER, mouse:274, exec, ${pkgs.a}/bin/a F10"
-        "SUPER, mouse:276, exec, ${pkgs.a}/bin/a F11"
-        "SUPER, mouse:275, exec, ${pkgs.a}/bin/a F12"
 
         "SUPER, t, fullscreen"
         "SUPER SHIFT, q, killactive,"

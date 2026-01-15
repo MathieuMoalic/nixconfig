@@ -10,6 +10,7 @@
     ./mimeapps.nix
   ];
   home.packages = with pkgs; [
+    grim
     rofi-bluetooth # bluetooth manager
     pulseaudio # audio
     brillo # brightness
@@ -17,7 +18,6 @@
     wl-clipboard # wayland clipboard
     ripdrag # ripgrep + drag and drop
     vscode # code editor
-    brave
     codex
 
     libreoffice # document editor

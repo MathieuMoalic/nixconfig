@@ -53,6 +53,9 @@
         modules =
           [
             host
+            ({...}: {
+              home-manager.users.mat.imports = helpers.moduleListFromDir {dir = ./home/myModules;};
+            })
             inputs.home-manager.nixosModules.home-manager
             inputs.homepage.nixosModules.homepage-service
             inputs.pleustradenn.nixosModules.pleustradenn-service

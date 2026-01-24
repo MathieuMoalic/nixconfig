@@ -7,15 +7,26 @@
     enable = true;
     settings = {
       vim = {
-        luaConfigRC."mx3-go-colors" = {
-          after = [];
-          before = [];
-          data = ''
-            vim.filetype.add({extension = { mx3 = "mx3" }})
-            pcall(function()
-              vim.treesitter.language.register("go", "mx3")
-            end)
-          '';
+        luaConfigRC = {
+          "mx3-go-colors" = {
+            after = [];
+            before = [];
+            data = ''
+              vim.filetype.add({extension = { mx3 = "mx3" }})
+              pcall(function()
+                vim.treesitter.language.register("go", "mx3")
+              end)
+            '';
+          };
+          "typst-preview-open-cmd" = {
+            before = [];
+            after = [];
+            data = ''
+              require('typst-preview').setup({
+                open_cmd = '${lib.getExe pkgs.brave} %s',
+              })
+            '';
+          };
         };
 
         lsp = {

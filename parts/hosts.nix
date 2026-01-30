@@ -2,7 +2,7 @@
   options.my.hosts = lib.mkOption {
     type = lib.types.attrsOf lib.types.path;
     default = {};
-    description = "Host module entrypoints (paths) used to build nixosConfigurations.";
+    description = "Host module entrypoints used to build nixosConfigurations.";
   };
 
   config.my.hosts = {

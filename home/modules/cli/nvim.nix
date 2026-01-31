@@ -31,7 +31,7 @@
 
         lsp = {
           enable = true;
-          inlayHints.enable = true;
+          inlayHints.enable = false;
           formatOnSave = true;
           lspkind.enable = true;
 

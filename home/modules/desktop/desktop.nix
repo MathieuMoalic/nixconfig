@@ -18,7 +18,7 @@
     wl-clipboard # wayland clipboard
     ripdrag # ripgrep + drag and drop
     vscode # code editor
-    codex
+    deezer-enhanced
 
     libreoffice # document editor
     mpv # video player

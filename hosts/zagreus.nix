@@ -10,6 +10,7 @@
     base.enable = true;
     syncthing.enable = true;
     adb.enable = true;
+    nfs.nas2 = true;
   };
 
   # KVM/libvirt

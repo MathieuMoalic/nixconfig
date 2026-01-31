@@ -1,6 +1,7 @@
 {
   lib,
   inputs,
+  config,
   ...
 }: {
   options.my.mkPkgs = lib.mkOption {
@@ -12,9 +13,7 @@
   config.my.mkPkgs = system:
     import inputs.nixpkgs {
       inherit system;
-      overlays = [
-        ((import ../overlays/overlays.nix) inputs)
-      ];
+      overlays = config.my.overlays;
       config.allowUnfree = true;
     };
 }

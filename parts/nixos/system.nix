@@ -2,6 +2,6 @@
   options.my.nixos.system = lib.mkOption {
     type = lib.types.str;
     default = "x86_64-linux";
-    description = "System used for nixosConfigurations (kept explicit like before).";
+    description = "System used for nixosConfigurations";
   };
 }

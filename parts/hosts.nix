@@ -7,7 +7,6 @@
 
   config.my.hosts = {
     xps = ../hosts/xps.nix;
-
     nyx = ../hosts/nyx.nix;
     homeserver = ../hosts/homeserver.nix;
     zeus = ../hosts/zeus.nix;

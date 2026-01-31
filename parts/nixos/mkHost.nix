@@ -12,8 +12,8 @@
 
   config.my.nixos.mkHost = hostModule:
     inputs.nixpkgs.lib.nixosSystem {
-      system = config.my.nixos.system;
-      pkgs = config.my.nixos.pkgs;
+      system = "x86_64-linux";
+      pkgs = config.my.mkPkgs "x86_64-linux";
 
       specialArgs = {inherit inputs;};
 

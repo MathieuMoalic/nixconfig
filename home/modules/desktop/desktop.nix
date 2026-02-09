@@ -8,6 +8,7 @@
     ./theme.nix
     ./zathura.nix
     ./mimeapps.nix
+    ./wlr-which-key.nix
   ];
   home.packages = with pkgs; [
     grim
@@ -27,7 +28,6 @@
     nomacs # image viewer
     zathura # pdf viewer
     anki-bin # flash cards
-    freetube # youtube client
     hyprpanel
   ];
   programs.fish.shellAliases = {

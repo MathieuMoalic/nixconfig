@@ -453,21 +453,15 @@ in {
         "SUPER, down, exec, ${pkgs.brillo}/bin/brillo -q -U 10"
         "SUPER, backslash, exec, ${pkgs.pulseaudio}/bin/pactl set-sink-mute 0 toggle"
         "SUPER, a, exec, ${pkgs.wezterm}/bin/wezterm"
-        "SUPER, i, exec, ${pkgs.rofi}/bin/rofi -modi drun,run -show drun"
         "SUPER, o, exec, ${pkgs.screenshot}/bin/screenshot"
         "SUPER SHIFT, o, exec, ${pkgs.screenshot-edit}/bin/screenshot-edit"
-        "SUPER, y, exec, ${pkgs.quicktranslate}/bin/quicktranslate"
-        "SUPER, u, exec, ${pkgs.lock}/bin/lock"
-        "SUPER, p, exec, ${pkgs.power-menu}/bin/power-menu"
+        "SUPER, Return, exec, ${pkgs.wlr-which-key}/bin/wlr-which-key"
+        "SUPER, i, exec, ${pkgs.librewolf}/bin/librewolf"
 
         "SUPER, t, fullscreen"
         "SUPER SHIFT, q, killactive,"
         "SUPER SHIFT, z, exit,"
-        "SUPER, m, togglesplit,"
         "SUPER, space, togglefloating,"
-
-        "SUPER SHIFT, j, changegroupactive, b"
-        "SUPER SHIFT, k, changegroupactive, f"
 
         "SUPER, h, movefocus, l"
         "SUPER, j, movefocus, d"

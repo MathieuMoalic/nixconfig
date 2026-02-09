@@ -12,6 +12,7 @@
       syncthing.enable = true;
       adb.enable = true;
       nfs.nas2 = true;
+      sshd.enable = true;
     };
 
     virtualisation.libvirtd = {
@@ -23,35 +24,7 @@
     programs.virt-manager.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      virt-manager
-      virt-viewer
-      spice-gtk
-      usbutils
-      wget
-    ];
-
-    users.users.mat.extraGroups = ["wheel" "kvm" "libvirtd"];
-
-    programs = {
-      steam.enable = true;
-      gamemode = {
-        enable = true;
-        enableRenice = true;
-        settings = {
-          general.renice = 10;
-          gpu = {
-            apply_gpu_optimisations = "accept-responsibility";
-            gpu_device = 0;
-            amd_performance_level = "high";
-          };
-          custom = {
-            start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
-            end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
-          };
-        };
-      };
-    };
+    programs.steam.enable = true;
 
     home-manager.users.mat.imports = [../../home/zagreus.nix];
 
@@ -78,7 +51,9 @@
         options iwlwifi power_save=0 uapsd_disable=1 enable_ini=0
         options iwlmvm power_scheme=1
       '';
-      kernelParams = ["pcie_aspm=off"];
+      kernelParams = [
+        "pcie_aspm=off"
+      ];
       extraModulePackages = [];
     };
 
@@ -88,16 +63,12 @@
     '';
 
     services = {
-      sunshine = {
-        enable = true;
-        openFirewall = true;
-        autoStart = true;
-        capSysAdmin = true;
-      };
       udev.extraRules = ''
         ACTION=="add" SUBSYSTEM=="pci" ATTR{vendor}=="0x1987" ATTR{device}=="0x5013" ATTR{power/wakeup}="disabled"
         ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="31e3", ATTR{idProduct}=="1312", ATTR{power/wakeup}="disabled"
         ACTION=="add|bind", SUBSYSTEM=="usb", TEST=="power/wakeup", ATTR{power/wakeup}="disabled"
+        # Disable nvme drive from instantly waking up after suspend
+        ACTION=="add", SUBSYSTEM=="pci", KERNELS=="0000:00:01.1", ATTR{power/wakeup}="disabled"
       '';
     };
 

@@ -11,7 +11,7 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPcmHHg1pEOAxvEAyr6p5MY0m3/+BOn8nJOcAf7mMaej"
   ];
 
-  matPasswordHash = "$6$4lSS.DgMsihs04VX$uu3991ckntJRdsu/Mo7nYuo06M7s9zXDRT7l110LUjPN4lq1OtUNC1ER/WEaLXCSNBxIiZfMWKc0jdBN.xRs1.";
+  matPasswordHash = "$6$gMQHadaVYwaBrtfO$y8pVFG0p2mT.iDQ5XYdTIG8GaqNDaQFwuH29z4VaJkYwlYGKCkrZClAixfl8IcPL3aqIh80cv7sq6M2nBx9gd1";
 in {
   options.myModules.users = {
     enable = lib.mkEnableOption "users";
@@ -53,7 +53,7 @@ in {
         linger = true;
         uid = 1000;
         shell = pkgs.fish;
-        extraGroups = ["networkmanager" "wheel" "video" "input" "uinput" "media" "audio" "seat"];
+        extraGroups = ["networkmanager" "wheel" "video" "input" "uinput" "media" "audio" "seat" "kvm" "libvirtd"];
         openssh.authorizedKeys.keys = matKeys;
         hashedPassword = matPasswordHash;
       };

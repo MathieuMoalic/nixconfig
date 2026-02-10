@@ -30,7 +30,7 @@
             {
               key = "Return";
               desc = "Are you sure?";
-              cmd = "reboot";
+              cmd = "systemctl reboot";
             }
           ];
         }
@@ -42,7 +42,7 @@
             {
               key = "Return";
               desc = "Are you sure?";
-              cmd = "poweroff";
+              cmd = "systemctl poweroff";
             }
           ];
         }

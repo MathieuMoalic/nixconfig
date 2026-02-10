@@ -12,11 +12,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # services.seatd.enable = lib.mkForce false;
-    # users.groups.seat = {};
-    # system.nixos-init.enable = true;
-    # system.etc.overlay.enable = true;
-    # services.userborn.enable = true;
     hardware.enableRedistributableFirmware = true;
     myModules = {
       dns.enable = true;
@@ -38,10 +33,30 @@ in {
       nix-ld.enable = true;
     };
 
-    security.sudo-rs = {
-      enable = true;
-      wheelNeedsPassword = false;
-      execWheelOnly = true;
+    security = {
+      sudo-rs = {
+        enable = true;
+        wheelNeedsPassword = false;
+        execWheelOnly = true;
+      };
+      polkit.extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          var allowed = [
+            "org.freedesktop.login1.reboot",
+            "org.freedesktop.login1.reboot-multiple-sessions",
+            "org.freedesktop.login1.power-off",
+            "org.freedesktop.login1.power-off-multiple-sessions",
+            "org.freedesktop.login1.halt",
+            "org.freedesktop.login1.halt-multiple-sessions"
+          ];
+
+          if (allowed.indexOf(action.id) >= 0 &&
+              subject.active &&
+              subject.isInGroup("wheel")) {
+            return polkit.Result.YES;
+          }
+        });
+      '';
     };
 
     services = {

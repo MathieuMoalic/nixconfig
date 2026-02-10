@@ -11,11 +11,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.displayManager.lemurs = {
+    services.displayManager.lemurs.enable = true;
+    xdg.portal = {
       enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
     };
-
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-hyprland];
   };
 }

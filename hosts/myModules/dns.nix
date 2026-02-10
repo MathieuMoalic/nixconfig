@@ -25,9 +25,11 @@ in {
     };
     networking = {
       useDHCP = lib.mkDefault true;
-      networkmanager.enable = true;
-      networkmanager.dns = "systemd-resolved";
-      networkmanager.insertNameservers = dnsList;
+      networkmanager = {
+        enable = true;
+        dns = "systemd-resolved";
+        insertNameservers = dnsList;
+      };
       nameservers = dnsList;
       enableIPv6 = true;
     };

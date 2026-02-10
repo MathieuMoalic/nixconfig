@@ -10,8 +10,6 @@
       podman.enable = true;
       sshd.enable = true;
       syncthing.enable = true;
-      nfs.nas = true;
-      nfs.nas2 = true;
       caddy-defaults.enable = true;
       restic.enable = true;
       scrutiny.enable = true;
@@ -20,7 +18,6 @@
       synapse.enable = true;
       element-web.enable = true;
       authelia.enable = true;
-      boued.enable = true;
       homepage.enable = true;
       ntfy.enable = true;
       libretranslate.enable = true;
@@ -87,8 +84,53 @@
         size = 16 * 1024;
       }
     ];
+    networking = {
+      hostName = "homeserver";
+      useDHCP = false;
+      interfaces = {
+        enp1s0 = {
+          useDHCP = false;
+          ipv4.addresses = [
+            {
+              address = "192.168.1.89";
+              prefixLength = 24;
+            }
+          ];
+        };
+        wlp2s0 = {
+          useDHCP = false;
+          ipv4.addresses = [
+            {
+              address = "192.168.1.89";
+              prefixLength = 24;
+            }
+          ];
+        };
+      };
+      defaultGateway = "192.168.1.1";
+    };
 
-    networking.hostName = "homeserver";
+    environment.etc."NetworkManager/dispatcher.d/70-wifi-wired-exclusive.sh" = {
+      mode = "0755";
+      text = ''
+        #!/bin/bash
+        export LC_ALL=C
+
+        enable_disable_wifi () {
+          result=$(nmcli dev | grep "ethernet" | grep -w "connected")
+          if [ -n "$result" ]; then
+            nmcli radio wifi off
+          else
+            nmcli radio wifi on
+          fi
+        }
+
+        if [ "$2" = "up" ] || [ "$2" = "down" ]; then
+          enable_disable_wifi
+        fi
+      '';
+    };
+
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

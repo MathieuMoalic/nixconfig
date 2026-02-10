@@ -103,8 +103,8 @@ in {
         alt-speed-time-day = 127; # every day
         alt-speed-time-begin = 23 * 60; # 1380 = 23:00
         alt-speed-time-end = 8 * 60; #  480 = 08:00 (wraps over midnight)
-        alt-speed-down = 1;
-        alt-speed-up = 1;
+        alt-speed-down = 0;
+        alt-speed-up = 0;
         alt-speed-enabled = true;
 
         announce-ip-enabled = false;

@@ -11,17 +11,9 @@
       base.enable = true;
       syncthing.enable = true;
       adb.enable = true;
-      nfs.nas2 = true;
       sshd.enable = true;
     };
 
-    virtualisation.libvirtd = {
-      enable = true;
-      qemu.swtpm.enable = true;
-      qemu.runAsRoot = false;
-    };
-
-    programs.virt-manager.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
 
     programs.steam.enable = true;
@@ -37,24 +29,19 @@
       hostName = "zagreus";
       firewall = {
         enable = true;
-        allowedTCPPorts = [8080];
       };
     };
 
     boot = {
       initrd = {
         availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-        kernelModules = [];
         systemd.enable = true;
       };
       extraModprobeConfig = ''
         options iwlwifi power_save=0 uapsd_disable=1 enable_ini=0
         options iwlmvm power_scheme=1
       '';
-      kernelParams = [
-        "pcie_aspm=off"
-      ];
-      extraModulePackages = [];
+      kernelParams = ["pcie_aspm=off"];
     };
 
     environment.etc."NetworkManager/conf.d/99-wifi-powersave.conf".text = ''

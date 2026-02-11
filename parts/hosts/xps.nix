@@ -12,7 +12,6 @@
       syncthing.enable = true;
     };
 
-    programs.steam.enable = true;
     services.upower.enable = true; # needed for hyprpanel battery module
     programs.ssh.startAgent = true;
 

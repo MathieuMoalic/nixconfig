@@ -14,7 +14,6 @@ in {
   ];
   home.packages = with pkgs; [
     pkgs.hyprsome
-    quicktranslate
     lock
     power-menu
     screenshot

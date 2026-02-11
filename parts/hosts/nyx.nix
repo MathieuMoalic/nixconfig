@@ -2,7 +2,6 @@
   my.hosts.nyx = {lib, ...}: {
     myModules = {
       desktop.enable = true;
-      kmonad.enable = true;
       base.enable = true;
       sshd.enable = true;
       nfs.nas = true;

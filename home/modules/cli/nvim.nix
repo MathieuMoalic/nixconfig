@@ -47,6 +47,13 @@
               };
             };
 
+            nil.settings.nil.nix = {
+              autoArchive = false;
+              flake = {
+                autoArchive = true;
+              };
+            };
+
             ruff = {
               cmd = [(lib.getExe pkgs.ruff) "server"];
               root_markers = [".git" "pyproject.toml" "setup.py"];

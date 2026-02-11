@@ -25,6 +25,7 @@
       stirling-pdf.enable = true;
       vaultwarden.enable = true;
       audiobookshelf.enable = true;
+      boued.enable = true;
       jellyfin.enable = true;
       jellyseerr.enable = true;
       prowlarr.enable = true;
@@ -101,7 +102,7 @@
           useDHCP = false;
           ipv4.addresses = [
             {
-              address = "192.168.1.89";
+              address = "192.168.1.88";
               prefixLength = 24;
             }
           ];

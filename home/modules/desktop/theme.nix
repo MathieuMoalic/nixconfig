@@ -11,7 +11,7 @@
     theme.name = "adw-gtk3";
   };
   home.pointerCursor = {
-    package = pkgs.rose-pine-cursor;
+    package = pkgs.rose-pine-hyprcursor;
     gtk.enable = true;
     name = "BreezeX-RosePine-Linux";
   };

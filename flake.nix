@@ -40,6 +40,7 @@
     quicktranslate.url = "github:MathieuMoalic/quicktranslate";
     homepage.url = "github:MathieuMoalic/homepage";
     pleustradenn.url = "github:MathieuMoalic/pleustradenn";
+    blaz.url = "github:MathieuMoalic/blaz";
     boued.url = "github:MathieuMoalic/boued";
   };
 

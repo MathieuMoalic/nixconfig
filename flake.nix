@@ -2,9 +2,13 @@
   inputs = {
     amumax.url = "github:MathieuMoalic/amumax";
 
+    blaz = {
+      url = "github:MathieuMoalic/blaz?ref=v1.0.6";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     boued = {
       url = "github:MathieuMoalic/boued";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
@@ -47,13 +51,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zjstatus.url = "github:dj95/zjstatus";
-    amumax.url = "github:MathieuMoalic/amumax";
-    quicktranslate.url = "github:MathieuMoalic/quicktranslate";
-    homepage.url = "github:MathieuMoalic/homepage";
     pleustradenn.url = "github:MathieuMoalic/pleustradenn";
-    blaz.url = "github:MathieuMoalic/blaz";
-    boued.url = "github:MathieuMoalic/boued";
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

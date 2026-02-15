@@ -21,7 +21,7 @@ in {
 
     logFile = lib.mkOption {
       type = types.str;
-      default = "/var/log/blaz/blaz.log";
+      default = "/var/lib/blaz/blaz.log";
     };
 
     databasePath = lib.mkOption {
@@ -42,6 +42,17 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    systemd.tmpfiles.rules = [
+      # DB dir (so ReadWritePaths mount can be created)
+      "d ${dirOf cfg.databasePath} 0750 blaz blaz - -"
+
+      # media dir (this is your current failure)
+      "d ${cfg.mediaDir} 0750 blaz blaz - -"
+
+      # log dir (+ optional file)
+      "d ${dirOf cfg.logFile} 0750 blaz blaz - -"
+      "f ${cfg.logFile} 0640 blaz blaz - -"
+    ];
     services.blaz = {
       enable = true;
       bindAddr = "127.0.0.1:${toString cfg.port}";

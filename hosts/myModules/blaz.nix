@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs,
+  pkgs,
   ...
 }: let
   cfg = config.myModules.blaz;
@@ -95,7 +97,7 @@ in {
     # Configure Blaz service
     services.blaz = {
       enable = true;
-
+      package = inputs.blaz.packages.${pkgs.stdenv.hostPlatform.system}.prebuilt;
       # Network configuration
       bindAddr = "127.0.0.1:${toString cfg.port}";
       corsOrigin = "https://${cfg.url}";

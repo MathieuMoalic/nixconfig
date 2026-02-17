@@ -41,16 +41,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1771166045,
-        "narHash": "sha256-DY7W3bEBXYuNe2fyaT1Gbq5BoY5HhWyLHyCF9xbACPI=",
+        "lastModified": 1771338703,
+        "narHash": "sha256-31XU0UTnRcRPusZ5BqYM/TidDl+INYeSCHRtrKSj3lE=",
         "owner": "MathieuMoalic",
         "repo": "blaz",
-        "rev": "49081142c63f8aa1ff8933f89e31734c21fb759f",
+        "rev": "d68ce2a7d4161bcb079c3e4db05efcd437b698a3",
         "type": "github"
       },
       "original": {
         "owner": "MathieuMoalic",
-        "ref": "v1.0.6",
+        "ref": "v1.0.9",
         "repo": "blaz",
         "type": "github"
       }

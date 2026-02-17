@@ -34,11 +34,30 @@
         "type": "github"
       }
     },
-    "boued": {
+    "blaz": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
+      },
+      "locked": {
+        "lastModified": 1771166045,
+        "narHash": "sha256-DY7W3bEBXYuNe2fyaT1Gbq5BoY5HhWyLHyCF9xbACPI=",
+        "owner": "MathieuMoalic",
+        "repo": "blaz",
+        "rev": "49081142c63f8aa1ff8933f89e31734c21fb759f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MathieuMoalic",
+        "ref": "v1.0.6",
+        "repo": "blaz",
+        "type": "github"
+      }
+    },
+    "boued": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1770793496,
@@ -283,6 +302,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1746576598,
+        "narHash": "sha256-FshoQvr6Aor5SnORVvh/ZdJ1Sa2U4ZrIMwKBX5k2wu0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b3582c75c7f21ce0b429898980eddbbf05c68e55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1770617025,
         "narHash": "sha256-1jZvgZoAagZZB6NwGRv2T2ezPy+X6EFDsJm+YSlsvEs=",
         "owner": "nixos",
@@ -293,6 +328,22 @@
       "original": {
         "owner": "nixos",
         "ref": "nixos-25.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1746576598,
+        "narHash": "sha256-FshoQvr6Aor5SnORVvh/ZdJ1Sa2U4ZrIMwKBX5k2wu0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b3582c75c7f21ce0b429898980eddbbf05c68e55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -340,9 +391,7 @@
     },
     "pleustradenn": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1750869797,
@@ -361,6 +410,7 @@
     "root": {
       "inputs": {
         "amumax": "amumax",
+        "blaz": "blaz",
         "boued": "boued",
         "disko": "disko",
         "flake-parts": "flake-parts",
@@ -369,7 +419,7 @@
         "import-tree": "import-tree",
         "nix-colors": "nix-colors",
         "nix-index-database": "nix-index-database",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs_unstable": "nixpkgs_unstable",
         "nvf": "nvf",
         "pleustradenn": "pleustradenn",

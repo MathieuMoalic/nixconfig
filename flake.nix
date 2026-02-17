@@ -2,9 +2,13 @@
   inputs = {
     amumax.url = "github:MathieuMoalic/amumax";
 
+    blaz = {
+      url = "github:MathieuMoalic/blaz?ref=v1.0.6";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     boued = {
       url = "github:MathieuMoalic/boued";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
@@ -47,10 +51,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pleustradenn = {
-      url = "github:MathieuMoalic/pleustradenn";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    pleustradenn.url = "github:MathieuMoalic/pleustradenn";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";

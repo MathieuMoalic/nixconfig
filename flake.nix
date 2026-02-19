@@ -3,7 +3,7 @@
     amumax.url = "github:MathieuMoalic/amumax";
 
     blaz = {
-      url = "github:MathieuMoalic/blaz?ref=v1.0.11";
+      url = "github:MathieuMoalic/blaz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

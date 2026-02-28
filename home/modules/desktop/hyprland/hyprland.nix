@@ -3,9 +3,7 @@
   lib,
   pkgs,
   ...
-}: let
-  hyprsome = "${pkgs.hyprsome}/bin/hyprsome";
-in {
+}: {
   imports = [
     ./hypridle.nix
     ./hyprlock.nix
@@ -13,7 +11,6 @@ in {
     ./hyprpanel.nix
   ];
   home.packages = with pkgs; [
-    pkgs.hyprsome
     lock
     power-menu
     screenshot
@@ -467,27 +464,27 @@ in {
         "SUPER, k, movefocus, u"
         "SUPER, l, movefocus, r"
 
-        "SUPER, w, exec, ${hyprsome} workspace 1"
-        "SUPER, e, exec, ${hyprsome} workspace 2"
-        "SUPER, r, exec, ${hyprsome} workspace 3"
-        "SUPER, s, exec, ${hyprsome} workspace 4"
-        "SUPER, d, exec, ${hyprsome} workspace 5"
-        "SUPER, f, exec, ${hyprsome} workspace 6"
-        "SUPER, x, exec, ${hyprsome} workspace 7"
-        "SUPER, c, exec, ${hyprsome} workspace 8"
-        "SUPER, v, exec, ${hyprsome} workspace 9"
-        "SUPER, g, exec, ${hyprsome} workspace 10"
+        "SUPER, w, workspace, 1"
+        "SUPER, e, workspace, 2"
+        "SUPER, r, workspace, 3"
+        "SUPER, s, workspace, 4"
+        "SUPER, d, workspace, 5"
+        "SUPER, f, workspace, 6"
+        "SUPER, x, workspace, 7"
+        "SUPER, c, workspace, 8"
+        "SUPER, v, workspace, 9"
+        "SUPER, g, workspace, 10"
 
-        "SUPER SHIFT, w, exec, ${hyprsome} move 1"
-        "SUPER SHIFT, e, exec, ${hyprsome} move 2"
-        "SUPER SHIFT, r, exec, ${hyprsome} move 3"
-        "SUPER SHIFT, s, exec, ${hyprsome} move 4"
-        "SUPER SHIFT, d, exec, ${hyprsome} move 5"
-        "SUPER SHIFT, f, exec, ${hyprsome} move 6"
-        "SUPER SHIFT, x, exec, ${hyprsome} move 7"
-        "SUPER SHIFT, c, exec, ${hyprsome} move 8"
-        "SUPER SHIFT, v, exec, ${hyprsome} move 9"
-        "SUPER SHIFT, g, exec, ${hyprsome} move 10"
+        "SUPER SHIFT, w, movetoworkspace, 1"
+        "SUPER SHIFT, e, movetoworkspace, 2"
+        "SUPER SHIFT, r, movetoworkspace, 3"
+        "SUPER SHIFT, s, movetoworkspace, 4"
+        "SUPER SHIFT, d, movetoworkspace, 5"
+        "SUPER SHIFT, f, movetoworkspace, 6"
+        "SUPER SHIFT, x, movetoworkspace, 7"
+        "SUPER SHIFT, c, movetoworkspace, 8"
+        "SUPER SHIFT, v, movetoworkspace, 9"
+        "SUPER SHIFT, g, movetoworkspace, 10"
 
         "SUPER,end,resizeactive,20 0"
         "SUPER,home,resizeactive,-20 0"
@@ -498,73 +495,12 @@ in {
         "SUPER, mouse:272, movewindow"
       ];
 
-      windowrulev2 =
-        [
-          "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
-          "idleinhibit focus, title:^(.*YouTube.*)$"
-          "idleinhibit focus, title:^(.*Twitch.*)$"
-          "suppressevent,class:.*"
-        ]
-        ++ (lib.optionals (osConfig.networking.hostName == "zagreus") [
-          "workspace 3 silent, class:steam"
-          "workspace 1 silent, class:^(steam_app_.*)$"
-        ]);
-      workspace =
-        (lib.optionals (osConfig.networking.hostName == "nyx") [
-          "DP-3, 1920x1200@59.95, -1920x0, 1"
-          "DP-1, 2560x1440@59.95, 0x0, 1"
-          "DP-2, 2560x1440@59.95, 2560x0, 1"
-          "Unknown-1, disable"
-          "21,monitor:DP-3"
-          "22,monitor:DP-3"
-          "23,monitor:DP-3"
-          "24,monitor:DP-3"
-          "25,monitor:DP-3"
-          "27,monitor:DP-3"
-          "28,monitor:DP-3"
-          "29,monitor:DP-3"
-          "30,monitor:DP-3"
-          "1,monitor:DP-1"
-          "2,monitor:DP-1"
-          "3,monitor:DP-1"
-          "4,monitor:DP-1"
-          "5,monitor:DP-1"
-          "6,monitor:DP-1"
-          "7,monitor:DP-1"
-          "8,monitor:DP-1"
-          "9,monitor:DP-1"
-          "10,monitor:DP-1"
-          "11,monitor:DP-2"
-          "12,monitor:DP-2"
-          "13,monitor:DP-2"
-          "14,monitor:DP-2"
-          "15,monitor:DP-2"
-          "17,monitor:DP-2"
-          "18,monitor:DP-2"
-          "19,monitor:DP-2"
-          "20,monitor:DP-2"
-        ])
-        ++ (lib.optionals (osConfig.networking.hostName == "zagreus") [
-          "1,monitor:DP-2"
-          "2,monitor:DP-2"
-          "3,monitor:DP-2"
-          "4,monitor:DP-2"
-          "5,monitor:DP-2"
-          "6,monitor:DP-2"
-          "7,monitor:DP-2"
-          "8,monitor:DP-2"
-          "9,monitor:DP-2"
-          "10,monitor:DP-2"
-          "11,monitor:HDMI-A-1"
-          "12,monitor:HDMI-A-1"
-          "13,monitor:HDMI-A-1"
-          "14,monitor:HDMI-A-1"
-          "15,monitor:HDMI-A-1"
-          "17,monitor:HDMI-A-1"
-          "18,monitor:HDMI-A-1"
-          "19,monitor:HDMI-A-1"
-          "20,monitor:HDMI-A-1"
-        ]);
+      windowrulev2 = [
+        "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
+        "idleinhibit focus, title:^(.*YouTube.*)$"
+        "idleinhibit focus, title:^(.*Twitch.*)$"
+        "suppressevent,class:.*"
+      ];
     };
   };
 }

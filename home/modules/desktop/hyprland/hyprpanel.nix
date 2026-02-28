@@ -28,6 +28,10 @@
           "1" = commonBarLayout;
           "2" = commonBarLayout;
         };
+        workspaces = {
+          show_numbered = true;
+          show_icons = false;
+        };
         autoHide = "fullscreen";
         clock = {
           format = "%Y.%m.%d %H:%M:%S";

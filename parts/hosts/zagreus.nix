@@ -12,6 +12,7 @@
       syncthing.enable = true;
       adb.enable = true;
       sshd.enable = true;
+      nfs.nas2 = true;
     };
 
     virtualisation.spiceUSBRedirection.enable = true;

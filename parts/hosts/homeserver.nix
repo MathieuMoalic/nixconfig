@@ -36,6 +36,7 @@
       transmission.enable = true;
       watcharr.enable = true;
       blaz.enable = true;
+      mont.enable = true;
     };
 
     home-manager.users.mat.imports = [../../home/homeserver.nix];

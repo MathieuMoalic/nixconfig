@@ -23,6 +23,7 @@
           inputs.homepage.nixosModules.homepage-service
           inputs.pleustradenn.nixosModules.pleustradenn-service
           inputs.blaz.nixosModules.blaz-service
+          inputs.mont.nixosModules.mont-service
           inputs.boued.nixosModules.boued-service
           inputs.sops-nix.nixosModules.sops
           inputs.disko.nixosModules.disko

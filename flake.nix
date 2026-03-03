@@ -7,6 +7,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mont = {
+      url = "github:MathieuMoalic/mont";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     boued = {
       url = "github:MathieuMoalic/boued";
     };

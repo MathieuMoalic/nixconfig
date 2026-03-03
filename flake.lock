@@ -41,11 +41,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771795326,
-        "narHash": "sha256-zG9VyUG7P9enwm1pQIi0Mh5q6qbUKMtk8O6zSQ12wSY=",
+        "lastModified": 1771885125,
+        "narHash": "sha256-Rh0V0j4uvZEKDOJgb99bujji6xhVGIoerO8y/08mA2M=",
         "owner": "MathieuMoalic",
         "repo": "blaz",
-        "rev": "5dda2aff791245c4f03a667d841f4ef39774f359",
+        "rev": "100cbbd65948f33ef6b19b9756a483ecb3bb84e4",
         "type": "github"
       },
       "original": {
@@ -217,6 +217,26 @@
       "original": {
         "owner": "Gerg-L",
         "repo": "mnw",
+        "type": "github"
+      }
+    },
+    "mont": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772453333,
+        "narHash": "sha256-OghdU31RF7szktnr2+RIA0Xj98RkBchuzuDWCJ79Foc=",
+        "owner": "MathieuMoalic",
+        "repo": "mont",
+        "rev": "abbc0e0ff916fd377c7c0a856da2b609ff5e08a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MathieuMoalic",
+        "repo": "mont",
         "type": "github"
       }
     },
@@ -416,6 +436,7 @@
         "home-manager": "home-manager",
         "homepage": "homepage",
         "import-tree": "import-tree",
+        "mont": "mont",
         "nix-colors": "nix-colors",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_3",

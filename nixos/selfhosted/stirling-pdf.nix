@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.stirling-pdf = {
     lib,
     config,

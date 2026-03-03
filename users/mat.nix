@@ -1,8 +1,10 @@
-{...}: {
+{
   flake.nixosModules.mat = {
     pkgs,
     inputs,
     self,
+    config,
+    lib,
     ...
   }: {
     programs.fish.enable = true;
@@ -24,16 +26,20 @@
     home-manager.users.mat = {
       home.stateVersion = "23.05";
       programs.man.enable = false;
-      imports = with self.homeModules; [
-        inputs.nix-colors.homeManagerModules.default
-        inputs.nvf.homeManagerModules.default
-        inputs.nix-index-database.homeModules.nix-index
-        userDirs
-        sessionVariables
-        nixSettings
-        colorScheme
-        cli
-      ];
+      imports = with self.homeModules;
+        [
+          inputs.nix-colors.homeManagerModules.default
+          inputs.nvf.homeManagerModules.default
+          inputs.nix-index-database.homeModules.nix-index
+          userDirs
+          sessionVariables
+          nixSettings
+          colorScheme
+          cli
+        ]
+        ++ lib.optionals config.programs.hyprland.enable [
+          self.homeModules.desktop
+        ];
     };
   };
 }

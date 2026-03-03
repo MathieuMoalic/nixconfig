@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.self-hosted = {
     inputs,
     self,

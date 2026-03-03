@@ -1,5 +1,5 @@
-{inputs, ...}: let
-  overlay = final: _: let
+{inputs, ...}: {
+  flake.overlays.cop = final: _: let
     unstable = import inputs.nixpkgs_unstable {
       inherit (final.stdenv.hostPlatform) system;
       config.allowUnfree = true;
@@ -18,6 +18,4 @@
       '';
     };
   };
-in {
-  flake.overlays.cop = overlay;
 }

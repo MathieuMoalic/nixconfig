@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.element-web = {
     pkgs,
     lib,

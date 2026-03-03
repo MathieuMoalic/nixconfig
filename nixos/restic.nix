@@ -1,9 +1,13 @@
-{...}: {
+{
   flake.nixosModules.restic = {
     pkgs,
     config,
+    self,
     ...
   }: {
+    imports = with self.nixosModules; [
+      nfs
+    ];
     sops.secrets."restic/password" = {
       owner = "mat";
       group = "mat";

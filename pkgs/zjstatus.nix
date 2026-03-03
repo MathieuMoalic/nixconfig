@@ -1,5 +1,5 @@
-{...}: let
-  overlay = final: _: {
+{
+  flake.overlays.zjstatus = final: _: {
     zjstatus = final.stdenvNoCC.mkDerivation {
       pname = "zjstatus";
       version = "0.22.0";
@@ -25,6 +25,4 @@
       };
     };
   };
-in {
-  flake.overlays.zjstatus = overlay;
 }

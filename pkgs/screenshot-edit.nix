@@ -1,5 +1,5 @@
-{...}: let
-  overlay = final: _: {
+{
+  flake.overlays.screenshot-edit = final: _: {
     "screenshot-edit" = final.writeShellApplication {
       name = "screenshot-edit";
       runtimeInputs = with final; [grim slurp satty wl-clipboard];
@@ -7,6 +7,4 @@
         grim -g "$(slurp)" -t ppm - | satty --filename - --output-filename "$HOME/dl/screenshot-$(date '+%Y%m%d-%H:%M:%S').png" --initial-tool brush --copy-command wl-copy'';
     };
   };
-in {
-  flake.overlays.screenshot-edit = overlay;
 }

@@ -12,7 +12,6 @@
 
     userModules = with self.nixosModules; [
       mat
-      mat-desktop
     ];
 
     hostConfig = {

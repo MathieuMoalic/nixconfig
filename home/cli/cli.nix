@@ -12,12 +12,12 @@
       git
       lazygit
       nvim
-      rclone
       ssh
       starship
       yazi
       zellij
     ];
+
     home.packages = with pkgs; [
       uutils-coreutils-noprefix
 

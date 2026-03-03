@@ -11,30 +11,30 @@
       zathura
       wlr-which-key
     ];
+
     services.mpris-proxy.enable = true; # pause/play bluetooth commands
     home.packages = with pkgs; [
-      grim
-      rofi-bluetooth # bluetooth manager
-      pulseaudio # audio
-      brillo # brightness
-      libnotify # notifications
-      wl-clipboard # wayland clipboard
-      ripdrag # ripgrep + drag and drop
-      vscode # code editor
+      rofi-bluetooth
+      pulseaudio
+      brillo
+      libnotify
+      wl-clipboard
+      ripdrag
+      vscode
       deezer-enhanced
-
-      libreoffice # document editor
-      mpv # video player
-      gimp # image editor
-      inkscape # svf editor
-      nomacs # image viewer
-      zathura # pdf viewer
-      anki-bin # flash cards
-      hyprpanel
+      libreoffice
+      mpv
+      gimp
+      inkscape
+      nomacs
+      zathura
+      chromium
     ];
+
     programs.fish.shellAliases = {
       rd = "ripdrag -x";
     };
+
     programs.librewolf = {
       enable = true;
       settings = {

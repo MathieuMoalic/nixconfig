@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.sonarr = {
     lib,
     config,

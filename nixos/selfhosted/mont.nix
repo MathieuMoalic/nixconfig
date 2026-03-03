@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.mont = {
     config,
     inputs,

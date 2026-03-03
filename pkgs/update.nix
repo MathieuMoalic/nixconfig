@@ -1,5 +1,5 @@
-{...}: let
-  overlay = final: _: {
+{
+  flake.overlays.update = final: _: {
     update = final.writeShellApplication {
       name = "up";
       runtimeInputs = with final; [alejandra git nh];
@@ -16,6 +16,4 @@
       '';
     };
   };
-in {
-  flake.overlays.update = overlay;
 }

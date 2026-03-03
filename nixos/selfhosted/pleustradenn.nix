@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.pleustradenn = {
     lib,
     config,

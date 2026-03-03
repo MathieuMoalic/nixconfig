@@ -1,5 +1,5 @@
-{...}: let
-  overlay = final: _: {
+{
+  flake.overlays.sopsedit = final: _: {
     sopsedit = final.writeShellApplication {
       name = "sopsedit";
       runtimeInputs = with final; [sops];
@@ -8,6 +8,4 @@
       '';
     };
   };
-in {
-  flake.overlays.sopsedit = overlay;
 }

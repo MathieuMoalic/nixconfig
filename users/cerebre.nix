@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.cerebre = {pkgs, ...}: {
     users = {
       groups.cerebre = {};

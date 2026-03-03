@@ -10,15 +10,11 @@
 
     userModules = with self.nixosModules; [
       mat
-      mat-desktop
     ];
 
     hostConfig = {
-      config,
       lib,
       pkgs,
-      inputs,
-      self,
       ...
     }: {
       services.upower.enable = true; # needed for hyprpanel battery module
@@ -56,11 +52,9 @@
             "luks-63890607-1aa3-4a8d-a666-6e0200eda2b4".device = "/dev/disk/by-uuid/63890607-1aa3-4a8d-a666-6e0200eda2b4";
           };
           availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
-          kernelModules = [];
         };
 
         kernelModules = ["kvm-intel"];
-        extraModulePackages = [];
       };
 
       fileSystems = {

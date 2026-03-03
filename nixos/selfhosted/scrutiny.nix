@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.scrutiny = {
     lib,
     config,

@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.blaz = {
     config,
     pkgs,

@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.uptime-kuma = {
     lib,
     config,

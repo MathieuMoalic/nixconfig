@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.syncthing = {...}: {
     services = {
       syncthing = {
@@ -19,7 +19,6 @@
             homeserver.id = "HMB5HRD-ATJRBXJ-4GFOGOU-LTDGEJ3-OMPKYXR-5IA6T25-NG4ULJ7-TVL3QQI";
             oneplus.id = "PXOELPW-AQXMEXD-7DCHW6O-ID54IYY-T2U35KM-YPU657P-6IBPJDY-ENFH3AP";
             xps.id = "GCEPPMO-ZGT2AK3-3Y7C55R-YVZMZ4U-WJMGPL7-RDPQOEI-L3TMRVN-W2E6DAX";
-            nyx.id = "Y5XKMHT-3T7OOE6-EESSVJ3-ZDRENEA-64HKJ64-MP34CAO-CKDHAVG-EKLUKQI";
             zagreus.id = "THFKTVZ-NCX4IJP-KNCYT52-SZFMRFF-UW65EDN-ORY2IVS-KLVMTYR-KWJB7QS";
           };
           folders = {
@@ -30,7 +29,7 @@
                 type = "simple";
                 params.keep = "10";
               };
-              devices = ["homeserver" "xps" "nyx" "oneplus" "zagreus"];
+              devices = ["homeserver" "xps" "oneplus" "zagreus"];
             };
           };
         };

@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.watcharr = {
     lib,
     config,

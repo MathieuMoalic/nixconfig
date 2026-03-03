@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.jellyfin = {
     lib,
     config,

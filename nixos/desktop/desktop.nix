@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.desktop = {
     pkgs,
     self,

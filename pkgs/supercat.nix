@@ -1,5 +1,5 @@
-{...}: let
-  overlay = final: _: {
+{
+  flake.overlays.supercat = final: _: {
     supercat = final.writeShellApplication {
       name = "supercat";
       runtimeInputs = [final.coreutils final.ncurses];
@@ -66,6 +66,4 @@
       '';
     };
   };
-in {
-  flake.overlays.supercat = overlay;
 }

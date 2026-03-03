@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.transmission = {
     lib,
     pkgs,

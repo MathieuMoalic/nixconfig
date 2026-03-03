@@ -1,5 +1,5 @@
-{...}: let
-  overlay = final: _: {
+{
+  flake.overlays.journalctl = final: _: {
     journalctl = final.writeShellApplication {
       name = "j";
       runtimeInputs = with final; [systemd coreutils];
@@ -50,6 +50,4 @@
       '';
     };
   };
-in {
-  flake.overlays.journalctl = overlay;
 }

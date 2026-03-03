@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.radarr = {
     lib,
     config,

@@ -1,5 +1,5 @@
-{...}: let
-  overlay = final: _: {
+{
+  flake.overlays.lock = final: _: {
     lock = final.writeShellApplication {
       name = "lock";
       runtimeInputs = with final; [hyprlock hyprland];
@@ -10,6 +10,4 @@
       '';
     };
   };
-in {
-  flake.overlays.lock = overlay;
 }

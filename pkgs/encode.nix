@@ -1,5 +1,5 @@
-{...}: let
-  overlay = final: _: {
+{
+  flake.overlays.encode = final: _: {
     encode = final.writeShellApplication {
       name = "enc";
       runtimeInputs = with final; [openssl gnutar];
@@ -22,6 +22,4 @@
       '';
     };
   };
-in {
-  flake.overlays.encode = overlay;
 }

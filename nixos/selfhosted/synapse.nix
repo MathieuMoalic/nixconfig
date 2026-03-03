@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.synapse = {
     lib,
     config,

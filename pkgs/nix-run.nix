@@ -1,5 +1,5 @@
-{...}: let
-  overlay = final: _: {
+{
+  flake.overlays.nix-run = final: _: {
     "nix-run" = final.writeShellApplication {
       name = "nr";
       text = ''
@@ -7,6 +7,4 @@
       '';
     };
   };
-in {
-  flake.overlays.nix-run = overlay;
 }

@@ -1,5 +1,5 @@
-{...}: let
-  overlay = final: _: {
+{
+  flake.overlays.screenshot = final: _: {
     screenshot = final.writeShellApplication {
       name = "screenshot";
       runtimeInputs = with final; [grim slurp wl-clipboard];
@@ -8,6 +8,4 @@
       '';
     };
   };
-in {
-  flake.overlays.screenshot = overlay;
 }

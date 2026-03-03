@@ -1,8 +1,8 @@
 {...}: {
   flake.nixosModules.blaz = {
     config,
-    inputs,
     pkgs,
+    inputs,
     ...
   }: let
     url = "blaz.matmoa.eu";
@@ -45,7 +45,6 @@
     services.blaz = {
       enable = true;
       package = inputs.blaz.packages.${pkgs.stdenv.hostPlatform.system}.prebuilt;
-
       bindAddr = "127.0.0.1:${toString port}";
       corsOrigin = "https://${url}";
 

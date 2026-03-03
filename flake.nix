@@ -4,7 +4,6 @@
 
     blaz = {
       url = "github:MathieuMoalic/blaz";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     mont = {
@@ -14,6 +13,12 @@
 
     boued = {
       url = "github:MathieuMoalic/boued";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    mont = {
+      url = "github:MathieuMoalic/mont";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     disko = {
@@ -56,7 +61,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pleustradenn.url = "github:MathieuMoalic/pleustradenn";
+    pleustradenn = {
+      url = "github:MathieuMoalic/pleustradenn";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -66,8 +74,15 @@
 
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux"];
       imports = [
-        (inputs.import-tree ./parts)
+        inputs.home-manager.flakeModules.home-manager
+        (inputs.import-tree ./home)
+        (inputs.import-tree ./hosts)
+        (inputs.import-tree ./nixos)
+        (inputs.import-tree ./pkgs)
+        (inputs.import-tree ./users)
+        ./mkHost.nix
       ];
     };
 }

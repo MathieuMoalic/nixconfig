@@ -5,7 +5,6 @@
       EDITOR = "nvim";
       VISUAL = "$EDITOR";
       SUDO_EDIT = "$EDITOR";
-      NIXOS_OZONE_WL = "1";
       LD_LIBRARY_PATH = "/run/opengl-driver/lib";
 
       IPYTHONDIR = "$HOME/.local/share/ipython";

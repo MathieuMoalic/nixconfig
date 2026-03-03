@@ -6,11 +6,59 @@
     ...
   }: let
     port = 3080; # this is hardcoded in watcharr ...
-    package = pkgs.watcharr;
     user = "watcharr";
     group = "media";
     url = "watcharr.matmoa.eu";
     dataDir = "/var/lib/watcharr";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "sbondCo";
+      repo = "Watcharr";
+      rev = "v2.1.1";
+      hash = "sha256-vuqymvPxQwWgmNvr6wNk5P2TFyCYkj0K5ncb3Q1eRbs=";
+    };
+
+    ui = pkgs.buildNpmPackage {
+      pname = "watcharr-ui";
+      version = "2.1.1";
+      inherit src;
+      nodejs = pkgs.nodejs_20;
+      npmDepsHash = "sha256-vUbkTUaDQbvfc439ufLVGUR0Z/l3LlLE72fcc7m1o50=";
+      installPhase = ''
+        runHook preInstall
+        mkdir -p $out
+        cp -r build $out/
+        runHook postInstall
+      '';
+    };
+
+    package = pkgs.buildGoModule {
+      pname = "watcharr";
+      version = "2.1.1";
+      inherit src;
+      modRoot = "server";
+      subPackages = ["."];
+      vendorHash = "sha256-DaKPl0Th85WOXfAactTSYNOmQcz9Yh0mydTCVkMkbQA=";
+      env.CGO_ENABLED = 1;
+      env.CGO_CFLAGS = "-D_LARGEFILE64_SOURCE";
+      nativeBuildInputs = [pkgs.pkg-config];
+      buildInputs = [pkgs.sqlite];
+      preBuild = ''
+        mkdir -p ui
+        cp -r ${ui}/build/. ui/
+      '';
+      postInstall = ''
+        mkdir -p "$out/ui"
+        cp -r ${ui}/build/. "$out/ui/"
+      '';
+      meta = with lib; {
+        description = "Self-hostable watched list (movies, TV, anime, games)";
+        homepage = "https://watcharr.app";
+        license = licenses.mit;
+        platforms = platforms.linux;
+        mainProgram = "server";
+      };
+    };
   in {
     # Ensure service user/group exist
     users.groups.${group} = {};

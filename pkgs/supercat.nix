@@ -1,5 +1,5 @@
 {...}: let
-  overlay = final: prev: {
+  overlay = final: _: {
     supercat = final.writeShellApplication {
       name = "supercat";
       runtimeInputs = [final.coreutils final.ncurses];

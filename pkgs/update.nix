@@ -1,5 +1,5 @@
 {...}: let
-  overlay = final: prev: {
+  overlay = final: _: {
     update = final.writeShellApplication {
       name = "up";
       runtimeInputs = with final; [alejandra git nh];

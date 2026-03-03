@@ -1,9 +1,5 @@
 {...}: {
-  flake.nixosModules.syncthing = {
-    lib,
-    config,
-    ...
-  }: {
+  flake.nixosModules.syncthing = {...}: {
     services = {
       syncthing = {
         enable = true;

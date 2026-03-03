@@ -1,5 +1,5 @@
 {...}: let
-  overlay = final: prev: {
+  overlay = final: _: {
     sopsedit = final.writeShellApplication {
       name = "sopsedit";
       runtimeInputs = with final; [sops];

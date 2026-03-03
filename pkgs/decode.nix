@@ -1,5 +1,5 @@
 {...}: let
-  overlay = final: prev: {
+  overlay = final: _: {
     decode = final.writeShellApplication {
       name = "dec";
       runtimeInputs = with final; [openssl gnutar];

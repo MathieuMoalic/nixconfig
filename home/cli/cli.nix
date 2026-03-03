@@ -53,7 +53,6 @@
       delta # diff
       just # makefile in rust
       television # fuzzyfinder
-      github-copilot-cli
 
       # custom scripts below
       cop

@@ -1,7 +1,5 @@
 {
   inputs = {
-    amumax.url = "github:MathieuMoalic/amumax";
-
     blaz = {
       url = "github:MathieuMoalic/blaz";
     };
@@ -13,11 +11,6 @@
 
     boued = {
       url = "github:MathieuMoalic/boued";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    disko = {
-      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -1,10 +1,9 @@
 {...}: let
-  overlay = final: prev: {
+  overlay = final: _: {
     journalctl = final.writeShellApplication {
       name = "j";
       runtimeInputs = with final; [systemd coreutils];
       text = ''
-        #!/usr/bin/env bash
         set -euo pipefail
 
         usage() {

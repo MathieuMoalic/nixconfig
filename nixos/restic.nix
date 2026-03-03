@@ -1,6 +1,5 @@
 {...}: {
   flake.nixosModules.restic = {
-    lib,
     pkgs,
     config,
     ...

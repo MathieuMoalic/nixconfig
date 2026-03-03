@@ -1,5 +1,5 @@
 {...}: let
-  overlay = final: prev: {
+  overlay = final: _: {
     "nix-shell" = final.writeShellApplication {
       name = "ns";
       text = ''

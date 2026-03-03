@@ -1,5 +1,5 @@
 {...}: let
-  overlay = final: _prev: {
+  overlay = final: _: {
     zjstatus = final.stdenvNoCC.mkDerivation {
       pname = "zjstatus";
       version = "0.22.0";

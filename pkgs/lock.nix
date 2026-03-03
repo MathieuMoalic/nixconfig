@@ -1,5 +1,5 @@
 {...}: let
-  overlay = final: prev: {
+  overlay = final: _: {
     lock = final.writeShellApplication {
       name = "lock";
       runtimeInputs = with final; [hyprlock hyprland];

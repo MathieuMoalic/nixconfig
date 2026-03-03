@@ -1,10 +1,10 @@
 {...}: let
-  overlay = final: prev: {
+  overlay = final: _: {
     encode = final.writeShellApplication {
       name = "enc";
       runtimeInputs = with final; [openssl gnutar];
       text = ''
-            set -e
+        set -e
         if [ -z "$1" ]; then
           echo No directory specified
           return 1

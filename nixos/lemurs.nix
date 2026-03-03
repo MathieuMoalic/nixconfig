@@ -1,10 +1,5 @@
 {
-  flake.nixosModules.lemurs = {
-    lib,
-    pkgs,
-    config,
-    ...
-  }: {
+  flake.nixosModules.lemurs = {pkgs, ...}: {
     services.displayManager.lemurs.enable = true;
     xdg.portal = {
       enable = true;

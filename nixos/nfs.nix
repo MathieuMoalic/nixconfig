@@ -1,10 +1,5 @@
 {...}: {
-  flake.nixosModules.nfs = {
-    pkgs,
-    lib,
-    config,
-    ...
-  }: let
+  flake.nixosModules.nfs = {...}: let
     makeNFS = device: {
       inherit device;
       fsType = "nfs";

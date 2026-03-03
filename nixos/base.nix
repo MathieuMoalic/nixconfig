@@ -96,18 +96,6 @@
     ];
 
     nix = {
-      distributedBuilds = false;
-      buildMachines = [
-        {
-          hostName = "mat@alecto.zfns.eu.org:46464";
-          sshKey = "/home/mat/.ssh/id_ed25519";
-          systems = ["x86_64-linux" "aarch64-linux"];
-          maxJobs = 30;
-          speedFactor = 10;
-          supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-          publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU9qdUs1UmoyVEFrU2dKbzVEV1E2WjdsdmVOQ3NCZXUrMHRKNVJlU1BmUk8gcm9vdEBhbGVjdG8K";
-        }
-      ];
       channel.enable = false;
       package = pkgs.nix;
       settings = {
@@ -167,6 +155,7 @@
     home-manager = {
       backupFileExtension = "hmbak";
       extraSpecialArgs = {inherit inputs self;};
+      useUserPackages = true;
       useGlobalPkgs = true;
     };
   };

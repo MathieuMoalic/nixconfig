@@ -27,13 +27,7 @@
           "HYPRCURSOR_SIZE,32"
         ];
         monitor =
-          (lib.optionals (osConfig.networking.hostName == "nyx") [
-            "DP-3, 1920x1200@59.95, -1920x0, 1"
-            "DP-1, 2560x1440@59.95, 0x0, 1"
-            "DP-2, 2560x1440@59.95, 2560x0, 1"
-            "Unknown-1, disable"
-          ])
-          ++ (lib.optionals (osConfig.networking.hostName == "xps") [
+          (lib.optionals (osConfig.networking.hostName == "xps") [
             ",highres,auto,1"
             "HDMI-1,preferred,auto,auto" # potential external display
           ])

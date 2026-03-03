@@ -1,5 +1,5 @@
 {inputs, ...}: let
-  overlay = final: prev: let
+  overlay = final: _: let
     unstable = import inputs.nixpkgs_unstable {
       inherit (final.stdenv.hostPlatform) system;
       config.allowUnfree = true;

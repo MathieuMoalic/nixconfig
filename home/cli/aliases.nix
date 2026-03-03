@@ -14,13 +14,9 @@
         e = "nvim";
         ef = "nvim -- (tv files --no-remote)";
         eg = "set -l p (string split -m2 ':' -- (tv text --no-remote)); test (count $p) -ge 2; and nvim +$p[2] -- $p[1]";
-        m = "amumax";
         op = "xdg-open";
-        pm = "podman";
-        pmps = "podman ps -a --sort status --format \"table {{.Names}} {{.Status}} {{.Image}}\"";
         tldr = "tldr -q";
         myip = "curl ifconfig.me; echo";
-        ipy = "ipython --no-banner --no-tip";
         "..." = "../..";
         "...." = "../../..";
         "....." = "../../../..";

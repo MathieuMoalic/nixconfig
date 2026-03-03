@@ -1,5 +1,5 @@
 {...}: let
-  overlay = final: prev: {
+  overlay = final: _: {
     "screenshot-edit" = final.writeShellApplication {
       name = "screenshot-edit";
       runtimeInputs = with final; [grim slurp satty wl-clipboard];

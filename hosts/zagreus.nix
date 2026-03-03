@@ -7,7 +7,6 @@
     nixosModules = with self.nixosModules; [
       desktop
       sshd
-      # adb
       nfs
     ];
 
@@ -103,9 +102,6 @@
           size = 32 * 1024;
         }
       ];
-
-      nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-      system.stateVersion = "24.05";
     };
   };
 }

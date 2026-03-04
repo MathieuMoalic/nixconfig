@@ -6,10 +6,10 @@
     ...
   }: let
     url = "mont.matmoa.eu";
-    port = 10024;
+    port = 10008;
     logFile = "/var/lib/mont/mont.log";
     databasePath = "/var/lib/mont/mont.sqlite";
-    gadgetbridgeZip = "/var/lib/mont/media";
+    gadgetbridgePath = "/home/mat/docs/personal/GadgetBridge/Gadgetbridge.zip";
     verbosity = 0;
   in {
     sops.secrets = {
@@ -26,14 +26,11 @@
     };
 
     services.mont = {
+      inherit gadgetbridgePath databasePath logFile verbosity;
       enable = true;
       package = inputs.mont.packages.${pkgs.stdenv.hostPlatform.system}.prebuilt;
       bindAddr = "127.0.0.1:${toString port}";
       corsOrigin = "https://${url}";
-      databasePath = databasePath;
-      gadgetbridgeZip = gadgetbridgeZip;
-      logFile = logFile;
-      verbosity = verbosity;
       passwordHashFile = config.sops.secrets."mont/password".path;
       jwtSecretFile = config.sops.secrets."mont/jwt-secret".path;
     };

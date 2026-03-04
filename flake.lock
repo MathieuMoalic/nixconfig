@@ -189,11 +189,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772528840,
-        "narHash": "sha256-GderrdCxQ4ajoeXZbS4lh5KG4ntGYVVJAqwFaIPS/Aw=",
+        "lastModified": 1772619038,
+        "narHash": "sha256-/DUnxUp2ActJvKPz7W/c6yalOV+WUWMYJZY2lpkTNQI=",
         "owner": "MathieuMoalic",
         "repo": "mont",
-        "rev": "1a2147b9690a827a94fd1c3f982955971620828f",
+        "rev": "085f17246773f99a3424f7dcbe2c8e8f1c8eaa09",
         "type": "github"
       },
       "original": {
@@ -338,26 +338,6 @@
         "type": "github"
       }
     },
-    "pleustradenn": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1750869797,
-        "narHash": "sha256-lbYiTiAIoa7JwqCSCyUM8XaH/Q6P/Ohje5V3dLww3nw=",
-        "owner": "MathieuMoalic",
-        "repo": "pleustradenn",
-        "rev": "186ea857712a21ace300f1e71d829cec8e1dd4c7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MathieuMoalic",
-        "repo": "pleustradenn",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "blaz": "blaz",
@@ -372,7 +352,6 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs_unstable": "nixpkgs_unstable",
         "nvf": "nvf",
-        "pleustradenn": "pleustradenn",
         "sops-nix": "sops-nix"
       }
     },

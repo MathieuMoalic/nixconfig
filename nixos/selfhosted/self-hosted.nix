@@ -6,8 +6,8 @@
   }: {
     imports = with self.nixosModules; [
       inputs.homepage.nixosModules.homepage-service
-      inputs.pleustradenn.nixosModules.pleustradenn-service
       inputs.blaz.nixosModules.blaz-service
+      inputs.mont.nixosModules.mont-service
       inputs.boued.nixosModules.boued-service
       caddy
       scrutiny
@@ -19,7 +19,6 @@
       homepage
       ntfy
       libretranslate
-      pleustradenn
       stirling-pdf
       vaultwarden
       jellyfin
@@ -32,6 +31,7 @@
       transmission
       watcharr
       blaz
+      mont
     ];
   };
 }

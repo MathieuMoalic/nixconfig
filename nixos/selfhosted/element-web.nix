@@ -4,7 +4,6 @@
     lib,
     ...
   }: let
-    port = 10008;
     url = "element.matmoa.eu";
 
     elementConfig = {
@@ -63,17 +62,14 @@
         sha256sum "$out/config.json" > "$out/.config-hash"
       '';
   in {
-    services.caddy.virtualHosts."http://${url}:${toString port}" = {
-      listenAddresses = ["127.0.0.1" "::1"];
-      extraConfig = ''
-        root * ${elementWebWithConfig}
-        encode zstd gzip
+    services.caddy.virtualHosts.${url}.extraConfig = ''
+      root * ${elementWebWithConfig}
+      encode zstd gzip
 
-        @configjson path /config.json
-        header @configjson Cache-Control "no-cache"
+      @configjson path /config.json
+      header @configjson Cache-Control "no-cache"
 
-        file_server
-      '';
-    };
+      file_server
+    '';
   };
 }

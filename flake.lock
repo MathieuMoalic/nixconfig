@@ -34,26 +34,6 @@
         "type": "github"
       }
     },
-    "boued": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1770793496,
-        "narHash": "sha256-JeJEScwzriGaDpV2U7PrkorTuM4SpfXhOy0nlwSilcI=",
-        "owner": "MathieuMoalic",
-        "repo": "boued",
-        "rev": "1581b85380e71bc2f26314275710a1b0f46e8f12",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MathieuMoalic",
-        "repo": "boued",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -341,7 +321,6 @@
     "root": {
       "inputs": {
         "blaz": "blaz",
-        "boued": "boued",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "homepage": "homepage",

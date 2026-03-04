@@ -49,6 +49,9 @@
       enable = true;
       # This changes $XDG_CONFIG_HOME/mimeapps.list
       defaultApplications = {
+        "text/html" = "librewolf.desktop";
+        "x-scheme-handler/http" = "librewolf.desktop";
+        "x-scheme-handler/https" = "librewolf.desktop";
         "application/pdf" = "librewolf.desktop";
         "image/avif" = "org.nomacs.ImageLounge.desktop";
         "image/bmp" = "org.nomacs.ImageLounge.desktop";

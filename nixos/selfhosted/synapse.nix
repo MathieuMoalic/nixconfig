@@ -183,11 +183,11 @@
         }`
       }
 
-      handle_path /_matrix/* {
+      handle /_matrix/* {
         reverse_proxy 127.0.0.1:${synapsePortStr}
       }
 
-      handle_path /_synapse/client/* {
+      handle /_synapse/client/* {
         reverse_proxy 127.0.0.1:${synapsePortStr}
       }
     '';

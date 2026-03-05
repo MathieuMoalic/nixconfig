@@ -1,5 +1,8 @@
 {
   flake.nixosModules.syncthing = {...}: {
+    systemd.tmpfiles.rules = [
+      "d /share/gadgetbridge 0755 mat mat -"
+    ];
     services = {
       syncthing = {
         enable = true;
@@ -30,6 +33,15 @@
                 params.keep = "10";
               };
               devices = ["homeserver" "xps" "oneplus" "zagreus"];
+            };
+            gadgetbridge = {
+              path = "/share/gadgetbridge";
+              id = "gadgetbridge";
+              devices = ["homeserver" "oneplus" "zagreus"];
+              versioning = {
+                type = "simple";
+                params.keep = "5";
+              };
             };
           };
         };

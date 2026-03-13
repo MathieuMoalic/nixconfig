@@ -19,6 +19,11 @@
           hostname = "eagle.man.poznan.pl";
           user = "mathieum";
         };
+        zagreus = {
+          hostname = "192.168.1.81";
+          user = "mat";
+          port = 46464;
+        };
         homeserver = {
           hostname = "matmoa.eu";
           user = "mat";

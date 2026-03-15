@@ -9,7 +9,7 @@
     port = 10008;
     logFile = "/var/lib/mont/mont.log";
     databasePath = "/var/lib/mont/mont.sqlite";
-    gadgetbridgePath = "/home/mat/docs/personal/GadgetBridge/Gadgetbridge.zip";
+    gadgetbridgeZip = "/share/gadgetbridge/Gadgetbridge.zip";
     verbosity = 0;
   in {
     sops.secrets = {
@@ -26,7 +26,7 @@
     };
 
     services.mont = {
-      inherit gadgetbridgePath databasePath logFile verbosity;
+      inherit gadgetbridgeZip databasePath logFile verbosity;
       enable = true;
       package = inputs.mont.packages.${pkgs.stdenv.hostPlatform.system}.prebuilt;
       bindAddr = "127.0.0.1:${toString port}";

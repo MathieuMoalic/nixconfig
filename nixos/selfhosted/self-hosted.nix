@@ -31,6 +31,7 @@
       watcharr
       blaz
       mont
+      paperless
     ];
   };
 }

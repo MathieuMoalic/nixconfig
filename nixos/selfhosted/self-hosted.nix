@@ -32,6 +32,7 @@
       blaz
       mont
       paperless
+      dawarich
     ];
   };
 }

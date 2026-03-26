@@ -480,6 +480,8 @@
           "SUPER SHIFT, v, movetoworkspace, 9"
           "SUPER SHIFT, g, movetoworkspace, 10"
 
+          "SUPER SHIFT, m, movecurrentworkspacetomonitor, +1"
+
           "SUPER,end,resizeactive,20 0"
           "SUPER,home,resizeactive,-20 0"
           "SUPER,pageup,resizeactive,0 -20"

@@ -108,6 +108,7 @@
       };
       supportedFilesystems = ["ntfs" "btrfs"];
       initrd.systemd.enable = true; # Needed for hibernation
+      kernelModules = ["ntsync"];
     };
 
     time.timeZone = lib.mkDefault "Europe/Warsaw";

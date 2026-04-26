@@ -19,15 +19,15 @@
                 end)
               '';
             };
-            "typst-preview-open-cmd" = {
-              before = [];
-              after = [];
-              data = ''
-                require('typst-preview').setup({
-                  open_cmd = '${lib.getExe pkgs.brave} %s',
-                })
-              '';
-            };
+            # "typst-preview-open-cmd" = {
+            #   before = [];
+            #   after = [];
+            #   data = ''
+            #     require('typst-preview').setup({
+            #       open_cmd = '${lib.getExe pkgs.brave} %s',
+            #     })
+            #   '';
+            # };
           };
 
           lsp = {

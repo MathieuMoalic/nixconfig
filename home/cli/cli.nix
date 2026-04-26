@@ -53,6 +53,7 @@
       delta # diff
       just # makefile in rust
       television # fuzzyfinder
+      claude-code
 
       # custom scripts below
       cop

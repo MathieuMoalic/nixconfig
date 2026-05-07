@@ -14,7 +14,6 @@
 
     verbosity = 0;
 
-    llmModel = "deepseek/deepseek-chat";
     llmApiUrl = "https://openrouter.ai/api/v1";
     systemPromptImport = null;
     systemPromptMacros = null;
@@ -53,7 +52,6 @@
         mediaDir
         logFile
         verbosity
-        llmModel
         llmApiUrl
         systemPromptImport
         systemPromptMacros

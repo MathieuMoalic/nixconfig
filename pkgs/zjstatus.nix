@@ -2,11 +2,11 @@
   flake.overlays.zjstatus = final: _: {
     zjstatus = final.stdenvNoCC.mkDerivation {
       pname = "zjstatus";
-      version = "0.22.0";
+      version = "0.23.0";
 
       src = final.fetchurl {
-        url = "https://github.com/dj95/zjstatus/releases/download/v0.22.0/zjstatus.wasm";
-        hash = "sha256-TeQm0gscv4YScuknrutbSdksF/Diu50XP4W/fwFU3VM=";
+        url = "https://github.com/dj95/zjstatus/releases/download/v0.23.0/zjstatus.wasm";
+        hash = "sha256-4AaQEiNSQjnbYYAh5MxdF/gtxL+uVDKJW6QfA/E4Yf8=";
       };
 
       dontUnpack = true;

@@ -2,9 +2,8 @@
   flake.overlays.lock = final: _: {
     lock = final.writeShellApplication {
       name = "lock";
-      runtimeInputs = with final; [hyprlock hyprland];
+      runtimeInputs = with final; [hyprland];
       text = ''
-        hyprlock &
         sleep 1
         hyprctl dispatch dpms off
       '';

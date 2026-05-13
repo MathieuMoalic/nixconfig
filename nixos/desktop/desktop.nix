@@ -25,7 +25,7 @@
       font-awesome
       source-sans-pro
     ];
-    security.pam.services.hyprlock = {}; # needed for hyprlock
+    # security.pam.services.hyprlock = {}; # needed for hyprlock
 
     # Enable CUPS to print documents.
     services.printing.enable = true;

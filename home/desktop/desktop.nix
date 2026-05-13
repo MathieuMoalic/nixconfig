@@ -29,6 +29,8 @@
       nomacs
       zathura
       chromium
+      slurp
+      grim
     ];
 
     programs.fish.shellAliases = {

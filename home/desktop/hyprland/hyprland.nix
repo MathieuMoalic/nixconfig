@@ -7,10 +7,9 @@
     ...
   }: {
     imports = with self.homeModules; [
-      hyprlock
       hyprpaper
       hypridle
-      hyprpanel
+      wayle
     ];
     home.packages = with pkgs; [
       lock
@@ -22,6 +21,9 @@
       systemd.variables = ["--all"];
       settings = {
         # https://wiki.hypr.land/Configuring/Variables
+        source = [
+          "/home/mat/.config/hypr/hyprland_local.conf"
+        ];
         env = [
           "HYPRCURSOR_THEME,rose-pine-hyprcursor"
           "HYPRCURSOR_SIZE,32"

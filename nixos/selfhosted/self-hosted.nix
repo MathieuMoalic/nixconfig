@@ -31,7 +31,6 @@
       watcharr
       blaz
       mont
-      paperless
       dawarich
     ];
   };

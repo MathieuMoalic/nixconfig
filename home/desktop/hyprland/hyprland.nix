@@ -8,7 +8,6 @@
   }: {
     imports = with self.homeModules; [
       hyprpaper
-      hypridle
       wayle
     ];
     home.packages = with pkgs; [

@@ -60,11 +60,6 @@
               desc = "Hibernate";
               cmd = "${pkgs.systemd}/bin/systemctl hibernate";
             }
-            {
-              key = "l";
-              desc = "Lock";
-              cmd = "${pkgs.lock}/bin/lock";
-            }
           ]
           ++ lib.optional (osConfig.programs.steam.enable or false) {
             key = "z";

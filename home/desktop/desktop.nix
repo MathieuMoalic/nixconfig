@@ -31,6 +31,8 @@
       chromium
       slurp
       grim
+      gamescope
+      protonup-qt
     ];
 
     programs.fish.shellAliases = {
@@ -55,6 +57,8 @@
         "x-scheme-handler/http" = "librewolf.desktop";
         "x-scheme-handler/https" = "librewolf.desktop";
         "application/pdf" = "librewolf.desktop";
+        "inode/directory" = "thunar.desktop";
+        "application/x-directory" = "thunar.desktop";
         "image/avif" = "org.nomacs.ImageLounge.desktop";
         "image/bmp" = "org.nomacs.ImageLounge.desktop";
         "image/gif" = "org.nomacs.ImageLounge.desktop";

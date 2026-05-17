@@ -8,10 +8,13 @@
       lemurs
       kmonad
     ];
-    programs.hyprland = {
-      enable = true;
-      xwayland = {enable = true;};
-      withUWSM = true;
+    programs = {
+      thunar.enable = true;
+      hyprland = {
+        enable = true;
+        xwayland = {enable = true;};
+        withUWSM = true;
+      };
     };
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";

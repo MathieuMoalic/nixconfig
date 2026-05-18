@@ -10,6 +10,7 @@
       theme
       zathura
       wlr-which-key
+      mangohud
     ];
 
     services.mpris-proxy.enable = true; # pause/play bluetooth commands
@@ -34,19 +35,19 @@
       gamescope
       protonup-qt
     ];
-
-    programs.fish.shellAliases = {
-      rd = "ripdrag -x";
-    };
-
-    programs.librewolf = {
-      enable = true;
-      settings = {
-        "webgl.disabled" = false;
-        "privacy.resistFingerprinting" = false;
-        "privacy.clearOnShutdown.history" = false;
-        "privacy.clearOnShutdown.downloads" = false;
-        "identity.fxaccounts.enabled" = true;
+    programs = {
+      fish.shellAliases = {
+        rd = "ripdrag -x";
+      };
+      librewolf = {
+        enable = true;
+        settings = {
+          "webgl.disabled" = false;
+          "privacy.resistFingerprinting" = false;
+          "privacy.clearOnShutdown.history" = false;
+          "privacy.clearOnShutdown.downloads" = false;
+          "identity.fxaccounts.enabled" = true;
+        };
       };
     };
     xdg.mimeApps = {

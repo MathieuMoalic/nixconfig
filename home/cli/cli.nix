@@ -56,16 +56,12 @@
       claude-code
 
       # custom scripts below
-      cop
-      decode
-      encode
       lnmv
       nix-run
       nix-shell
       update
       journalctl
       sopsedit
-      supercat
     ];
   };
 }

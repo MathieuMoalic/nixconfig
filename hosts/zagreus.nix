@@ -28,6 +28,7 @@
 
       hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+        alsa.enablePersistence = true;
         wooting.enable = true;
       };
 

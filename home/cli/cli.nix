@@ -54,8 +54,11 @@
       just # makefile in rust
       television # fuzzyfinder
       claude-code
+      codex
 
       # custom scripts below
+      toggle-audio-port
+      cop
       lnmv
       nix-run
       nix-shell

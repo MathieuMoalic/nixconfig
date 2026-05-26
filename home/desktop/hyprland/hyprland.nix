@@ -448,6 +448,7 @@
           "SUPER SHIFT, o, exec, ${pkgs.screenshot-edit}/bin/screenshot-edit"
           "SUPER, Return, exec, ${pkgs.wlr-which-key}/bin/wlr-which-key"
           "SUPER, i, exec, ${pkgs.librewolf}/bin/librewolf"
+          "SUPER SHIFT, i, exec, ${pkgs.toggle-audio-port}/bin/toggle-audio-port"
 
           "SUPER, t, fullscreen"
           "SUPER SHIFT, q, killactive,"

@@ -6,23 +6,27 @@
     ];
   in
     {lib, ...}: {
-      # DNS
-      services = {
-        resolved = {
-          enable = true;
-          fallbackDns = dnsList;
-          domains = ["~."];
-          dnsovertls = "true";
-          dnssec = "true";
+      services.resolved = {
+        enable = true;
+
+        settings.Resolve = {
+          DNS = dnsList;
+          FallbackDNS = dnsList;
+          Domains = ["~."];
+          DNSOverTLS = "true";
+          DNSSEC = "true";
         };
       };
+
       networking = {
         useDHCP = lib.mkDefault true;
+
         networkmanager = {
           enable = true;
           dns = "systemd-resolved";
           insertNameservers = dnsList;
         };
+
         nameservers = dnsList;
         enableIPv6 = true;
       };

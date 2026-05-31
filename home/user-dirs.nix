@@ -5,6 +5,7 @@
     xdg.enable = true;
     xdg.userDirs = {
       enable = true;
+      setSessionVariables = true;
       createDirectories = true;
 
       desktop = dl;

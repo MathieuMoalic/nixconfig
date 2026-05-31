@@ -21,7 +21,6 @@
       ...
     }: {
       virtualisation.spiceUSBRedirection.enable = true;
-      programs.adb.enable = true;
       users.groups.adbusers = {};
       users.users.mat.extraGroups = ["adbusers"];
       programs.steam.enable = true;

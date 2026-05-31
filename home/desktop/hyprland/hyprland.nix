@@ -18,6 +18,7 @@
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.variables = ["--all"];
+      configType = "hyprlang";
       settings = {
         # https://wiki.hypr.land/Configuring/Variables
         source = [
@@ -39,7 +40,6 @@
 
         general = {
           border_size = 2;
-          no_border_on_floating = false;
           gaps_in = 2;
           gaps_out = 4;
           gaps_workspaces = 0;
@@ -108,7 +108,6 @@
           shadow.range = 4;
           shadow.render_power = 3;
           shadow.sharp = false;
-          shadow.ignore_window = true;
           shadow.color = "0xee1a1a1a";
           shadow.offset = "0 0";
           shadow.scale = 1.0;
@@ -296,7 +295,6 @@
           splash_font_family = "Sans";
           force_default_wallpaper = -1;
 
-          vfr = true;
           vrr = 0;
 
           mouse_move_enables_dpms = true;
@@ -333,8 +331,6 @@
 
           anr_missed_pings = 5;
           size_limits_tiled = false;
-
-          new_window_takes_over_fullscreen = 0;
         };
 
         binds = {
@@ -375,7 +371,6 @@
           expand_undersized_textures = true;
           xp_mode = false;
           ctm_animation = 2;
-          cm_fs_passthrough = 2;
           cm_enabled = false;
           send_content_type = true;
           cm_auto_hdr = 1;
@@ -411,10 +406,6 @@
           no_update_news = true;
           no_donation_nag = false;
           enforce_permissions = false;
-        };
-
-        experimental = {
-          xx_color_management_v4 = false;
         };
 
         debug = {
@@ -491,13 +482,6 @@
         ];
         bindm = [
           "SUPER, mouse:272, movewindow"
-        ];
-
-        windowrulev2 = [
-          "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
-          "idleinhibit focus, title:^(.*YouTube.*)$"
-          "idleinhibit focus, title:^(.*Twitch.*)$"
-          "suppressevent,class:.*"
         ];
       };
     };

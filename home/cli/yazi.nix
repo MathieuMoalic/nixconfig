@@ -33,6 +33,7 @@
     ];
     programs.yazi = {
       enable = true;
+      shellWrapperName = "yy";
       plugins = with pkgs.yaziPlugins; {
         inherit toggle-pane chmod ouch smart-enter starship mount rich-preview restore;
       };

@@ -7,7 +7,7 @@
     gtk = {
       enable = true;
       gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-
+      gtk4.theme = null;
       theme.package = pkgs.adw-gtk3;
       theme.name = "adw-gtk3";
     };

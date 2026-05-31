@@ -68,8 +68,6 @@
         port = 5432;
         user = "immich";
         name = "immich";
-        enableVectors = false;
-        enableVectorChord = true;
       };
 
       settings = {

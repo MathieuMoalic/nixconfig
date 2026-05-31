@@ -14,16 +14,16 @@
     src = pkgs.fetchFromGitHub {
       owner = "sbondCo";
       repo = "Watcharr";
-      rev = "v2.1.1";
-      hash = "sha256-vuqymvPxQwWgmNvr6wNk5P2TFyCYkj0K5ncb3Q1eRbs=";
+      rev = "v3.0.1";
+      hash = "sha256-C0KQQuT6+KtbsgqvGp+dhqEAlUDq/ZsdIr089h+cXHM=";
     };
 
     ui = pkgs.buildNpmPackage {
       pname = "watcharr-ui";
-      version = "2.1.1";
+      version = "3.0.1";
       inherit src;
-      nodejs = pkgs.nodejs_20;
-      npmDepsHash = "sha256-vUbkTUaDQbvfc439ufLVGUR0Z/l3LlLE72fcc7m1o50=";
+      nodejs = pkgs.nodejs_24;
+      npmDepsHash = "sha256-TKPgoHheA/9h/4VdRYeVw4zb5ZOBOATpUwM6jh26Tzo=";
       installPhase = ''
         runHook preInstall
         mkdir -p $out
@@ -34,11 +34,11 @@
 
     package = pkgs.buildGoModule {
       pname = "watcharr";
-      version = "2.1.1";
+      version = "3.0.1";
       inherit src;
       modRoot = "server";
       subPackages = ["."];
-      vendorHash = "sha256-DaKPl0Th85WOXfAactTSYNOmQcz9Yh0mydTCVkMkbQA=";
+      vendorHash = "sha256-3JcOVWlnGnpvfcIvilMZPLBFLEmpwNbyJv41mQEnugs=";
       env.CGO_ENABLED = 1;
       env.CGO_CFLAGS = "-D_LARGEFILE64_SOURCE";
       nativeBuildInputs = [pkgs.pkg-config];
@@ -81,7 +81,7 @@
       environment = {
         WATCHARR_DATA = toString dataDir;
       };
-      path = [pkgs.nodejs_20];
+      path = [pkgs.nodejs_24];
 
       serviceConfig = {
         Type = "simple";

@@ -2,60 +2,69 @@
   flake.homeModules.ssh = {
     programs.ssh = {
       enable = true;
-      extraConfig = ''
-        StrictHostKeyChecking accept-new
-      '';
       enableDefaultConfig = false;
-      matchBlocks = {
+
+      settings = {
         "*" = {
-          forwardAgent = false;
-          serverAliveInterval = 300;
+          StrictHostKeyChecking = "accept-new";
+          ForwardAgent = false;
+          ServerAliveInterval = 300;
         };
+
         faculty = {
-          hostname = "150.254.111.35";
-          user = "matmoa";
+          HostName = "150.254.111.35";
+          User = "matmoa";
         };
+
         pcss = {
-          hostname = "eagle.man.poznan.pl";
-          user = "mathieum";
+          HostName = "eagle.man.poznan.pl";
+          User = "mathieum";
         };
+
         zagreus = {
-          hostname = "192.168.1.81";
-          user = "mat";
-          port = 46464;
+          HostName = "192.168.1.81";
+          User = "mat";
+          Port = 46464;
         };
+
         homeserver = {
-          hostname = "matmoa.eu";
-          user = "mat";
-          port = 46464;
+          HostName = "matmoa.eu";
+          User = "mat";
+          Port = 46464;
         };
+
         homeserver-initrd = {
-          hostname = "matmoa.eu";
-          user = "root";
-          port = 46466;
+          HostName = "matmoa.eu";
+          User = "root";
+          Port = 46466;
         };
+
         nyx = {
-          hostname = "nyx.zfns.eu.org";
-          user = "mat";
-          port = 46464;
+          HostName = "nyx.zfns.eu.org";
+          User = "mat";
+          Port = 46464;
         };
+
         alecto = {
-          hostname = "alecto.zfns.eu.org";
-          user = "mat";
-          port = 46464;
+          HostName = "alecto.zfns.eu.org";
+          User = "mat";
+          Port = 46464;
         };
+
         zeus = {
-          hostname = "zeus.zfns.eu.org";
-          user = "mat";
-          port = 46464;
+          HostName = "zeus.zfns.eu.org";
+          User = "mat";
+          Port = 46464;
         };
+
         kiosk1 = {
-          hostname = "kiosk1.zfns.eu.org";
-          user = "root";
+          HostName = "kiosk1.zfns.eu.org";
+          User = "root";
         };
+
         kiosk2 = {
-          hostname = "kiosk2.zfns.eu.org";
-          user = "root";
+          HostName = "kiosk2.zfns.eu.org";
+          User = "root";
         };
       };
     };

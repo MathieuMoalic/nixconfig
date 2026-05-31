@@ -39,7 +39,7 @@
       dust # du in rust
       duf # df in rust
       eza # ls in rust
-      neofetch # flex
+      fastfetch # flex
       sops # secrets manager
       mosh # ssh
       hexyl # hexdump

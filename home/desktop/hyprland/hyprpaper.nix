@@ -5,7 +5,7 @@
 
       settings = {
         ipc = true;
-
+        splash = false;
         wallpaper = [
           {
             monitor = "";

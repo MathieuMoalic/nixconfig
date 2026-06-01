@@ -1,7 +1,6 @@
 {
   flake.nixosModules.jellyseerr = {
     lib,
-    config,
     pkgs,
     ...
   }: let
@@ -9,45 +8,26 @@
     group = "media";
     url = "jellyseerr.matmoa.eu";
     port = 10023;
-    configDir = "/var/lib/jellyseerr";
   in {
     users.users.${user} = {
       isSystemUser = true;
       group = group;
     };
 
-    systemd.services.jellyseerr = {
-      description = "Jellyseerr, a requests manager for Jellyfin";
-      after = ["network.target"];
-      wantedBy = ["multi-user.target"];
-      environment = {
-        PORT = toString port;
-        CONFIG_DIRECTORY = configDir;
-      };
-      serviceConfig = {
-        Type = "exec";
-        StateDirectory = "jellyseerr";
-        User = user;
-        Group = group;
-        ExecStart = "${pkgs.jellyseerr}/bin/jellyseerr";
-        Restart = "on-failure";
-        ProtectHome = true;
-        ProtectSystem = "strict";
-        PrivateTmp = true;
-        PrivateDevices = true;
-        ProtectHostname = true;
-        ProtectClock = true;
-        ProtectKernelTunables = true;
-        ProtectKernelModules = true;
-        ProtectKernelLogs = true;
-        ProtectControlGroups = true;
-        NoNewPrivileges = true;
-        RestrictRealtime = true;
-        RestrictSUIDSGID = true;
-        RemoveIPC = true;
-        PrivateMounts = true;
-      };
+    services.seerr = {
+      enable = true;
+      port = port;
+      configDir = "/var/lib/jellyseerr";
+      openFirewall = false;
     };
+
+    systemd.services.seerr.serviceConfig = {
+      DynamicUser = lib.mkForce false;
+      User = lib.mkForce user;
+      Group = lib.mkForce group;
+      StateDirectory = lib.mkForce "jellyseerr";
+    };
+
     services.caddy.virtualHosts.${url}.extraConfig = ''
       reverse_proxy 127.0.0.1:${toString port}
     '';

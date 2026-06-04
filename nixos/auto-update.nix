@@ -4,7 +4,7 @@
     ntfyUrl = "https://ntfy.matmoa.eu/auto-update";
   in {
     systemd.services.auto-update-nixpkgs = {
-      description = "Update nixpkgs flake input, build system, commit, push, and notify";
+      description = "Update nixpkgs flake input, build system, commit, push, notify, and reboot";
 
       wants = ["network-online.target"];
       after = ["network-online.target"];
@@ -15,17 +15,14 @@
         git
         openssh
         curl
+        sudo
+        systemd
+        coreutils
         hostname
       ];
 
-      environment = {
-        HOME = "/home/mat";
-      };
-
       serviceConfig = {
         Type = "oneshot";
-        User = "mat";
-        Group = "mat";
         WorkingDirectory = repo;
 
         # Avoid overlapping/hung runs.
@@ -39,32 +36,38 @@
           curl -fsS -d "$1" ${ntfyUrl} >/dev/null || true
         }
 
+        run_as_mat() {
+          sudo -u mat -H env PATH="$PATH" bash -c "$1"
+        }
+
         trap 'status=$?; notify "❌ auto-update-nixpkgs failed on $(hostname) at line $LINENO with exit code $status. Check: journalctl -u auto-update-nixpkgs.service -n 100 --no-pager"; exit $status' ERR
 
-        cd ${repo}
-
         echo "Updating nixpkgs flake input..."
-        nix flake update nixpkgs
+        run_as_mat "cd ${repo} && nix flake update nixpkgs"
 
         echo "Building system..."
-        nh os build -v ${repo}
+        run_as_mat "cd ${repo} && nh os build -v ${repo}"
 
         echo "Checking git changes..."
-        git add -A .
+        run_as_mat "cd ${repo} && git add -A ."
 
-        if git diff --cached --quiet; then
+        if run_as_mat "cd ${repo} && git diff --cached --quiet"; then
           echo "No changes to commit."
-          notify "✅ auto-update-nixpkgs succeeded on $(hostname): nixpkgs checked, build passed, no git changes."
+          notify "✅ auto-update-nixpkgs succeeded on $(hostname): nixpkgs checked, build passed, no git changes. No reboot needed."
           exit 0
         fi
 
         echo "Committing changes..."
-        git commit -m "update nixpkgs"
+        run_as_mat "cd ${repo} && git commit -m 'update nixpkgs'"
 
         echo "Pushing changes..."
-        git push
+        run_as_mat "cd ${repo} && git push"
 
-        notify "✅ auto-update-nixpkgs succeeded on $(hostname): nixpkgs updated, build passed, committed, and pushed."
+        notify "✅ auto-update-nixpkgs succeeded on $(hostname): nixpkgs updated, build passed, committed, and pushed. Rebooting now."
+
+        echo "Rebooting..."
+        sleep 5
+        systemctl reboot
       '';
     };
 

@@ -5,6 +5,7 @@
     stateVersion = "23.11";
 
     nixosModules = with self.nixosModules; [
+      auto-update
       self-hosted
       sshd
     ];

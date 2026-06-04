@@ -46,7 +46,7 @@
         run_as_mat "cd ${repo} && nix flake update nixpkgs"
 
         echo "Building system..."
-        run_as_mat "cd ${repo} && nh os build -v ${repo}"
+        run_as_mat "cd ${repo} && nh os switch -v ${repo}"
 
         echo "Checking git changes..."
         run_as_mat "cd ${repo} && git add -A ."

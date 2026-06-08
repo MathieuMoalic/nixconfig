@@ -1,6 +1,8 @@
 {
   flake.nixosModules.auto-update = {pkgs, ...}: let
     repo = "/home/mat/nix";
+    host = "homeserver";
+    flakeRef = "path:${repo}#${host}";
     ntfyUrl = "https://ntfy.matmoa.eu/auto-update";
   in {
     systemd.services.auto-update-nixpkgs = {
@@ -10,8 +12,9 @@
       after = ["network-online.target"];
 
       path = with pkgs; [
+        bash
         nix
-        nh
+        nixos-rebuild
         git
         openssh
         curl
@@ -37,7 +40,10 @@
         }
 
         run_as_mat() {
-          sudo -u mat -H env PATH="$PATH" bash -c "$1"
+          ${pkgs.sudo}/bin/sudo -u mat -H env \
+            HOME=/home/mat \
+            PATH="$PATH" \
+            ${pkgs.bash}/bin/bash -c "$1"
         }
 
         trap 'status=$?; notify "❌ auto-update-nixpkgs failed on $(hostname) at line $LINENO with exit code $status. Check: journalctl -u auto-update-nixpkgs.service -n 100 --no-pager"; exit $status' ERR
@@ -45,8 +51,9 @@
         echo "Updating nixpkgs flake input..."
         run_as_mat "cd ${repo} && nix flake update nixpkgs"
 
-        echo "Building system..."
-        run_as_mat "cd ${repo} && nh os switch -v ${repo}"
+        echo "Building and switching system..."
+        cd ${repo}
+        nixos-rebuild switch --flake '${flakeRef}'
 
         echo "Checking git changes..."
         run_as_mat "cd ${repo} && git add -A ."

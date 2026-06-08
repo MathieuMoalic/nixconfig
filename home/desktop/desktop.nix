@@ -25,6 +25,7 @@
       deezer-enhanced
       libreoffice
       mpv
+      vlc
       gimp
       inkscape
       nomacs

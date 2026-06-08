@@ -8,6 +8,8 @@
       auto-update
       self-hosted
       sshd
+      nfs
+      restic
     ];
 
     userModules = with self.nixosModules; [

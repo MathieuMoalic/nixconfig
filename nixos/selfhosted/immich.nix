@@ -10,6 +10,7 @@
     user = "immich";
     group = "immich";
     dataDir = "/var/lib/immich";
+    hddDir = "/media/immich";
   in {
     users.groups.${group} = {};
     users.users.${user} = {
@@ -19,8 +20,56 @@
     };
     systemd.tmpfiles.rules = [
       "d ${dataDir} 0750 ${user} ${group} - -"
-      "d ${dataDir}/model-cache 0750 ${user} ${group} - -"
+
+      "d ${hddDir} 0750 ${user} ${group} - -"
+      "d ${hddDir}/library 0750 ${user} ${group} - -"
+      "d ${hddDir}/upload 0750 ${user} ${group} - -"
+      "d ${hddDir}/encoded-video 0750 ${user} ${group} - -"
+      "d ${hddDir}/backups 0750 ${user} ${group} - -"
+
+      # Mountpoints for bind mounts.
+      "d ${dataDir}/library 0750 ${user} ${group} - -"
+      "d ${dataDir}/upload 0750 ${user} ${group} - -"
+      "d ${dataDir}/encoded-video 0750 ${user} ${group} - -"
+      "d ${dataDir}/backups 0750 ${user} ${group} - -"
     ];
+    fileSystems = {
+      "${dataDir}/library" = {
+        depends = [hddDir];
+        device = "${hddDir}/library";
+        fsType = "none";
+        options = ["bind"];
+      };
+
+      "${dataDir}/upload" = {
+        depends = [hddDir];
+        device = "${hddDir}/upload";
+        fsType = "none";
+        options = ["bind"];
+      };
+
+      "${dataDir}/encoded-video" = {
+        depends = [hddDir];
+        device = "${hddDir}/encoded-video";
+        fsType = "none";
+        options = ["bind"];
+      };
+
+      "${dataDir}/backups" = {
+        depends = [hddDir];
+        device = "${hddDir}/backups";
+        fsType = "none";
+        options = ["bind"];
+      };
+    };
+
+    systemd.services.immich-server.unitConfig.RequiresMountsFor = [
+      "${dataDir}/library"
+      "${dataDir}/upload"
+      "${dataDir}/encoded-video"
+      "${dataDir}/backups"
+    ];
+
     sops = {
       secrets."immich/db-password" = {
         owner = user;
@@ -46,8 +95,8 @@
       group = group;
 
       mediaLocation = dataDir;
-      accelerationDevices = ["/dev/dri"];
 
+      accelerationDevices = ["/dev/dri"];
       secretsFile = config.sops.templates."immich/template".path;
 
       environment = {
@@ -64,7 +113,6 @@
       database = {
         enable = true;
         createDB = true;
-        # host = "127.0.0.1";
         port = 5432;
         user = "immich";
         name = "immich";
@@ -77,23 +125,22 @@
 
       machine-learning = {
         enable = true;
-        environment = {
-          CACHE_DIR = "${dataDir}/model-cache";
-        };
       };
+
       openFirewall = false;
     };
+
     services.postgresql = {
       package = pkgs.postgresql_15.withPackages (ps: [
-        ps.pgvector # extension name: "vector"
-        ps.vectorchord # extension name: "vchord"
+        ps.pgvector
+        ps.vectorchord
       ]);
 
-      # VectorChord wants to be preloaded
       settings.shared_preload_libraries = "vchord";
     };
 
     hardware.graphics.enable = true;
+
     services.caddy.virtualHosts.${url}.extraConfig = ''
       reverse_proxy 127.0.0.1:${toString port}
     '';

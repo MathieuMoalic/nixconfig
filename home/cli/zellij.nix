@@ -50,6 +50,7 @@
         settings = {
           theme = "mydracula";
           advanced_mouse_actions = false;
+          mouse_hover_effects = false;
           on_force_close = "detach";
           simplified_ui = false;
           pane_frames = true;

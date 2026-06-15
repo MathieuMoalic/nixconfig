@@ -11,6 +11,12 @@
       wants = ["network-online.target"];
       after = ["network-online.target"];
 
+      # Important: this service may change during a rebuild.
+      # Do not let nixos-rebuild switch/activation kill or restart the updater
+      # while it is the process performing the update.
+      restartIfChanged = false;
+      stopIfChanged = false;
+
       path = with pkgs; [
         bash
         nix
@@ -22,13 +28,14 @@
         systemd
         coreutils
         hostname
+        util-linux
       ];
 
       serviceConfig = {
         Type = "oneshot";
         WorkingDirectory = repo;
 
-        # Avoid overlapping/hung runs.
+        # Avoid hung runs.
         TimeoutStartSec = "2h";
       };
 
@@ -48,33 +55,46 @@
 
         trap 'status=$?; notify "❌ auto-update-nixpkgs failed on $(hostname) at line $LINENO with exit code $status. Check: journalctl -u auto-update-nixpkgs.service -n 100 --no-pager"; exit $status' ERR
 
-        echo "Updating nixpkgs flake input..."
-        run_as_mat "cd ${repo} && nix flake update nixpkgs"
+        {
+          flock -n 9 || {
+            echo "Another auto-update-nixpkgs run is already active."
+            notify "⚠️ auto-update-nixpkgs skipped on $(hostname): another run is already active."
+            exit 0
+          }
 
-        echo "Building and switching system..."
-        cd ${repo}
-        nixos-rebuild switch --flake '${flakeRef}'
+          echo "Updating nixpkgs flake input..."
+          run_as_mat "cd ${repo} && nix flake update nixpkgs"
 
-        echo "Checking git changes..."
-        run_as_mat "cd ${repo} && git add -A ."
+          echo "Building system and setting it as next boot..."
+          cd ${repo}
 
-        if run_as_mat "cd ${repo} && git diff --cached --quiet"; then
-          echo "No changes to commit."
-          notify "✅ auto-update-nixpkgs succeeded on $(hostname): nixpkgs checked, build passed, no git changes. No reboot needed."
-          exit 0
-        fi
+          # Use boot, not switch:
+          # - this service reboots after success anyway
+          # - switch can restart/kill this service during live activation
+          # - boot prepares the next generation without mutating the running system
+          nixos-rebuild boot --flake '${flakeRef}'
 
-        echo "Committing changes..."
-        run_as_mat "cd ${repo} && git commit -m 'update nixpkgs'"
+          echo "Checking git changes..."
+          run_as_mat "cd ${repo} && git add -A ."
 
-        echo "Pushing changes..."
-        run_as_mat "cd ${repo} && git push"
+          if run_as_mat "cd ${repo} && git diff --cached --quiet"; then
+            echo "No changes to commit."
+            notify "✅ auto-update-nixpkgs succeeded on $(hostname): nixpkgs checked, build passed, no git changes. No reboot needed."
+            exit 0
+          fi
 
-        notify "✅ auto-update-nixpkgs succeeded on $(hostname): nixpkgs updated, build passed, committed, and pushed. Rebooting now."
+          echo "Committing changes..."
+          run_as_mat "cd ${repo} && git commit -m 'update nixpkgs'"
 
-        echo "Rebooting..."
-        sleep 5
-        systemctl reboot
+          echo "Pushing changes..."
+          run_as_mat "cd ${repo} && git push"
+
+          notify "✅ auto-update-nixpkgs succeeded on $(hostname): nixpkgs updated, build passed, committed, pushed, and prepared for next boot. Rebooting now."
+
+          echo "Rebooting..."
+          sleep 5
+          systemctl reboot
+        } 9>/run/auto-update-nixpkgs.lock
       '';
     };
 

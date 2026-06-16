@@ -1,5 +1,7 @@
 {
   inputs = {
+    amumax.url = "github:MathieuMoalic/amumax/50b3c95cc5a26c16fdb9018b3756f9d509f36c91";
+
     blaz = {
       url = "github:MathieuMoalic/blaz";
     };

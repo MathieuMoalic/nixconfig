@@ -47,7 +47,7 @@
           options iwlwifi power_save=0 uapsd_disable=1 enable_ini=0
           options iwlmvm power_scheme=1
         '';
-        kernelParams = ["pcie_aspm=off"];
+        kernelParams = ["pcie_aspm=off" "amdgpu.dcdebugmask=0x10"];
       };
 
       environment.etc."NetworkManager/conf.d/99-wifi-powersave.conf".text = ''

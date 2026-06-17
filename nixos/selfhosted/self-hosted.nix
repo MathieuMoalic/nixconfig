@@ -26,6 +26,7 @@
       sonarr
       radarr
       bazarr
+      tdarr
       flaresolverr
       transmission
       watcharr

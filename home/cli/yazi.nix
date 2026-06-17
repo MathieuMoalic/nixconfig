@@ -952,17 +952,6 @@
               text = "";
             }
           ];
-
-          prepend_conds = [
-            {
-              "if" = "dir";
-              text = "";
-            }
-            {
-              "if" = "!dir";
-              text = "";
-            }
-          ];
         };
       };
 
@@ -1192,6 +1181,11 @@
             on = ["g" "n"];
             run = "cd ~/nix";
             desc = "Go nix";
+          }
+          {
+            on = ["n"];
+            run = "create";
+            desc = "Create a file or directory";
           }
         ];
 

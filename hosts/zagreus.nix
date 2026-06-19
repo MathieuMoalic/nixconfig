@@ -8,7 +8,6 @@
       auto-update
       desktop
       sshd
-      nfs
     ];
 
     userModules = with self.nixosModules; [

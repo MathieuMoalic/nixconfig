@@ -5,6 +5,7 @@
     ...
   }: {
     imports = with self.homeModules; [
+      fastfetch
       aliases
       btop
       direnv
@@ -58,6 +59,7 @@
 
       # custom scripts below
       toggle-audio-port
+      media-pipeline
       cop
       lnmv
       nix-run

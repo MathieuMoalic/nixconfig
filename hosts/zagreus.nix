@@ -25,7 +25,6 @@
       users.groups.adbusers = {};
       users.users.mat.extraGroups = ["adbusers"];
       programs.steam.enable = true;
-      programs.coolercontrol.enable = true;
 
       hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

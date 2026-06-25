@@ -40,11 +40,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1781874774,
-        "narHash": "sha256-V4CsyswIqhbKcUb8MQOdEXMJpOgQGPK+0WZkazrYWns=",
+        "lastModified": 1782310655,
+        "narHash": "sha256-/lkLV7rgp08DznPlHoZn6El7YLb17YjcRhQBWbhLYMY=",
         "owner": "MathieuMoalic",
         "repo": "blaz",
-        "rev": "31c0cb8677f61af1aad0286638d9f22397256c7b",
+        "rev": "c114ad7f13cb86664da6686cdfa3fcdd29f03e59",
         "type": "github"
       },
       "original": {

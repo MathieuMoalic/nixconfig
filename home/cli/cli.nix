@@ -2,6 +2,7 @@
   flake.homeModules.cli = {
     pkgs,
     self,
+    inputs,
     ...
   }: {
     imports = with self.homeModules; [
@@ -56,6 +57,7 @@
       television # fuzzyfinder
       claude-code
       codex
+      kilocode-cli
 
       # custom scripts below
       toggle-audio-port

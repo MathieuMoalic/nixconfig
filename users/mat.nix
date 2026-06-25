@@ -17,7 +17,7 @@
         linger = true;
         uid = 1000;
         shell = pkgs.fish;
-        extraGroups = ["networkmanager" "wheel" "video" "input" "uinput" "media" "audio" "seat" "kvm" "libvirtd"];
+        extraGroups = ["networkmanager" "wheel" "video" "input" "uinput" "media" "audio" "seat" "kvm" "libvirtd" "dialout"];
         openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPcmHHg1pEOAxvEAyr6p5MY0m3/+BOn8nJOcAf7mMaej"];
         hashedPassword = "$6$gMQHadaVYwaBrtfO$y8pVFG0p2mT.iDQ5XYdTIG8GaqNDaQFwuH29z4VaJkYwlYGKCkrZClAixfl8IcPL3aqIh80cv7sq6M2nBx9gd1";
       };

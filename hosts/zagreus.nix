@@ -8,6 +8,7 @@
       auto-update
       desktop
       sshd
+      kilocode
     ];
 
     userModules = with self.nixosModules; [

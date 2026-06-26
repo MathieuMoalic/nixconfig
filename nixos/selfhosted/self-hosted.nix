@@ -8,6 +8,7 @@
       inputs.homepage.nixosModules.homepage-service
       inputs.blaz.nixosModules.blaz-service
       inputs.mont.nixosModules.mont-service
+      inputs.air.nixosModules.air-service
       caddy
       scrutiny
       uptime-kuma

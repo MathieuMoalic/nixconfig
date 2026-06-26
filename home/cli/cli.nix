@@ -57,7 +57,6 @@
       television # fuzzyfinder
       claude-code
       codex
-      kilocode-cli
 
       # custom scripts below
       toggle-audio-port

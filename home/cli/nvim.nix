@@ -27,7 +27,7 @@
               };
 
               nil.settings.nil.nix = {
-                autoArchive = false;
+                autoArchive = lib.mkForce false;
                 flake = {
                   autoArchive = true;
                 };

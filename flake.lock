@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782419561,
-        "narHash": "sha256-pbjGQo1qYTKzf1mvqEANUY0iM4chWOT/zv968PFAPbU=",
+        "lastModified": 1782472466,
+        "narHash": "sha256-FcLaeeRZT6RFSLTp9f8H87m/AiS5sz4K/8wy5JQaqeY=",
         "owner": "MathieuMoalic",
         "repo": "air",
-        "rev": "d7f3d35c866238e029e198907d5c2bb1e365be22",
+        "rev": "3c26c488cc8569cb1f5ef645209ed8f915fef760",
         "type": "github"
       },
       "original": {
@@ -444,11 +444,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1781216227,
-        "narHash": "sha256-9mUW6gNwoN2SWc/l0fW4svPNOulXLl8ijqKyeSOGgJE=",
+        "lastModified": 1782535326,
+        "narHash": "sha256-ZeRxu4yn6shd3SNF5ZUQb4r7BaVo1zBKMjRhfoNSBmw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a0374025a863d007d98e3297f6aa46cc3141c2f0",
+        "rev": "714a5f8c4ead6b31148d829288440ed033ccc041",
         "type": "github"
       },
       "original": {

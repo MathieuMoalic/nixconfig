@@ -31,6 +31,7 @@
       transmission
       watcharr
       blaz
+      air
       mont
       dawarich
       searx

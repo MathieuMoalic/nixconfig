@@ -103,6 +103,24 @@
           enable = true;
           editor = true;
           configurationLimit = 3;
+          extraInstallCommands = ''
+            for entry in /boot/loader/entries/nixos-generation-*.conf; do
+              [ -e "$entry" ] || continue
+
+              gen="$(${pkgs.coreutils}/bin/basename "$entry" \
+                | ${pkgs.gnused}/bin/sed -E 's/^nixos-generation-([0-9]+).*\.conf$/\1/')"
+
+              system_link="/nix/var/nix/profiles/system-$gen-link"
+
+              if [ -e "$system_link" ]; then
+                timestamp="$(${pkgs.coreutils}/bin/stat -c '%y' "$system_link" \
+                  | ${pkgs.gawk}/bin/awk -F. '{print $1}' \
+                  | ${pkgs.coreutils}/bin/tr ' ' '_')"
+
+                ${pkgs.gnused}/bin/sed -i "s|^version .*|version $timestamp|" "$entry"
+              fi
+            done
+          '';
         };
         efi.canTouchEfiVariables = true;
       };

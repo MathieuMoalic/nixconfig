@@ -9,7 +9,7 @@
         wallpaper = [
           {
             monitor = "";
-            path = "/home/mat/.local/share/wallpaper.png";
+            path = "/home/mat/.local/share/wallpaper.jpg";
             fit_mode = "cover";
           }
         ];

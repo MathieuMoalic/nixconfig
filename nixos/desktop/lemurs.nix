@@ -1,9 +1,23 @@
 {
-  flake.nixosModules.lemurs = {pkgs, ...}: {
-    services.displayManager.lemurs.enable = true;
-    xdg.portal = {
+  flake.nixosModules.lemurs = {
+    pkgs,
+    config,
+    lib,
+    ...
+  }: let
+    onlyHyprlandUwsmSessions = pkgs.runCommand "lemurs-hyprland-uwsm-sessions" {} ''
+      mkdir -p $out/share/wayland-sessions
+
+      ln -s \
+        ${config.programs.hyprland.package}/share/wayland-sessions/hyprland-uwsm.desktop \
+        $out/share/wayland-sessions/hyprland-uwsm.desktop
+    '';
+  in {
+    services.displayManager.lemurs = {
       enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+
+      settings.wayland.wayland_sessions_path =
+        lib.mkForce "${onlyHyprlandUwsmSessions}/share/wayland-sessions";
     };
   };
 }

@@ -35,7 +35,7 @@
           ])
           ++ (lib.optionals (osConfig.networking.hostName == "zagreus") [
             "DP-1, 2560x1440@240.00,0x0,1"
-            "DP-2, 2560x1440@180.00,2560x0,1"
+            "DP-2, 2560x1440@60.00,2560x0,1"
           ]);
 
         general = {
@@ -367,22 +367,23 @@
         };
 
         render = {
-          direct_scanout = 0;
           expand_undersized_textures = true;
           xp_mode = false;
-          ctm_animation = 2;
-          cm_enabled = false;
-          send_content_type = true;
-          cm_auto_hdr = 1;
-          new_render_scheduling = false;
-          non_shader_cm = 3;
           cm_sdr_eotf = 0;
+          direct_scanout = 0;
+          new_render_scheduling = false;
+
+          cm_enabled = false;
+          cm_auto_hdr = 0;
+          send_content_type = false;
+          non_shader_cm = 0;
+          ctm_animation = 0;
         };
 
         cursor = {
           invisible = false;
           sync_gsettings_theme = true;
-          no_hardware_cursors = 2;
+          no_hardware_cursors = 1;
           no_break_fs_vrr = 2;
           min_refresh_rate = 24;
           hotspot_padding = 1;
@@ -397,7 +398,7 @@
           enable_hyprcursor = true;
           hide_on_key_press = false;
           hide_on_touch = true;
-          use_cpu_buffer = 2;
+          use_cpu_buffer = 1;
           warp_back_after_non_mouse_input = false;
           zoom_disable_aa = false;
         };

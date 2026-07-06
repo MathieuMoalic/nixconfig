@@ -17,7 +17,9 @@
     ];
     wayland.windowManager.hyprland = {
       enable = true;
-      systemd.variables = ["--all"];
+      systemd = {
+        enable = false;
+      };
       configType = "hyprlang";
       settings = {
         # https://wiki.hypr.land/Configuring/Variables

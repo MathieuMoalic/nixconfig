@@ -7,8 +7,16 @@
   }: let
     system = pkgs.stdenv.hostPlatform.system;
     kilocode-cli = inputs.llm-agents.packages.${system}.kilocode-cli;
+
+    ollamaModel = "qwen3-coder:30b";
   in {
     sops.secrets."openrouter/api-key" = {
+      owner = "root";
+      group = "root";
+      mode = "0400";
+    };
+
+    sops.secrets."ollama/llm_api_token" = {
       owner = "root";
       group = "root";
       mode = "0400";
@@ -71,31 +79,39 @@
       content = builtins.toJSON {
         "$schema" = "https://app.kilo.ai/config.json";
 
-        model = "openai-compatible/openrouter/z-ai/glm-5.2";
+        model = "openrouter/z-ai/glm-5.2";
 
         provider = {
-          "openai-compatible" = {
+          openrouter = {
             options = {
-              # This is the key Kilo sends to the LiteLLM proxy.
-              # If you later set a LiteLLM master key, use that here instead.
               apiKey = config.sops.placeholder."openrouter/api-key";
-              baseURL = "http://127.0.0.1:4000/v1";
+            };
+          };
+          ollama-remote = {
+            name = "selfhosted";
+            npm = "@ai-sdk/openai-compatible";
+            options = {
+              apiKey = config.sops.placeholder."ollama/llm_api_token";
+              baseURL = "https://llm.matmoa.eu/v1";
+              timeout = 1800000;
+              headerTimeout = false;
             };
 
             models = {
-              "openrouter/z-ai/glm-5.2" = {
-                name = "OpenRouter Z.ai GLM-5.2 via LiteLLM";
-                id = "openrouter/z-ai/glm-5.2";
+              "${ollamaModel}" = {
+                name = "${ollamaModel}";
+                id = ollamaModel;
                 tool_call = true;
                 temperature = true;
+                limit = {
+                  context = 65536;
+                  output = 8192;
+                };
               };
             };
           };
         };
 
-        # This is only for MCP tool servers.
-        # LiteLLM does not belong here unless you intentionally use
-        # LiteLLM's MCP Gateway feature.
         mcp = {};
       };
     };

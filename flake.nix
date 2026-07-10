@@ -8,6 +8,11 @@
       url = "github:MathieuMoalic/blaz";
     };
 
+    koun = {
+      url = "github:MathieuMoalic/koun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     mont = {
       url = "github:MathieuMoalic/mont";
       inputs.nixpkgs.follows = "nixpkgs";

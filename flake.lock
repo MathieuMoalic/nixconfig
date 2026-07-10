@@ -352,6 +352,26 @@
         "type": "github"
       }
     },
+    "koun": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783670357,
+        "narHash": "sha256-uiJ5GZrsLOQwAtCuZ2aeodalvP4xBUPBdajMRG8Nhqo=",
+        "owner": "MathieuMoalic",
+        "repo": "koun",
+        "rev": "29d7aab6f312f188abc4853c00a00c5edd183577",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MathieuMoalic",
+        "repo": "koun",
+        "type": "github"
+      }
+    },
     "llm-agents": {
       "inputs": {
         "blueprint": "blueprint",
@@ -420,11 +440,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779615528,
-        "narHash": "sha256-/UZpKPCuN4pqxwqOoTH23u1O+xq85YB+8VIxH4SPj+k=",
+        "lastModified": 1783458072,
+        "narHash": "sha256-mFPX3lBlDtd4WMSUWbUA92JOYx/HLrcKYB5kQdOq7lE=",
         "owner": "MathieuMoalic",
         "repo": "mont",
-        "rev": "4bb0c8f68c1eb2c039e9ba2c4e86f13ae87a0d13",
+        "rev": "ad01631311cb6415023d7b509ca48afdfb689e97",
         "type": "github"
       },
       "original": {
@@ -603,6 +623,7 @@
         "home-manager": "home-manager",
         "homepage": "homepage",
         "import-tree": "import-tree",
+        "koun": "koun",
         "llm-agents": "llm-agents_2",
         "mont": "mont",
         "nix-colors": "nix-colors",

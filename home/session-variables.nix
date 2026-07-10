@@ -2,7 +2,7 @@
   flake.homeModules.sessionVariables = {...}: {
     home.sessionVariables = {
       RESTIC_PASSWORD_FILE = "/run/secrets/restic/password";
-      EDITOR = "nvim";
+      EDITOR = "hx";
       VISUAL = "$EDITOR";
       SUDO_EDIT = "$EDITOR";
       LD_LIBRARY_PATH = "/run/opengl-driver/lib";

@@ -359,11 +359,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783690010,
-        "narHash": "sha256-CFHaLf3LhvZrHZFHsf66lGGoVOS25Nv98s4RyiUlLLw=",
+        "lastModified": 1783768638,
+        "narHash": "sha256-j3LYt9vMCSn17LYojG52tt6J/a8YdSHX1PigTi5998M=",
         "owner": "MathieuMoalic",
         "repo": "koun",
-        "rev": "8c65c53c4aeb058c3d0eca83a86dd103eb6c5033",
+        "rev": "9a7aaab6fb9616accb9650abfe8cb6beb1698728",
         "type": "github"
       },
       "original": {

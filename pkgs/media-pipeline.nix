@@ -26,6 +26,7 @@
         - Convert selected audio tracks to stereo AAC
         - Remux files that are already HEVC or below the bitrate cutoff
         - Transcode high-bitrate non-HEVC files to HEVC using VAAPI or libx265
+        - During scans, prioritize transcode candidates and higher-bitrate files
 
         Examples:
             Dry-run a single file:
@@ -36,9 +37,15 @@
                 python3 media_pipeline.py --overwrite \
                     "/media/tdarr/in/Movie (2024)/Movie (2024).mkv"
 
-            Scan the whole source tree:
+            Scan the whole source tree, prioritizing transcode candidates by bitrate:
                 python3 media_pipeline.py --scan --dry-run
                 python3 media_pipeline.py --scan
+
+            Sort every scanned file by bitrate, regardless of codec:
+                python3 media_pipeline.py --scan --scan-order bitrate
+
+            Keep the old alphabetical scan order:
+                python3 media_pipeline.py --scan --scan-order path
 
             Use higher-quality stereo audio:
                 python3 media_pipeline.py --scan --audio-bitrate 256k
@@ -232,7 +239,12 @@
                 cache_root.mkdir(parents=True, exist_ok=True)
                 output_root.mkdir(parents=True, exist_ok=True)
 
-            files = collect_input_files(args, source_root)
+            probe_cache: dict[Path, MediaInfo] = {}
+            files = collect_input_files(
+                args,
+                source_root,
+                probe_cache=probe_cache,
+            )
             if not files:
                 print("No input files found.")
                 return 0
@@ -249,6 +261,7 @@
                         output_root=output_root,
                         cache_root=cache_root,
                         args=args,
+                        media_info=probe_cache.get(source_file.resolve()),
                     )
                 except Exception as exc:  # noqa: BLE001 - keep processing remaining files.
                     failures += 1
@@ -395,6 +408,19 @@
                 help="Limit how many files are processed when using --scan.",
             )
             parser.add_argument(
+                "--scan-order",
+                choices=("transcode", "bitrate", "path"),
+                default="transcode",
+                help=(
+                    "Scan processing order. "
+                    "'transcode' prioritizes non-HEVC files above the cutoff, "
+                    "then sorts by bitrate. "
+                    "'bitrate' sorts all files by bitrate. "
+                    "'path' keeps alphabetical order. "
+                    "Default: transcode."
+                ),
+            )
+            parser.add_argument(
                 "--include-existing",
                 action="store_true",
                 help="Do not skip files whose output already exists.",
@@ -411,16 +437,98 @@
             return args
 
 
-        def collect_input_files(args: argparse.Namespace, source_root: Path) -> list[Path]:
+        def collect_input_files(
+            args: argparse.Namespace,
+            source_root: Path,
+            *,
+            probe_cache: dict[Path, MediaInfo],
+        ) -> list[Path]:
             if args.scan:
                 files = list(iter_video_files(source_root))
+
+                if args.scan_order != "path":
+                    files = prioritize_input_files(
+                        files,
+                        ffprobe=args.ffprobe,
+                        cutoff_kbps=args.cutoff_kbps,
+                        mode=args.scan_order,
+                        probe_cache=probe_cache,
+                    )
             else:
                 files = [Path(path).expanduser().resolve() for path in args.paths]
 
+            # Apply the limit after priority sorting so --max-files selects the
+            # highest-priority candidates rather than the first alphabetical paths.
             if args.max_files is not None:
                 files = files[: args.max_files]
 
             return files
+
+
+        def prioritize_input_files(
+            files: Sequence[Path],
+            *,
+            ffprobe: str,
+            cutoff_kbps: int,
+            mode: str,
+            probe_cache: dict[Path, MediaInfo],
+        ) -> list[Path]:
+            ranked: list[tuple[Path, int, bool, bool, int]] = []
+
+            print(f"Probing {len(files)} file(s) for priority ordering...")
+
+            for original_index, path in enumerate(files):
+                resolved_path = path.resolve()
+
+                try:
+                    media_info = ffprobe_media(resolved_path, ffprobe)
+                    probe_cache[resolved_path] = media_info
+
+                    bitrate = media_info.best_bitrate_kbps
+                    bitrate_known = bitrate > 0
+                    needs_transcode = (
+                        decide(media_info, cutoff_kbps).action == "transcode"
+                    )
+                except Exception as exc:  # noqa: BLE001 - rank remaining files too.
+                    print(
+                        f"WARNING: could not probe {resolved_path}: {exc}",
+                        file=sys.stderr,
+                    )
+                    bitrate = 0
+                    bitrate_known = False
+                    needs_transcode = False
+
+                ranked.append(
+                    (
+                        resolved_path,
+                        original_index,
+                        needs_transcode,
+                        bitrate_known,
+                        bitrate,
+                    )
+                )
+
+            if mode == "transcode":
+                ranked.sort(
+                    key=lambda item: (
+                        not item[2],  # Transcode candidates first.
+                        not item[3],  # Known bitrates before unknown.
+                        -item[4],     # Highest bitrate first.
+                        item[1],      # Alphabetical input order as tie-breaker.
+                    )
+                )
+            elif mode == "bitrate":
+                ranked.sort(
+                    key=lambda item: (
+                        not item[3],
+                        -item[4],
+                        item[1],
+                    )
+                )
+            else:
+                raise PipelineError(f"Unsupported scan order: {mode}")
+
+            return [item[0] for item in ranked]
 
 
         def iter_video_files(source_root: Path) -> Iterable[Path]:
@@ -436,6 +544,7 @@
             output_root: Path,
             cache_root: Path,
             args: argparse.Namespace,
+            media_info: MediaInfo | None = None,
         ) -> None:
             source_file = source_file.resolve()
             ensure_under_root(source_file, source_root)
@@ -445,7 +554,7 @@
                 print(f"Skipping because output already exists: {output_file}")
                 return
 
-            media_info = ffprobe_media(source_file, args.ffprobe)
+            media_info = media_info or ffprobe_media(source_file, args.ffprobe)
             decision = decide(media_info, args.cutoff_kbps)
             selected_audio_streams = select_audio_streams(
                 media_info.audio_streams,

@@ -11,7 +11,7 @@
 
       extraPackages = with pkgs; [
         nil
-        nixfmt
+        alejandra
 
         ruff
         ty
@@ -102,12 +102,7 @@
             h = "hover";
             n = "goto_next_diag";
 
-            y = [
-              "save_selection"
-              "select_all"
-              "yank_main_selection_to_clipboard"
-              "jump_backward"
-            ];
+            y = "yank_to_clipboard";
           };
 
           select.space = {
@@ -115,8 +110,6 @@
             y = "yank_to_clipboard";
             Y = "yank_to_clipboard";
           };
-
-          insert.j.k = "normal_mode";
         };
       };
 
@@ -194,7 +187,7 @@
             auto-format = true;
             language-servers = ["nil"];
 
-            formatter.command = lib.getExe pkgs.nixfmt;
+            formatter.command = lib.getExe pkgs.alejandra;
           }
 
           {

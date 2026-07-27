@@ -61,11 +61,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1782310655,
-        "narHash": "sha256-/lkLV7rgp08DznPlHoZn6El7YLb17YjcRhQBWbhLYMY=",
+        "lastModified": 1784639308,
+        "narHash": "sha256-rSWXkO6Yo7rWyEnwIT7vfAWqpxlwiBohHda+ogy2m7I=",
         "owner": "MathieuMoalic",
         "repo": "blaz",
-        "rev": "c114ad7f13cb86664da6686cdfa3fcdd29f03e59",
+        "rev": "4060d5d0d13418c50ba32e2fb6e1b31fcf799d6d",
         "type": "github"
       },
       "original": {
@@ -359,11 +359,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783768638,
-        "narHash": "sha256-j3LYt9vMCSn17LYojG52tt6J/a8YdSHX1PigTi5998M=",
+        "lastModified": 1784110101,
+        "narHash": "sha256-Aqzv/UzhTQSHc4RiTOvGSo+Vmlb2JYOVKtJplwlAIa4=",
         "owner": "MathieuMoalic",
         "repo": "koun",
-        "rev": "9a7aaab6fb9616accb9650abfe8cb6beb1698728",
+        "rev": "ca2be360d39429b4bf7a50d58aea7d2bfe3fbfd8",
         "type": "github"
       },
       "original": {
@@ -440,11 +440,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783458072,
-        "narHash": "sha256-mFPX3lBlDtd4WMSUWbUA92JOYx/HLrcKYB5kQdOq7lE=",
+        "lastModified": 1784495995,
+        "narHash": "sha256-4UZ3twbszyOn0rH6NQNP4iWC3RSYyswsbkAE4oLH2bc=",
         "owner": "MathieuMoalic",
         "repo": "mont",
-        "rev": "ad01631311cb6415023d7b509ca48afdfb689e97",
+        "rev": "e41eecb07854c5c52822836dbedeb17aeba3dad9",
         "type": "github"
       },
       "original": {

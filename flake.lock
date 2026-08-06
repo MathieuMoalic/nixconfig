@@ -359,11 +359,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784110101,
-        "narHash": "sha256-Aqzv/UzhTQSHc4RiTOvGSo+Vmlb2JYOVKtJplwlAIa4=",
+        "lastModified": 1785263656,
+        "narHash": "sha256-uGIK7BUVXIs/QpDtCSDMKi36KBEVeMkxuj9LAIRY7IA=",
         "owner": "MathieuMoalic",
         "repo": "koun",
-        "rev": "ca2be360d39429b4bf7a50d58aea7d2bfe3fbfd8",
+        "rev": "5ab035138bc6d06061cb73259ab56c88fac19826",
         "type": "github"
       },
       "original": {
@@ -560,11 +560,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1785002762,
-        "narHash": "sha256-Y0BbgB3BLLHEUK88g4oSp3DerIx7rCX0iwICKJcY7/c=",
+        "lastModified": 1785599192,
+        "narHash": "sha256-dg4RTtDxnXY13UkJNdhmgTUTl0n/IJBlCigfO7nutZw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f7a2e428f5d71c47a5a938a3c5ad7138bb291093",
+        "rev": "6d65bfc1bcef2ef39a239d38e577e92a89fb0f07",
         "type": "github"
       },
       "original": {

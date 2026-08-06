@@ -23,6 +23,7 @@
       };
     };
 
+    home-manager.extraSpecialArgs = {inherit inputs;};
     home-manager.users.mat = {
       home.stateVersion = "23.05";
       programs.man.enable = false;

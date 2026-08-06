@@ -4,7 +4,10 @@
     self,
     inputs,
     ...
-  }: {
+  }: let
+    unstable =
+      inputs.nixpkgs_unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  in {
     imports = with self.homeModules; [
       fastfetch
       aliases
@@ -57,7 +60,7 @@
       just # makefile in rust
       television # fuzzyfinder
       claude-code
-      codex
+      unstable.codex
 
       # custom scripts below
       toggle-audio-port

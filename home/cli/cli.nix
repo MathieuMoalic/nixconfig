@@ -26,7 +26,7 @@
 
     home.packages = with pkgs; [
       uutils-coreutils-noprefix
-
+      lsof
       jq # json parsing
       dig # dns
       exiftool # file details

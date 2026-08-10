@@ -10,6 +10,7 @@
       inputs.mont.nixosModules.mont-service
       inputs.koun.nixosModules.koun-service
       inputs.air.nixosModules.air-service
+      inputs.gpx2img.nixosModules.gpx2img
       caddy
       scrutiny
       uptime-kuma
@@ -33,6 +34,7 @@
       watcharr
       blaz
       air
+      gpx2img
       mont
       koun
       dawarich

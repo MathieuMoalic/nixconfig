@@ -5,7 +5,6 @@
     stateVersion = "24.05";
 
     nixosModules = with self.nixosModules; [
-      auto-update
       desktop
       sshd
       kilocode

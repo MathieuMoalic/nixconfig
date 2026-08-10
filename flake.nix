@@ -8,6 +8,10 @@
       url = "github:MathieuMoalic/blaz";
     };
 
+    gpx2img = {
+      url = "github:MathieuMoalic/gpx2img";
+    };
+
     koun = {
       url = "github:MathieuMoalic/koun";
       inputs.nixpkgs.follows = "nixpkgs";

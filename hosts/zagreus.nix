@@ -25,7 +25,7 @@
       users.groups.adbusers = {};
       users.users.mat.extraGroups = ["adbusers"];
       programs.steam.enable = true;
-
+      programs.localsend.enable = true;
       hardware = {
         cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
         alsa.enablePersistence = true;

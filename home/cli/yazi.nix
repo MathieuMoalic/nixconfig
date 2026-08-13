@@ -1094,62 +1094,62 @@
           }
           {
             on = ["," "m"];
-            run = "sort mtime --dir-first";
+            run = "sort mtime --reverse=no --dir-first=yes";
             desc = "Sort by mtime";
           }
           {
             on = ["," "M"];
-            run = "sort mtime --reverse --dir-first";
+            run = "sort mtime --reverse=yes --dir-first=yes";
             desc = "Sort by mtime reverse";
           }
           {
             on = ["," "c"];
-            run = "sort btime --dir-first";
+            run = "sort btime --reverse=no --dir-first=yes";
             desc = "Sort by created time";
           }
           {
             on = ["," "C"];
-            run = "sort btime --reverse --dir-first";
+            run = "sort btime --reverse=yes --dir-first=yes";
             desc = "Sort by created time reverse";
           }
           {
             on = ["," "e"];
-            run = "sort extension --dir-first";
+            run = "sort extension --reverse=no --dir-first=yes";
             desc = "Sort by extension";
           }
           {
             on = ["," "E"];
-            run = "sort extension --reverse --dir-first";
+            run = "sort extension --reverse=yes --dir-first=yes";
             desc = "Sort by extension reverse";
           }
           {
             on = ["," "a"];
-            run = "sort alphabetical --dir-first";
+            run = "sort alphabetical --reverse=no --dir-first=yes";
             desc = "Sort alphabetically";
           }
           {
             on = ["," "A"];
-            run = "sort alphabetical --reverse --dir-first";
+            run = "sort alphabetical --reverse=yes --dir-first=yes";
             desc = "Sort alphabetically reverse";
           }
           {
             on = ["," "n"];
-            run = "sort natural --dir-first";
+            run = "sort natural --reverse=no --dir-first=yes";
             desc = "Sort naturally";
           }
           {
             on = ["," "N"];
-            run = "sort natural --reverse --dir-first";
+            run = "sort natural --reverse=yes --dir-first=yes";
             desc = "Sort naturally reverse";
           }
           {
             on = ["," "s"];
-            run = "sort size --dir-first";
+            run = "sort size --reverse=no --dir-first=yes";
             desc = "Sort by size";
           }
           {
             on = ["," "S"];
-            run = "sort size --reverse --dir-first";
+            run = "sort size --reverse=yes --dir-first=yes";
             desc = "Sort by size reverse";
           }
           {

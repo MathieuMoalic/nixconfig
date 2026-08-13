@@ -76,7 +76,6 @@
       settings = {
         trusted-users = [
           "root"
-          "@wheel"
         ];
         experimental-features = "nix-command flakes";
         use-xdg-base-directories = true;
@@ -101,7 +100,7 @@
         timeout = 3;
         systemd-boot = {
           enable = true;
-          editor = true;
+          editor = false;
           configurationLimit = 3;
           extraInstallCommands = ''
             for entry in /boot/loader/entries/nixos-generation-*.conf; do

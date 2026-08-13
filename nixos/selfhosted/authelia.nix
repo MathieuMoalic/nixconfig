@@ -1,91 +1,120 @@
 {
-  flake.nixosModules.authelia = {
-    lib,
-    config,
-    ...
-  }: let
+  flake.nixosModules.authelia = {config, ...}: let
     url = "authelia.matmoa.eu";
     port = 9091;
+
+    user = "authelia-main";
+    group = "authelia-main";
   in {
-    sops.secrets."authelia/encryptionKey" = {
-      owner = "authelia-main";
-      group = "authelia-main";
-      mode = "0400";
-    };
+    sops = {
+      secrets = {
+        "authelia/encryptionKey" = {
+          inherit user;
+          owner = user;
+          group = group;
+          mode = "0400";
+        };
 
-    sops.secrets."authelia/jwt_secret" = {
-      owner = "authelia-main";
-      group = "authelia-main";
-      mode = "0400";
-    };
+        "authelia/jwt_secret" = {
+          owner = user;
+          group = group;
+          mode = "0400";
+        };
 
-    environment.etc."authelia/users_database.yml".text = ''
-      users:
-        mat:
-          displayname: "mat"
-          email: "mathieu@matmoa.eu"
-          password: $argon2id$v=19$m=65536,t=3,p=4$wfd2DGdeySk8IqhMDtC1Rw$ficXqtumxqqmSagEFqyZ7pYbHiH2zyvFNTLAoGPbfHA
-    '';
+        "authelia/password_hash" = {
+          owner = user;
+          group = group;
+          mode = "0400";
+        };
+      };
+
+      templates."authelia/users_database.yml" = {
+        owner = user;
+        group = group;
+        mode = "0400";
+
+        content = ''
+          users:
+            mat:
+              disabled: false
+              displayname: "Mathieu"
+              password: "${config.sops.placeholder."authelia/password_hash"}"
+              email: "mathieu@matmoa.eu"
+              groups:
+                - admins
+        '';
+      };
+    };
 
     services.authelia.instances.main = {
       enable = true;
+
       secrets = {
-        jwtSecretFile = config.sops.secrets."authelia/jwt_secret".path;
-        storageEncryptionKeyFile = config.sops.secrets."authelia/encryptionKey".path;
+        jwtSecretFile =
+          config.sops.secrets."authelia/jwt_secret".path;
+
+        storageEncryptionKeyFile =
+          config.sops.secrets."authelia/encryptionKey".path;
       };
 
       settings = {
         theme = "dark";
+        default_2fa_method = "totp";
+
+        server = {
+          address = "tcp://127.0.0.1:${toString port}/";
+        };
 
         log = {
           level = "warn";
-          file_path = "/var/lib/authelia-main/logs";
-        };
-
-        server = {
-          address = "127.0.0.1:${toString port}";
-        };
-
-        totp = {
-          issuer = "authelia.com";
-          period = 30;
-          skew = 1;
+          format = "text";
         };
 
         authentication_backend = {
+          # The user database is generated declaratively by SOPS,
+          # so don't let Authelia try to modify it.
+          password_reset.disable = true;
+          password_change.disable = true;
+
           file = {
-            path = "/etc/authelia/users_database.yml";
+            path =
+              config.sops.templates."authelia/users_database.yml".path;
+
+            watch = false;
+
             password = {
-              algorithm = "argon2id";
-              iterations = 1;
-              salt_length = 16;
-              parallelism = 8;
-              memory = 1024; # KiB per thread
+              algorithm = "argon2";
+
+              argon2 = {
+                variant = "argon2id";
+                iterations = 3;
+                memory = 65536;
+                parallelism = 4;
+                key_length = 32;
+                salt_length = 16;
+              };
             };
           };
         };
 
         access_control = {
-          default_policy = "one_factor";
-          networks = [
-            {
-              name = "internal";
-              networks = ["192.168.1.89/18"];
-            }
-          ];
+          default_policy = "deny";
+
           rules = [
             {
               domain = "*.matmoa.eu";
-              networks = ["internal"];
-              policy = "bypass";
+              policy = "two_factor";
             }
           ];
         };
 
         session = {
           name = "authelia_session";
-          expiration = 50000000;
-          inactivity = 300;
+          same_site = "lax";
+
+          inactivity = "30m";
+          expiration = "8h";
+          remember_me = "30d";
 
           cookies = [
             {
@@ -95,28 +124,42 @@
           ];
         };
 
+        totp = {
+          issuer = "matmoa.eu";
+          algorithm = "sha1";
+          digits = 6;
+          period = 30;
+          skew = 1;
+          secret_size = 32;
+        };
+
         regulation = {
+          modes = ["ip"];
           max_retries = 3;
-          find_time = 120;
-          ban_time = 300;
+          find_time = "2m";
+          ban_time = "15m";
         };
 
         storage = {
           local.path = "/var/lib/authelia-main/db.sqlite3";
         };
 
-        notifier.filesystem.filename = "/var/lib/authelia-main/notification.txt";
+        notifier = {
+          filesystem.filename = "/var/lib/authelia-main/notification.txt";
+        };
       };
     };
+
     services.caddy = {
       extraConfig = ''
         (authelia) {
-          forward_auth localhost:${toString port} {
-            uri /api/verify?rd=https://${url}/
+          forward_auth 127.0.0.1:${toString port} {
+            uri /api/authz/forward-auth
             copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
           }
         }
       '';
+
       virtualHosts.${url}.extraConfig = ''
         reverse_proxy 127.0.0.1:${toString port}
       '';

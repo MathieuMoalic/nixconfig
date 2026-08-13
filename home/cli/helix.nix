@@ -101,7 +101,11 @@
             a = "code_action";
             h = "hover";
             n = "goto_next_diag";
-
+            x = [
+              ":write"
+              ":sh ${pkgs.trash-cli}/bin/trash-put -- \"%{file_path_absolute}\""
+              ":buffer-close!"
+            ];
             y = "yank_to_clipboard";
           };
 

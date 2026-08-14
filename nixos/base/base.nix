@@ -20,6 +20,9 @@
     };
     sops = {
       defaultSopsFile = self + "/secrets.yaml";
+      age.sshKeyPaths = [
+        "/home/mat/.ssh/id_ed25519"
+      ];
     };
     programs = {
       fish.enable = true;

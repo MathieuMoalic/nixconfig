@@ -9,7 +9,6 @@
     sops = {
       secrets = {
         "authelia/encryptionKey" = {
-          inherit user;
           owner = user;
           group = group;
           mode = "0400";

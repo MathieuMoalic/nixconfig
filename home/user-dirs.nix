@@ -16,6 +16,7 @@
       publicShare = dl;
       templates = dl;
       videos = dl;
+      projects = dl;
     };
   };
 }

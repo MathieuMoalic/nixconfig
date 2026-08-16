@@ -6,7 +6,6 @@
   }: {
     imports = with self.homeModules; [
       hyprland
-      wezterm
       theme
       zathura
       wlr-which-key

@@ -10,9 +10,11 @@
 
       complete -c j --no-files -a "(__fish_systemd_units)" -d "Systemd service unit"
     '';
+
     programs = {
       fish = {
         enable = true;
+
         shellInit = ''
           set -g fish_greeting ""
           bind \cl 'commandline -r "l"; commandline -f execute'
@@ -58,11 +60,6 @@
       starship = {
         enable = true;
         enableFishIntegration = true;
-      };
-
-      zellij = {
-        enable = true;
-        settings.default_shell = "fish";
       };
     };
   };

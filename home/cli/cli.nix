@@ -1,5 +1,7 @@
 {
   flake.homeModules.cli = {
+    config,
+    lib,
     pkgs,
     self,
     inputs,
@@ -21,7 +23,6 @@
       ssh
       starship
       yazi
-      zellij
     ];
 
     home.packages = with pkgs; [

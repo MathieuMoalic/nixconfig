@@ -36,6 +36,7 @@
           sessionVariables
           nixSettings
           colorScheme
+          wezterm
           cli
         ]
         ++ lib.optionals config.programs.hyprland.enable [

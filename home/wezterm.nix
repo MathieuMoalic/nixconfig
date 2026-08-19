@@ -147,6 +147,7 @@
         cursor_thickness = "2.5px";
 
         enable_wayland = false;
+        xcursor_theme = "BreezeX-RosePine-Linux";
         window_close_confirmation = "NeverPrompt";
 
         # Fish OSC 133 semantic zones are used by Ctrl+O.

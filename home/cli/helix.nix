@@ -52,6 +52,10 @@
             select = "underline";
           };
 
+          soft-wrap = {
+            enable = true;
+            wrap-at-text-width = true;
+          };
           statusline = {
             left = [
               "mode"

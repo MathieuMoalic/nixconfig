@@ -35,6 +35,7 @@
           scrolloff = 20;
           mouse = true;
           cursorline = true;
+          line-number = "relative";
           true-color = true;
           auto-format = true;
           popup-border = "all";

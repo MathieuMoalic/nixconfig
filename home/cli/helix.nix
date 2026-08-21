@@ -112,6 +112,8 @@
               ":buffer-close!"
             ];
             y = "yank_to_clipboard";
+            M = "record_macro";
+            m = "replay_macro";
           };
 
           select.space = {

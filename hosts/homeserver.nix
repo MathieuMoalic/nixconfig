@@ -10,6 +10,7 @@
       sshd
       nfs
       restic
+      marathon
     ];
 
     userModules = with self.nixosModules; [

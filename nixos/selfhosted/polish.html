@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Polish Case Endings</title>
+  <style>
+:root {
+  color-scheme: light dark;
+  --bg: #f4f7fb;
+  --panel: rgba(255,255,255,.88);
+  --panel-strong: #fff;
+  --text: #172033;
+  --muted: #697586;
+  --line: #dbe3ef;
+  --shadow: 0 14px 40px rgba(20,34,58,.09);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  color: var(--text);
+  line-height: 1.35;
+  background:
+    radial-gradient(circle at 14% 0%, #dfe9ff 0, transparent 32%),
+    radial-gradient(circle at 94% 7%, #f6d9ff 0, transparent 28%),
+    var(--bg);
+}
+
+.shell {
+  width: min(1200px, calc(100% - 28px));
+  margin: auto;
+  padding: 0 0 calc(var(--translator-height, 150px) + 24px);
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 14px;
+  padding: 8px;
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 0 0 16px 16px;
+  background: rgba(255,255,255,.90);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(20,34,58,.10);
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid color-mix(in srgb, var(--dot) 28%, transparent);
+  border-radius: 10px;
+  color: color-mix(in srgb, var(--dot) 82%, var(--text));
+  background: color-mix(in srgb, var(--dot) 11%, transparent);
+  text-decoration: none;
+  font: inherit;
+  font-size: .86rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.nav a:hover {
+  color: color-mix(in srgb, var(--dot) 92%, var(--text));
+  background: color-mix(in srgb, var(--dot) 18%, transparent);
+  border-color: color-mix(in srgb, var(--dot) 42%, transparent);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dot);
+}
+
+.translator {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto;
+  gap: 8px;
+  align-items: stretch;
+  width: min(1200px, calc(100% - 28px));
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,.8);
+  border-bottom: 0;
+  border-radius: 16px 16px 0 0;
+  background: rgba(255,255,255,.94);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 -8px 28px rgba(20,34,58,.14);
+}
+
+
+.translate-box {
+  min-height: 74px;
+  width: 100%;
+  resize: vertical;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  background: var(--panel-strong);
+  font: inherit;
+  font-size: .88rem;
+  line-height: 1.35;
+}
+
+.translate-box[readonly] {
+  background: color-mix(in srgb, var(--panel-strong) 94%, #2563eb);
+}
+
+.translate-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.translate-controls select,
+.translate-controls button {
+  min-height: 32px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: var(--text);
+  background: var(--panel-strong);
+  font: inherit;
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+.translate-controls button { cursor: pointer; }
+
+.translate-controls .primary {
+  color: white;
+  border-color: #2563eb;
+  background: #2563eb;
+}
+
+.translate-status {
+  grid-column: 1 / -1;
+  min-height: 1em;
+  color: var(--muted);
+  font-size: .73rem;
+  line-height: 1.2;
+}
+
+.translate-status.error { color: #b91c1c; }
+
+.translate-alternatives {
+  grid-column: 1 / -1;
+  display: none;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.translate-alternatives.show {
+  display: flex;
+}
+
+.translate-alternatives-label {
+  color: var(--muted);
+  font-size: .73rem;
+  font-weight: 800;
+}
+
+.translate-alt {
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--panel-strong);
+  font: inherit;
+  font-size: .75rem;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.translate-alt:hover {
+  border-color: #2563eb;
+  background: rgba(37,99,235,.08);
+}
+
+.case-card {
+  scroll-margin-top: 72px;
+  scroll-margin-bottom: calc(var(--translator-height, 150px) + 18px);
+  margin-top: 14px;
+  border: 1px solid rgba(255,255,255,.88);
+  border-radius: 20px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.case-card::before {
+  content: "";
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), transparent 88%);
+}
+
+.case-head {
+  padding: 14px 21px 7px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .72rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+h2 {
+  margin: 1px 0 0;
+  font-size: 1.55rem;
+  letter-spacing: -.025em;
+}
+
+.case-q {
+  color: var(--muted);
+  font-size: .72em;
+  font-weight: 700;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 14px 11px;
+}
+
+.word-block {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--panel-strong);
+}
+
+.word-title {
+  padding: 8px 13px 7px;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--accent) 9%, transparent),
+      transparent 70%
+    );
+}
+
+.word-title h3 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: -.01em;
+}
+
+.table-wrap { overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+tbody tr:last-child th,
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+thead th {
+  color: var(--muted);
+  background: #f8fafc;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  font-size: .69rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+tbody th {
+  width: 32%;
+  color: var(--text);
+  font-size: .84rem;
+  font-weight: 800;
+  background: color-mix(in srgb, var(--accent) 3%, white);
+}
+
+td {
+  min-width: 140px;
+  font-size: .86rem;
+}
+
+.variant {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.variant + .variant {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top:
+    1px dashed color-mix(in srgb, var(--line) 80%, transparent);
+}
+
+.context {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 800;
+}
+
+.ending {
+  color: var(--accent);
+  font-family:
+    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: .86rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.empty { color: #a0a9b8; }
+
+.case-ref {
+  font-weight: 900;
+}
+
+.case-ref-mianownik { color: #7c3aed; }
+.case-ref-dopełniacz { color: #2563eb; }
+.case-ref-celownik { color: #0891b2; }
+.case-ref-biernik { color: #059669; }
+.case-ref-narzędnik { color: #d97706; }
+.case-ref-miejscownik { color: #dc2626; }
+.case-ref-wołacz { color: #db2777; }
+
+.usage {
+  margin: 0 14px 12px;
+  padding: 10px 14px 11px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--accent) 7%, transparent),
+      transparent 72%
+    ),
+    var(--panel-strong);
+}
+
+.usage-list {
+  margin: 0;
+  padding-left: 1.35rem;
+  display: grid;
+  gap: 2px;
+}
+
+.usage-list li {
+  padding-left: .08rem;
+  font-size: .84rem;
+  line-height: 1.3;
+}
+
+.usage-list strong { color: var(--accent); }
+
+.example {
+  margin-left: .3em;
+  color: var(--muted);
+  font-style: italic;
+  white-space: normal;
+}
+
+.example::before {
+  content: "— ";
+  font-style: normal;
+}
+
+@media (max-width: 900px) {
+  .case-grid { grid-template-columns: 1fr; }
+
+  .translator {
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .translator > .translate-controls:last-of-type {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 620px) {
+  .shell { width: min(100% - 16px, 1200px); }
+  .case-head { padding: 12px 16px 6px; }
+  .case-grid { padding: 0 8px 8px; }
+  .usage { margin: 0 8px 9px; }
+  th, td { padding: 7px 9px; }
+  tbody th { width: 28%; }
+.translator {
+    grid-template-columns: 1fr;
+  }
+
+  .translate-controls,
+  .translator > .translate-controls:last-of-type {
+    grid-column: auto;
+    flex-direction: row;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1320;
+    --panel: rgba(20,27,42,.90);
+    --panel-strong: #151c2b;
+    --text: #edf2ff;
+    --muted: #9aa8bf;
+    --line: #2b3850;
+    --shadow: 0 14px 40px rgba(0,0,0,.25);
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 14% 0%, #18264c 0, transparent 32%),
+      radial-gradient(circle at 94% 7%, #38204b 0, transparent 28%),
+      var(--bg);
+  }
+
+  .nav {
+    background: rgba(16,22,34,.84);
+    border-color: rgba(255,255,255,.08);
+  }
+
+  .nav a:hover {
+    background: color-mix(in srgb, var(--dot) 22%, transparent);
+  }
+
+  .translator {
+    background: rgba(16,22,34,.95);
+    border-color: rgba(255,255,255,.08);
+  }
+
+  thead th { background: #111827; }
+
+  tbody th {
+    background:
+      color-mix(in srgb, var(--accent) 8%, #151c2b);
+  }
+
+  .word-title {
+    background:
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--accent) 14%, transparent),
+        transparent 70%
+      );
+  }
+
+  .translate-status.error { color: #fca5a5; }
+}
+</style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="nav" aria-label="Cases">
+      <a href="#mianownik" style="--dot:#7c3aed"><span class="dot"></span>Mianownik</a><a href="#dopełniacz" style="--dot:#2563eb"><span class="dot"></span>Dopełniacz</a><a href="#celownik" style="--dot:#0891b2"><span class="dot"></span>Celownik</a><a href="#biernik" style="--dot:#059669"><span class="dot"></span>Biernik</a><a href="#narzędnik" style="--dot:#d97706"><span class="dot"></span>Narzędnik</a><a href="#miejscownik" style="--dot:#dc2626"><span class="dot"></span>Miejscownik</a><a href="#wołacz" style="--dot:#db2777"><span class="dot"></span>Wołacz</a>
+</nav>
+
+    
+    <article id="mianownik" class="case-card"
+             style="--accent:#7c3aed">
+      <div class="case-head">
+        <div class="eyebrow">Nominative</div>
+        <h2>
+          Mianownik
+          <span class="case-q">(Kto? Co?)</span>
+        </h2>
+      </div>
+      <div class="case-grid">
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Nouns</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine (consonant)</th><td><span class="ending">∅</span></td><td><span class="ending">-y / -i / -e / -owie / -anie</span></td></tr><tr><th scope='row'>Masculine (-a class)</th><td><span class="ending">-a</span></td><td><span class="ending">-y / -i / -e / -owie / -anie</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-a / -i / ∅</span></td><td><span class="ending">-y / -i / -e</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-o / -e / -ę / -um</span></td><td><span class="ending">-a</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Adjectives</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-y / -i</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-a / -ia</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-e / -ie</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masc. personal</th><td><span class="empty">—</span></td><td><span class="ending">soften + -i / -y</span></td></tr><tr><th scope='row'>Other genders</th><td><span class="empty">—</span></td><td><span class="ending">-e / -ie</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+      </div>
+      <section class="usage"><ul class="usage-list"><li><strong>Subject:</strong> the entity performing the action. <span class="example">Młody student czyta książkę.</span></li><li><strong>With “to”:</strong> simple definitions and identification. <span class="example">Warszawa to piękne miasto.</span></li></ul></section>
+    </article>
+    
+    <article id="dopełniacz" class="case-card"
+             style="--accent:#2563eb">
+      <div class="case-head">
+        <div class="eyebrow">Genitive</div>
+        <h2>
+          Dopełniacz
+          <span class="case-q">(Kogo? Czego?)</span>
+        </h2>
+      </div>
+      <div class="case-grid">
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Nouns</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine (consonant)</th><td><span class="ending">-a / -u</span></td><td><span class="ending">-ów / -y / -i</span></td></tr><tr><th scope='row'>Masculine (-a class)</th><td><span class="ending">-y / -i</span></td><td><span class="ending">-ów / -y / -i</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-y / -i</span></td><td><span class="ending">∅ / -y / -i</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-a</span></td><td><span class="ending">∅ / -y / -i / -ów</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Adjectives</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-ego / -iego</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ej / -iej</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-ego / -iego</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>All genders</th><td><span class="empty">—</span></td><td><span class="ending">-ych / -ich</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+      </div>
+      <section class="usage"><ul class="usage-list"><li><strong>Possession / belonging:</strong> ownership and many English “of” relations. <span class="example">To jest samochód mojego brata.</span></li><li><strong>Negation / absence:</strong> objects under negation and expressions such as nie ma. <span class="example">Nie lubię czarnej kawy.</span></li><li><strong>Quantities:</strong> after dużo, mało, and many constructions with numerals 5+. <span class="example">Kupuję dużo świeżego chleba.</span></li><li><strong>Common prepositions:</strong> od, do, z (= from), bez, dla, koło, u. <span class="example">Idę do nowego sklepu.</span></li></ul></section>
+    </article>
+    
+    <article id="celownik" class="case-card"
+             style="--accent:#0891b2">
+      <div class="case-head">
+        <div class="eyebrow">Dative</div>
+        <h2>
+          Celownik
+          <span class="case-q">(Komu? Czemu?)</span>
+        </h2>
+      </div>
+      <div class="case-grid">
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Nouns</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine (consonant)</th><td><span class="ending">-owi / -u</span></td><td><span class="ending">-om</span></td></tr><tr><th scope='row'>Masculine (-a class)</th><td><div class="variant"><span class="context">hard stem</span><span class="ending">soften + -e</span></div><div class="variant"><span class="context">soft / hardened</span><span class="ending">-y / -i</span></div></td><td><span class="ending">-om</span></td></tr><tr><th scope='row'>Feminine</th><td><div class="variant"><span class="context">hard stem</span><span class="ending">soften + -e</span></div><div class="variant"><span class="context">soft / hardened</span><span class="ending">-y / -i</span></div></td><td><span class="ending">-om</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-u</span></td><td><span class="ending">-om</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Adjectives</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-emu / -iemu</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ej / -iej</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-emu / -iemu</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>All genders</th><td><span class="empty">—</span></td><td><span class="ending">-ym / -im</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+      </div>
+      <section class="usage"><ul class="usage-list"><li><strong>Recipient / beneficiary:</strong> the person receiving something or benefiting. <span class="example">Daję prezent młodszemu bratu.</span></li><li><strong>Impersonal states:</strong> e.g. jest mi zimno, było mu smutno. <span class="example">Mojej siostrze jest zimno.</span></li><li><strong>Prepositions:</strong> dzięki, przeciwko / przeciw, wbrew. <span class="example">Uciekliśmy dzięki twojemu koledze.</span></li></ul></section>
+    </article>
+    
+    <article id="biernik" class="case-card"
+             style="--accent:#059669">
+      <div class="case-head">
+        <div class="eyebrow">Accusative</div>
+        <h2>
+          Biernik
+          <span class="case-q">(Kogo? Co?)</span>
+        </h2>
+      </div>
+      <div class="case-grid">
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Nouns</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masc. consonant, animate</th><td><span class="ending case-ref case-ref-dopełniacz">= Dopełniacz</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masc. consonant, inanimate</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masculine (-a class)</th><td><span class="ending">-ę</span></td><td><span class="ending case-ref case-ref-dopełniacz">personal → = Dopełniacz</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ę / ∅</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Masc. personal</th><td><span class="empty">—</span></td><td><span class="ending case-ref case-ref-dopełniacz">= Dopełniacz</span></td></tr><tr><th scope='row'>Other plural</th><td><span class="empty">—</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Adjectives</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masc. animate</th><td><span class="ending">-ego / -iego</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masc. inanimate</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ą / -ią</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masc. personal</th><td><span class="empty">—</span></td><td><span class="ending">-ych / -ich</span></td></tr><tr><th scope='row'>Other plural</th><td><span class="empty">—</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+      </div>
+      <section class="usage"><ul class="usage-list"><li><strong>Direct object:</strong> the entity directly targeted by a positive transitive verb. <span class="example">Mam nowego psa i starą książkę.</span></li><li><strong>Motion target:</strong> with w or na when movement into / onto / to is meant. <span class="example">Idę na ważną lekcję.</span></li></ul></section>
+    </article>
+    
+    <article id="narzędnik" class="case-card"
+             style="--accent:#d97706">
+      <div class="case-head">
+        <div class="eyebrow">Instrumental</div>
+        <h2>
+          Narzędnik
+          <span class="case-q">(Kim? Czym?)</span>
+        </h2>
+      </div>
+      <div class="case-grid">
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Nouns</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine (consonant)</th><td><div class="variant"><span class="context">k / g stem</span><span class="ending">-iem</span></div><div class="variant"><span class="context">other</span><span class="ending">-em</span></div></td><td><span class="ending">-ami / -mi</span></td></tr><tr><th scope='row'>Masculine (-a class)</th><td><span class="ending">-ą</span></td><td><span class="ending">-ami / -mi</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ą</span></td><td><span class="ending">-ami / -mi</span></td></tr><tr><th scope='row'>Neuter</th><td><div class="variant"><span class="context">k / g stem</span><span class="ending">-iem</span></div><div class="variant"><span class="context">other</span><span class="ending">-em</span></div></td><td><span class="ending">-ami</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Adjectives</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-ym / -im</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ą / -ią</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-ym / -im</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>All genders</th><td><span class="empty">—</span></td><td><span class="ending">-ymi / -imi</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+      </div>
+      <section class="usage"><ul class="usage-list"><li><strong>Means / tool:</strong> how an action is performed; often no preposition. <span class="example">Jem obiad ostrym nożem.</span></li><li><strong>Role after być:</strong> profession, nationality, role, or category as a noun complement. <span class="example">Adam jest dobrym lekarzem.</span></li><li><strong>Companionship:</strong> with z meaning “with / together with”. <span class="example">Piję kawę z moją bliską przyjaciółką.</span></li></ul></section>
+    </article>
+    
+    <article id="miejscownik" class="case-card"
+             style="--accent:#dc2626">
+      <div class="case-head">
+        <div class="eyebrow">Locative</div>
+        <h2>
+          Miejscownik
+          <span class="case-q">(O kim? O czym?)</span>
+        </h2>
+      </div>
+      <div class="case-grid">
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Nouns</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine (consonant)</th><td><div class="variant"><span class="context">hard except k/g/ch/h</span><span class="ending">soften + -e</span></div><div class="variant"><span class="context">soft or k/g/ch/h</span><span class="ending">-u</span></div></td><td><span class="ending">-ach</span></td></tr><tr><th scope='row'>Masculine (-a class)</th><td><span class="ending">= feminine</span></td><td><span class="ending">-ach</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending case-ref case-ref-celownik">= Celownik</span></td><td><span class="ending">-ach</span></td></tr><tr><th scope='row'>Neuter</th><td><div class="variant"><span class="context">hard except k/g/ch/h</span><span class="ending">soften + -e</span></div><div class="variant"><span class="context">soft or k/g/ch/h</span><span class="ending">-u</span></div></td><td><span class="ending">-ach</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Adjectives</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-ym / -im</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ej / -iej</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-ym / -im</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>All genders</th><td><span class="empty">—</span></td><td><span class="ending">-ych / -ich</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+      </div>
+      <section class="usage"><ul class="usage-list"><li><strong>w(e) — in / at:</strong> static location inside a place or setting. <span class="example">Mieszkam w dużym mieście.</span></li><li><strong>na — on / at:</strong> static location on a surface or at many places, events, and activities. <span class="example">Dzieci bawią się na dworze.</span></li><li><strong>przy — at / next to / during:</strong> proximity or an accompanying circumstance. <span class="example">Siedzę przy oknie.</span></li><li><strong>po — after / over / around:</strong> time after something or movement over an area or surface. <span class="example">Po obiedzie pójdziemy do kina.</span></li><li><strong>o — about / at / with:</strong> a topic, a clock time, or a characteristic. <span class="example">Rozmawiamy o polskiej gramatyce.</span></li></ul></section>
+    </article>
+    
+    <article id="wołacz" class="case-card"
+             style="--accent:#db2777">
+      <div class="case-head">
+        <div class="eyebrow">Vocative</div>
+        <h2>
+          Wołacz
+          <span class="case-q">(O!)</span>
+        </h2>
+      </div>
+      <div class="case-grid">
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Nouns</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine (consonant)</th><td><span class="ending case-ref case-ref-miejscownik">= Miejscownik</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Masculine (-a class)</th><td><span class="ending">-o (usually)</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Feminine</th><td><div class="variant"><span class="context">most -a nouns</span><span class="ending">-o</span></div><div class="variant"><span class="context">affectionate soft + -a</span><span class="ending">-u</span></div><div class="variant"><span class="context">-i / consonant nouns</span><span class="ending">-i / -y</span></div></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+        
+      <section class="word-block">
+        <div class="word-title"><h3>Adjectives</h3></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Gender / group</th>
+                <th>Singular</th>
+                <th>Plural</th>
+              </tr>
+            </thead>
+            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masc. personal</th><td><span class="empty">—</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Other genders</th><td><span class="empty">—</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    
+      </div>
+      <section class="usage"><ul class="usage-list"><li><strong>Direct address:</strong> calling or speaking directly to a person or entity. <span class="example">Mamo, chodź tutaj!</span></li><li><strong>Salutations:</strong> especially names, titles, greetings, and formal letter openings. <span class="example">Szanowny Panie Dyrektorze!</span></li><li><strong>Casual speech:</strong> Nominative personal names often replace Vocative colloquially. <span class="example">Marek, chodź tutaj!</span></li></ul></section>
+    </article>
+    
+  </main>
+
+  <div id="translator" class="translator">
+  <textarea
+    id="lt-source"
+    class="translate-box"
+    placeholder="Type Polish or English…"
+  ></textarea>
+
+  <div class="translate-controls">
+    <select id="lt-source-lang" aria-label="Source language">
+      <option value="auto">Auto</option>
+      <option value="pl" selected>Polish</option>
+      <option value="en">English</option>
+    </select>
+    <button id="lt-swap" type="button" title="Swap languages">⇄</button>
+  </div>
+
+  <textarea
+    id="lt-output"
+    class="translate-box"
+    placeholder="Translation"
+    readonly
+  ></textarea>
+
+  <div class="translate-controls">
+    <select id="lt-target-lang" aria-label="Target language">
+      <option value="en" selected>English</option>
+      <option value="pl">Polish</option>
+    </select>
+    <button id="lt-go" class="primary" type="button">Translate</button>
+    <button id="lt-clear" type="button">Clear</button>
+    <button id="lt-open" type="button">Open site</button>
+  </div>
+
+  <div id="lt-status" class="translate-status" aria-live="polite"></div>
+  <div id="lt-alternatives" class="translate-alternatives" aria-label="Alternative translations"></div>
+</div>
+
+  <script>
+const LT_BASE = "https://translate.matmoa.eu";
+
+const panel = document.getElementById("translator");
+const sourceText = document.getElementById("lt-source");
+const outputText = document.getElementById("lt-output");
+const sourceLang = document.getElementById("lt-source-lang");
+const targetLang = document.getElementById("lt-target-lang");
+const translateBtn = document.getElementById("lt-go");
+const swapBtn = document.getElementById("lt-swap");
+const clearBtn = document.getElementById("lt-clear");
+const openBtn = document.getElementById("lt-open");
+const status = document.getElementById("lt-status");
+const alternativesBox = document.getElementById("lt-alternatives");
+
+function updateTranslatorHeight() {
+  const height = Math.ceil(panel.getBoundingClientRect().height);
+  document.documentElement.style.setProperty(
+    "--translator-height",
+    `${height}px`
+  );
+}
+
+updateTranslatorHeight();
+
+if ("ResizeObserver" in window) {
+  const translatorResizeObserver = new ResizeObserver(updateTranslatorHeight);
+  translatorResizeObserver.observe(panel);
+} else {
+  window.addEventListener("resize", updateTranslatorHeight);
+}
+
+
+
+swapBtn.addEventListener("click", () => {
+  if (sourceLang.value === "auto") {
+    sourceLang.value = targetLang.value;
+    targetLang.value = "pl";
+  } else {
+    const oldSource = sourceLang.value;
+    sourceLang.value = targetLang.value;
+    targetLang.value = oldSource;
+  }
+
+  const oldText = sourceText.value;
+  if (outputText.value) {
+    sourceText.value = outputText.value;
+    outputText.value = oldText;
+  }
+});
+
+clearBtn.addEventListener("click", () => {
+  sourceText.value = "";
+  outputText.value = "";
+  status.textContent = "";
+  status.classList.remove("error");
+  alternativesBox.replaceChildren();
+  alternativesBox.classList.remove("show");
+  updateTranslatorHeight();
+  sourceText.focus();
+});
+
+openBtn.addEventListener("click", () => {
+  window.open(LT_BASE, "_blank", "noopener,noreferrer");
+});
+
+async function translate() {
+  const q = sourceText.value.trim();
+  if (!q) {
+    sourceText.focus();
+    return;
+  }
+
+  status.classList.remove("error");
+  status.textContent = "Translating…";
+  alternativesBox.replaceChildren();
+  alternativesBox.classList.remove("show");
+  translateBtn.disabled = true;
+
+  try {
+    const response = await fetch(`${LT_BASE}/translate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        q,
+        source: sourceLang.value,
+        target: targetLang.value,
+        format: "text",
+        alternatives: 3,
+        api_key: ""
+      })
+    });
+
+    let data = {};
+    try {
+      data = await response.json();
+    } catch {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    if (!response.ok) {
+      throw new Error(data.error || `HTTP ${response.status}`);
+    }
+
+    outputText.value = data.translatedText || "";
+
+    alternativesBox.replaceChildren();
+    const alternatives = Array.isArray(data.alternatives)
+      ? data.alternatives.filter(
+          text => text && text !== data.translatedText
+        )
+      : [];
+
+    if (alternatives.length) {
+      const label = document.createElement("span");
+      label.className = "translate-alternatives-label";
+      label.textContent = "Alternatives:";
+      alternativesBox.appendChild(label);
+
+      for (const text of alternatives) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "translate-alt";
+        button.textContent = text;
+        button.title = "Use this translation";
+        button.addEventListener("click", () => {
+          outputText.value = text;
+        });
+        alternativesBox.appendChild(button);
+      }
+
+      alternativesBox.classList.add("show");
+    } else {
+      alternativesBox.classList.remove("show");
+    }
+
+    updateTranslatorHeight();
+
+    status.textContent = data.detectedLanguage?.language
+      ? `Detected: ${data.detectedLanguage.language}`
+      : "";
+  } catch (err) {
+    status.classList.add("error");
+    status.textContent =
+      "Could not call translate.matmoa.eu from this page. " +
+      "If the server works normally, cross-origin (CORS) access may be blocked. " +
+      `Details: ${err.message}`;
+  } finally {
+    translateBtn.disabled = false;
+  }
+}
+
+translateBtn.addEventListener("click", translate);
+
+sourceText.addEventListener("keydown", (event) => {
+  if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+    event.preventDefault();
+    translate();
+  }
+});
+</script>
+</body>
+</html>
+

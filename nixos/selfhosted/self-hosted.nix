@@ -12,6 +12,7 @@
       inputs.air.nixosModules.air-service
       inputs.gpx2img.nixosModules.gpx2img
       caddy
+      polish
       scrutiny
       uptime-kuma
       immich

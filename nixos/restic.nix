@@ -20,6 +20,16 @@
         --retry-lock 2h \
         check --read-data-subset=1%
     '';
+
+    requireNfsMount = mountPoint: mountUnit: {
+      requires = [mountUnit];
+      after = [mountUnit];
+
+      # Do not trust ConditionPathIsMountPoint here: systemd's autofs
+      # mount itself counts as a mount point. Verify that the real
+      # filesystem mounted at this path is actually NFS.
+      serviceConfig.ExecCondition = "${pkgs.util-linux}/bin/findmnt -rn -M ${mountPoint} -t nfs,nfs4";
+    };
   in {
     imports = with self.nixosModules; [
       nfs
@@ -39,8 +49,10 @@
       commonSettings = {
         initialize = true;
         user = "root";
+
         paths = ["/var/lib"];
         exclude = ["/var/lib/containers"];
+
         passwordFile = config.sops.secrets."restic/password".path;
 
         runCheck = true;
@@ -72,38 +84,36 @@
 
     systemd.services."restic-backups-eHDD" = {
       unitConfig.ConditionPathIsMountPoint = "/mnt/ehdd";
+      requires = ["mnt-ehdd.mount"];
       after = ["mnt-ehdd.mount"];
     };
 
-    systemd.services."restic-backups-nas" = {
-      unitConfig.ConditionPathIsMountPoint = "/mnt/nas";
-      after = ["mnt-nas.mount"];
-    };
+    systemd.services."restic-backups-nas" =
+      requireNfsMount "/mnt/nas" "mnt-nas.mount";
 
-    systemd.services."restic-backups-nas2" = {
-      unitConfig.ConditionPathIsMountPoint = "/mnt/nas2";
-      after = ["mnt-nas2.mount"];
-    };
+    systemd.services."restic-backups-nas2" =
+      requireNfsMount "/mnt/nas2" "mnt-nas2.mount";
 
     systemd.services.restic-weekly-check = {
       description = "Weekly Restic repository integrity checks";
 
       wants = ["network-online.target"];
-      after = ["network-online.target"];
 
-      unitConfig = {
-        RequiresMountsFor = [
-          "/mnt/ehdd"
-          "/mnt/nas"
-          "/mnt/nas2"
-        ];
+      # Require the real mount units. If either NAS is unavailable,
+      # this service must not proceed and accidentally use the
+      # underlying directories on the root filesystem.
+      requires = [
+        "mnt-ehdd.mount"
+        "mnt-nas.mount"
+        "mnt-nas2.mount"
+      ];
 
-        ConditionPathIsMountPoint = [
-          "/mnt/ehdd"
-          "/mnt/nas"
-          "/mnt/nas2"
-        ];
-      };
+      after = [
+        "network-online.target"
+        "mnt-ehdd.mount"
+        "mnt-nas.mount"
+        "mnt-nas2.mount"
+      ];
 
       environment.RESTIC_CACHE_DIR = "/var/cache/restic-weekly-check";
 
@@ -116,6 +126,15 @@
 
         PrivateTmp = true;
         TimeoutStartSec = "6h";
+
+        # Double-check the actual filesystem types immediately before
+        # running Restic. In particular, an autofs mount at /mnt/nas*
+        # must not pass these checks.
+        ExecCondition = [
+          "${pkgs.util-linux}/bin/findmnt -rn -M /mnt/ehdd"
+          "${pkgs.util-linux}/bin/findmnt -rn -M /mnt/nas -t nfs,nfs4"
+          "${pkgs.util-linux}/bin/findmnt -rn -M /mnt/nas2 -t nfs,nfs4"
+        ];
       };
 
       script = ''

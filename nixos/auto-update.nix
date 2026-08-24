@@ -104,7 +104,7 @@
       wantedBy = ["timers.target"];
 
       timerConfig = {
-        OnCalendar = "Mon 04:00";
+        OnCalendar = "Mon 06:00";
         Persistent = true;
         RandomizedDelaySec = "15m";
         Unit = "auto-update-nixpkgs.service";

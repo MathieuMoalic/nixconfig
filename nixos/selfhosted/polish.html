@@ -54,6 +54,14 @@ body {
   backdrop-filter: blur(12px);
   box-shadow: 0 8px 24px rgba(20,34,58,.10);
 }
+.nav-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
 
 .nav a {
   display: inline-flex;
@@ -480,13 +488,34 @@ td {
 
   .translate-status.error { color: #fca5a5; }
 }
+
+.row-sync-active tbody tr,
+.row-sync-active thead tr {
+  transition: none;
+}
 </style>
 </head>
 <body>
-  <main class="shell">
-    <nav class="nav" aria-label="Cases">
-      <a href="#mianownik" style="--dot:#7c3aed"><span class="dot"></span>Mianownik</a><a href="#dopełniacz" style="--dot:#2563eb"><span class="dot"></span>Dopełniacz</a><a href="#celownik" style="--dot:#0891b2"><span class="dot"></span>Celownik</a><a href="#biernik" style="--dot:#059669"><span class="dot"></span>Biernik</a><a href="#narzędnik" style="--dot:#d97706"><span class="dot"></span>Narzędnik</a><a href="#miejscownik" style="--dot:#dc2626"><span class="dot"></span>Miejscownik</a><a href="#wołacz" style="--dot:#db2777"><span class="dot"></span>Wołacz</a><a href="#zaimki" style="--dot:#6366f1"><span class="dot"></span>Zaimki</a>
-</nav>
+  <main class="shell">    <nav class="nav" aria-label="Polish grammar sections">
+      <div class="nav-row">
+        <a href="#mianownik" style="--dot:#7c3aed"><span class="dot"></span>Mianownik</a>
+        <a href="#dopełniacz" style="--dot:#2563eb"><span class="dot"></span>Dopełniacz</a>
+        <a href="#celownik" style="--dot:#0891b2"><span class="dot"></span>Celownik</a>
+        <a href="#biernik" style="--dot:#059669"><span class="dot"></span>Biernik</a>
+        <a href="#narzędnik" style="--dot:#d97706"><span class="dot"></span>Narzędnik</a>
+        <a href="#miejscownik" style="--dot:#dc2626"><span class="dot"></span>Miejscownik</a>
+        <a href="#wołacz" style="--dot:#db2777"><span class="dot"></span>Wołacz</a>
+      </div>
+      <div class="nav-row">
+        <a href="#zaimki" style="--dot:#6366f1"><span class="dot"></span>Zaimki</a>
+        <a href="#zaimki-wskazujace" style="--dot:#0f766e"><span class="dot"></span>Wskazujące</a>
+        <a href="#zaimki-pytajace" style="--dot:#0284c7"><span class="dot"></span>Pytające</a>
+        <a href="#zaimek-zwrotny" style="--dot:#7c3aed"><span class="dot"></span>Zwrotny</a>
+        <a href="#zaimki-przeczace" style="--dot:#be123c"><span class="dot"></span>Przeczące</a>
+        <a href="#zaimki-dzierzawcze" style="--dot:#b45309"><span class="dot"></span>Dzierżawcze</a>
+        <a href="#zaimki-przymiotnikowe" style="--dot:#4f46e5"><span class="dot"></span>Przymiotnikowe</a>
+      </div>
+    </nav>
 
     
     <article id="mianownik" class="case-card"
@@ -576,7 +605,9 @@ td {
                 <th>Plural</th>
               </tr>
             </thead>
-            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-ego / -iego</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ej / -iej</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-ego / -iego</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>All genders</th><td><span class="empty">—</span></td><td><span class="ending">-ych / -ich</span></td></tr></tbody>
+            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-ego / -iego</span></td><td><span class="ending">-ych / -ich</span></td></tr>
+<tr><th scope='row'>Feminine</th><td><span class="ending">-ej / -iej</span></td><td><span class="ending">-ych / -ich</span></td></tr>
+<tr><th scope='row'>Neuter</th><td><span class="ending">-ego / -iego</span></td><td><span class="ending">-ych / -ich</span></td></tr></tbody>
           </table>
         </div>
       </section>
@@ -624,7 +655,9 @@ td {
                 <th>Plural</th>
               </tr>
             </thead>
-            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-emu / -iemu</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ej / -iej</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-emu / -iemu</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>All genders</th><td><span class="empty">—</span></td><td><span class="ending">-ym / -im</span></td></tr></tbody>
+            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-emu / -iemu</span></td><td><span class="ending">-ym / -im</span></td></tr>
+<tr><th scope='row'>Feminine</th><td><span class="ending">-ej / -iej</span></td><td><span class="ending">-ym / -im</span></td></tr>
+<tr><th scope='row'>Neuter</th><td><span class="ending">-emu / -iemu</span></td><td><span class="ending">-ym / -im</span></td></tr></tbody>
           </table>
         </div>
       </section>
@@ -655,7 +688,7 @@ td {
                 <th>Plural</th>
               </tr>
             </thead>
-            <tbody><tr><th scope='row'>Masc. consonant, animate</th><td><span class="ending case-ref case-ref-dopełniacz">= Dopełniacz</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masc. consonant, inanimate</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masculine (-a class)</th><td><span class="ending">-ę</span></td><td><span class="ending case-ref case-ref-dopełniacz">personal → = Dopełniacz</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ę / ∅</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Masc. personal</th><td><span class="empty">—</span></td><td><span class="ending case-ref case-ref-dopełniacz">= Dopełniacz</span></td></tr><tr><th scope='row'>Other plural</th><td><span class="empty">—</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr></tbody>
+            <tbody><tr><th scope='row'>Masc. consonant, animate</th><td><span class="ending">-a</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masculine (-a class)</th><td><span class="ending">-ę</span></td><td><span class="ending">-ów / -y / -i</span></td></tr><tr><th scope='row'>Masc. consonant, inanimate</th><td><span class="ending">∅</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ę / ∅</span></td><td><span class="ending">-y / -i / -e</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-o / -e / -ę / -um</span></td><td><span class="ending">-a</span></td></tr><tr><th scope='row'>Masc. personal</th><td><span class="empty">—</span></td><td><span class="ending">-ów / -y / -i</span></td></tr><tr><th scope='row'>Other plural</th><td><span class="empty">—</span></td><td><span class="ending">-y / -i / -e / -a</span></td></tr></tbody>
           </table>
         </div>
       </section>
@@ -672,7 +705,12 @@ td {
                 <th>Plural</th>
               </tr>
             </thead>
-            <tbody><tr><th scope='row'>Masc. animate</th><td><span class="ending">-ego / -iego</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masc. inanimate</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ą / -ią</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masc. personal</th><td><span class="empty">—</span></td><td><span class="ending">-ych / -ich</span></td></tr><tr><th scope='row'>Other plural</th><td><span class="empty">—</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr></tbody>
+            <tbody><tr><th scope='row'>Masc. animate</th><td><span class="ending">-ego / -iego</span></td><td><span class="empty">—</span></td></tr>
+<tr><th scope='row'>Masc. inanimate</th><td><span class="ending">-y / -i</span></td><td><span class="empty">—</span></td></tr>
+<tr><th scope='row'>Feminine</th><td><span class="ending">-ą / -ią</span></td><td><span class="empty">—</span></td></tr>
+<tr><th scope='row'>Neuter</th><td><span class="ending">-e / -ie</span></td><td><span class="empty">—</span></td></tr>
+<tr><th scope='row'>Masc. personal</th><td><span class="empty">—</span></td><td><span class="ending">-ych / -ich</span></td></tr>
+<tr><th scope='row'>Other plural</th><td><span class="empty">—</span></td><td><span class="ending">-e / -ie</span></td></tr></tbody>
           </table>
         </div>
       </section>
@@ -720,7 +758,9 @@ td {
                 <th>Plural</th>
               </tr>
             </thead>
-            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-ym / -im</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ą / -ią</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-ym / -im</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>All genders</th><td><span class="empty">—</span></td><td><span class="ending">-ymi / -imi</span></td></tr></tbody>
+            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-ym / -im</span></td><td><span class="ending">-ymi / -imi</span></td></tr>
+<tr><th scope='row'>Feminine</th><td><span class="ending">-ą / -ią</span></td><td><span class="ending">-ymi / -imi</span></td></tr>
+<tr><th scope='row'>Neuter</th><td><span class="ending">-ym / -im</span></td><td><span class="ending">-ymi / -imi</span></td></tr></tbody>
           </table>
         </div>
       </section>
@@ -751,7 +791,10 @@ td {
                 <th>Plural</th>
               </tr>
             </thead>
-            <tbody><tr><th scope='row'>Masculine (consonant)</th><td><div class="variant"><span class="context">hard except k/g/ch/h</span><span class="ending">soften + -e</span></div><div class="variant"><span class="context">soft or k/g/ch/h</span><span class="ending">-u</span></div></td><td><span class="ending">-ach</span></td></tr><tr><th scope='row'>Masculine (-a class)</th><td><span class="ending">= feminine</span></td><td><span class="ending">-ach</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending case-ref case-ref-celownik">= Celownik</span></td><td><span class="ending">-ach</span></td></tr><tr><th scope='row'>Neuter</th><td><div class="variant"><span class="context">hard except k/g/ch/h</span><span class="ending">soften + -e</span></div><div class="variant"><span class="context">soft or k/g/ch/h</span><span class="ending">-u</span></div></td><td><span class="ending">-ach</span></td></tr></tbody>
+            <tbody><tr><th scope='row'>Masculine (consonant)</th><td><div class="variant"><span class="context">hard except k/g/ch/h</span><span class="ending">soften + -e</span></div><div class="variant"><span class="context">soft or k/g/ch/h</span><span class="ending">-u</span></div></td><td><span class="ending">-ach</span></td></tr>
+<tr><th scope='row'>Masculine (-a class)</th><td><div class="variant"><span class="context">hard stem</span><span class="ending">soften + -e</span></div><div class="variant"><span class="context">soft / hardened</span><span class="ending">-y / -i</span></div></td><td><span class="ending">-ach</span></td></tr>
+<tr><th scope='row'>Feminine</th><td><div class="variant"><span class="context">hard stem</span><span class="ending">soften + -e</span></div><div class="variant"><span class="context">soft / hardened</span><span class="ending">-y / -i</span></div></td><td><span class="ending">-ach</span></td></tr>
+<tr><th scope='row'>Neuter</th><td><div class="variant"><span class="context">hard except k/g/ch/h</span><span class="ending">soften + -e</span></div><div class="variant"><span class="context">soft or k/g/ch/h</span><span class="ending">-u</span></div></td><td><span class="ending">-ach</span></td></tr></tbody>
           </table>
         </div>
       </section>
@@ -768,7 +811,9 @@ td {
                 <th>Plural</th>
               </tr>
             </thead>
-            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-ym / -im</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending">-ej / -iej</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending">-ym / -im</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>All genders</th><td><span class="empty">—</span></td><td><span class="ending">-ych / -ich</span></td></tr></tbody>
+            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-ym / -im</span></td><td><span class="ending">-ych / -ich</span></td></tr>
+<tr><th scope='row'>Feminine</th><td><span class="ending">-ej / -iej</span></td><td><span class="ending">-ych / -ich</span></td></tr>
+<tr><th scope='row'>Neuter</th><td><span class="ending">-ym / -im</span></td><td><span class="ending">-ych / -ich</span></td></tr></tbody>
           </table>
         </div>
       </section>
@@ -799,7 +844,13 @@ td {
                 <th>Plural</th>
               </tr>
             </thead>
-            <tbody><tr><th scope='row'>Masculine (consonant)</th><td><span class="ending case-ref case-ref-miejscownik">= Miejscownik</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Masculine (-a class)</th><td><span class="ending">-o (usually)</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Feminine</th><td><div class="variant"><span class="context">most -a nouns</span><span class="ending">-o</span></div><div class="variant"><span class="context">affectionate soft + -a</span><span class="ending">-u</span></div><div class="variant"><span class="context">-i / consonant nouns</span><span class="ending">-i / -y</span></div></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr></tbody>
+            <tbody><tr><th scope='row'>Masculine (consonant)</th><td>
+<div class="variant"><span class="context">hard</span><span class="ending">soften + -e</span></div>
+<div class="variant"><span class="context">soft / k,g,ch,h</span><span class="ending">-u</span></div>
+</td><td><span class="ending" style="white-space:normal; line-height:1.35">-y / -i / -e<br>-owie / -anie</span></td></tr>
+<tr><th scope='row'>Masculine (-a class)</th><td><span class="ending">-o (usually)</span></td><td><span class="ending">-y / -i / -e / -owie / -anie</span></td></tr>
+<tr><th scope='row'>Feminine</th><td><div class="variant"><span class="context">most -a nouns</span><span class="ending">-o</span></div><div class="variant"><span class="context">affectionate soft + -a</span><span class="ending">-u</span></div><div class="variant"><span class="context">-i / consonant nouns</span><span class="ending">-i / -y</span></div></td><td><span class="ending">-y / -i / -e</span></td></tr>
+<tr><th scope='row'>Neuter</th><td><span class="ending">-o / -e / -ę / -um</span></td><td><span class="ending">-a</span></td></tr></tbody>
           </table>
         </div>
       </section>
@@ -816,7 +867,11 @@ td {
                 <th>Plural</th>
               </tr>
             </thead>
-            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Feminine</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Neuter</th><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td><td><span class="empty">—</span></td></tr><tr><th scope='row'>Masc. personal</th><td><span class="empty">—</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr><tr><th scope='row'>Other genders</th><td><span class="empty">—</span></td><td><span class="ending case-ref case-ref-mianownik">= Mianownik</span></td></tr></tbody>
+            <tbody><tr><th scope='row'>Masculine</th><td><span class="ending">-y / -i</span></td><td><span class="empty">—</span></td></tr>
+<tr><th scope='row'>Feminine</th><td><span class="ending">-a / -ia</span></td><td><span class="empty">—</span></td></tr>
+<tr><th scope='row'>Neuter</th><td><span class="ending">-e / -ie</span></td><td><span class="empty">—</span></td></tr>
+<tr><th scope='row'>Masc. personal</th><td><span class="empty">—</span></td><td><span class="ending">soften + -i / -y</span></td></tr>
+<tr><th scope='row'>Other genders</th><td><span class="empty">—</span></td><td><span class="ending">-e / -ie</span></td></tr></tbody>
           </table>
         </div>
       </section>
@@ -946,6 +1001,480 @@ td {
           <li><strong>Wołacz:</strong> personal pronouns do not have a separate useful vocative paradigm, so it is omitted here.</li>
         </ul>
       </section>
+    </article>
+
+
+
+
+
+
+    <article id="zaimki-wskazujace" class="case-card" style="--accent:#0f766e">
+      <div class="case-head">
+        <div class="eyebrow">Demonstrative pronouns</div>
+        <h2>
+          Zaimki wskazujące
+          <span class="case-q">(ten, ta, to, ci, te)</span>
+        </h2>
+      </div>
+
+      <div class="case-grid" style="grid-template-columns: 1fr;">
+        <section class="word-block">
+          <div class="word-title"><h3>Declension table</h3></div>
+          <div class="table-wrap">
+            <table>
+  <thead>
+    <tr>
+      <th>Pronoun / form</th>
+      <th>Mianownik</th>
+      <th>Dopełniacz</th>
+      <th>Celownik</th>
+      <th>Biernik</th>
+      <th>Narzędnik</th>
+      <th>Miejscownik</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">ten <span class="context">(masc.)</span></th><td><span class="ending">ten</span></td><td><span class="ending">tego</span></td><td><span class="ending">temu</span></td><td><span class="ending">ten / tego</span></td><td><span class="ending">tym</span></td><td><span class="ending">tym</span></td></tr>
+    <tr><th scope="row">ta <span class="context">(fem.)</span></th><td><span class="ending">ta</span></td><td><span class="ending">tej</span></td><td><span class="ending">tej</span></td><td><span class="ending">tę</span></td><td><span class="ending">tą</span></td><td><span class="ending">tej</span></td></tr>
+    <tr><th scope="row">to <span class="context">(neut.)</span></th><td><span class="ending">to</span></td><td><span class="ending">tego</span></td><td><span class="ending">temu</span></td><td><span class="ending">to</span></td><td><span class="ending">tym</span></td><td><span class="ending">tym</span></td></tr>
+    <tr><th scope="row">ci <span class="context">(masc. personal pl.)</span></th><td><span class="ending">ci</span></td><td><span class="ending">tych</span></td><td><span class="ending">tym</span></td><td><span class="ending">tych</span></td><td><span class="ending">tymi</span></td><td><span class="ending">tych</span></td></tr>
+    <tr><th scope="row">te <span class="context">(other pl.)</span></th><td><span class="ending">te</span></td><td><span class="ending">tych</span></td><td><span class="ending">tym</span></td><td><span class="ending">te</span></td><td><span class="ending">tymi</span></td><td><span class="ending">tych</span></td></tr>
+  </tbody>
+</table>
+          </div>
+        </section>
+      </div>
+
+      <section class="usage">
+        <ul class="usage-list">
+          <li><strong>Masculine Biernik:</strong> animate forms match <span class="ending">Dopełniacz</span>; inanimate forms match <span class="ending">Mianownik</span>. <span class="example">Widzę ten komputer, ale widzę tego psa.</span></li>
+          <li><strong>ta:</strong> standard written Polish distinguishes Biernik <span class="ending">tę</span> from Narzędnik <span class="ending">tą</span>. <span class="example">Widzę tę kobietę. Idę z tą kobietą.</span></li>
+        </ul>
+      </section>
+    </article>
+
+
+    <article id="zaimki-pytajace" class="case-card" style="--accent:#0284c7">
+      <div class="case-head">
+        <div class="eyebrow">Interrogative / relative pronouns</div>
+        <h2>
+          Zaimki pytające / względne
+          <span class="case-q">(kto, co)</span>
+        </h2>
+      </div>
+
+      <div class="case-grid" style="grid-template-columns: 1fr;">
+        <section class="word-block">
+          <div class="word-title"><h3>Declension table</h3></div>
+          <div class="table-wrap">
+            <table>
+  <thead>
+    <tr>
+      <th>Pronoun</th>
+      <th>Mianownik</th>
+      <th>Dopełniacz</th>
+      <th>Celownik</th>
+      <th>Biernik</th>
+      <th>Narzędnik</th>
+      <th>Miejscownik</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">kto</th><td><span class="ending">kto</span></td><td><span class="ending">kogo</span></td><td><span class="ending">komu</span></td><td><span class="ending">kogo</span></td><td><span class="ending">kim</span></td><td><span class="ending">kim</span></td></tr>
+    <tr><th scope="row">co</th><td><span class="ending">co</span></td><td><span class="ending">czego</span></td><td><span class="ending">czemu</span></td><td><span class="ending">co</span></td><td><span class="ending">czym</span></td><td><span class="ending">czym</span></td></tr>
+  </tbody>
+</table>
+          </div>
+        </section>
+      </div>
+
+      <section class="usage">
+        <ul class="usage-list">
+          <li><strong>kto:</strong> asks about or refers to a person. <span class="example">Kogo widzisz? Komu dajesz książkę?</span></li>
+          <li><strong>co:</strong> asks about or refers to a thing, situation, or idea. <span class="example">Czego szukasz? O czym mówisz?</span></li>
+        </ul>
+      </section>
+    </article>
+
+
+    <article id="zaimek-zwrotny" class="case-card" style="--accent:#7c3aed">
+      <div class="case-head">
+        <div class="eyebrow">Reflexive pronoun</div>
+        <h2>
+          Zaimek zwrotny
+          <span class="case-q">(siebie / się)</span>
+        </h2>
+      </div>
+
+      <div class="case-grid" style="grid-template-columns: 1fr;">
+        <section class="word-block">
+          <div class="word-title"><h3>Declension table</h3></div>
+          <div class="table-wrap">
+            <table>
+  <thead>
+    <tr>
+      <th>Pronoun</th>
+      <th>Mianownik</th>
+      <th>Dopełniacz</th>
+      <th>Celownik</th>
+      <th>Biernik</th>
+      <th>Narzędnik</th>
+      <th>Miejscownik</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">siebie / się</th><td><span class="empty">—</span></td><td><span class="ending">siebie / się</span></td><td><span class="ending">sobie</span></td><td><span class="ending">siebie / się</span></td><td><span class="ending">sobą</span></td><td><span class="ending">sobie</span></td></tr>
+  </tbody>
+</table>
+          </div>
+        </section>
+      </div>
+
+      <section class="usage">
+        <ul class="usage-list">
+          <li><strong>No Mianownik:</strong> <span class="ending">siebie</span> refers back to the subject, so it does not have a nominative form.</li>
+          <li><strong>się:</strong> common unstressed form in ordinary sentences. <span class="example">Myję się. Ona widzi się w lustrze.</span></li>
+          <li><strong>sobie:</strong> Celownik / Miejscownik. <span class="example">Ona kupiła sobie nowy komputer. Mówi o sobie.</span></li>
+          <li><strong>sobą:</strong> Narzędnik. <span class="example">Rozmawia sama ze sobą.</span></li>
+        </ul>
+      </section>
+    </article>
+
+
+    <article id="zaimki-przeczace" class="case-card" style="--accent:#be123c">
+      <div class="case-head">
+        <div class="eyebrow">Negative pronouns</div>
+        <h2>
+          Zaimki przeczące
+          <span class="case-q">(nikt, nic)</span>
+        </h2>
+      </div>
+
+      <div class="case-grid" style="grid-template-columns: 1fr;">
+        <section class="word-block">
+          <div class="word-title"><h3>Declension table</h3></div>
+          <div class="table-wrap">
+            <table>
+  <thead>
+    <tr>
+      <th>Pronoun</th>
+      <th>Mianownik</th>
+      <th>Dopełniacz</th>
+      <th>Celownik</th>
+      <th>Biernik</th>
+      <th>Narzędnik</th>
+      <th>Miejscownik</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">nikt</th><td><span class="ending">nikt</span></td><td><span class="ending">nikogo</span></td><td><span class="ending">nikomu</span></td><td><span class="ending">nikogo</span></td><td><span class="ending">nikim</span></td><td><span class="ending">nikim</span></td></tr>
+    <tr><th scope="row">nic</th><td><span class="ending">nic</span></td><td><span class="ending">niczego</span></td><td><span class="ending">niczemu</span></td><td><span class="ending">nic</span></td><td><span class="ending">niczym</span></td><td><span class="ending">niczym</span></td></tr>
+  </tbody>
+</table>
+          </div>
+        </section>
+      </div>
+
+      <section class="usage">
+        <ul class="usage-list">
+          <li><strong>nikt:</strong> refers to no person. <span class="example">Nikogo nie widzę. Nikomu nic nie powiedziałem.</span></li>
+          <li><strong>nic:</strong> refers to no thing / nothing. <span class="example">Niczego nie potrzebuję. O niczym nie myślę.</span></li>
+          <li><strong>Negative concord:</strong> Polish normally uses these together with a negated verb. <span class="example">Nikt nic nie powiedział.</span></li>
+        </ul>
+      </section>
+    </article>
+
+
+                <article id="zaimki-dzierzawcze" class="case-card" style="--accent:#b45309">
+      <div class="case-head">
+        <div class="eyebrow">Possessive pronouns</div>
+        <h2>
+          Zaimki dzierżawcze
+          <span class="case-q">(mój, twój, swój, nasz, wasz)</span>
+        </h2>
+      </div>
+
+      <div class="case-grid" style="grid-template-columns: 1fr;">
+
+        <section class="word-block">
+          <div class="word-title"><h3>mój</h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gender / group</th>
+                  <th>Mianownik</th>
+                  <th>Dopełniacz</th>
+                  <th>Celownik</th>
+                  <th>Biernik</th>
+                  <th>Narzędnik</th>
+                  <th>Miejscownik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Masculine</th><td><span class="ending">mój</span></td><td><span class="ending">mojego</span></td><td><span class="ending">mojemu</span></td><td><span class="ending">mój / mojego</span></td><td><span class="ending">moim</span></td><td><span class="ending">moim</span></td></tr><tr><th scope="row">Feminine</th><td><span class="ending">moja</span></td><td><span class="ending">mojej</span></td><td><span class="ending">mojej</span></td><td><span class="ending">moją</span></td><td><span class="ending">moją</span></td><td><span class="ending">mojej</span></td></tr><tr><th scope="row">Neuter</th><td><span class="ending">moje</span></td><td><span class="ending">mojego</span></td><td><span class="ending">mojemu</span></td><td><span class="ending">moje</span></td><td><span class="ending">moim</span></td><td><span class="ending">moim</span></td></tr><tr><th scope="row">Masc. personal plural</th><td><span class="ending">moi</span></td><td><span class="ending">moich</span></td><td><span class="ending">moim</span></td><td><span class="ending">moich</span></td><td><span class="ending">moimi</span></td><td><span class="ending">moich</span></td></tr><tr><th scope="row">Other plural</th><td><span class="ending">moje</span></td><td><span class="ending">moich</span></td><td><span class="ending">moim</span></td><td><span class="ending">moje</span></td><td><span class="ending">moimi</span></td><td><span class="ending">moich</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <section class="word-block">
+          <div class="word-title"><h3>twój</h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gender / group</th>
+                  <th>Mianownik</th>
+                  <th>Dopełniacz</th>
+                  <th>Celownik</th>
+                  <th>Biernik</th>
+                  <th>Narzędnik</th>
+                  <th>Miejscownik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Masculine</th><td><span class="ending">twój</span></td><td><span class="ending">twojego</span></td><td><span class="ending">twojemu</span></td><td><span class="ending">twój / twojego</span></td><td><span class="ending">twoim</span></td><td><span class="ending">twoim</span></td></tr><tr><th scope="row">Feminine</th><td><span class="ending">twoja</span></td><td><span class="ending">twojej</span></td><td><span class="ending">twojej</span></td><td><span class="ending">twoją</span></td><td><span class="ending">twoją</span></td><td><span class="ending">twojej</span></td></tr><tr><th scope="row">Neuter</th><td><span class="ending">twoje</span></td><td><span class="ending">twojego</span></td><td><span class="ending">twojemu</span></td><td><span class="ending">twoje</span></td><td><span class="ending">twoim</span></td><td><span class="ending">twoim</span></td></tr><tr><th scope="row">Masc. personal plural</th><td><span class="ending">twoi</span></td><td><span class="ending">twoich</span></td><td><span class="ending">twoim</span></td><td><span class="ending">twoich</span></td><td><span class="ending">twoimi</span></td><td><span class="ending">twoich</span></td></tr><tr><th scope="row">Other plural</th><td><span class="ending">twoje</span></td><td><span class="ending">twoich</span></td><td><span class="ending">twoim</span></td><td><span class="ending">twoje</span></td><td><span class="ending">twoimi</span></td><td><span class="ending">twoich</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <section class="word-block">
+          <div class="word-title"><h3>swój</h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gender / group</th>
+                  <th>Mianownik</th>
+                  <th>Dopełniacz</th>
+                  <th>Celownik</th>
+                  <th>Biernik</th>
+                  <th>Narzędnik</th>
+                  <th>Miejscownik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Masculine</th><td><span class="ending">swój</span></td><td><span class="ending">swojego</span></td><td><span class="ending">swojemu</span></td><td><span class="ending">swój / swojego</span></td><td><span class="ending">swoim</span></td><td><span class="ending">swoim</span></td></tr><tr><th scope="row">Feminine</th><td><span class="ending">swoja</span></td><td><span class="ending">swojej</span></td><td><span class="ending">swojej</span></td><td><span class="ending">swoją</span></td><td><span class="ending">swoją</span></td><td><span class="ending">swojej</span></td></tr><tr><th scope="row">Neuter</th><td><span class="ending">swoje</span></td><td><span class="ending">swojego</span></td><td><span class="ending">swojemu</span></td><td><span class="ending">swoje</span></td><td><span class="ending">swoim</span></td><td><span class="ending">swoim</span></td></tr><tr><th scope="row">Masc. personal plural</th><td><span class="ending">swoi</span></td><td><span class="ending">swoich</span></td><td><span class="ending">swoim</span></td><td><span class="ending">swoich</span></td><td><span class="ending">swoimi</span></td><td><span class="ending">swoich</span></td></tr><tr><th scope="row">Other plural</th><td><span class="ending">swoje</span></td><td><span class="ending">swoich</span></td><td><span class="ending">swoim</span></td><td><span class="ending">swoje</span></td><td><span class="ending">swoimi</span></td><td><span class="ending">swoich</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <section class="word-block">
+          <div class="word-title"><h3>nasz</h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gender / group</th>
+                  <th>Mianownik</th>
+                  <th>Dopełniacz</th>
+                  <th>Celownik</th>
+                  <th>Biernik</th>
+                  <th>Narzędnik</th>
+                  <th>Miejscownik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Masculine</th><td><span class="ending">nasz</span></td><td><span class="ending">naszego</span></td><td><span class="ending">naszemu</span></td><td><span class="ending">nasz / naszego</span></td><td><span class="ending">naszym</span></td><td><span class="ending">naszym</span></td></tr><tr><th scope="row">Feminine</th><td><span class="ending">nasza</span></td><td><span class="ending">naszej</span></td><td><span class="ending">naszej</span></td><td><span class="ending">naszą</span></td><td><span class="ending">naszą</span></td><td><span class="ending">naszej</span></td></tr><tr><th scope="row">Neuter</th><td><span class="ending">nasze</span></td><td><span class="ending">naszego</span></td><td><span class="ending">naszemu</span></td><td><span class="ending">nasze</span></td><td><span class="ending">naszym</span></td><td><span class="ending">naszym</span></td></tr><tr><th scope="row">Masc. personal plural</th><td><span class="ending">nasi</span></td><td><span class="ending">naszych</span></td><td><span class="ending">naszym</span></td><td><span class="ending">naszych</span></td><td><span class="ending">naszymi</span></td><td><span class="ending">naszych</span></td></tr><tr><th scope="row">Other plural</th><td><span class="ending">nasze</span></td><td><span class="ending">naszych</span></td><td><span class="ending">naszym</span></td><td><span class="ending">nasze</span></td><td><span class="ending">naszymi</span></td><td><span class="ending">naszych</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <section class="word-block">
+          <div class="word-title"><h3>wasz</h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gender / group</th>
+                  <th>Mianownik</th>
+                  <th>Dopełniacz</th>
+                  <th>Celownik</th>
+                  <th>Biernik</th>
+                  <th>Narzędnik</th>
+                  <th>Miejscownik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Masculine</th><td><span class="ending">wasz</span></td><td><span class="ending">waszego</span></td><td><span class="ending">waszemu</span></td><td><span class="ending">wasz / waszego</span></td><td><span class="ending">waszym</span></td><td><span class="ending">waszym</span></td></tr><tr><th scope="row">Feminine</th><td><span class="ending">wasza</span></td><td><span class="ending">waszej</span></td><td><span class="ending">waszej</span></td><td><span class="ending">waszą</span></td><td><span class="ending">waszą</span></td><td><span class="ending">waszej</span></td></tr><tr><th scope="row">Neuter</th><td><span class="ending">wasze</span></td><td><span class="ending">waszego</span></td><td><span class="ending">waszemu</span></td><td><span class="ending">wasze</span></td><td><span class="ending">waszym</span></td><td><span class="ending">waszym</span></td></tr><tr><th scope="row">Masc. personal plural</th><td><span class="ending">wasi</span></td><td><span class="ending">waszych</span></td><td><span class="ending">waszym</span></td><td><span class="ending">waszych</span></td><td><span class="ending">waszymi</span></td><td><span class="ending">waszych</span></td></tr><tr><th scope="row">Other plural</th><td><span class="ending">wasze</span></td><td><span class="ending">waszych</span></td><td><span class="ending">waszym</span></td><td><span class="ending">wasze</span></td><td><span class="ending">waszymi</span></td><td><span class="ending">waszych</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        
+      </div>
+
+      <section class="usage">
+        <ul class="usage-list">
+          <li><strong>Agreement:</strong> <span class="ending">mój, twój, swój, nasz, wasz</span> agree with the <em>possessed noun</em>, not with the possessor. <span class="example">mój komputer, moja książka, moje dziecko</span></li>
+          <li><strong>jego / jej / ich:</strong> these possessives are <em>indeclinable</em>; the noun changes, but the possessive does not. <span class="example">jego samochód → z jego samochodem; jej książka → o jej książce; ich dom → do ich domu</span></li>
+          <li><strong>swój vs. jego / jej / ich:</strong> <span class="ending">swój</span> normally refers back to the sentence subject. <span class="example">Ona kocha swojego psa = her own dog; Ona kocha jej psa = another woman's dog.</span></li>
+          <li><strong>Masculine Biernik:</strong> animate / personal forms follow <span class="ending">Dopełniacz</span>; inanimate forms follow <span class="ending">Mianownik</span>. <span class="example">Widzę twój komputer, ale widzę twojego brata.</span></li>
+        </ul>
+      </section>
+    </article>
+
+
+                <article id="zaimki-przymiotnikowe" class="case-card" style="--accent:#4f46e5">
+      <div class="case-head">
+        <div class="eyebrow">Adjective-like pronouns / determiners</div>
+        <h2>
+          Zaimki i określniki przymiotnikowe
+          <span class="case-q">(który, jaki, taki, każdy, żaden, jeden)</span>
+        </h2>
+      </div>
+
+      <div class="case-grid" style="grid-template-columns: 1fr;">
+
+        <section class="word-block">
+          <div class="word-title"><h3>który <span class="context">— which / who / that</span></h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gender / group</th>
+                  <th>Mianownik</th>
+                  <th>Dopełniacz</th>
+                  <th>Celownik</th>
+                  <th>Biernik</th>
+                  <th>Narzędnik</th>
+                  <th>Miejscownik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Masculine</th><td><span class="ending">który</span></td><td><span class="ending">którego</span></td><td><span class="ending">któremu</span></td><td><span class="ending">który / którego</span></td><td><span class="ending">którym</span></td><td><span class="ending">którym</span></td></tr><tr><th scope="row">Feminine</th><td><span class="ending">która</span></td><td><span class="ending">której</span></td><td><span class="ending">której</span></td><td><span class="ending">którą</span></td><td><span class="ending">którą</span></td><td><span class="ending">której</span></td></tr><tr><th scope="row">Neuter</th><td><span class="ending">które</span></td><td><span class="ending">którego</span></td><td><span class="ending">któremu</span></td><td><span class="ending">które</span></td><td><span class="ending">którym</span></td><td><span class="ending">którym</span></td></tr><tr><th scope="row">Masc. personal plural</th><td><span class="ending">którzy</span></td><td><span class="ending">których</span></td><td><span class="ending">którym</span></td><td><span class="ending">których</span></td><td><span class="ending">którymi</span></td><td><span class="ending">których</span></td></tr><tr><th scope="row">Other plural</th><td><span class="ending">które</span></td><td><span class="ending">których</span></td><td><span class="ending">którym</span></td><td><span class="ending">które</span></td><td><span class="ending">którymi</span></td><td><span class="ending">których</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <section class="word-block">
+          <div class="word-title"><h3>jaki <span class="context">— what kind of / what</span></h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gender / group</th>
+                  <th>Mianownik</th>
+                  <th>Dopełniacz</th>
+                  <th>Celownik</th>
+                  <th>Biernik</th>
+                  <th>Narzędnik</th>
+                  <th>Miejscownik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Masculine</th><td><span class="ending">jaki</span></td><td><span class="ending">jakiego</span></td><td><span class="ending">jakiemu</span></td><td><span class="ending">jaki / jakiego</span></td><td><span class="ending">jakim</span></td><td><span class="ending">jakim</span></td></tr><tr><th scope="row">Feminine</th><td><span class="ending">jaka</span></td><td><span class="ending">jakiej</span></td><td><span class="ending">jakiej</span></td><td><span class="ending">jaką</span></td><td><span class="ending">jaką</span></td><td><span class="ending">jakiej</span></td></tr><tr><th scope="row">Neuter</th><td><span class="ending">jakie</span></td><td><span class="ending">jakiego</span></td><td><span class="ending">jakiemu</span></td><td><span class="ending">jakie</span></td><td><span class="ending">jakim</span></td><td><span class="ending">jakim</span></td></tr><tr><th scope="row">Masc. personal plural</th><td><span class="ending">jacy</span></td><td><span class="ending">jakich</span></td><td><span class="ending">jakim</span></td><td><span class="ending">jakich</span></td><td><span class="ending">jakimi</span></td><td><span class="ending">jakich</span></td></tr><tr><th scope="row">Other plural</th><td><span class="ending">jakie</span></td><td><span class="ending">jakich</span></td><td><span class="ending">jakim</span></td><td><span class="ending">jakie</span></td><td><span class="ending">jakimi</span></td><td><span class="ending">jakich</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <section class="word-block">
+          <div class="word-title"><h3>taki <span class="context">— such / that kind of</span></h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gender / group</th>
+                  <th>Mianownik</th>
+                  <th>Dopełniacz</th>
+                  <th>Celownik</th>
+                  <th>Biernik</th>
+                  <th>Narzędnik</th>
+                  <th>Miejscownik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Masculine</th><td><span class="ending">taki</span></td><td><span class="ending">takiego</span></td><td><span class="ending">takiemu</span></td><td><span class="ending">taki / takiego</span></td><td><span class="ending">takim</span></td><td><span class="ending">takim</span></td></tr><tr><th scope="row">Feminine</th><td><span class="ending">taka</span></td><td><span class="ending">takiej</span></td><td><span class="ending">takiej</span></td><td><span class="ending">taką</span></td><td><span class="ending">taką</span></td><td><span class="ending">takiej</span></td></tr><tr><th scope="row">Neuter</th><td><span class="ending">takie</span></td><td><span class="ending">takiego</span></td><td><span class="ending">takiemu</span></td><td><span class="ending">takie</span></td><td><span class="ending">takim</span></td><td><span class="ending">takim</span></td></tr><tr><th scope="row">Masc. personal plural</th><td><span class="ending">tacy</span></td><td><span class="ending">takich</span></td><td><span class="ending">takim</span></td><td><span class="ending">takich</span></td><td><span class="ending">takimi</span></td><td><span class="ending">takich</span></td></tr><tr><th scope="row">Other plural</th><td><span class="ending">takie</span></td><td><span class="ending">takich</span></td><td><span class="ending">takim</span></td><td><span class="ending">takie</span></td><td><span class="ending">takimi</span></td><td><span class="ending">takich</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <section class="word-block">
+          <div class="word-title"><h3>każdy <span class="context">— every / each</span></h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gender / group</th>
+                  <th>Mianownik</th>
+                  <th>Dopełniacz</th>
+                  <th>Celownik</th>
+                  <th>Biernik</th>
+                  <th>Narzędnik</th>
+                  <th>Miejscownik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Masculine</th><td><span class="ending">każdy</span></td><td><span class="ending">każdego</span></td><td><span class="ending">każdemu</span></td><td><span class="ending">każdy / każdego</span></td><td><span class="ending">każdym</span></td><td><span class="ending">każdym</span></td></tr><tr><th scope="row">Feminine</th><td><span class="ending">każda</span></td><td><span class="ending">każdej</span></td><td><span class="ending">każdej</span></td><td><span class="ending">każdą</span></td><td><span class="ending">każdą</span></td><td><span class="ending">każdej</span></td></tr><tr><th scope="row">Neuter</th><td><span class="ending">każde</span></td><td><span class="ending">każdego</span></td><td><span class="ending">każdemu</span></td><td><span class="ending">każde</span></td><td><span class="ending">każdym</span></td><td><span class="ending">każdym</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <section class="word-block">
+          <div class="word-title"><h3>żaden <span class="context">— no / not any</span></h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gender / group</th>
+                  <th>Mianownik</th>
+                  <th>Dopełniacz</th>
+                  <th>Celownik</th>
+                  <th>Biernik</th>
+                  <th>Narzędnik</th>
+                  <th>Miejscownik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Masculine</th><td><span class="ending">żaden</span></td><td><span class="ending">żadnego</span></td><td><span class="ending">żadnemu</span></td><td><span class="ending">żaden / żadnego</span></td><td><span class="ending">żadnym</span></td><td><span class="ending">żadnym</span></td></tr><tr><th scope="row">Feminine</th><td><span class="ending">żadna</span></td><td><span class="ending">żadnej</span></td><td><span class="ending">żadnej</span></td><td><span class="ending">żadną</span></td><td><span class="ending">żadną</span></td><td><span class="ending">żadnej</span></td></tr><tr><th scope="row">Neuter</th><td><span class="ending">żadne</span></td><td><span class="ending">żadnego</span></td><td><span class="ending">żadnemu</span></td><td><span class="ending">żadne</span></td><td><span class="ending">żadnym</span></td><td><span class="ending">żadnym</span></td></tr><tr><th scope="row">Masc. personal plural</th><td><span class="ending">żadni</span></td><td><span class="ending">żadnych</span></td><td><span class="ending">żadnym</span></td><td><span class="ending">żadnych</span></td><td><span class="ending">żadnymi</span></td><td><span class="ending">żadnych</span></td></tr><tr><th scope="row">Other plural</th><td><span class="ending">żadne</span></td><td><span class="ending">żadnych</span></td><td><span class="ending">żadnym</span></td><td><span class="ending">żadne</span></td><td><span class="ending">żadnymi</span></td><td><span class="ending">żadnych</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+        <section class="word-block">
+          <div class="word-title"><h3>jeden <span class="context">— one</span></h3></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gender / group</th>
+                  <th>Mianownik</th>
+                  <th>Dopełniacz</th>
+                  <th>Celownik</th>
+                  <th>Biernik</th>
+                  <th>Narzędnik</th>
+                  <th>Miejscownik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Masculine</th><td><span class="ending">jeden</span></td><td><span class="ending">jednego</span></td><td><span class="ending">jednemu</span></td><td><span class="ending">jeden / jednego</span></td><td><span class="ending">jednym</span></td><td><span class="ending">jednym</span></td></tr><tr><th scope="row">Feminine</th><td><span class="ending">jedna</span></td><td><span class="ending">jednej</span></td><td><span class="ending">jednej</span></td><td><span class="ending">jedną</span></td><td><span class="ending">jedną</span></td><td><span class="ending">jednej</span></td></tr><tr><th scope="row">Neuter</th><td><span class="ending">jedno</span></td><td><span class="ending">jednego</span></td><td><span class="ending">jednemu</span></td><td><span class="ending">jedno</span></td><td><span class="ending">jednym</span></td><td><span class="ending">jednym</span></td></tr><tr><th scope="row">Masc. personal plural</th><td><span class="ending">jedni</span></td><td><span class="ending">jednych</span></td><td><span class="ending">jednym</span></td><td><span class="ending">jednych</span></td><td><span class="ending">jednymi</span></td><td><span class="ending">jednych</span></td></tr><tr><th scope="row">Other plural</th><td><span class="ending">jedne</span></td><td><span class="ending">jednych</span></td><td><span class="ending">jednym</span></td><td><span class="ending">jedne</span></td><td><span class="ending">jednymi</span></td><td><span class="ending">jednych</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      
     </article>
 
   </main>
@@ -1148,6 +1677,135 @@ sourceText.addEventListener("keydown", (event) => {
   }
 });
 </script>
+
+  <script>
+  (() => {
+    const specs = {
+      mianownik: [
+        { nouns: [0, 1], adjectives: [0] },
+        { nouns: [2], adjectives: [1] },
+        { nouns: [3], adjectives: [2] }
+      ],
+      dopełniacz: [
+        { nouns: [0, 1], adjectives: [0] },
+        { nouns: [2], adjectives: [1] },
+        { nouns: [3], adjectives: [2] }
+      ],
+      celownik: [
+        { nouns: [0, 1], adjectives: [0] },
+        { nouns: [2], adjectives: [1] },
+        { nouns: [3], adjectives: [2] }
+      ],
+      biernik: [
+        { nouns: [0, 1], adjectives: [0] },
+        { nouns: [2], adjectives: [1] },
+        { nouns: [3], adjectives: [2] },
+        { nouns: [4], adjectives: [3] },
+        { nouns: [5], adjectives: [4] },
+        { nouns: [6], adjectives: [5] }
+      ],
+      narzędnik: [
+        { nouns: [0, 1], adjectives: [0] },
+        { nouns: [2], adjectives: [1] },
+        { nouns: [3], adjectives: [2] }
+      ],
+      miejscownik: [
+        { nouns: [0, 1], adjectives: [0] },
+        { nouns: [2], adjectives: [1] },
+        { nouns: [3], adjectives: [2] }
+      ],
+      wołacz: [
+        { nouns: [0, 1], adjectives: [0] },
+        { nouns: [2], adjectives: [1] },
+        { nouns: [3], adjectives: [2] }
+      ]
+    };
+  
+    function rowsFor(card, blockIndex) {
+      const blocks = card.querySelectorAll(".word-block");
+      return blocks[blockIndex]
+        ? Array.from(blocks[blockIndex].querySelectorAll("tbody tr"))
+        : [];
+    }
+  
+    function groupHeight(rows, indexes) {
+      if (!indexes.length) return 0;
+      const first = rows[indexes[0]].getBoundingClientRect();
+      const last = rows[indexes[indexes.length - 1]].getBoundingClientRect();
+      return last.bottom - first.top;
+    }
+  
+    function growGroup(rows, indexes, delta) {
+      if (delta <= 0 || !indexes.length) return;
+      const lastRow = rows[indexes[indexes.length - 1]];
+      const current = lastRow.getBoundingClientRect().height;
+      lastRow.style.height = `${Math.ceil(current + delta)}px`;
+    }
+  
+    function syncCard(card, spec) {
+      const blocks = card.querySelectorAll(".word-block");
+      if (blocks.length < 2) return;
+  
+      card.classList.add("row-sync-active");
+  
+      const nounTable = blocks[0].querySelector("table");
+      const adjectiveTable = blocks[1].querySelector("table");
+      if (!nounTable || !adjectiveTable) return;
+  
+      const nounHead = nounTable.querySelector("thead tr");
+      const adjectiveHead = adjectiveTable.querySelector("thead tr");
+      const nounRows = rowsFor(card, 0);
+      const adjectiveRows = rowsFor(card, 1);
+  
+      [nounHead, adjectiveHead, ...nounRows, ...adjectiveRows]
+        .filter(Boolean)
+        .forEach(row => row.style.height = "");
+  
+      if (nounHead && adjectiveHead) {
+        const h = Math.ceil(Math.max(
+          nounHead.getBoundingClientRect().height,
+          adjectiveHead.getBoundingClientRect().height
+        ));
+        nounHead.style.height = `${h}px`;
+        adjectiveHead.style.height = `${h}px`;
+      }
+  
+      for (const group of spec) {
+        if (
+          group.nouns.some(i => !nounRows[i]) ||
+          group.adjectives.some(i => !adjectiveRows[i])
+        ) continue;
+  
+        const nounHeight = groupHeight(nounRows, group.nouns);
+        const adjectiveHeight = groupHeight(adjectiveRows, group.adjectives);
+        const target = Math.max(nounHeight, adjectiveHeight);
+  
+        growGroup(nounRows, group.nouns, target - nounHeight);
+        growGroup(adjectiveRows, group.adjectives, target - adjectiveHeight);
+      }
+    }
+  
+    let frame = 0;
+    function syncAllRows() {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        for (const [id, spec] of Object.entries(specs)) {
+          const card = document.getElementById(id);
+          if (card) syncCard(card, spec);
+        }
+      });
+    }
+  
+    window.addEventListener("load", syncAllRows);
+    window.addEventListener("resize", syncAllRows);
+  
+    if ("ResizeObserver" in window) {
+      const observer = new ResizeObserver(syncAllRows);
+      const shell = document.querySelector(".shell");
+      if (shell) observer.observe(shell);
+    }
+  })();
+  </script>
 </body>
 </html>
 

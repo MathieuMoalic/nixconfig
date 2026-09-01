@@ -23,6 +23,7 @@
       ssh
       starship
       yazi
+      opencode
     ];
 
     home.packages = with pkgs; [

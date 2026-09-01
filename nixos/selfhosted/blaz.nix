@@ -40,7 +40,8 @@
         mode = "0400";
       };
     };
-
+    users.users.mat.extraGroups = ["blaz"];
+    users.users.blaz.homeMode = "0750";
     services.blaz = {
       enable = true;
       package = inputs.blaz.packages.${pkgs.stdenv.hostPlatform.system}.prebuilt;

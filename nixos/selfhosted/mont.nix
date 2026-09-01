@@ -41,6 +41,8 @@
       };
     };
 
+    users.users.mat.extraGroups = ["mont"];
+    users.users.mont.homeMode = "0750";
     services.mont = {
       # Enable the service
       enable = true;

@@ -36,6 +36,8 @@
       };
     };
 
+    users.users.mat.extraGroups = ["koun"];
+    users.users.koun.homeMode = "0750";
     services.koun = {
       enable = true;
       inherit bindAddr databasePath logFile corsOrigin audioDir;

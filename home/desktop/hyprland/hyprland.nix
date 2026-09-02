@@ -36,6 +36,9 @@
             "DP-1, 2560x1440@240.00,0x0,1"
             "DP-2, 2560x1440@60.00,2560x0,1"
           ]);
+        windowrule = [
+          "match:class org.wezfurlong.wezterm, render_unfocused on"
+        ];
 
         general = {
           border_size = 2;
@@ -323,7 +326,7 @@
           exit_window_retains_fullscreen = false;
           initial_workspace_tracking = 1;
           middle_click_paste = true;
-          render_unfocused_fps = 15;
+          render_unfocused_fps = 60;
 
           disable_xdg_env_checks = false;
           lockdead_screen_delay = 1000;

@@ -40,6 +40,7 @@
       koun
       dawarich
       searx
+      openclaw
     ];
   };
 }

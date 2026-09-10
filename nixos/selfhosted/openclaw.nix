@@ -21,6 +21,7 @@
     sops.secrets."openclaw/env" = {};
 
     systemd.services.openclaw = {
+      path = with pkgs; [nodejs];
       description = "OpenClaw Gateway";
       after = ["network-online.target"];
       wants = ["network-online.target"];

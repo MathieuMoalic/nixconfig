@@ -4,12 +4,8 @@
     lib,
     pkgs,
     self,
-    inputs,
     ...
-  }: let
-    unstable =
-      inputs.nixpkgs_unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-  in {
+  }: {
     imports = with self.homeModules; [
       fastfetch
       aliases
@@ -23,7 +19,6 @@
       ssh
       starship
       yazi
-      opencode
     ];
 
     home.packages = with pkgs; [
@@ -61,13 +56,10 @@
       delta # diff
       just # makefile in rust
       television # fuzzyfinder
-      claude-code
-      unstable.codex
 
       # custom scripts below
       toggle-audio-port
       media-pipeline
-      cop
       lnmv
       nix-run
       nix-shell

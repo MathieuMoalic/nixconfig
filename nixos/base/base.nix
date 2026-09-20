@@ -78,6 +78,7 @@
       settings = {
         trusted-users = [
           "root"
+          "mat"
         ];
 
         experimental-features = "nix-command flakes";

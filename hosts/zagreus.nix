@@ -7,7 +7,6 @@
     nixosModules = with self.nixosModules; [
       desktop
       sshd
-      kilocode
     ];
 
     userModules = with self.nixosModules; [

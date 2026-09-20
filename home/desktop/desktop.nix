@@ -10,6 +10,7 @@
       zathura
       wlr-which-key
       mangohud
+      coding-agents
     ];
 
     services.mpris-proxy.enable = true; # pause/play bluetooth commands

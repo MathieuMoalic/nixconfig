@@ -3,7 +3,6 @@
     lib,
     pkgs,
     config,
-    inputs,
     ...
   }: let
     url = "photo.matmoa.eu";
@@ -12,8 +11,6 @@
     group = "immich";
     dataDir = "/var/lib/immich";
     hddDir = "/media/immich";
-    unstable =
-      inputs.nixpkgs_unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
   in {
     users.groups.${group} = {};
     users.users.${user} = {
@@ -90,7 +87,7 @@
     };
     services.immich = {
       enable = true;
-      package = unstable.immich;
+      package = pkgs.unstable.immich;
 
       port = port;
       host = "127.0.0.1";

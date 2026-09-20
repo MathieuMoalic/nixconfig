@@ -1,7 +1,5 @@
 {
   flake.nixosModules.openclaw = {
-    inputs,
-    lib,
     pkgs,
     config,
     ...
@@ -21,7 +19,7 @@
     sops.secrets."openclaw/env" = {};
 
     systemd.services.openclaw = {
-      path = with pkgs; [nodejs];
+      path = with pkgs; [nodejs_24];
       description = "OpenClaw Gateway";
       after = ["network-online.target"];
       wants = ["network-online.target"];
@@ -39,7 +37,7 @@
         Group = "openclaw";
         WorkingDirectory = "/var/lib/openclaw";
         EnvironmentFile = config.sops.secrets."openclaw/env".path;
-        ExecStart = "${inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.openclaw}/bin/openclaw gateway run";
+        ExecStart = "${pkgs.llm-agents.openclaw}/bin/openclaw gateway run";
         Restart = "on-failure";
         RestartSec = 5;
         NoNewPrivileges = true;

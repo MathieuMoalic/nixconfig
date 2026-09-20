@@ -2,26 +2,9 @@
   flake.homeModules.wlr-which-key = {
     pkgs,
     lib,
-    inputs,
     osConfig ? {},
     ...
   }: let
-    unstable = import inputs.nixpkgs_unstable {
-      system = pkgs.stdenv.hostPlatform.system;
-      config.allowUnfree = true;
-    };
-
-    t3code = unstable.t3code.override {
-      enableClaude = false;
-      enableCodex = false;
-      enableCursor = false;
-      enableCursorCli = false;
-
-      enableOpencode = true;
-      enableGitHub = true;
-      enableGit = true;
-    };
-
     configFile =
       pkgs.writeText "config.yaml"
       (pkgs.lib.generators.toYAML {} {
@@ -91,13 +74,13 @@
             }
             {
               key = "t";
-              desc = "T3 Code";
-              cmd = lib.getExe t3code;
+              desc = "t3code";
+              cmd = "${pkgs.llm-agents.t3code-desktop}/bin/t3code";
             }
             {
               key = "x";
               desc = "zcode";
-              cmd = "${pkgs.zcode}/bin/zcode";
+              cmd = "${pkgs.llm-agents.zcode}/bin/zcode";
             }
             {
               key = "d";

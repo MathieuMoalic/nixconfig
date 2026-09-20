@@ -95,6 +95,11 @@
               cmd = lib.getExe t3code;
             }
             {
+              key = "x";
+              desc = "zcode";
+              cmd = "${pkgs.zcode}/bin/zcode";
+            }
+            {
               key = "d";
               desc = "Deezer";
               cmd = "${pkgs.deezer-enhanced}/bin/deezer-enhanced";

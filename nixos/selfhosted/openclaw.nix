@@ -50,7 +50,6 @@
     };
 
     services.caddy.virtualHosts.${url}.extraConfig = ''
-      import authelia
       reverse_proxy 127.0.0.1:${toString port}
     '';
   };

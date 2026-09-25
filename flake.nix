@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    polish = {
+      url = "github:MathieuMoalic/polish";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     mont = {
       url = "github:MathieuMoalic/mont";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,11 +61,6 @@
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs_unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";

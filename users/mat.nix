@@ -30,7 +30,6 @@
       imports = with self.homeModules;
         [
           inputs.nix-colors.homeManagerModules.default
-          inputs.nvf.homeManagerModules.default
           inputs.nix-index-database.homeModules.nix-index
           userDirs
           sessionVariables

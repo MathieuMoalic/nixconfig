@@ -14,7 +14,6 @@
       fish
       git
       lazygit
-      nvim
       helix
       ssh
       starship

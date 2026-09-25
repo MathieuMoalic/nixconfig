@@ -10,7 +10,7 @@
       }
 
       handle {
-        root * ${inputs.polish.packages.${pkgs.system}.default}
+        root * ${inputs.polish.packages.${pkgs.stdenv.hostPlatform.system}.default}
         encode zstd gzip
         file_server
       }

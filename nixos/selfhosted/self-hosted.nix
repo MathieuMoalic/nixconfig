@@ -7,6 +7,7 @@
     imports = with self.nixosModules; [
       inputs.homepage.nixosModules.homepage-service
       inputs.blaz.nixosModules.blaz-service
+      inputs.bouedig.nixosModules.bouedig
       inputs.mont.nixosModules.mont-service
       inputs.koun.nixosModules.koun-service
       inputs.air.nixosModules.air-service
@@ -34,6 +35,7 @@
       transmission
       watcharr
       blaz
+      bouedig
       air
       gpx2img
       mont

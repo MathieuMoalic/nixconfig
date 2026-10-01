@@ -8,6 +8,10 @@
       url = "github:MathieuMoalic/blaz";
     };
 
+    bouedig = {
+      url = "github:MathieuMoalic/bouedig";
+    };
+
     gpx2img = {
       url = "github:MathieuMoalic/gpx2img";
     };

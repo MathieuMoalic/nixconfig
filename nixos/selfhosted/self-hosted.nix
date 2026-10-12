@@ -43,6 +43,7 @@
       dawarich
       searx
       openclaw
+      redlib
     ];
   };
 }

@@ -73,11 +73,6 @@
               cmd = "${pkgs.vscode}/bin/code";
             }
             {
-              key = "t";
-              desc = "t3code";
-              cmd = "${pkgs.llm-agents.t3code-desktop}/bin/t3code";
-            }
-            {
               key = "x";
               desc = "zcode";
               cmd = "${pkgs.llm-agents.zcode}/bin/zcode";

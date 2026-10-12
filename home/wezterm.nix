@@ -146,7 +146,7 @@
         default_cursor_style = "BlinkingBar";
         cursor_thickness = "2.5px";
 
-        enable_wayland = false;
+        enable_wayland = true;
         xcursor_theme = "BreezeX-RosePine-Linux";
         window_close_confirmation = "NeverPrompt";
 

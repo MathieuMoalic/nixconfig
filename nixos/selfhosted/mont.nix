@@ -12,8 +12,9 @@
     databasePath = "/var/lib/mont/mont.sqlite";
     logFile = "/var/lib/mont/mont.log";
     corsOrigin = "https://${url}";
-    syncTime = "05:00";
-    gadgetbridgeZip = "/share/gadgetbridge/Gadgetbridge.zip";
+    bleEnabled = true;
+    bleWatchMac = "C5:4C:46:40:42:01";
+    bleAuthKeyFile = "/home/mat/mont-ble-auth-key";
     llmApiUrl = "https://openrouter.ai/api/v";
     llmModel = "deepseek/deepseek-v4-flash";
     verbosity = 0;
@@ -53,7 +54,9 @@
       inherit corsOrigin;
 
       # Synchronization
-      inherit syncTime gadgetbridgeZip;
+      bleEnabled = true;
+      bleWatchMac = "C5:4C:46:40:42:01";
+      bleAuthKeyFile = "/home/mat/mont-ble-auth-key";
 
       # LLM integration
       inherit llmApiUrl llmModel;

@@ -14,7 +14,7 @@
     corsOrigin = "https://${url}";
     bleEnabled = true;
     bleWatchMac = "C5:4C:46:40:42:01";
-    bleAuthKeyFile = "/home/mat/mont-ble-auth-key";
+    bleAuthKeyFile = "/var/lib/mont/ble-auth-key";
     llmApiUrl = "https://openrouter.ai/api/v";
     llmModel = "deepseek/deepseek-v4-flash";
     verbosity = 0;
@@ -56,7 +56,7 @@
       # Synchronization
       bleEnabled = true;
       bleWatchMac = "C5:4C:46:40:42:01";
-      bleAuthKeyFile = "/home/mat/mont-ble-auth-key";
+      bleAuthKeyFile = "/var/lib/mont/ble-auth-key";
 
       # LLM integration
       inherit llmApiUrl llmModel;

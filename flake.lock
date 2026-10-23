@@ -108,11 +108,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1792495294,
-        "narHash": "sha256-MSMuadyv3dW4SDnhpczDdZbAF9tkjNalhY822e7xNwE=",
+        "lastModified": 1792669360,
+        "narHash": "sha256-kGL7yQ8dWrhqqTJVMSXW5NUUAzpDZ+5/5tbRBwusc/I=",
         "owner": "MathieuMoalic",
         "repo": "bouedig",
-        "rev": "c0900d4539fb0b1b93d19b4e92f8f5b18e2efac1",
+        "rev": "93cf3a3decfbeddaa20e179ec07eecca61c13ea0",
         "type": "github"
       },
       "original": {
@@ -419,11 +419,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792438726,
-        "narHash": "sha256-jNjOCroOCMa9ZXR5eLGbkSiLeG7hbwuh4OXqN+AMqEM=",
+        "lastModified": 1792756883,
+        "narHash": "sha256-8jPb1LSC2AltrAQrSDIPx32OkBOfw/vQEPDy3eJR8P0=",
         "owner": "MathieuMoalic",
         "repo": "mont",
-        "rev": "9da9f9102aa22f28f66b94c5bb7f845e78adfbd1",
+        "rev": "32373d1ef9e5f0f3888d383843c507f6317a8329",
         "type": "github"
       },
       "original": {

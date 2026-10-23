@@ -224,7 +224,7 @@
         rtc = {
           port_range_start = udpMinPort;
           port_range_end = udpMaxPort;
-          node_ip = "109.173.160.203";
+          use_external_ip = true;
         };
       };
     };

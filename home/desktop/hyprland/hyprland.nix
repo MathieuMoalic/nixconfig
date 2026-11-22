@@ -33,8 +33,8 @@
             "HDMI-1,preferred,auto,auto" # potential external display
           ])
           ++ (lib.optionals (osConfig.networking.hostName == "zagreus") [
-            "DP-1, 2560x1440@240.00,0x0,1"
-            "DP-2, 2560x1440@60.00,2560x0,1"
+            " desc:Guangxi Century Innovation Display Electronics Co. Ltd 27G1S 0000000000000, 2560x1440@240, 0x0, 1"
+            "desc:AOC Q27G4 18DRCHA000926, 2560x1440@60, 2560x0, 1"
           ]);
         windowrule = [
           "match:class org.wezfurlong.wezterm, render_unfocused on"
